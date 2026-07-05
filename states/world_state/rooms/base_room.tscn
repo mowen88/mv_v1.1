@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dtgksoxcmiogl"]
+
+[ext_resource type="Script" uid="uid://c4wwxyhoalfhs" path="res://states/world_state/rooms/room_exits.gd" id="1_peren"]
+
+[node name="BaseRoom" type="Node2D" unique_id=315341494]
+
+[node name="BGTileMap" type="TileMapLayer" parent="." unique_id=599124256]
+
+[node name="SolidTileMap" type="TileMapLayer" parent="." unique_id=12999079]
+
+[node name="HazardTileMap" type="TileMapLayer" parent="." unique_id=1149728441]
+
+[node name="CameraLimits" type="ReferenceRect" parent="." unique_id=671455297]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Spawns" type="Node2D" parent="." unique_id=214822847]
+
+[node name="Exits" type="Area2D" parent="." unique_id=1104129518]
+collision_mask = 2
+script = ExtResource("1_peren")
+
+[node name="Enemies" type="Node2D" parent="." unique_id=948852907]

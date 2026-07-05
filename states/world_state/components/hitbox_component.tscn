@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://crwqhwfreohvo"]
+
+[ext_resource type="Script" uid="uid://bktajshmva8fp" path="res://states/world_state/components/hitbox_component.gd" id="1_b02po"]
+
+[node name="HitboxComponent" type="Area2D" unique_id=712061374]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_b02po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1317764610]

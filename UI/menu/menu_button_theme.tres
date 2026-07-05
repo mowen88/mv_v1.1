@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://bwyqxsqeh0mbb"]
+
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_nhslw"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 0.7411765, 0.43529412, 1)
+Button/font_sizes/font_size = 90
+Button/fonts/font = ExtResource("1_nhslw")

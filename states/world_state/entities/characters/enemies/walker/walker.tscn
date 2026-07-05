@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://dwidwetcutapw"]
+
+[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/entities/shaders/sprite_flash_shader.tres" id="2_gf6qi"]
+[ext_resource type="Script" uid="uid://48qbeskurr8w" path="res://states/world_state/entities/characters/enemies/walker/walker.gd" id="2_ukh86"]
+[ext_resource type="Texture2D" uid="uid://dsypmg8473p4b" path="res://states/world_state/entities/characters/enemies/walker/spritesheets/idle.png" id="3_xdke5"]
+[ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="3_y1g45"]
+[ext_resource type="Script" uid="uid://co16u7ualvk7h" path="res://states/world_state/entities/characters/enemies/walker/walker_idle.gd" id="4_y1g45"]
+[ext_resource type="Script" uid="uid://c108hnobmja6a" path="res://states/world_state/entities/characters/enemies/walker/walker_walk.gd" id="5_mfvvx"]
+[ext_resource type="Script" uid="uid://cwipud40cav8w" path="res://states/world_state/entities/characters/enemies/walker/walker_death.gd" id="6_7ldib"]
+[ext_resource type="Script" uid="uid://dw11v10aoaham" path="res://states/world_state/entities/characters/enemies/walker/walker_hit.gd" id="7_n1w0g"]
+[ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="8_7ldib"]
+[ext_resource type="PackedScene" uid="uid://c12tbs10lxuco" path="res://states/world_state/components/move_component.tscn" id="8_ctpbx"]
+[ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="9_ctpbx"]
+[ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="10_gsglv"]
+[ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="10_jji3v"]
+[ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="11_mmfun"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctpbx"]
+atlas = ExtResource("3_xdke5")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jji3v"]
+atlas = ExtResource("3_xdke5")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1w0g"]
+atlas = ExtResource("3_xdke5")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsglv"]
+atlas = ExtResource("3_xdke5")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmfun"]
+atlas = ExtResource("3_xdke5")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf6qi"]
+atlas = ExtResource("3_xdke5")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ldib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctpbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jji3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1w0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsglv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmfun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf6qi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1g45"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctpbx"]
+size = Vector2(12, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1w0g"]
+size = Vector2(8, 13)
+
+[node name="Walker" type="CharacterBody2D" unique_id=1164829458 groups=["enemies"]]
+collision_layer = 4
+script = ExtResource("2_ukh86")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
+material = ExtResource("2_gf6qi")
+sprite_frames = SubResource("SpriteFrames_7ldib")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
+shape = SubResource("CapsuleShape2D_y1g45")
+
+[node name="FiniteStateMachine" type="Node" parent="." unique_id=1602473878 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_y1g45")
+initial_state = NodePath("WalkerIdle")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="WalkerIdle" type="Node" parent="FiniteStateMachine" unique_id=1062045893]
+script = ExtResource("4_y1g45")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="WalkerWalk" type="Node" parent="FiniteStateMachine" unique_id=2081878610]
+script = ExtResource("5_mfvvx")
+
+[node name="WalkerDeath" type="Node" parent="FiniteStateMachine" unique_id=1051133370]
+script = ExtResource("6_7ldib")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="WalkerHit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
+script = ExtResource("7_n1w0g")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("8_7ldib")]
+max_health = 3
+
+[node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("8_ctpbx")]
+speed = 25.0
+
+[node name="KnockbackComponent" parent="." unique_id=384703253 instance=ExtResource("10_gsglv")]
+
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite") instance=ExtResource("11_mmfun")]
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("9_ctpbx")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ctpbx")
+
+[node name="ContactHitbox" parent="." unique_id=712061374 instance=ExtResource("10_jji3v")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="ContactHitbox" index="0" unique_id=1317764610]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_n1w0g")
+
+[editable path="HurtboxComponent"]
+[editable path="ContactHitbox"]

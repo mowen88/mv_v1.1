@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://blmbdhod2re4d"]
+
+[ext_resource type="Script" uid="uid://bklbswvhj3poj" path="res://states/world_state/entities/characters/player/sword/sword_scene.gd" id="1_tmog2"]
+[ext_resource type="Texture2D" uid="uid://da0d4j80o4g83" path="res://states/world_state/entities/characters/player/sword/spritesheet.png" id="2_fptq8"]
+[ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="3_fptq8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd0ro"]
+atlas = ExtResource("2_fptq8")
+region = Rect2(0, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bmut"]
+atlas = ExtResource("2_fptq8")
+region = Rect2(38, 0, 38, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5y1vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd0ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bmut")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[node name="SwordScene" type="Node2D" unique_id=2040860777]
+script = ExtResource("1_tmog2")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=925325447]
+wait_time = 0.25
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1240470397]
+sprite_frames = SubResource("SpriteFrames_5y1vg")
+autoplay = "default"
+frame = 1
+frame_progress = 1.0
+
+[node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("3_fptq8")]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent" unique_id=23092858]
+polygon = PackedVector2Array(-7, -8, 9, -8, 17, -5, 19, -2, 19, 2, 17, 5, 9, 8, -7, 8)

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dth8b5ow48upl"]
+
+[ext_resource type="Script" uid="uid://buxs8mnm1v6l7" path="res://states/splash_state/splash_state.gd" id="1_4i0h6"]
+[ext_resource type="Texture2D" uid="uid://bf4l37ypvcw1g" path="res://states/splash_state/mojosoft_logo.png" id="2_1hwi7"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="3_b35vv"]
+
+[node name="SplashState" type="Control" unique_id=445385638]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4i0h6")
+
+[node name="SplashScreen" type="CanvasLayer" parent="." unique_id=1465810264]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="SplashScreen" unique_id=974692106]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Logo" type="Sprite2D" parent="SplashScreen" unique_id=280018655]
+z_index = 1
+position = Vector2(1144.9999, 539.99994)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_1hwi7")
+
+[node name="Text" type="Label" parent="SplashScreen" unique_id=831198619]
+offset_top = 382.00003
+offset_right = 520.0
+offset_bottom = 402.00003
+scale = Vector2(4.5, 4.5)
+theme_override_fonts/font = ExtResource("3_b35vv")
+theme_override_font_sizes/font_size = 10
+text = "Developed by"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dok3g7paayf8q"]
+
+[ext_resource type="Script" uid="uid://cbqtpis5y7yt5" path="res://states/world_state/world_state.gd" id="1_emvdf"]
+[ext_resource type="PackedScene" uid="uid://78wkklni1sfd" path="res://UI/gameplay/touch_controller.tscn" id="2_6c3gn"]
+[ext_resource type="PackedScene" uid="uid://ywh0ibl4nbif" path="res://UI/gameplay/gameplay_ui.tscn" id="3_i7qgc"]
+[ext_resource type="PackedScene" uid="uid://cnru7g4rqfgo3" path="res://states/world_state/entities/characters/player/player.tscn" id="3_y6a8n"]
+[ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="4_6c3gn"]
+
+[node name="WorldState" type="Node2D" unique_id=1906920684]
+process_mode = 3
+script = ExtResource("1_emvdf")
+
+[node name="TouchController" parent="." unique_id=1149322206 instance=ExtResource("2_6c3gn")]
+
+[node name="GameplayUi" parent="." unique_id=187525425 instance=ExtResource("3_i7qgc")]
+
+[node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=1344565673]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="MenuCanvas" unique_id=262005594]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="MenuAnchor" type="Control" parent="MenuCanvas" unique_id=1701042054]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuManager" parent="MenuCanvas/MenuAnchor" unique_id=1846845566 instance=ExtResource("4_6c3gn")]
+layout_mode = 1
+
+[node name="CurrentRoom" type="Node2D" parent="." unique_id=1191198212]
+process_mode = 1
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=1355138718]
+zoom = Vector2(9, 9)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="Player" parent="." unique_id=1424915808 instance=ExtResource("3_y6a8n")]
+
+[node name="CameraTarget" type="Node2D" parent="." unique_id=359759800]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="CameraTarget" unique_id=817625331]
+remote_path = NodePath("../../GameCamera")

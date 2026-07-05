@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://78wkklni1sfd"]
+
+[ext_resource type="Texture2D" uid="uid://bgag4exo3tg6t" path="res://UI/gameplay/elements/left_button.png" id="1_hfat2"]
+[ext_resource type="Texture2D" uid="uid://c6lv7jml5xmkq" path="res://UI/gameplay/elements/right_button.png" id="2_36e3b"]
+[ext_resource type="Texture2D" uid="uid://db7f6s5kl2ipi" path="res://UI/gameplay/elements/a_button.png" id="3_bw6v4"]
+[ext_resource type="Texture2D" uid="uid://dc7xoiyp7isgh" path="res://UI/gameplay/elements/b_button.png" id="4_0yjk1"]
+[ext_resource type="Texture2D" uid="uid://bthqouvpo6sf6" path="res://UI/gameplay/elements/c_button.png" id="5_fsqso"]
+[ext_resource type="Texture2D" uid="uid://51sgw14yfqp7" path="res://UI/gameplay/elements/pause_button.png" id="6_hfat2"]
+
+[node name="TouchController" type="CanvasLayer" unique_id=1149322206]
+layer = 100
+
+[node name="DPadGroup" type="Control" parent="." unique_id=1065386247]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -400.0
+offset_right = 800.0
+grow_vertical = 0
+
+[node name="LeftButton" type="TouchScreenButton" parent="DPadGroup" unique_id=935672647]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(130, 128)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("1_hfat2")
+passby_press = true
+action = "move_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="DPadGroup" unique_id=1413414212]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(420, 128)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("2_36e3b")
+passby_press = true
+action = "move_right"
+
+[node name="ActionGroup" type="Control" parent="." unique_id=789244084]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -800.0
+offset_top = -600.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="JumpButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1967832043]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(470, 328)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("3_bw6v4")
+action = "jump"
+
+[node name="AttackButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1327745849]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(180, 328)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("4_0yjk1")
+action = "attack"
+
+[node name="ShootButton" type="TouchScreenButton" parent="ActionGroup" unique_id=2117206609]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(470, 72)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("5_fsqso")
+action = "shoot"
+
+[node name="MenuGroup" type="Control" parent="." unique_id=507474968]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
+
+[node name="PauseButton" type="TouchScreenButton" parent="MenuGroup" unique_id=1108558003]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(50, 50)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("6_hfat2")
+action = "toggle_pause"

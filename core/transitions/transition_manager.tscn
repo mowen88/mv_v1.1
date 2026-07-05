@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://b2f5x7tjpjxgf"]
+
+[ext_resource type="Script" uid="uid://dogljg3v5kktr" path="res://core/transitions/transition_manager.gd" id="1_gpusd"]
+[ext_resource type="Shader" uid="uid://dusq0wka66egg" path="res://core/transitions/transitions.gdshader" id="2_5c61r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5c61r"]
+shader = ExtResource("2_5c61r")
+shader_parameter/mode = 0
+shader_parameter/progress = 0.0
+shader_parameter/boxes_vertical = 9.0
+shader_parameter/box_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_gpusd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5c61r"]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fu2ls"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kpt87"]
+_data = {
+&"RESET": SubResource("Animation_gpusd"),
+&"fade_in": SubResource("Animation_5c61r"),
+&"fade_out": SubResource("Animation_fu2ls")
+}
+
+[node name="TransitionManager" type="CanvasLayer" unique_id=1599061955]
+layer = 100
+script = ExtResource("1_gpusd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1168483756]
+z_index = 10
+material = SubResource("ShaderMaterial_5c61r")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=643229125]
+libraries/ = SubResource("AnimationLibrary_kpt87")

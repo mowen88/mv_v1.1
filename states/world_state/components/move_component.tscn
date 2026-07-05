@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c12tbs10lxuco"]
+
+[ext_resource type="Script" uid="uid://bttqkl8a4i6cl" path="res://states/world_state/components/move_component.gd" id="1_ihu0l"]
+
+[node name="MoveComponent" type="Node" unique_id=235093058]
+script = ExtResource("1_ihu0l")

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://b12tfh7rnh2yn"]
+
+[ext_resource type="Script" uid="uid://cak16hm4ejdd6" path="res://states/title_state/title_state.gd" id="1_dvdlm"]
+[ext_resource type="Texture2D" uid="uid://dmfbgnboo3suw" path="res://states/title_state/title_background.png" id="2_dvdlm"]
+[ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="2_gre4j"]
+[ext_resource type="Texture2D" uid="uid://5o2tw5mw82ns" path="res://states/title_state/title_character.png" id="3_6o8vq"]
+[ext_resource type="Texture2D" uid="uid://dibhlbo7xpg3m" path="res://states/title_state/title_text.png" id="3_iidgw"]
+[ext_resource type="Texture2D" uid="uid://lqyedppc1t73" path="res://states/title_state/particle.png" id="3_s26ap"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s26ap"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1500, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 20, 0)
+scale_min = 2.0
+scale_max = 4.0
+
+[node name="TitleState" type="Node2D" unique_id=917040507]
+script = ExtResource("1_dvdlm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1731807165]
+layer = -1
+
+[node name="BackgroundImage" type="TextureRect" parent="CanvasLayer" unique_id=2025356385]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dvdlm")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasLayer" unique_id=1892837865]
+position = Vector2(1170, -40)
+amount = 80
+texture = ExtResource("3_s26ap")
+lifetime = 15.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_s26ap")
+
+[node name="CharacterImage" type="TextureRect" parent="CanvasLayer" unique_id=1928600085]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1170.0
+offset_right = 1170.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6o8vq")
+
+[node name="TitleTextImage" type="TextureRect" parent="CanvasLayer" unique_id=973178909]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1058.0
+offset_top = 139.0
+offset_right = -923.0
+offset_bottom = 179.0
+grow_horizontal = 2
+scale = Vector2(9, 9)
+texture = ExtResource("3_iidgw")
+
+[node name="MenuAnchor" type="Control" parent="CanvasLayer" unique_id=1723251540]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 695.0
+offset_top = -330.0
+offset_right = 695.0
+offset_bottom = -330.0
+grow_vertical = 0
+
+[node name="MenuManager" parent="CanvasLayer/MenuAnchor" unique_id=1846845566 instance=ExtResource("2_gre4j")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

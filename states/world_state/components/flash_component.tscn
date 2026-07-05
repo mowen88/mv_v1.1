@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2ib61tnh3i8s"]
+
+[ext_resource type="Script" uid="uid://beet1pla7dk81" path="res://states/world_state/components/flash_component.gd" id="1_ppdoc"]
+
+[node name="FlashComponent" type="Node" unique_id=664279283]
+script = ExtResource("1_ppdoc")
