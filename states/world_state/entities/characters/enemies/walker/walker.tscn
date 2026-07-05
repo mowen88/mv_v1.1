@@ -113,10 +113,14 @@ max_health = 3
 [node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("8_ctpbx")]
 speed = 25.0
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 instance=ExtResource("10_gsglv")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "hurtbox_component", "hit_state") instance=ExtResource("10_gsglv")]
+actor = NodePath("..")
+hurtbox_component = NodePath("../HurtboxComponent")
+hit_state = NodePath("../FiniteStateMachine/WalkerHit")
 
-[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite") instance=ExtResource("11_mmfun")]
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("11_mmfun")]
 sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("9_ctpbx")]
 health_component = NodePath("../HealthComponent")

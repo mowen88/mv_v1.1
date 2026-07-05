@@ -309,12 +309,14 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
 max_health = 5
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor") instance=ExtResource("20_g11l2")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "hurtbox_component", "hit_state") instance=ExtResource("20_g11l2")]
 actor = NodePath("..")
-force = 50.0
+hurtbox_component = NodePath("../HurtboxComponent")
+hit_state = NodePath("../FiniteStateMachine/PlayerHit")
 
-[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite") instance=ExtResource("21_edub2")]
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("21_edub2")]
 sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("19_g11l2")]
 collision_layer = 2

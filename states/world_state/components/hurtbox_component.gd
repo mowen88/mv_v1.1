@@ -1,5 +1,6 @@
-extends Area2D
+
 class_name HurtboxComponent
+extends Area2D
 
 signal hit_received(attacker_pos: Vector2)
 
@@ -16,9 +17,8 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 	if health_component:
 		health_component.damage(amount)
 	
-	#var knockback = force/resistance
-	
 	hit_received.emit(attacker_pos, knockback_force)
+	
 	start_invincibility()
 	return true
 
