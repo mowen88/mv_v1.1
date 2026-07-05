@@ -309,7 +309,9 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
 max_health = 5
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 instance=ExtResource("20_g11l2")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor") instance=ExtResource("20_g11l2")]
+actor = NodePath("..")
+force = 50.0
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite") instance=ExtResource("21_edub2")]
 sprite = NodePath("../AnimatedSprite2D")

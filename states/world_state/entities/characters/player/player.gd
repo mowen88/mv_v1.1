@@ -8,10 +8,13 @@ const MAX_JUMPS: int = 2
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var sword = $SwordScene
+
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
+
+@onready var sword = $SwordScene
+@onready var knockback_resistance: float = 1.0
 
 var last_attacker_pos: Vector2
 
@@ -32,10 +35,17 @@ func x_input(_delta: float) -> void:
 	# If not input locked, set direction as per the relevant input
 	move_component.direction = Input.get_axis("move_left", "move_right")
 
-func _on_hurtbox_received_damage(attacker_pos: Vector2):
+func _on_hurtbox_received_damage(attacker_pos:Vector2, knockback_force:float):
 	last_attacker_pos = attacker_pos
 	fsm.change_state("PlayerHit")
 	flash_component.play_flash()
+	apply_knockback(attacker_pos, knockback_force)
+
+func apply_knockback(attacker_pos:Vector2, knockback_force:float) -> void:
+	var dir = sign(global_position.x - attacker_pos.x)
+	var final_force = knockback_force/knockback_resistance
+	velocity.x = dir * final_force
+	velocity.y = -100
 
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:

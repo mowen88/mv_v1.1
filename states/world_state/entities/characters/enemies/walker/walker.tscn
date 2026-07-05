@@ -120,6 +120,7 @@ sprite = NodePath("../AnimatedSprite2D")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("9_ctpbx")]
 health_component = NodePath("../HealthComponent")
+invincibility_duration = 0.2
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
 position = Vector2(0, -0.5)
@@ -128,6 +129,7 @@ shape = SubResource("RectangleShape2D_ctpbx")
 [node name="ContactHitbox" parent="." unique_id=712061374 instance=ExtResource("10_jji3v")]
 collision_layer = 0
 collision_mask = 2
+knockback_force = 100.0
 
 [node name="CollisionShape2D" parent="ContactHitbox" index="0" unique_id=1317764610]
 position = Vector2(0, -0.5)

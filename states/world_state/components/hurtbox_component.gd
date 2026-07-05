@@ -9,14 +9,16 @@ signal hit_received(attacker_pos: Vector2)
 
 var is_invincible: bool = false
 
-func receive_damage(amount:int, attacker_pos:Vector2) -> bool:
+func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> bool:
 	if is_invincible:
 		return false
 	
 	if health_component:
 		health_component.damage(amount)
 	
-	hit_received.emit(attacker_pos)
+	#var knockback = force/resistance
+	
+	hit_received.emit(attacker_pos, knockback_force)
 	start_invincibility()
 	return true
 
