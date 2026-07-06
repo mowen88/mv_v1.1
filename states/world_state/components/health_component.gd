@@ -15,8 +15,7 @@ func _ready() -> void:
 		actor = get_parent()
 
 func damage(amount:int) -> void:
-	if current_health <= 0: return
-	
+
 	current_health = clampi(current_health - amount, 0, max_health)
 	health_changed.emit(current_health)
 

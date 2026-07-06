@@ -307,7 +307,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
-max_health = 30
+max_health = 10
 
 [node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "hurtbox_component", "hit_state") instance=ExtResource("20_g11l2")]
 actor = NodePath("..")

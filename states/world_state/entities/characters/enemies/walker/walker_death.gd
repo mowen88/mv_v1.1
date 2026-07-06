@@ -10,5 +10,5 @@ func enter() -> void:
 # Inside walker_patrol.gd (An enemy AI state)
 func physics_update(delta: float) -> void:
 	actor.velocity.y += actor.move_component.gravity * delta
-	actor.velocity.x = move_toward(actor.velocity.x, 0, 100 * delta)
+	actor.velocity.x = move_toward(actor.velocity.x, 0, 200 * delta)
 	actor.move_and_slide()
