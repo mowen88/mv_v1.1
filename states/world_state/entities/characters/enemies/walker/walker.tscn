@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="10_gsglv"]
 [ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="10_jji3v"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="11_mmfun"]
+[ext_resource type="PackedScene" uid="uid://bjfpfu1addx2o" path="res://states/world_state/components/death_component.tscn" id="13_qjhv6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctpbx"]
 atlas = ExtResource("3_xdke5")
@@ -89,26 +90,26 @@ shape = SubResource("CapsuleShape2D_y1g45")
 
 [node name="FiniteStateMachine" type="Node" parent="." unique_id=1602473878 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_y1g45")
-initial_state = NodePath("WalkerIdle")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="WalkerIdle" type="Node" parent="FiniteStateMachine" unique_id=1062045893]
+[node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=1062045893]
 script = ExtResource("4_y1g45")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="WalkerWalk" type="Node" parent="FiniteStateMachine" unique_id=2081878610]
+[node name="Walk" type="Node" parent="FiniteStateMachine" unique_id=2081878610]
 script = ExtResource("5_mfvvx")
 
-[node name="WalkerDeath" type="Node" parent="FiniteStateMachine" unique_id=1051133370]
+[node name="Death" type="Node" parent="FiniteStateMachine" unique_id=1051133370]
 script = ExtResource("6_7ldib")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="WalkerHit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
+[node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
 script = ExtResource("7_n1w0g")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("8_7ldib")]
-max_health = 3
+max_health = 10
 
 [node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("8_ctpbx")]
 speed = 25.0
@@ -116,11 +117,18 @@ speed = 25.0
 [node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "hurtbox_component", "hit_state") instance=ExtResource("10_gsglv")]
 actor = NodePath("..")
 hurtbox_component = NodePath("../HurtboxComponent")
-hit_state = NodePath("../FiniteStateMachine/WalkerHit")
+hit_state = NodePath("../FiniteStateMachine/Hit")
 
-[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("11_mmfun")]
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component", "fsm") instance=ExtResource("11_mmfun")]
 sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
+fsm = NodePath("../FiniteStateMachine")
+
+[node name="DeathComponent" parent="." unique_id=1292699959 node_paths=PackedStringArray("actor", "health_component", "hitbox_component", "fsm") instance=ExtResource("13_qjhv6")]
+actor = NodePath("..")
+health_component = NodePath("../HealthComponent")
+hitbox_component = NodePath("../HitboxComponent")
+fsm = NodePath("../FiniteStateMachine")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("9_ctpbx")]
 health_component = NodePath("../HealthComponent")
@@ -130,14 +138,14 @@ invincibility_duration = 0.2
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ctpbx")
 
-[node name="ContactHitbox" parent="." unique_id=712061374 instance=ExtResource("10_jji3v")]
+[node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("10_jji3v")]
 collision_layer = 0
 collision_mask = 2
 knockback_force = 100.0
 
-[node name="CollisionShape2D" parent="ContactHitbox" index="0" unique_id=1317764610]
+[node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=1317764610]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_n1w0g")
 
 [editable path="HurtboxComponent"]
-[editable path="ContactHitbox"]
+[editable path="HitboxComponent"]

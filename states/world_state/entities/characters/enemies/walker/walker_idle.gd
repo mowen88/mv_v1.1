@@ -9,6 +9,9 @@ func enter() -> void:
 
 # Inside walker_patrol.gd (An enemy AI state)
 func physics_update(_delta: float) -> void:
+	# Add gravity
+	actor.velocity.y += actor.move_component.gravity * _delta
+	
 	if actor.is_on_wall():
 		actor.move_component.facing *= -1
 	

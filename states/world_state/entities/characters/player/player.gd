@@ -17,9 +17,6 @@ const MAX_JUMPS: int = 2
 
 var jump_counter: int = 0
 
-func flash_player() -> void:
-	flash_component.play_flash()
-
 func x_input(_delta: float) -> void:
 	if InputManager.input_lock:
 		# Keep the player moving on room transition when input locked

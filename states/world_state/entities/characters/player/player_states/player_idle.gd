@@ -7,10 +7,10 @@ func enter() -> void:
 	
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		fsm.change_state("PlayerJump")
+		fsm.change_state("Jump")
 	
 	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
-		fsm.change_state("PlayerAttack")
+		fsm.change_state("Attack")
 	
 func physics_update(_delta: float) -> void:
 
@@ -21,7 +21,7 @@ func physics_update(_delta: float) -> void:
 	
 	# Fall if not on floor
 	if not actor.is_on_floor():
-		fsm.change_state("PlayerFall")
+		fsm.change_state("Fall")
 	
 	if actor.move_component.direction != 0:
-		fsm.change_state("PlayerRun")
+		fsm.change_state("Run")

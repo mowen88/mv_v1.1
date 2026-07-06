@@ -10,9 +10,6 @@ extends CharacterBody2D
 @onready var flash_component: FlashComponent = $FlashComponent
 
 
-func _ready() -> void:
-	health_component.died.connect(_on_died)
-
 #Testing with input - to be deleted for shipping !!!!
 func _unhandled_input(event: InputEvent) -> void:
 
@@ -22,8 +19,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		#print(health_component.current_health)
 		pass
 	
-func _on_died() -> void:
-	set_collision_mask_value(2, false)
-	set_collision_mask_value(1, true)
-	fsm.change_state("WalkerDeath")
 	

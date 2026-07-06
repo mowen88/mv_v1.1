@@ -8,7 +8,7 @@ func enter() -> void:
 	timer.timeout.connect(actor.queue_free)
 
 # Inside walker_patrol.gd (An enemy AI state)
-func physics_update(_delta: float) -> void:
-	var direction = actor.move_component.facing * -1
-	actor.velocity.x = move_toward(direction * 50, 0, actor.move_component.deceleration * _delta)
+func physics_update(delta: float) -> void:
+	actor.velocity.y += actor.move_component.gravity * delta
+	actor.velocity.x = move_toward(actor.velocity.x, 0, 100 * delta)
 	actor.move_and_slide()

@@ -1,13 +1,12 @@
 extends State
 class_name PlayerFall
 
-
 func enter() -> void:
 	actor.get_node("AnimatedSprite2D").play("fall")
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
-		fsm.change_state("PlayerAirAttack")
+		fsm.change_state("AirAttack")
 
 func physics_update(_delta: float) -> void:
 	# Add gravity
@@ -19,5 +18,5 @@ func physics_update(_delta: float) -> void:
 	actor.move_and_slide()
 	
 	if actor.is_on_floor():
-		fsm.change_state("PlayerIdle")
+		fsm.change_state("Idle")
 		return

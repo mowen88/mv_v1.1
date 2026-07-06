@@ -16,4 +16,4 @@ func physics_update(delta: float) -> void:
 	actor.move_and_slide()
 	
 	if timer <= 0:
-		fsm.change_state("WalkerIdle")
+		fsm.change_state("Hit")

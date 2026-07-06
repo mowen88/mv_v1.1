@@ -267,52 +267,53 @@ shape = SubResource("CapsuleShape2D_cdm2v")
 
 [node name="FiniteStateMachine" type="Node" parent="." unique_id=1602473878 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_ri0vu")
-initial_state = NodePath("PlayerIdle")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerIdle" type="Node" parent="FiniteStateMachine" unique_id=281146213]
+[node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=281146213]
 script = ExtResource("3_qcvx2")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerRun" type="Node" parent="FiniteStateMachine" unique_id=1407994692]
+[node name="Run" type="Node" parent="FiniteStateMachine" unique_id=1407994692]
 script = ExtResource("6_u6uqx")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerFall" type="Node" parent="FiniteStateMachine" unique_id=1958962312]
+[node name="Fall" type="Node" parent="FiniteStateMachine" unique_id=1958962312]
 script = ExtResource("8_cdm2v")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerJump" type="Node" parent="FiniteStateMachine" unique_id=600533610]
+[node name="Jump" type="Node" parent="FiniteStateMachine" unique_id=600533610]
 script = ExtResource("8_6on6l")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerAttack" type="Node" parent="FiniteStateMachine" unique_id=932327878]
+[node name="Attack" type="Node" parent="FiniteStateMachine" unique_id=932327878]
 script = ExtResource("9_6on6l")
 sword_scene = ExtResource("14_pffij")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerAirAttack" type="Node" parent="FiniteStateMachine" unique_id=887752482]
+[node name="AirAttack" type="Node" parent="FiniteStateMachine" unique_id=887752482]
 script = ExtResource("12_04ry7")
 sword_scene = ExtResource("14_pffij")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerDeath" type="Node" parent="FiniteStateMachine" unique_id=327399938]
+[node name="Death" type="Node" parent="FiniteStateMachine" unique_id=327399938]
 script = ExtResource("16_pffij")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="PlayerHit" type="Node" parent="FiniteStateMachine" unique_id=65880390]
+[node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=65880390]
 script = ExtResource("17_g11l2")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
-max_health = 5
+max_health = 30
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "hurtbox_component", "hit_state") instance=ExtResource("20_g11l2")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "hurtbox_component", "hit_state") instance=ExtResource("20_g11l2")]
 actor = NodePath("..")
+fsm = NodePath("../FiniteStateMachine")
 hurtbox_component = NodePath("../HurtboxComponent")
-hit_state = NodePath("../FiniteStateMachine/PlayerHit")
+hit_state = NodePath("../FiniteStateMachine/Hit")
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("21_edub2")]
 sprite = NodePath("../AnimatedSprite2D")

@@ -9,7 +9,7 @@ func enter() -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
-		fsm.change_state("PlayerAirAttack")
+		fsm.change_state("AirAttack")
 	
 func physics_update(_delta: float) -> void:
 	# Add gravity
@@ -21,4 +21,4 @@ func physics_update(_delta: float) -> void:
 	actor.move_and_slide()
 	
 	if actor.velocity.y >= 0:
-		fsm.change_state("PlayerFall")
+		fsm.change_state("Fall")

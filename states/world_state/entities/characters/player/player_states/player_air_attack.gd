@@ -24,7 +24,7 @@ func physics_update(_delta: float) -> void:
 	actor.move_and_slide()
 	
 	if actor.sword.cooldown_timer.is_stopped():
-		fsm.change_state("PlayerFall")
+		fsm.change_state("Fall")
 
 			
 		

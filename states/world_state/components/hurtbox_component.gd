@@ -11,7 +11,7 @@ signal hit_received(attacker_pos: Vector2)
 var is_invincible: bool = false
 
 func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> bool:
-	if is_invincible:
+	if is_invincible or health_component.current_health <= 0:
 		return false
 	
 	if health_component:

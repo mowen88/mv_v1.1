@@ -10,7 +10,7 @@ func enter() -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		fsm.change_state("PlayerJump")
+		fsm.change_state("Jump")
 	
 func physics_update(_delta: float) -> void:
 	# Add gravity
@@ -21,4 +21,4 @@ func physics_update(_delta: float) -> void:
 	actor.move_and_slide()
 	
 	if actor.sword.cooldown_timer.is_stopped():
-		fsm.change_state("PlayerIdle")
+		fsm.change_state("Idle")
