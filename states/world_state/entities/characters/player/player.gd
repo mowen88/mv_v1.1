@@ -1,6 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
+
+signal player_health_changed(new_health: int)
+signal player_died
+
 const ATTACK_DECELERATION: float = 300.0
 const MAX_JUMPS: int = 2
 
@@ -17,6 +21,10 @@ const MAX_JUMPS: int = 2
 
 var jump_counter: int = 0
 
+func _ready() -> void:
+	health_component.health_changed.connect(_on_health_changed)
+	health_component.died.connect(_on_died)
+	
 func x_input(_delta: float) -> void:
 	if InputManager.input_lock:
 		# Keep the player moving on room transition when input locked
@@ -25,6 +33,12 @@ func x_input(_delta: float) -> void:
 		
 	# If not input locked, set direction as per the relevant input
 	move_component.direction = Input.get_axis("move_left", "move_right")
+
+func _on_health_changed(new_health:int) -> void:
+	SignalBus.player_health_changed.emit(new_health)
+
+func _on_died() -> void:
+	SignalBus.player_died.emit()
 
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:

@@ -38,8 +38,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 
 	# Change the FSM state
 	if body.velocity.y < 0:
-		body.fsm.change_state("PlayerJump")
+		body.fsm.change_state("Jump")
 	
-			
 	# Tell the WorldState (via SignalBus) to swap the scenes
 	SignalBus.room_change_requested.emit(exit_id)

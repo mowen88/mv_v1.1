@@ -1,3 +1,19 @@
 [gd_scene format=3 uid="uid://ywh0ibl4nbif"]
 
+[ext_resource type="Script" uid="uid://cv5x1276vtmrh" path="res://UI/gameplay/gameplay_ui.gd" id="1_og5kx"]
+
 [node name="GameplayUi" type="CanvasLayer" unique_id=421129531]
+script = ExtResource("1_og5kx")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=3752086]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="HealthHUD" type="HBoxContainer" parent="." unique_id=214216705]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 824.0
+offset_bottom = 96.0
