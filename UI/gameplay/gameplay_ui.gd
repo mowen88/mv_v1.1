@@ -13,24 +13,24 @@ func _rebuild_hud(new_max: int) -> void:
 		child.queue_free()
 	
 	for i in range(new_max):
-		var new_mask = TextureRect.new()
-		new_mask.texture = FULL_TEX
-		new_mask.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		new_mask.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+		var new_node = TextureRect.new()
+		new_node.texture = FULL_TEX
+		new_node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		new_node.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		
-		new_mask.custom_minimum_size = FULL_TEX.get_size() * 9
-		new_mask.scale = Vector2(9, 9)
+		new_node.custom_minimum_size = FULL_TEX.get_size() * 9
+		new_node.scale = Vector2(9, 9)
 		
-		health_hud.add_child(new_mask)
+		health_hud.add_child(new_node)
 
 func _on_player_max_health_changed(new_max: int) -> void:
 	_rebuild_hud(new_max)
 
 func _on_player_health_changed(new_health: int) -> void:
-	var masks = health_hud.get_children()
+	var nodes = health_hud.get_children()
 	
-	for i in range(masks.size()):
-		var target = masks[i]
+	for i in range(nodes.size()):
+		var target = nodes[i]
 		var was_full = target.texture == FULL_TEX
 		
 		if i < new_health:
