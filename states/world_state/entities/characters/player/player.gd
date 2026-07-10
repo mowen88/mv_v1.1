@@ -21,10 +21,15 @@ const MAX_JUMPS: int = 2
 
 var jump_counter: int = 0
 
+		
 func _ready() -> void:
-	health_component.health_changed.connect(_on_health_changed)
+	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
+	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	health_component.died.connect(_on_died)
 	
+	SignalBus.player_max_health_changed.emit(health_component.max_health)
+	SignalBus.player_health_changed.emit(health_component.current_health)
+
 func x_input(_delta: float) -> void:
 	if InputManager.input_lock:
 		# Keep the player moving on room transition when input locked

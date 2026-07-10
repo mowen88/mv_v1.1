@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_nhslw"]
 
 [resource]
+default_font_size = 90
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 0.7411765, 0.43529412, 1)

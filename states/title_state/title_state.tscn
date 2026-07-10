@@ -29,6 +29,8 @@ layer = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -2080.0
+offset_bottom = -960.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_dvdlm")
@@ -46,7 +48,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1170.0
-offset_right = 1170.0
+offset_right = -910.0
+offset_bottom = -960.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_6o8vq")
@@ -60,7 +63,6 @@ offset_top = 139.0
 offset_right = -923.0
 offset_bottom = 179.0
 grow_horizontal = 2
-scale = Vector2(9, 9)
 texture = ExtResource("3_iidgw")
 
 [node name="MenuAnchor" type="Control" parent="CanvasLayer" unique_id=1723251540]

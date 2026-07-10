@@ -6,6 +6,7 @@ signal settings_requested
 func _ready() -> void:
 	for child in get_children():
 		if child is Button:
+			
 			child.pressed.connect(_on_button_pressed.bind(child.name))
 			child.focus_mode = Control.FOCUS_NONE
 

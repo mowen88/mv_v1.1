@@ -2,9 +2,14 @@ class_name HealthComponent
 extends Node
 
 signal health_changed
+signal max_health_changed
 signal died
 
-@export var max_health: int = 1
+@export var max_health: int = 5:
+	set(value):
+		max_health = value
+		max_health_changed.emit(max_health)
+
 @onready var current_health: int = max_health
 
 # Add parent reference

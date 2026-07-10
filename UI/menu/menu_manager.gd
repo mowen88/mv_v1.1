@@ -16,7 +16,6 @@ func _ready() -> void:
 	# Wire up child signals
 	main_menu.continue_requested.connect(func(): show_panel(save_slot_menu))
 	main_menu.settings_requested.connect(func(): show_panel(settings_menu))
-	
 	pause_menu.settings_requested.connect(func(): show_panel(settings_menu))
 	
 	pause_menu.quit_requested.connect(_quit_to_tile)

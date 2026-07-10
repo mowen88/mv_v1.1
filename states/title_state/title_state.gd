@@ -1,12 +1,22 @@
 extends Node2D
 
 @onready var character_image: TextureRect = $CanvasLayer/CharacterImage
+@onready var title_text_image: TextureRect = $CanvasLayer/TitleTextImage
+@onready var background_image: TextureRect = $CanvasLayer/BackgroundImage
+
 # Grab a reference to our new modular, child menu manager component
 @onready var menu_manager: Control = $CanvasLayer/MenuAnchor/MenuManager
 
-func _ready() -> void:
-	# Keep inputs locked while the initial title splash plays out
 
+func _ready() -> void:
+	
+	# scale images
+	title_text_image.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+	character_image.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+	background_image.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+
+	
+	# Keep inputs locked while the initial title splash plays out
 	await get_tree().create_timer(0.2).timeout
 	_tween_in_character()
 	

@@ -109,7 +109,7 @@ script = ExtResource("7_n1w0g")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("8_7ldib")]
-max_health = 5
+max_health = 3
 
 [node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("8_ctpbx")]
 speed = 25.0
