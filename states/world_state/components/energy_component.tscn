@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dh1u3fofia6k0"]
+
+[ext_resource type="Script" uid="uid://dg2e7t58cd4ra" path="res://states/world_state/components/energy_component.gd" id="1_noowl"]
+
+[node name="EnergyComponent" type="Node" unique_id=712779835]
+script = ExtResource("1_noowl")

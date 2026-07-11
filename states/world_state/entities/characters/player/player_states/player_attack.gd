@@ -1,5 +1,6 @@
 extends State
 
+@export var deceleration: float = 300
 @export var sword_scene: PackedScene
 
 func enter() -> void:
@@ -17,7 +18,7 @@ func physics_update(_delta: float) -> void:
 	actor.velocity.y += actor.move_component.gravity * _delta
 	
 	# Handle horizontal slow down
-	actor.velocity.x = move_toward(actor.velocity.x, 0, actor.ATTACK_DECELERATION * _delta)
+	actor.velocity.x = move_toward(actor.velocity.x, 0, deceleration * _delta)
 	actor.move_and_slide()
 	
 	if actor.sword.cooldown_timer.is_stopped():

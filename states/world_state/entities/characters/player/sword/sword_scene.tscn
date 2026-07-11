@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bklbswvhj3poj" path="res://states/world_state/entities/characters/player/sword/sword_scene.gd" id="1_tmog2"]
 [ext_resource type="Texture2D" uid="uid://da0d4j80o4g83" path="res://states/world_state/entities/characters/player/sword/spritesheet.png" id="2_fptq8"]
+[ext_resource type="PackedScene" uid="uid://dh1u3fofia6k0" path="res://states/world_state/components/energy_component.tscn" id="3_ajy16"]
 [ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="3_fptq8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jd0ro"]
@@ -30,7 +31,10 @@ animations = [{
 script = ExtResource("1_tmog2")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=925325447]
-wait_time = 0.25
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="." unique_id=1888201384]
+wait_time = 0.5
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1240470397]
@@ -38,6 +42,12 @@ sprite_frames = SubResource("SpriteFrames_5y1vg")
 autoplay = "default"
 frame = 1
 frame_progress = 1.0
+
+[node name="EnergyComponent" parent="AnimatedSprite2D" unique_id=712779835 instance=ExtResource("3_ajy16")]
+script = null
+
+[node name="EnergyComponent" parent="AnimatedSprite2D/EnergyComponent" unique_id=1679279114 instance=ExtResource("3_ajy16")]
+script = null
 
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("3_fptq8")]
 collision_layer = 0

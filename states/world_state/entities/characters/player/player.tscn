@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="17_yrv70"]
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="19_g11l2"]
 [ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="20_g11l2"]
+[ext_resource type="PackedScene" uid="uid://dh1u3fofia6k0" path="res://states/world_state/components/energy_component.tscn" id="21_6mh6f"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="21_edub2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
@@ -308,6 +309,9 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
 max_health = 10
+
+[node name="EnergyComponent" parent="." unique_id=712779835 instance=ExtResource("21_6mh6f")]
+max_energy = 500
 
 [node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "hurtbox_component", "hit_state") instance=ExtResource("20_g11l2")]
 actor = NodePath("..")

@@ -5,13 +5,13 @@ extends CharacterBody2D
 signal player_health_changed(new_health: int)
 signal player_died
 
-const ATTACK_DECELERATION: float = 300.0
 const MAX_JUMPS: int = 2
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var energy_component: EnergyComponent = $EnergyComponent
 
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
@@ -27,8 +27,14 @@ func _ready() -> void:
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	health_component.died.connect(_on_died)
 	
+	energy_component.energy_changed.connect(func(val): SignalBus.player_energy_changed.emit(val))
+	energy_component.max_energy_changed.connect(func(val): SignalBus.player_max_energy_changed.emit(val))
+	
 	SignalBus.player_max_health_changed.emit(health_component.max_health)
 	SignalBus.player_health_changed.emit(health_component.current_health)
+
+	SignalBus.player_max_energy_changed.emit(energy_component.max_energy)
+	SignalBus.player_energy_changed.emit(energy_component.current_energy)
 
 func x_input(_delta: float) -> void:
 	if InputManager.input_lock:

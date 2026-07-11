@@ -1,12 +1,24 @@
 extends CanvasLayer
 
+@onready var energy_hud: TextureProgressBar = $EnergyHUD
 @onready var health_hud: HBoxContainer = $HealthHUD
 const FULL_TEX = preload("res://UI/gameplay/elements/health_node_full.png")
 const EMPTY_TEX = preload("res://UI/gameplay/elements/health_node_empty.png")
 
 func _ready() -> void:
+	# Health
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
 	SignalBus.player_max_health_changed.connect(_on_player_max_health_changed)
+
+	# Energy
+	SignalBus.player_energy_changed.connect(_on_energy_changed)
+	SignalBus.player_max_energy_changed.connect(_on_max_energy_changed)
+
+func _on_energy_changed(new_energy: int) -> void:
+	energy_hud.value = new_energy
+
+func _on_max_energy_changed(new_max: int) -> void:
+	energy_hud.max_value = new_max
 
 func _rebuild_hud(new_max: int) -> void:
 	for child in health_hud.get_children():
