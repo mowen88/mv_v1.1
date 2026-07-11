@@ -4,7 +4,7 @@ extends Node
 signal energy_changed(new_energy: int)
 signal max_energy_changed(new_max: int)
 
-@export var max_energy: int = 100:
+@export var max_energy: int = 99:
 	set(value):
 		max_energy = value
 		max_energy_changed.emit(max_energy)

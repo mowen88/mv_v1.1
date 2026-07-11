@@ -6,6 +6,7 @@ const FULL_TEX = preload("res://UI/gameplay/elements/health_node_full.png")
 const EMPTY_TEX = preload("res://UI/gameplay/elements/health_node_empty.png")
 
 func _ready() -> void:
+	
 	# Health
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
 	SignalBus.player_max_health_changed.connect(_on_player_max_health_changed)
@@ -13,8 +14,14 @@ func _ready() -> void:
 	# Energy
 	SignalBus.player_energy_changed.connect(_on_energy_changed)
 	SignalBus.player_max_energy_changed.connect(_on_max_energy_changed)
+	
+	# Scale and centralise energy bar. Health nodes are scaled within their instantiate loop.
+	energy_hud.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+	var offset = (energy_hud.texture_under.get_size() - energy_hud.texture_progress.get_size())/2
+	energy_hud.texture_progress_offset = offset
 
 func _on_energy_changed(new_energy: int) -> void:
+	print("New energy: ", new_energy, " / Max energy: ", energy_hud.max_value)
 	energy_hud.value = new_energy
 
 func _on_max_energy_changed(new_max: int) -> void:
@@ -30,8 +37,8 @@ func _rebuild_hud(new_max: int) -> void:
 		new_node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		new_node.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		
-		new_node.custom_minimum_size = FULL_TEX.get_size() * 9
-		new_node.scale = Vector2(9, 9)
+		new_node.custom_minimum_size = FULL_TEX.get_size() * Constants.UI_SCALE
+		new_node.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
 		
 		health_hud.add_child(new_node)
 

@@ -76,7 +76,7 @@ size = Vector2(12, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1w0g"]
 size = Vector2(8, 13)
 
-[node name="Walker" type="CharacterBody2D" unique_id=1164829458 groups=["enemies"]]
+[node name="Walker" type="CharacterBody2D" unique_id=1164829458 groups=["enemies", "energy_gaining"]]
 collision_layer = 4
 script = ExtResource("2_ukh86")
 
@@ -130,7 +130,7 @@ health_component = NodePath("../HealthComponent")
 hitbox_component = NodePath("../HitboxComponent")
 fsm = NodePath("../FiniteStateMachine")
 
-[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("9_ctpbx")]
+[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") groups=["enemies", "energy_gaining"] instance=ExtResource("9_ctpbx")]
 health_component = NodePath("../HealthComponent")
 invincibility_duration = 0.2
 

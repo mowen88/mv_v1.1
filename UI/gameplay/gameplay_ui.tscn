@@ -16,11 +16,10 @@ theme_override_constants/separation = 12
 
 [node name="EnergyHUD" type="TextureProgressBar" parent="." unique_id=1011820991]
 offset_left = 48.0
-offset_top = 200.0
+offset_top = 128.0
 offset_right = 148.0
-offset_bottom = 240.0
-min_value = 50.0
+offset_bottom = 158.0
+max_value = 500.0
 value = 50.0
 texture_under = ExtResource("2_olg42")
 texture_progress = ExtResource("3_tpj4g")
-texture_progress_offset = Vector2(18, 18)

@@ -2,7 +2,7 @@
 class_name HurtboxComponent
 extends Area2D
 
-signal hit_received(attacker_pos: Vector2)
+signal hit_received(attacker_pos: Vector2, knockback_force:float)
 
 # The Hurtbox just needs to hold a reference to the HealthComponent
 @export var health_component: HealthComponent
@@ -18,6 +18,7 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 		health_component.damage(amount)
 	
 	hit_received.emit(attacker_pos, knockback_force)
+	SignalBus.player_energy_gained.emit(get_owner(), knockback_force)
 	
 	start_invincibility()
 	return true

@@ -31,10 +31,11 @@ animations = [{
 script = ExtResource("1_tmog2")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=925325447]
+wait_time = 0.3
 one_shot = true
 
 [node name="ActiveTimer" type="Timer" parent="." unique_id=1888201384]
-wait_time = 0.5
+wait_time = 0.15
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1240470397]

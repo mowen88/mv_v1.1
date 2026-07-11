@@ -1,10 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-
-signal player_health_changed(new_health: int)
-signal player_died
-
 const MAX_JUMPS: int = 2
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -16,16 +12,18 @@ const MAX_JUMPS: int = 2
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 @onready var sword = $SwordScene
 
 var jump_counter: int = 0
 
 		
-func _ready() -> void:
+func _ready() -> void:	
+	health_component.died.connect(_on_died)
+	
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
-	health_component.died.connect(_on_died)
 	
 	energy_component.energy_changed.connect(func(val): SignalBus.player_energy_changed.emit(val))
 	energy_component.max_energy_changed.connect(func(val): SignalBus.player_max_energy_changed.emit(val))
@@ -35,7 +33,13 @@ func _ready() -> void:
 
 	SignalBus.player_max_energy_changed.emit(energy_component.max_energy)
 	SignalBus.player_energy_changed.emit(energy_component.current_energy)
-
+	
+	SignalBus.player_energy_gained.connect(_gain_energy)
+	
+func _gain_energy(entity: Node2D, knockback_force: float) -> void:
+	if entity.is_in_group("energy_gaining"):
+		energy_component.gain_energy(knockback_force / 50)
+	
 func x_input(_delta: float) -> void:
 	if InputManager.input_lock:
 		# Keep the player moving on room transition when input locked
@@ -44,9 +48,6 @@ func x_input(_delta: float) -> void:
 		
 	# If not input locked, set direction as per the relevant input
 	move_component.direction = Input.get_axis("move_left", "move_right")
-
-func _on_health_changed(new_health:int) -> void:
-	SignalBus.player_health_changed.emit(new_health)
 
 func _on_died() -> void:
 	SignalBus.player_died.emit()
