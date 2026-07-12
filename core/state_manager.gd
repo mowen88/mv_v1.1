@@ -10,8 +10,8 @@ const SCENES: Dictionary[GameState, String] = {
 }
 
 func change_state(target_state: GameState,\
-in_duration: float = 0.2,\
-out_duration: float = 0.6,\
+in_duration: float = 0.5,\
+out_duration: float = 1.0,\
 in_mode: String = "fade",\
 out_mode: String = "fade"):
 	

@@ -71,7 +71,7 @@ func _on_delete_requested(slot_id: String) -> void:
 
 func _on_delete_confirmed() -> void:
 	SaveManager.delete_slot(pending_delete_slot)
-	show_panel(save_slot_menu)
+	_go_back()
 
 func _on_save_slot_selected(slot_id: String) -> void:
 	SaveManager.current_slot = slot_id

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://drmnvttwkb5fm"]
+
+[ext_resource type="Script" uid="uid://wm7pfhnv67c1" path="res://states/boot_state/boot_state.gd" id="1_r70yi"]
+
+[node name="BootState" type="Control" unique_id=445385638]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r70yi")
+
+[node name="SplashScreen" type="CanvasLayer" parent="." unique_id=1465810264]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="SplashScreen" unique_id=974692106]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

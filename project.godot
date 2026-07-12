@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="mv_v1.1"
-run/main_scene="uid://dth8b5ow48upl"
+run/main_scene="uid://drmnvttwkb5fm"
 config/features=PackedStringArray("4.6", "Mobile")
 run/max_fps=120
+boot_splash/show_image=false
 
 [autoload]
 
