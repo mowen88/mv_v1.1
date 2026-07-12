@@ -15,9 +15,7 @@ func gain_energy(amount: int) -> void:
 	current_energy = clampi(current_energy + amount, 0, max_energy)
 	energy_changed.emit(current_energy)
 
-func consume_energy(amount: int) -> bool:
-	if current_energy >= amount:
-		current_energy -= amount
-		energy_changed.emit(current_energy)
-		return true
-	return false
+func consume_energy(amount: int) -> void:
+	
+	current_energy = clampi(current_energy - amount, 0, max_energy)
+	energy_changed.emit(current_energy)

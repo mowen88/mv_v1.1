@@ -4,3 +4,4 @@
 
 [node name="EnergyComponent" type="Node" unique_id=712779835]
 script = ExtResource("1_noowl")
+max_energy = 33

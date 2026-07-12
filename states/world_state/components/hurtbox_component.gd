@@ -18,7 +18,8 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 		health_component.damage(amount)
 	
 	hit_received.emit(attacker_pos, knockback_force)
-	SignalBus.player_energy_gained.emit(get_owner(), knockback_force)
+	
+	SignalBus.player_energy_gained.emit(get_owner())
 	
 	start_invincibility()
 	return true

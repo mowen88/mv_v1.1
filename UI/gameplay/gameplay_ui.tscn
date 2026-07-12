@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://ywh0ibl4nbif"]
 
 [ext_resource type="Script" uid="uid://cv5x1276vtmrh" path="res://UI/gameplay/gameplay_ui.gd" id="1_og5kx"]
-[ext_resource type="Texture2D" uid="uid://cdtjgwyfnqin4" path="res://UI/gameplay/elements/empty_energy_bar.png" id="2_olg42"]
-[ext_resource type="Texture2D" uid="uid://dq5lsjd7wip0k" path="res://UI/gameplay/elements/full_energy_bar.png" id="3_tpj4g"]
 
 [node name="GameplayUI" type="CanvasLayer" unique_id=421129531]
 script = ExtResource("1_og5kx")
@@ -14,12 +12,9 @@ offset_right = 848.0
 offset_bottom = 120.0
 theme_override_constants/separation = 12
 
-[node name="EnergyHUD" type="TextureProgressBar" parent="." unique_id=1011820991]
+[node name="EnergyHUD" type="HBoxContainer" parent="." unique_id=1127547532]
 offset_left = 48.0
 offset_top = 128.0
 offset_right = 148.0
 offset_bottom = 158.0
-max_value = 500.0
-value = 50.0
-texture_under = ExtResource("2_olg42")
-texture_progress = ExtResource("3_tpj4g")
+theme_override_constants/separation = -4
