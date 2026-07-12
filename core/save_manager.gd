@@ -74,16 +74,16 @@ func load_from_disk(slot_id: String) -> bool:
 func get_saved_room() -> String:
 	if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("player_data"):
 		return SAVE_DATA[current_slot]["player_data"]["room_id"]
-	return "01_a" # Absolute fallback room
+	return "01_a" # Start fallback room
 
 func delete_slot(slot_id: String) -> void:
-	# 1. Revert active RAM profile back to an empty dictionary
+	# Revert to an empty dictionary in RAM
 	SAVE_DATA[slot_id] = {}
 	
-	# 2. Safely check and delete the physical file from user:// storage
+	# Safely check and delete the physical file from user:// storage
 	var path = _get_save_path(slot_id)
 	
-	# CORRECTED: Use FileAccess to check if the file exists
+	# Use FileAccess to check if the file exists
 	if FileAccess.file_exists(path):
 		var dir = DirAccess.open("user://")
 		if dir:

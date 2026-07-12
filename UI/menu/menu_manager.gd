@@ -4,6 +4,8 @@ extends Control
 @onready var settings_menu: VBoxContainer = $SettingsMenu
 @onready var save_slot_menu: VBoxContainer = $SaveSlotMenu
 @onready var pause_menu: VBoxContainer = $PauseMenu
+@onready var confirm_delete_menu: VBoxContainer = $ConfirmDeleteMenu
+var pending_delete_slot: String = ""
 
 var current_menu: VBoxContainer = null
 var fade_speed: float = 0.15
@@ -22,7 +24,9 @@ func _ready() -> void:
 	settings_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
 	save_slot_menu.slot_requested.connect(_on_save_slot_selected)
-	save_slot_menu.delete_requested.connect(_on_slot_deleted)
+	save_slot_menu.delete_requested.connect(_on_delete_requested)
+	confirm_delete_menu.confirm.connect(_on_delete_confirmed)
+	confirm_delete_menu.cancel.connect(_go_back)
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:
 	
@@ -60,6 +64,14 @@ func show_panel(target_menu: VBoxContainer) -> void:
 	await fade_in.finished
 	
 	InputManager.input_lock = false
+
+func _on_delete_requested(slot_id: String) -> void:
+	pending_delete_slot = slot_id
+	show_panel(confirm_delete_menu)
+
+func _on_delete_confirmed() -> void:
+	SaveManager.delete_slot(pending_delete_slot)
+	show_panel(save_slot_menu)
 
 func _on_save_slot_selected(slot_id: String) -> void:
 	SaveManager.current_slot = slot_id

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://birfppa8qnl62" path="res://UI/menu/pause_menu.gd" id="6_8ucft"]
 [ext_resource type="Texture2D" uid="uid://6itw1mn2kx5t" path="res://UI/menu/elements/menu_slider_grabber.png" id="6_c7ge0"]
 [ext_resource type="Texture2D" uid="uid://8pexywng1rk8" path="res://UI/menu/elements/clear_slot.png" id="8_c7ge0"]
+[ext_resource type="Script" uid="uid://b2h3fp6fcnfm4" path="res://UI/menu/confirm_delete_menu.gd" id="9_1r30s"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nh7px"]
 color = Color(1, 1, 1, 1)
@@ -197,6 +198,36 @@ icon_alignment = 1
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 text = "Back"
+flat = true
+
+[node name="ConfirmDeleteMenu" type="VBoxContainer" parent="." unique_id=2124360719]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+script = ExtResource("9_1r30s")
+
+[node name="Label" type="Label" parent="ConfirmDeleteMenu" unique_id=1505271359]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_colors/font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("5_w6o3i")
+text = "Delete this save file?"
+
+[node name="ConfirmButton" type="Button" parent="ConfirmDeleteMenu" unique_id=279596338]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Confirm"
+flat = true
+
+[node name="CancelButton" type="Button" parent="ConfirmDeleteMenu" unique_id=746728753]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Cancel"
 flat = true
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=73428740]

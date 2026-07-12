@@ -2,7 +2,7 @@ extends VBoxContainer
 
 signal back_requested
 signal slot_requested(slot_id: String)
-signal delete_requested(slot_id: String) # New signal for deletion
+signal delete_requested(slot_id: String)
 
 func _ready() -> void:
 	# 1. Wire up standard slot selections (looking inside the rows)
