@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 signal back_requested
+signal slot_requested(slot_id: String)
 
 func _ready() -> void:
 	for child in get_children():
@@ -11,11 +12,11 @@ func _ready() -> void:
 func _on_button_pressed(button_name: String) -> void:
 	match button_name:
 		"SlotButton1":
-			back_requested.emit()
+			slot_requested.emit("1")
 		"SlotButton2":
-			back_requested.emit()
+			slot_requested.emit("2")
 		"SlotButton3":
-			back_requested.emit()
+			slot_requested.emit("3")
 		"BackButton":
 			back_requested.emit()
 		

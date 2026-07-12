@@ -21,6 +21,7 @@ func _ready() -> void:
 	pause_menu.quit_requested.connect(_quit_to_tile)
 	settings_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
+	save_slot_menu.slot_requested.connect(_on_save_slot_selected)
 	main_menu.new_game_requested.connect(_new_game)
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:
@@ -59,6 +60,10 @@ func show_panel(target_menu: VBoxContainer) -> void:
 	await fade_in.finished
 	
 	InputManager.input_lock = false
+
+func _on_save_slot_selected(slot_id: String) -> void:
+	SaveManager.current_slot = slot_id
+	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 0.1, "fade", "blinds")
 
 func _go_back() -> void:
 	# If there is nothing left in our history stack, we can't go back further
