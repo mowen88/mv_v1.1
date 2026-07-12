@@ -1,8 +1,7 @@
 extends VBoxContainer
 
-signal continue_requested
+signal start_game_requested
 signal settings_requested
-signal new_game_requested
 
 func _ready() -> void:
 	for child in get_children():
@@ -13,9 +12,8 @@ func _ready() -> void:
 
 func _on_button_pressed(button_name: String) -> void:
 	match button_name:
-		"NewGameButton": 
-			new_game_requested.emit()
-		"ContinueButton": 
-			continue_requested.emit()
+
+		"StartGameButton": 
+			start_game_requested.emit()
 		"SettingsButton": 
 			settings_requested.emit()

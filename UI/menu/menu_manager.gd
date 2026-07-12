@@ -14,7 +14,7 @@ func _ready() -> void:
 	# process_mode = PROCESS_MODE_ALWAYS
 	
 	# Wire up child signals
-	main_menu.continue_requested.connect(func(): show_panel(save_slot_menu))
+	main_menu.start_game_requested.connect(func(): show_panel(save_slot_menu))
 	main_menu.settings_requested.connect(func(): show_panel(settings_menu))
 	pause_menu.settings_requested.connect(func(): show_panel(settings_menu))
 	
@@ -22,7 +22,7 @@ func _ready() -> void:
 	settings_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
 	save_slot_menu.slot_requested.connect(_on_save_slot_selected)
-	main_menu.new_game_requested.connect(_new_game)
+	save_slot_menu.delete_requested.connect(_on_slot_deleted)
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:
 	
@@ -63,7 +63,23 @@ func show_panel(target_menu: VBoxContainer) -> void:
 
 func _on_save_slot_selected(slot_id: String) -> void:
 	SaveManager.current_slot = slot_id
-	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 0.1, "fade", "blinds")
+	
+	var save_exists: bool = SaveManager.load_from_disk(slot_id)
+	
+	if not save_exists:
+		SaveManager.SAVE_DATA[slot_id] = {
+			"enemies_dead": [],
+			"player_data": {
+				"room_id": "01_a", # Fresh starting room
+				"health": 5,
+				"max_health": 5,
+				"energy": 5
+			}
+		}
+		
+		SaveManager.save_to_disk()
+		
+	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 1.0, "fade", "blinds")
 
 func _go_back() -> void:
 	# If there is nothing left in our history stack, we can't go back further
@@ -94,6 +110,14 @@ func _quit_to_tile() -> void:
 	get_tree().paused = false
 	StateManager.change_state(StateManager.GameState.TITLE, 0.5, 1.0, "fade", "blinds")
 
-func _new_game() -> void:
-	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 1.0, "fade", "blinds")
+func _on_slot_deleted(slot_id: String) -> void:
+	# Permanently wipe data from RAM and drop the JSON file from disk
+	SaveManager.delete_slot(slot_id)
 	
+	# Run a quick fade blink to visually refresh the menu state instantly
+	InputManager.input_lock = true
+	var refresh_tween = create_tween()
+	refresh_tween.tween_property(save_slot_menu, "modulate:a", 0.0, fade_speed)
+	refresh_tween.tween_property(save_slot_menu, "modulate:a", 1.0, fade_speed)
+	await refresh_tween.finished
+	InputManager.input_lock = false

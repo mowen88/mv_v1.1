@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="5_w6o3i"]
 [ext_resource type="Script" uid="uid://birfppa8qnl62" path="res://UI/menu/pause_menu.gd" id="6_8ucft"]
 [ext_resource type="Texture2D" uid="uid://6itw1mn2kx5t" path="res://UI/menu/elements/menu_slider_grabber.png" id="6_c7ge0"]
+[ext_resource type="Texture2D" uid="uid://8pexywng1rk8" path="res://UI/menu/elements/clear_slot.png" id="8_c7ge0"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nh7px"]
 color = Color(1, 1, 1, 1)
@@ -35,16 +36,10 @@ grow_vertical = 2
 theme_override_constants/separation = 50
 script = ExtResource("2_b8rgm")
 
-[node name="ContinueButton" type="Button" parent="MainMenu" unique_id=1879615940]
+[node name="StartGameButton" type="Button" parent="MainMenu" unique_id=1879615940]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
-text = "Continue"
-flat = true
-
-[node name="NewGameButton" type="Button" parent="MainMenu" unique_id=588587328]
-layout_mode = 2
-theme = ExtResource("3_b8rgm")
-text = "New Game"
+text = "Start Game"
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainMenu" unique_id=1601263368]
@@ -147,23 +142,56 @@ grow_vertical = 2
 theme_override_constants/separation = 32
 script = ExtResource("5_jgxlf")
 
-[node name="SlotButton1" type="Button" parent="SaveSlotMenu" unique_id=1234703931]
+[node name="SlotRow1" type="HBoxContainer" parent="SaveSlotMenu" unique_id=1276025206]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SlotButton1" type="Button" parent="SaveSlotMenu/SlotRow1" unique_id=1234703931]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 text = "Slot 1"
 flat = true
 
-[node name="SlotButton2" type="Button" parent="SaveSlotMenu" unique_id=1203599944]
+[node name="DeleteButton1" type="Button" parent="SaveSlotMenu/SlotRow1" unique_id=978134002]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("8_c7ge0")
+icon_alignment = 1
+
+[node name="SlotRow2" type="HBoxContainer" parent="SaveSlotMenu" unique_id=710371239]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SlotButton2" type="Button" parent="SaveSlotMenu/SlotRow2" unique_id=1203599944]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 text = "Slot 2"
 flat = true
 
-[node name="SlotButton3" type="Button" parent="SaveSlotMenu" unique_id=966884406]
+[node name="DeleteButton2" type="Button" parent="SaveSlotMenu/SlotRow2" unique_id=115194111]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("8_c7ge0")
+icon_alignment = 1
+
+[node name="SlotRow3" type="HBoxContainer" parent="SaveSlotMenu" unique_id=1150036196]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="SlotButton3" type="Button" parent="SaveSlotMenu/SlotRow3" unique_id=966884406]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 text = "Slot 3"
 flat = true
+
+[node name="DeleteButton3" type="Button" parent="SaveSlotMenu/SlotRow3" unique_id=351571568]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("8_c7ge0")
+icon_alignment = 1
 
 [node name="BackButton" type="Button" parent="SaveSlotMenu" unique_id=1561459548]
 layout_mode = 2
