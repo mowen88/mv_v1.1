@@ -1,25 +1,17 @@
 extends State
 
+@export var deceleration: float = 300.0
+
 func enter() -> void:
-	actor.get_node("AnimatedSprite2D").play("idle")
-	
-func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
-		fsm.change_state("Jump")
-	
-	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
-		fsm.change_state("Attack")
+	actor.get_node("AnimatedSprite2D").play("jump")
+	var timer = actor.get_tree().create_timer(1.5)
+	timer.timeout.connect(_on_death)
+
+func _on_death() -> void:
+	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 1.0, "fade", "blinds")
 	
 func physics_update(_delta: float) -> void:
 
-	# Handle horizontal movement
-	actor.x_input(_delta)
-	actor.move_component.process_movement(_delta)
+	# Stop motion
+	actor.velocity = Vector2(0,0)
 	actor.move_and_slide()
-	
-	# Fall if not on floor
-	if not actor.is_on_floor():
-		fsm.change_state("Fall")
-	
-	if actor.move_component.direction != 0:
-		fsm.change_state("Run")

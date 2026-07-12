@@ -20,7 +20,7 @@ func _ready() -> void:
 	SignalBus.player_energy_changed.connect(_on_energy_changed)
 	SignalBus.player_max_energy_changed.connect(_on_max_energy_changed)
 
-# ENERGY LOGIC
+# Energy logic
 func _on_max_energy_changed(new_max: int) -> void:
 	_rebuild_energy_hud(new_max)
 
@@ -56,7 +56,7 @@ func _on_energy_changed(new_energy: int) -> void:
 			_spawn_flash(spawn_pos)
 
 
-# HEALTH LOGIC
+# Health logic
 func _on_player_max_health_changed(new_max: int) -> void:
 	_rebuild_health_hud(new_max)
 
@@ -91,9 +91,8 @@ func _on_player_health_changed(new_health: int) -> void:
 			var spawn_pos = target.global_position + (target.custom_minimum_size / 2)
 			_spawn_flash(spawn_pos)
 
-# ==========================================
-# EFFECTS
-# ==========================================
+
+# Particle effects
 func _spawn_flash(position: Vector2) -> void:
 	var flash = ColorRect.new()
 	flash.color = Color.WHITE

@@ -12,7 +12,6 @@ const MAX_JUMPS: int = 2
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
-@onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 @onready var sword = $SwordScene
 
@@ -38,7 +37,7 @@ func _ready() -> void:
 	
 func _gain_energy(entity:Node2D) -> void:
 	if entity.is_in_group("energy_gaining"):
-		energy_component.gain_energy(6)
+		energy_component.gain_energy(4)
 	
 func x_input(_delta: float) -> void:
 	if InputManager.input_lock:
@@ -50,7 +49,7 @@ func x_input(_delta: float) -> void:
 	move_component.direction = Input.get_axis("move_left", "move_right")
 
 func _on_died() -> void:
-	SignalBus.player_died.emit()
+	fsm.change_state("death")
 
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:
@@ -59,7 +58,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 
 	if event.is_action_pressed("shoot"):
-		energy_component.consume_energy(6)
+		pass
+		#energy_component.consume_energy(4)
 		#hurtbox_component.receive_damage(3, Vector2(), 100)
 		#print(health_component.current_health)
 		#pass

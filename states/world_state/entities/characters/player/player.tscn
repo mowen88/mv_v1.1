@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://redo4usol3b" path="res://states/world_state/entities/characters/player/player_states/player_hit.gd" id="17_g11l2"]
 [ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="17_yrv70"]
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="19_g11l2"]
+[ext_resource type="Script" uid="uid://birdhbyujrib6" path="res://states/world_state/entities/characters/player/player_states/player_heal.gd" id="19_y4odu"]
 [ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="20_g11l2"]
 [ext_resource type="PackedScene" uid="uid://dh1u3fofia6k0" path="res://states/world_state/components/energy_component.tscn" id="21_6mh6f"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="21_edub2"]
@@ -305,18 +306,25 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("17_g11l2")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
+[node name="Heal" type="Node" parent="FiniteStateMachine" unique_id=1322156733]
+script = ExtResource("19_y4odu")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
-max_health = 10
+max_health = 4
 
 [node name="EnergyComponent" parent="." unique_id=712779835 instance=ExtResource("21_6mh6f")]
+max_energy = 24
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "hurtbox_component", "hit_state") instance=ExtResource("20_g11l2")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "health_component", "hurtbox_component", "hit_state", "death_state") instance=ExtResource("20_g11l2")]
 actor = NodePath("..")
 fsm = NodePath("../FiniteStateMachine")
+health_component = NodePath("../HealthComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
 hit_state = NodePath("../FiniteStateMachine/Hit")
+death_state = NodePath("../FiniteStateMachine/Death")
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("21_edub2")]
 sprite = NodePath("../AnimatedSprite2D")

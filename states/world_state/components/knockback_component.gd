@@ -3,8 +3,10 @@ extends Node
 
 @export var actor: CharacterBody2D
 @export var fsm: FiniteStateMachine
+@export var health_component: HealthComponent
 @export var hurtbox_component: HurtboxComponent
 @export var hit_state: State
+@export var death_state: State
 @export var knockback_resistance: float = 1.0
 
 func _ready() -> void:
@@ -13,11 +15,15 @@ func _ready() -> void:
 		hurtbox_component.hit_received.connect(_apply_force)
 	
 func _apply_force(attacker_pos: Vector2, force: float) -> void:
-	# 2. Physics Logic
+	# Physics Logic
 	var dir = sign(actor.global_position.x - attacker_pos.x)
 	actor.velocity.x = (dir * force) / knockback_resistance
 	actor.velocity.y = -100
 	
-	# 3. State Logic - only happens if FSM exists
-	if fsm and hit_state:
-		fsm.change_state(hit_state.name)
+	# State Logic - only happens if FSM exists
+	if fsm:
+		if health_component.current_health <= 0 and death_state:
+			fsm.change_state(death_state.name)
+		elif hit_state:
+			fsm.change_state(hit_state.name)
+	

@@ -21,7 +21,8 @@ func _ready() -> void:
 	pause_menu.quit_requested.connect(_quit_to_tile)
 	settings_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
-	
+	main_menu.new_game_requested.connect(_new_game)
+
 func _initialize_menu(menu_name: String = "MainMenu") -> void:
 	
 	menu_stack.clear()
@@ -87,3 +88,7 @@ func _go_back() -> void:
 func _quit_to_tile() -> void:
 	get_tree().paused = false
 	StateManager.change_state(StateManager.GameState.TITLE, 0.5, 1.0, "fade", "blinds")
+
+func _new_game() -> void:
+	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 1.0, "fade", "blinds")
+	

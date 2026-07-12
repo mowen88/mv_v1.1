@@ -1,12 +1,11 @@
 extends State
 
 @export var knockback_force: float = 100.00
-@export var stun_duration: float = 0.2
-
+@export var duration: float = 0.2
 var timer: float = 0.0
 
 func enter() -> void:
-	timer = stun_duration
+	timer = duration
 	# Play a "hit" animation if you have one
 	actor.get_node("AnimatedSprite2D").play("fall")
 

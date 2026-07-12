@@ -7,14 +7,14 @@ script = ExtResource("1_og5kx")
 
 [node name="HealthHUD" type="HBoxContainer" parent="." unique_id=214216705]
 offset_left = 48.0
-offset_top = 48.0
+offset_top = 128.0
 offset_right = 848.0
-offset_bottom = 120.0
+offset_bottom = 200.0
 theme_override_constants/separation = 12
 
 [node name="EnergyHUD" type="HBoxContainer" parent="." unique_id=1127547532]
 offset_left = 48.0
-offset_top = 128.0
+offset_top = 48.0
 offset_right = 148.0
-offset_bottom = 158.0
+offset_bottom = 78.0
 theme_override_constants/separation = -4

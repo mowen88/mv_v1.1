@@ -8,6 +8,10 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
 		fsm.change_state("AirAttack")
 
+	if event.is_action_pressed("shoot") and\
+		actor.energy_component.current_energy == actor.energy_component.max_energy:
+			fsm.change_state("Heal")
+
 func physics_update(_delta: float) -> void:
 	# Add gravity
 	actor.velocity.y += actor.move_component.gravity * _delta

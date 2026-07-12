@@ -21,10 +21,13 @@ offset_top = 8.0
 offset_right = 270.0
 offset_bottom = 248.0
 
-[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="0" unique_id=392305100]
+[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="0" unique_id=1217314684]
+position = Vector2(96, 120)
+
+[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="1" unique_id=392305100]
 position = Vector2(264, 56)
 
-[node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="1" unique_id=2136896978]
+[node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="2" unique_id=2136896978]
 position = Vector2(264, 208)
 
 [node name="1" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="0" unique_id=271907378]
@@ -34,3 +37,6 @@ shape = SubResource("RectangleShape2D_57hpv")
 [node name="2" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="1" unique_id=1396875582]
 position = Vector2(280, 200)
 shape = SubResource("RectangleShape2D_ewo3h")
+
+[node name="SaveStation" parent="." index="7" unique_id=1453052506]
+position = Vector2(96, 120)

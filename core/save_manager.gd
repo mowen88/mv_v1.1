@@ -1,6 +1,8 @@
 extends Node
 
-const SAVE_DATA: Dictionary[String, Dictionary] = {
+var current_slot: String = "1"
+
+var SAVE_DATA: Dictionary[String, Dictionary] = {
 	"1":{
 		"enemies_dead":[],
 		"bosses_dead":[],
@@ -39,3 +41,15 @@ const SAVE_DATA: Dictionary[String, Dictionary] = {
 	},
 	
 }
+
+# Updates the save profile with the last room visited and fully replenishes player stats
+func save_at_station(room_name: String) -> void:
+	var p_data = SAVE_DATA[current_slot]["player_data"]
+	p_data["room_id"] = room_name
+	print("Game successfully saved at room: ", room_name)
+
+func get_saved_room() -> String:
+	return SAVE_DATA[current_slot]["player_data"]["room_id"]
+
+func get_saved_player_data() -> Dictionary:
+	return SAVE_DATA[current_slot]["player_data"]

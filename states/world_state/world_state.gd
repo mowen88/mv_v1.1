@@ -15,9 +15,13 @@ var in_cutscene: bool = false
 func _ready():
 	# Listen to the global bus for when a room's Area2D triggers a transition
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
+	SignalBus.save_station_activated.connect(_on_save_station_activated)
 	
 	# Instantiates the first room
-	_load_room("res://states/world_state/rooms/01_a/01_a.tscn", 0)
+	var saved_room_name: String = SaveManager.get_saved_room()
+	var saved_room_path: String = "res://states/world_state/rooms/%s/%s.tscn" % [saved_room_name, saved_room_name]
+	_load_room(saved_room_path, 0)
+	
 	pause_menu.unpause_requested.connect(_toggle_game_pause)
 
 func _process(_delta):
@@ -34,6 +38,11 @@ func _toggle_game_pause() -> void:
 	menu_canvas.visible = get_tree().paused
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")
+
+func _on_save_station_activated() -> void:
+	if current_room_node:
+		SaveManager.save_at_station(current_room_node.name)
+		print_rich("[color=green]SAVE SYSTEM: Game successfully saved at room: %s[/color]" % current_room_node.name)
 
 func _on_room_change_requested(exit_id: int) -> void:
 	if not current_room_node:

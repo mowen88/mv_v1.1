@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uppc8"]
 size = Vector2(16, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfkjq"]
+size = Vector2(16, 16)
+
 [node name="02_a" unique_id=315341494 instance=ExtResource("1_gk17s")]
 
 [node name="SolidTileMap" parent="." index="1" unique_id=12999079]
@@ -18,10 +21,13 @@ offset_top = 8.0
 offset_right = 530.0
 offset_bottom = 248.0
 
-[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="0" unique_id=277981071]
+[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="0" unique_id=1825468541]
+position = Vector2(112, 168)
+
+[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="1" unique_id=277981071]
 position = Vector2(18, 208)
 
-[node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="1" unique_id=1696401523]
+[node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="2" unique_id=1696401523]
 position = Vector2(18, 88)
 
 [node name="1" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="0" unique_id=1465066063]
@@ -31,3 +37,7 @@ shape = SubResource("RectangleShape2D_uppc8")
 [node name="2" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="1" unique_id=1771878988]
 position = Vector2(2, 84)
 shape = SubResource("RectangleShape2D_uppc8")
+
+[node name="CollisionShape2D" parent="SaveStation" parent_id_path=PackedInt32Array(1453052506) index="0" unique_id=488938937]
+position = Vector2(112, 168)
+shape = SubResource("RectangleShape2D_vfkjq")
