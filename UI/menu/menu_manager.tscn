@@ -145,7 +145,7 @@ script = ExtResource("5_jgxlf")
 
 [node name="SlotRow1" type="HBoxContainer" parent="SaveSlotMenu" unique_id=1276025206]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 72
 
 [node name="SlotButton1" type="Button" parent="SaveSlotMenu/SlotRow1" unique_id=1234703931]
 layout_mode = 2
@@ -162,7 +162,7 @@ icon_alignment = 1
 
 [node name="SlotRow2" type="HBoxContainer" parent="SaveSlotMenu" unique_id=710371239]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 72
 
 [node name="SlotButton2" type="Button" parent="SaveSlotMenu/SlotRow2" unique_id=1203599944]
 layout_mode = 2
@@ -179,7 +179,7 @@ icon_alignment = 1
 
 [node name="SlotRow3" type="HBoxContainer" parent="SaveSlotMenu" unique_id=1150036196]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 72
 
 [node name="SlotButton3" type="Button" parent="SaveSlotMenu/SlotRow3" unique_id=966884406]
 layout_mode = 2
