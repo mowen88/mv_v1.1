@@ -106,8 +106,9 @@ size_flags_vertical = 1
 theme_override_icons/grabber = ExtResource("6_c7ge0")
 theme_override_icons/grabber_highlight = ExtResource("6_c7ge0")
 theme_override_styles/slider = SubResource("StyleBoxLine_nh7px")
-max_value = 400.0
-value = 400.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="MusicRow" type="HBoxContainer" parent="AudioMenu" unique_id=681737895]
 layout_mode = 2
@@ -128,8 +129,9 @@ size_flags_vertical = 1
 theme_override_icons/grabber = ExtResource("6_c7ge0")
 theme_override_icons/grabber_highlight = ExtResource("6_c7ge0")
 theme_override_styles/slider = SubResource("StyleBoxLine_nh7px")
-max_value = 400.0
-value = 400.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="SFXRow" type="HBoxContainer" parent="AudioMenu" unique_id=1611327382]
 layout_mode = 2
@@ -150,8 +152,9 @@ size_flags_vertical = 1
 theme_override_icons/grabber = ExtResource("6_c7ge0")
 theme_override_icons/grabber_highlight = ExtResource("6_c7ge0")
 theme_override_styles/slider = SubResource("StyleBoxLine_nh7px")
-max_value = 400.0
-value = 400.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="BackButton" type="Button" parent="AudioMenu" unique_id=1128385258]
 layout_mode = 2

@@ -17,6 +17,7 @@ var menu_stack: Array[VBoxContainer] = []
 
 func _ready() -> void:
 	# process_mode = PROCESS_MODE_ALWAYS
+	audio_menu.volume_changed.connect(_on_volume_changed)
 	
 	# Wire up child signals
 	main_menu.start_game_requested.connect(func(): show_panel(save_slot_menu))
@@ -38,29 +39,31 @@ func _ready() -> void:
 	confirm_delete_menu.confirm.connect(_on_delete_confirmed)
 	confirm_delete_menu.cancel.connect(_go_back)
 
+func _on_volume_changed(bus_name:String, value:float) -> void:
+	var key = bus_name + " Volume"
+	SaveManager.update_setting(key, value)
+	print(key, value)
+	## 2. Update the AudioServer
+	## Make sure your Audio Bus is named exactly "Music", "SFX", or "Master"
+	#var bus_idx = AudioServer.get_bus_index(bus_name)
+	#
+	#if bus_idx != -1:
+		#AudioServer.set_bus_volume_db(bus_idx, linear_to_db(value))
+	#else:
+		#push_warning("Audio Bus not found: " + bus_name)
+		
 func _on_battery_saver_toggled(is_on: bool) -> void:
 	Input.vibrate_handheld(200)
-	if is_on:
-		Engine.max_fps = 30
-		print(Engine.get_frames_per_second())
-	else:
-		Engine.max_fps = 60
-		print(Engine.get_frames_per_second())
+	SaveManager.update_setting("Battery Saver", is_on)
+	Engine.max_fps = 30 if is_on else 60
 
 func _on_vibrate_toggled(is_on: bool) -> void:
 	Input.vibrate_handheld(200)
-	if is_on:
-		print("vibrate on")
-		
-	else:
-		print("vibrate off")
+	SaveManager.update_setting("Vibration", is_on)
 
 func _on_screenshake_toggled(is_on: bool) -> void:
 	Input.vibrate_handheld(200)
-	if is_on:
-		print("screenshake activated")
-	else:
-		print("Screenshake deactivated")
+	SaveManager.update_setting("Screenshake", is_on)
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:
 	

@@ -30,6 +30,3 @@ func _tween_in_character() -> void:
 	tween.tween_property(character_image, "position:x", 0, 1.0)\
 		.set_trans(Tween.TRANS_EXPO)\
 		.set_ease(Tween.EASE_OUT)
-
-func _physics_process(delta: float) -> void:
-	print(Engine.get_frames_per_second())
