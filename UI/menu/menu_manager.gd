@@ -2,9 +2,12 @@ extends Control
 
 @onready var main_menu: VBoxContainer = $MainMenu
 @onready var settings_menu: VBoxContainer = $SettingsMenu
+@onready var audio_menu: VBoxContainer = $AudioMenu
+@onready var gameplay_menu: VBoxContainer = $GameplayMenu
 @onready var save_slot_menu: VBoxContainer = $SaveSlotMenu
 @onready var pause_menu: VBoxContainer = $PauseMenu
 @onready var confirm_delete_menu: VBoxContainer = $ConfirmDeleteMenu
+
 var pending_delete_slot: String = ""
 
 var current_menu: VBoxContainer = null
@@ -19,14 +22,45 @@ func _ready() -> void:
 	main_menu.start_game_requested.connect(func(): show_panel(save_slot_menu))
 	main_menu.settings_requested.connect(func(): show_panel(settings_menu))
 	pause_menu.settings_requested.connect(func(): show_panel(settings_menu))
+	settings_menu.audio_requested.connect(func(): show_panel(audio_menu))
+	settings_menu.gameplay_requested.connect(func(): show_panel(gameplay_menu))
 	
+	gameplay_menu.screenshake_toggle_requested.connect(_on_screenshake_toggled)
+	gameplay_menu.vibrate_toggle_requested.connect(_on_vibrate_toggled)
+	gameplay_menu.battery_saver_toggle_requested.connect(_on_battery_saver_toggled)
+
 	pause_menu.quit_requested.connect(_quit_to_tile)
-	settings_menu.back_requested.connect(_go_back)
+	audio_menu.back_requested.connect(_go_back)
+	gameplay_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
 	save_slot_menu.slot_requested.connect(_on_save_slot_selected)
 	save_slot_menu.delete_requested.connect(_on_delete_requested)
 	confirm_delete_menu.confirm.connect(_on_delete_confirmed)
 	confirm_delete_menu.cancel.connect(_go_back)
+
+func _on_battery_saver_toggled(is_on: bool) -> void:
+	Input.vibrate_handheld(200)
+	if is_on:
+		Engine.max_fps = 30
+		print(Engine.get_frames_per_second())
+	else:
+		Engine.max_fps = 60
+		print(Engine.get_frames_per_second())
+
+func _on_vibrate_toggled(is_on: bool) -> void:
+	Input.vibrate_handheld(200)
+	if is_on:
+		print("vibrate on")
+		
+	else:
+		print("vibrate off")
+
+func _on_screenshake_toggled(is_on: bool) -> void:
+	Input.vibrate_handheld(200)
+	if is_on:
+		print("screenshake activated")
+	else:
+		print("Screenshake deactivated")
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:
 	

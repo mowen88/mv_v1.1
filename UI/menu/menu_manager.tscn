@@ -3,13 +3,17 @@
 [ext_resource type="Script" uid="uid://x16rq371yhov" path="res://UI/menu/menu_manager.gd" id="1_8qffr"]
 [ext_resource type="Script" uid="uid://8r0c5x8gij5a" path="res://UI/menu/main_menu.gd" id="2_b8rgm"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_b8rgm"]
-[ext_resource type="Script" uid="uid://b6e66k6rwq6qt" path="res://UI/menu/settings_menu.gd" id="3_jgxlf"]
+[ext_resource type="Script" uid="uid://datic66a6nfo3" path="res://UI/menu/settings_menu.gd" id="3_jgxlf"]
+[ext_resource type="Script" uid="uid://b6e66k6rwq6qt" path="res://UI/menu/audio_menu.gd" id="5_ems2t"]
 [ext_resource type="Script" uid="uid://ccwnj4sqg0jvc" path="res://UI/menu/save_slot_menu.gd" id="5_jgxlf"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="5_w6o3i"]
 [ext_resource type="Script" uid="uid://birfppa8qnl62" path="res://UI/menu/pause_menu.gd" id="6_8ucft"]
 [ext_resource type="Texture2D" uid="uid://6itw1mn2kx5t" path="res://UI/menu/elements/menu_slider_grabber.png" id="6_c7ge0"]
+[ext_resource type="Script" uid="uid://bgd3warh1tolb" path="res://UI/menu/gameplay_menu.gd" id="8_8rfxe"]
 [ext_resource type="Texture2D" uid="uid://8pexywng1rk8" path="res://UI/menu/elements/clear_slot.png" id="8_c7ge0"]
 [ext_resource type="Script" uid="uid://b2h3fp6fcnfm4" path="res://UI/menu/confirm_delete_menu.gd" id="9_1r30s"]
+[ext_resource type="Texture2D" uid="uid://b7qjhyjiwb5ep" path="res://UI/menu/elements/checkbox_on.png" id="9_i4w7f"]
+[ext_resource type="Texture2D" uid="uid://c7ira7w4d5i1x" path="res://UI/menu/elements/checkbox_off.png" id="10_p5jt0"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nh7px"]
 color = Color(1, 1, 1, 1)
@@ -49,7 +53,30 @@ theme = ExtResource("3_b8rgm")
 text = "Settings"
 flat = true
 
-[node name="SettingsMenu" type="VBoxContainer" parent="." unique_id=740390464]
+[node name="SettingsMenu" type="VBoxContainer" parent="." unique_id=1164309718]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+script = ExtResource("3_jgxlf")
+
+[node name="AudioButton" type="Button" parent="SettingsMenu" unique_id=736624400]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Audio"
+flat = true
+
+[node name="GameplayButton" type="Button" parent="SettingsMenu" unique_id=1872917823]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Gameplay"
+flat = true
+
+[node name="AudioMenu" type="VBoxContainer" parent="." unique_id=740390464]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -58,21 +85,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
-script = ExtResource("3_jgxlf")
+script = ExtResource("5_ems2t")
 
-[node name="MasterRow" type="HBoxContainer" parent="SettingsMenu" unique_id=1678803227]
+[node name="MasterRow" type="HBoxContainer" parent="AudioMenu" unique_id=1678803227]
 layout_mode = 2
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="MasterLabel" type="Label" parent="SettingsMenu/MasterRow" unique_id=719831071]
+[node name="MasterLabel" type="Label" parent="AudioMenu/MasterRow" unique_id=719831071]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_fonts/font = ExtResource("5_w6o3i")
 theme_override_font_sizes/font_size = 90
 text = "Master Volume"
 
-[node name="MasterSlider" type="HSlider" parent="SettingsMenu/MasterRow" unique_id=914701229]
+[node name="MasterSlider" type="HSlider" parent="AudioMenu/MasterRow" unique_id=914701229]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -82,19 +109,19 @@ theme_override_styles/slider = SubResource("StyleBoxLine_nh7px")
 max_value = 400.0
 value = 400.0
 
-[node name="MusicRow" type="HBoxContainer" parent="SettingsMenu" unique_id=681737895]
+[node name="MusicRow" type="HBoxContainer" parent="AudioMenu" unique_id=681737895]
 layout_mode = 2
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="SettingsMenu/MusicRow" unique_id=552155725]
+[node name="MusicLabel" type="Label" parent="AudioMenu/MusicRow" unique_id=552155725]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_fonts/font = ExtResource("5_w6o3i")
 theme_override_font_sizes/font_size = 90
 text = "Music Volume"
 
-[node name="MusicSlider" type="HSlider" parent="SettingsMenu/MusicRow" unique_id=2026838695]
+[node name="MusicSlider" type="HSlider" parent="AudioMenu/MusicRow" unique_id=2026838695]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -104,19 +131,19 @@ theme_override_styles/slider = SubResource("StyleBoxLine_nh7px")
 max_value = 400.0
 value = 400.0
 
-[node name="SFXRow" type="HBoxContainer" parent="SettingsMenu" unique_id=1611327382]
+[node name="SFXRow" type="HBoxContainer" parent="AudioMenu" unique_id=1611327382]
 layout_mode = 2
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="SFXLabel" type="Label" parent="SettingsMenu/SFXRow" unique_id=532554401]
+[node name="SFXLabel" type="Label" parent="AudioMenu/SFXRow" unique_id=532554401]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_fonts/font = ExtResource("5_w6o3i")
 theme_override_font_sizes/font_size = 90
 text = "SFX Volume"
 
-[node name="SFXSlider" type="HSlider" parent="SettingsMenu/SFXRow" unique_id=1592161457]
+[node name="SFXSlider" type="HSlider" parent="AudioMenu/SFXRow" unique_id=1592161457]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -126,7 +153,81 @@ theme_override_styles/slider = SubResource("StyleBoxLine_nh7px")
 max_value = 400.0
 value = 400.0
 
-[node name="BackButton" type="Button" parent="SettingsMenu" unique_id=1128385258]
+[node name="BackButton" type="Button" parent="AudioMenu" unique_id=1128385258]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Back"
+flat = true
+
+[node name="GameplayMenu" type="VBoxContainer" parent="." unique_id=1163370360]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+script = ExtResource("8_8rfxe")
+
+[node name="BatterySaverRow" type="HBoxContainer" parent="GameplayMenu" unique_id=625939607]
+layout_mode = 2
+theme_override_constants/separation = 72
+
+[node name="BatterySaverLabel" type="Label" parent="GameplayMenu/BatterySaverRow" unique_id=50742199]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_w6o3i")
+text = "Battery Saver"
+
+[node name="BatterySaverCheckBox" type="CheckBox" parent="GameplayMenu/BatterySaverRow" unique_id=117886947]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/checked = ExtResource("9_i4w7f")
+theme_override_icons/unchecked = ExtResource("10_p5jt0")
+icon_alignment = 1
+
+[node name="ScreenshakeRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1885714178]
+layout_mode = 2
+theme_override_constants/separation = 72
+
+[node name="ScreenshakeLabel" type="Label" parent="GameplayMenu/ScreenshakeRow" unique_id=1031893029]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_w6o3i")
+text = "Screenshake"
+
+[node name="ScreenshakeCheckBox" type="CheckBox" parent="GameplayMenu/ScreenshakeRow" unique_id=976559752]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/checked = ExtResource("9_i4w7f")
+theme_override_icons/unchecked = ExtResource("10_p5jt0")
+icon_alignment = 1
+
+[node name="VibrateRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1205810750]
+layout_mode = 2
+theme_override_constants/separation = 72
+
+[node name="VibrateLabel" type="Label" parent="GameplayMenu/VibrateRow" unique_id=1611169982]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_w6o3i")
+text = "Vibration"
+
+[node name="VibrateCheckBox" type="CheckBox" parent="GameplayMenu/VibrateRow" unique_id=1095380275]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/checked = ExtResource("9_i4w7f")
+theme_override_icons/unchecked = ExtResource("10_p5jt0")
+icon_alignment = 1
+
+[node name="BackButton" type="Button" parent="GameplayMenu" unique_id=303952676]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 text = "Back"
