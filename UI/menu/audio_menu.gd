@@ -26,7 +26,6 @@ func _ready() -> void:
 	# 4. Handle other buttons
 	$BackButton.pressed.connect(func(): back_requested.emit())
 
-
 func _on_slider_changed(value: float, bus_name: String) -> void:
 	volume_changed.emit(bus_name, value)
 

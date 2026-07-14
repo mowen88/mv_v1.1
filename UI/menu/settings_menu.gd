@@ -3,6 +3,7 @@ extends VBoxContainer
 signal start_game_requested
 signal gameplay_requested
 signal audio_requested
+signal back_requested
 
 func _ready() -> void:
 	for child in get_children():
@@ -18,3 +19,5 @@ func _on_button_pressed(button_name: String) -> void:
 			audio_requested.emit()
 		"GameplayButton": 
 			gameplay_requested.emit()
+		"BackButton":
+			back_requested.emit()

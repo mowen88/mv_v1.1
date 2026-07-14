@@ -10,12 +10,11 @@ extends Node2D
 
 func _ready() -> void:
 	
-	# scale images
-	title_text_image.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
-	character_image.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
-	background_image.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+	var title_theme = preload("res://states/title_state/BossBattleV1.wav")
 
-	
+	# Plays instantly and fades the volume up over 2 seconds
+	AudioManager.start_music(title_theme, 2.0)
+
 	# Keep inputs locked while the initial title splash plays out
 	await get_tree().create_timer(0.2).timeout
 	_tween_in_character()

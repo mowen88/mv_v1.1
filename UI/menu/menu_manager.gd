@@ -31,6 +31,7 @@ func _ready() -> void:
 	gameplay_menu.battery_saver_toggle_requested.connect(_on_battery_saver_toggled)
 
 	pause_menu.quit_requested.connect(_quit_to_tile)
+	settings_menu.back_requested.connect(_go_back)
 	audio_menu.back_requested.connect(_go_back)
 	gameplay_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
@@ -53,16 +54,22 @@ func _on_volume_changed(bus_name:String, value:float) -> void:
 		#push_warning("Audio Bus not found: " + bus_name)
 		
 func _on_battery_saver_toggled(is_on: bool) -> void:
-	Input.vibrate_handheld(200)
+	if SaveManager.SETTINGS_DATA["Vibration"] == true:
+		Input.vibrate_handheld(200)
+		print("vibrating!")
 	SaveManager.update_setting("Battery Saver", is_on)
 	Engine.max_fps = 30 if is_on else 60
 
 func _on_vibrate_toggled(is_on: bool) -> void:
-	Input.vibrate_handheld(200)
+	if SaveManager.SETTINGS_DATA["Vibration"] == false:
+		Input.vibrate_handheld(200)
+		print("vibrating!")
 	SaveManager.update_setting("Vibration", is_on)
 
 func _on_screenshake_toggled(is_on: bool) -> void:
-	Input.vibrate_handheld(200)
+	if SaveManager.SETTINGS_DATA["Vibration"] == true:
+		Input.vibrate_handheld(200)
+		print("vibrating!")
 	SaveManager.update_setting("Screenshake", is_on)
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:

@@ -25,6 +25,7 @@ MapData="*uid://d0rsjcpl76h3e"
 SaveManager="*uid://bn6wk7r4s3f7e"
 SignalBus="*uid://cbjuvtldga8b0"
 Constants="*uid://c77npdfc12gjf"
+AudioManager="*uid://cyldynesttc2a"
 
 [display]
 

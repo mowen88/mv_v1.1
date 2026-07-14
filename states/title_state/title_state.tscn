@@ -33,6 +33,7 @@ offset_right = -2080.0
 offset_bottom = -960.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(9, 9)
 texture = ExtResource("2_dvdlm")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasLayer" unique_id=1892837865]
@@ -52,6 +53,7 @@ offset_right = -910.0
 offset_bottom = -960.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(9, 9)
 texture = ExtResource("3_6o8vq")
 
 [node name="TitleTextImage" type="TextureRect" parent="CanvasLayer" unique_id=973178909]
@@ -63,6 +65,7 @@ offset_top = 139.0
 offset_right = -923.0
 offset_bottom = 179.0
 grow_horizontal = 2
+scale = Vector2(9, 9)
 texture = ExtResource("3_iidgw")
 
 [node name="MenuAnchor" type="Control" parent="CanvasLayer" unique_id=1723251540]

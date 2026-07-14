@@ -76,6 +76,12 @@ theme = ExtResource("3_b8rgm")
 text = "Gameplay"
 flat = true
 
+[node name="BackButton" type="Button" parent="SettingsMenu" unique_id=1180813145]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Back"
+flat = true
+
 [node name="AudioMenu" type="VBoxContainer" parent="." unique_id=740390464]
 visible = false
 layout_mode = 1
@@ -171,11 +177,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
+alignment = 1
 script = ExtResource("8_8rfxe")
 
 [node name="BatterySaverRow" type="HBoxContainer" parent="GameplayMenu" unique_id=625939607]
 layout_mode = 2
 theme_override_constants/separation = 72
+alignment = 1
 
 [node name="BatterySaverLabel" type="Label" parent="GameplayMenu/BatterySaverRow" unique_id=50742199]
 layout_mode = 2
@@ -195,6 +203,7 @@ icon_alignment = 1
 [node name="ScreenshakeRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1885714178]
 layout_mode = 2
 theme_override_constants/separation = 72
+alignment = 1
 
 [node name="ScreenshakeLabel" type="Label" parent="GameplayMenu/ScreenshakeRow" unique_id=1031893029]
 layout_mode = 2
@@ -214,6 +223,7 @@ icon_alignment = 1
 [node name="VibrateRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1205810750]
 layout_mode = 2
 theme_override_constants/separation = 72
+alignment = 1
 
 [node name="VibrateLabel" type="Label" parent="GameplayMenu/VibrateRow" unique_id=1611169982]
 layout_mode = 2
