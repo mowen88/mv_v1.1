@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5o2tw5mw82ns" path="res://states/title_state/title_character.png" id="3_6o8vq"]
 [ext_resource type="Texture2D" uid="uid://dibhlbo7xpg3m" path="res://states/title_state/title_text.png" id="3_iidgw"]
 [ext_resource type="Texture2D" uid="uid://lqyedppc1t73" path="res://states/title_state/particle.png" id="3_s26ap"]
+[ext_resource type="Texture2D" uid="uid://b3t7xflgbn38k" path="res://states/title_state/title_border.png" id="5_is0r6"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s26ap"]
 particle_flag_disable_z = true
@@ -55,6 +56,17 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(9, 9)
 texture = ExtResource("3_6o8vq")
+
+[node name="BorderImage" type="TextureRect" parent="CanvasLayer" unique_id=1172938883]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2080.0
+offset_bottom = -960.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9, 9)
+texture = ExtResource("5_is0r6")
 
 [node name="TitleTextImage" type="TextureRect" parent="CanvasLayer" unique_id=973178909]
 anchors_preset = 5
