@@ -27,6 +27,8 @@ var sfx_pool: Array[AudioStreamPlayer] = []
 #                               INITIALIZATION
 # ==============================================================================
 func _ready() -> void:
+	# Set process mode so it plays even when paused
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Create music player
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "Music" # Route it to music bus!

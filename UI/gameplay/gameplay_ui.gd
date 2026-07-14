@@ -34,8 +34,8 @@ func _rebuild_energy_hud(new_max: int) -> void:
 		new_node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		new_node.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		
-		new_node.custom_minimum_size = ENERGY_FULL_TEX.get_size() * Constants.UI_SCALE
-		new_node.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+		new_node.custom_minimum_size = ENERGY_FULL_TEX.get_size() * 9
+		new_node.scale = Vector2(9, 9)
 		
 		energy_hud.add_child(new_node)
 
@@ -70,8 +70,8 @@ func _rebuild_health_hud(new_max: int) -> void:
 		new_node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		new_node.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		
-		new_node.custom_minimum_size = HEALTH_FULL_TEX.get_size() * Constants.UI_SCALE
-		new_node.scale = Vector2(Constants.UI_SCALE, Constants.UI_SCALE)
+		new_node.custom_minimum_size = HEALTH_FULL_TEX.get_size() * 9
+		new_node.scale = Vector2(9, 9)
 		
 		health_hud.add_child(new_node)
 
@@ -96,7 +96,7 @@ func _on_player_health_changed(new_health: int) -> void:
 func _spawn_flash(position: Vector2) -> void:
 	var flash = ColorRect.new()
 	flash.color = Color.WHITE
-	var base_size = 3 * Constants.UI_SCALE
+	var base_size = 3 * 9
 	flash.size = Vector2(base_size, base_size)
 	flash.pivot_offset = flash.size / 2
 	flash.global_position = position - (flash.size / 2)
@@ -104,7 +104,7 @@ func _spawn_flash(position: Vector2) -> void:
 	add_child(flash)
 	
 	var tween = create_tween()
-	tween.tween_property(flash, "scale", Vector2(Constants.UI_SCALE, Constants.UI_SCALE), 0.2).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(flash, "scale", Vector2(9, 9), 0.2).set_trans(Tween.TRANS_LINEAR)
 	tween.parallel().tween_property(flash, "modulate:a", 0.0, 0.2).set_trans(Tween.TRANS_EXPO)
 	
 	tween.tween_callback(flash.queue_free)

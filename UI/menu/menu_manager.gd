@@ -54,22 +54,16 @@ func _on_volume_changed(bus_name:String, value:float) -> void:
 		#push_warning("Audio Bus not found: " + bus_name)
 		
 func _on_battery_saver_toggled(is_on: bool) -> void:
-	if SaveManager.SETTINGS_DATA["Vibration"] == true:
-		Input.vibrate_handheld(200)
-		print("vibrating!")
+	VibrateManager.run(200)
 	SaveManager.update_setting("Battery Saver", is_on)
 	Engine.max_fps = 30 if is_on else 60
 
 func _on_vibrate_toggled(is_on: bool) -> void:
-	if SaveManager.SETTINGS_DATA["Vibration"] == false:
-		Input.vibrate_handheld(200)
-		print("vibrating!")
+	VibrateManager.run(200)
 	SaveManager.update_setting("Vibration", is_on)
 
 func _on_screenshake_toggled(is_on: bool) -> void:
-	if SaveManager.SETTINGS_DATA["Vibration"] == true:
-		Input.vibrate_handheld(200)
-		print("vibrating!")
+	VibrateManager.run(200)
 	SaveManager.update_setting("Screenshake", is_on)
 
 func _initialize_menu(menu_name: String = "MainMenu") -> void:

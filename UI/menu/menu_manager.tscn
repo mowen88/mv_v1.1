@@ -53,6 +53,12 @@ theme = ExtResource("3_b8rgm")
 text = "Settings"
 flat = true
 
+[node name="CreditsButton" type="Button" parent="MainMenu" unique_id=1747266106]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Credits"
+flat = true
+
 [node name="SettingsMenu" type="VBoxContainer" parent="." unique_id=1164309718]
 visible = false
 layout_mode = 1
