@@ -9,11 +9,9 @@ extends Node2D
 
 
 func _ready() -> void:
-	
+	# 2 sec fade in for title theme
 	var title_theme = preload("res://states/title_state/BossBattleV1.wav")
-
-	# Plays instantly and fades the volume up over 2 seconds
-	AudioManager.start_music(title_theme, 2.0)
+	AudioManager.start_music(title_theme, 4.0)
 
 	# Keep inputs locked while the initial title splash plays out
 	await get_tree().create_timer(0.2).timeout

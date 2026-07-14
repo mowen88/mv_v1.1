@@ -5,6 +5,5 @@ extends Node
 func run(duration: int) -> void:
 	if not SaveManager.SETTINGS_DATA["Vibration"]:
 		return
-
+		
 	Input.vibrate_handheld(duration)
-	print("vibrating!!!")

@@ -32,6 +32,7 @@ func _ready() -> void:
 	# Create music player
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "Music" # Route it to music bus!
+	music_player.set("parameters/looping", true)
 	add_child(music_player)
 	music_player.volume_db = linear_to_db(0.0)
 	
@@ -41,6 +42,22 @@ func _ready() -> void:
 		player.bus = "SFX"  # Directs these players to the SFX bus automatically
 		add_child(player)
 		sfx_pool.append(player)
+	
+	# Load in saved bus volume data
+	_initialize_saved_volumes()
+
+func _initialize_saved_volumes() -> void:
+	# Loop through your physical bus names directly
+	for bus_name in ["Master", "Music", "SFX"]:
+		# Dynamically build the exact key (e.g. "Music Volume")
+		var key = bus_name + " Volume"
+		var value: float = SaveManager.SETTINGS_DATA.get(key, 1.0)
+		
+		# Apply directly to Godot's hardware Audio Server
+		var bus_index = AudioServer.get_bus_index(bus_name)
+		if bus_index != -1:
+			AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+			AudioServer.set_bus_mute(bus_index, value <= 0.0)
 
 # ==============================================================================
 #                           MUSIC MANAGEMENT (FADES)
