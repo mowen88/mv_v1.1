@@ -58,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 
 	if event.is_action_pressed("shoot"):
-		pass
+		SignalBus.screenshake_requested.emit(15.0, 15.0, 0.5)
 		#energy_component.consume_energy(4)
 		#hurtbox_component.receive_damage(3, Vector2(), 100)
 		#print(health_component.current_health)

@@ -44,6 +44,7 @@ func _on_save_station_activated() -> void:
 		SaveManager.save_at_station(current_room_node.name)
 		print_rich("[color=green]SAVE SYSTEM: Game successfully saved at room: %s[/color]" % current_room_node.name)
 
+
 func _on_room_change_requested(exit_id: int) -> void:
 	if not current_room_node:
 		return
@@ -71,11 +72,12 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 	
 	if next_room_scene:
 		current_room_node = next_room_scene.instantiate()
-		
 		# Force the node name to match the file name so the MapData dictionary works perfectly
 		current_room_node.name = room_path.get_file().get_basename() 
-		
 		current_room_container.add_child(current_room_node)
+		
+		# Update rooms visited progress in save file
+		SaveManager.register_room_visited(current_room_node.name)
 
 		var spawn_node = current_room_node.get_node_or_null("Spawns/" + str(spawn_id))
 

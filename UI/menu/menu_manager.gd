@@ -109,12 +109,14 @@ func _on_delete_requested(slot_id: String) -> void:
 
 func _on_delete_confirmed() -> void:
 	SaveManager.delete_slot(pending_delete_slot)
+	save_slot_menu.update_slot_labels()
 	_go_back()
 
 func _on_save_slot_selected(slot_id: String) -> void:
 	SaveManager.current_slot = slot_id
 	
 	var save_exists: bool = SaveManager.load_from_disk(slot_id)
+	SaveManager.game_timer_active = true
 	
 	if not save_exists:
 		SaveManager.SAVE_DATA[slot_id] = {
@@ -158,6 +160,7 @@ func _go_back() -> void:
 	
 func _quit_to_tile() -> void:
 	get_tree().paused = false
+	SaveManager.close_session()
 	StateManager.change_state(StateManager.GameState.TITLE, 0.5, 1.0, "fade", "blinds")
 
 func _on_slot_deleted(slot_id: String) -> void:
