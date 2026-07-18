@@ -40,10 +40,10 @@ func update_slot_labels() -> void:
 		
 		if SaveManager.load_from_disk(slot_id):
 			var string_time = SaveManager.get_game_time_rooms_visited_as_string(slot_id)
-			slot_button.text = "Slot %s - %s" % [slot_id, string_time]
+			slot_button.text = "Slot %s: %s" % [slot_id, string_time]
 			# Show delete only if data exists
 			delete_button.visible = true
 		else:
-			slot_button.text = "Slot %s - Empty Slot" % slot_id
+			slot_button.text = "Slot %s: Empty Slot" % slot_id
 			# Hide delete button if slot is empty
 			delete_button.visible = false
