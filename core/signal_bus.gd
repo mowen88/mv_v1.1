@@ -1,6 +1,7 @@
 extends Node
 
 signal room_change_requested(exit_id: int)
+signal zone_banner_requested(zone_name: String)
 signal save_station_activated
 
 signal screenshake_requested(x_offset:float, y_offset:float, duration:float)

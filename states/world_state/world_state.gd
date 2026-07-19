@@ -87,7 +87,7 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		
 		_update_camera_limits(current_room_node)
 		game_camera.reset_smoothing()
-		
+
 
 
 func _update_camera_limits(room_node):
