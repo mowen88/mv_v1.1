@@ -13,9 +13,7 @@ const ENERGY_FULL_TEX = preload("res://UI/gameplay/elements/energy_full.png")
 const ENERGY_EMPTY_TEX = preload("res://UI/gameplay/elements/energy_empty.png")
 
 func _ready() -> void:
-	# Messages
-	SignalBus.zone_banner_requested.connect(_on_zone_banner_requested)
-	
+
 	# Health
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
 	SignalBus.player_max_health_changed.connect(_on_player_max_health_changed)
@@ -23,30 +21,6 @@ func _ready() -> void:
 	# Energy
 	SignalBus.player_energy_changed.connect(_on_energy_changed)
 	SignalBus.player_max_energy_changed.connect(_on_max_energy_changed)
-
-var banner_tween: Tween
-
-func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
-	# Kill the ongoing fade out/in from the previous room immediately
-	if banner_tween:
-		banner_tween.kill()
-	
-	if not show_banner or zone_name == "":
-		zone_label.visible = false
-		return
-		
-	zone_label.text = zone_name
-	zone_label.modulate.a = 0.0
-	zone_label.visible = true
-	
-	banner_tween = create_tween()
-	# Fade in
-	banner_tween.tween_property(zone_label, "modulate:a", 1.0, 0.5)
-	# Wait visible for 2 seconds
-	banner_tween.tween_interval(2.0)
-	# Fade out
-	banner_tween.tween_property(zone_label, "modulate:a", 0.0, 0.5)
-	banner_tween.tween_callback(func(): zone_label.visible = false)
 
 # Energy logic
 func _on_max_energy_changed(new_max: int) -> void:

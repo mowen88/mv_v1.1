@@ -63,32 +63,23 @@ func _initialize_saved_volumes() -> void:
 #                           MUSIC MANAGEMENT (FADES)
 # ==============================================================================
 
-## Fades in track
+## Fades out and kills current music to prepare for a clean start
+func stop_music(fade_time: float = 1.0) -> void:
+	if fade_tween: fade_tween.kill()
+	fade_tween = create_tween()
+	fade_tween.tween_property(music_player, "volume_db", -60.0, fade_time)
+	fade_tween.tween_callback(music_player.stop)
+
+## Plays a new track immediately with a fade-in
 func start_music(stream: AudioStream, fade_time: float = 1.0) -> void:
-	if fade_tween:
-		fade_tween.kill()
-		
+	if fade_tween: fade_tween.kill()
+	
 	music_player.stream = stream
-	# Start at -60 dB (effectively silent, but avoids negative infinity math bugs)
-	music_player.volume_db = -60.0 
+	music_player.volume_db = -60.0
 	music_player.play()
 	
 	fade_tween = create_tween()
-	# Smoothly transition the volume property directly to 0.0 dB (full/normal volume)
 	fade_tween.tween_property(music_player, "volume_db", 0.0, fade_time)
-
-
-## Fades out track
-func stop_music(fade_time: float = 1.0) -> void:
-	if fade_tween:
-		fade_tween.kill()
-		
-	fade_tween = create_tween()
-	# Fade down to -60 dB
-	fade_tween.tween_property(music_player, "volume_db", -60.0, fade_time)
-	# Turn off the player once it reaches silence
-	fade_tween.tween_callback(music_player.stop)
-
 ## Fades out the old track, swaps it, and fades in the new track
 func change_music(new_stream: AudioStream, fade_out_time: float = 1.0, fade_in_time: float = 1.0) -> void:
 	if music_player.playing and music_player.stream == new_stream:

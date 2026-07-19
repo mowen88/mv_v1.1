@@ -10,7 +10,9 @@ extends Node2D
 @onready var pause_menu: VBoxContainer = $MenuCanvas/MenuAnchor/MenuManager/PauseMenu
 
 var current_room_node: Node2D = null
+var current_zone_name: String = ""
 var in_cutscene: bool = false
+
 
 func _ready():
 	# Listen to the global bus for when a room's Area2D triggers a transition
@@ -39,11 +41,21 @@ func _toggle_game_pause() -> void:
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")
 
+func get_zone_data(room_filename:String) -> Dictionary:
+	var tokens: PackedStringArray = room_filename.to_lower().split("_")
+	
+	if tokens.size() > 1:
+		var zone_letter: String = tokens[1]
+		return MapData.ZONE_REGISTRY.get(zone_letter, {})
+	
+		print(MapData.ZONE_REGISTRY.get(zone_letter, {}))	
+	return {}
+
+
 func _on_save_station_activated() -> void:
 	if current_room_node:
 		SaveManager.save_at_station(current_room_node.name)
 		print_rich("[color=green]SAVE SYSTEM: Game successfully saved at room: %s[/color]" % current_room_node.name)
-
 
 func _on_room_change_requested(exit_id: int) -> void:
 	if not current_room_node:
@@ -76,6 +88,31 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		current_room_node.name = room_path.get_file().get_basename() 
 		current_room_container.add_child(current_room_node)
 		
+		# transitions and music
+		var zone_data: Dictionary = get_zone_data(current_room_node.name)
+		var target_zone_name: String = zone_data.get("zone_name", "")
+		var bgm_path: String = zone_data.get("bgm", "")
+		
+		# Evaluate Banner Trigger
+		if target_zone_name != current_zone_name:
+			current_zone_name = target_zone_name
+			if current_zone_name != "":
+				SignalBus.zone_banner_requested.emit(current_zone_name, true)
+		else:
+			SignalBus.zone_banner_requested.emit("", false)
+			
+		# Music track change
+		var target_track: AudioStream = load(bgm_path) as AudioStream if bgm_path != "" else null
+		var current_playing_track: AudioStream = AudioManager.music_player.stream
+		
+		if target_track:
+			if target_track != current_playing_track:
+				AudioManager.stop_music(2.0)
+				if target_track:
+					AudioManager.start_music(target_track, 2.0)
+
+		# ------------------------------------
+		
 		# Update rooms visited progress in save file
 		SaveManager.register_room_visited(current_room_node.name)
 
@@ -87,8 +124,6 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		
 		_update_camera_limits(current_room_node)
 		game_camera.reset_smoothing()
-
-
 
 func _update_camera_limits(room_node):
 	var limits = room_node.get_node_or_null("CameraLimits") as ReferenceRect

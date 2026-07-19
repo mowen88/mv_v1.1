@@ -2,13 +2,16 @@ extends Node
 
 # Typed dictionary: Keys are Strings (ids), values are Dictionaries
 const ZONE_REGISTRY: Dictionary[String, Dictionary] = {
-	"ruins": {
-		"zone_name": "Ancient Ruins",
-		"bgm": "res://audio/music/ruins_theme.ogg"
+	"a": {
+		"zone_name": "Enclave",
+		"bgm": "res://states/world_state/music/enclave_theme.mp3"
 	},
-	"caves": {
-		"zone_name": "Forgotten Caves",
-		"bgm": "res://audio/music/caves_theme.ogg"
+	"b": {
+		"zone_name": "Temple",
+		"bgm": "res://states/world_state/music/temple_theme.wav"
+	},
+		"c": {
+		"zone_name": "Grotto",
 	}
 }
 
