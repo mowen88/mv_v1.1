@@ -17,6 +17,8 @@ const SFX = {
 #                               VARIABLES
 # ==============================================================================
 var music_player: AudioStreamPlayer
+var active_bgm_path: String = ""
+var stream_cache: Dictionary = {}
 var fade_tween: Tween
 
 # SFX Player pool settings
@@ -45,6 +47,24 @@ func _ready() -> void:
 	
 	# Load in saved bus volume data
 	_initialize_saved_volumes()
+	
+	# Preload all music tracks
+	_preload_music()
+	
+func _preload_music() -> void:
+	for zone_key in MapData.ZONE_REGISTRY:
+		var zone_data = MapData.ZONE_REGISTRY[zone_key]
+		var path = zone_data.get("bgm","")
+		
+		if path != "" and not stream_cache.has(path):
+			stream_cache[path] = load(path)
+	
+	# Cache extra music not related to each zone here for titles, cinmetaics etc.
+	_add_music_to_cache("res://states/title_state/title_theme.mp3")
+
+func _add_music_to_cache(path:String) -> void:
+	if not stream_cache.has(path):
+		stream_cache[path] = load(path)
 
 func _initialize_saved_volumes() -> void:
 	# Loop through your physical bus names directly
@@ -70,40 +90,34 @@ func stop_music(fade_time: float = 1.0) -> void:
 	fade_tween.tween_property(music_player, "volume_db", -60.0, fade_time)
 	fade_tween.tween_callback(music_player.stop)
 
-## Plays a new track immediately with a fade-in
-func start_music(stream: AudioStream, fade_time: float = 1.0) -> void:
-	if fade_tween: fade_tween.kill()
-	
-	music_player.stream = stream
-	music_player.volume_db = -60.0
-	music_player.play()
-	
-	fade_tween = create_tween()
-	fade_tween.tween_property(music_player, "volume_db", 0.0, fade_time)
-## Fades out the old track, swaps it, and fades in the new track
-func change_music(new_stream: AudioStream, fade_out_time: float = 1.0, fade_in_time: float = 1.0) -> void:
-	if music_player.playing and music_player.stream == new_stream:
+func start_music(bgm_path: String, fade_time: float = 2.0) -> void:
+	# Don't interrupt if we are already playing this track
+	if active_bgm_path == bgm_path:
 		return
-		
-	if fade_tween:
-		fade_tween.kill()
-		
+	active_bgm_path = bgm_path
+	
+	# Kill current transition
+	if fade_tween: fade_tween.kill()
 	fade_tween = create_tween()
 	
-	# Step 1: Fade out the current music to -60 dB
+	# If playing, fade out the current volume
 	if music_player.playing:
-		fade_tween.tween_property(music_player, "volume_db", -60.0, fade_out_time)
+		fade_tween.tween_property(music_player, "volume_db", -60.0, fade_time)
+	else:
+		music_player.volume_db = -60.0
 	
-	# Step 2: Swap tracks while silent
-	fade_tween.tween_callback(
-		func():
-			music_player.stream = new_stream
-			music_player.volume_db = -60.0
+	# Swap the music stream
+	fade_tween.tween_callback(func():
+		if bgm_path == "":
+			music_player.stop()
+		else:
+			music_player.stream = stream_cache.get(bgm_path)
 			music_player.play()
+			
 	)
 	
-	# Step 3: Fade the new track up to 0.0 dB (full volume)
-	fade_tween.tween_property(music_player, "volume_db", 0.0, fade_in_time)
+	# Fade in the new volume
+	fade_tween.tween_property(music_player, "volume_db", 0.0, fade_time)
 
 # ==============================================================================
 #                             SFX POOL MANAGEMENT

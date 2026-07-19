@@ -9,18 +9,17 @@ extends Node2D
 
 
 func _ready() -> void:
-	# 2 sec fade in for title theme
-	var title_theme = preload("res://states/title_state/BossBattleV1.wav")
-	AudioManager.start_music(title_theme, 4.0)
-
+	
 	# Keep inputs locked while the initial title splash plays out
 	await get_tree().create_timer(0.2).timeout
 	_tween_in_character()
 	
 	# Wait for the character art animation to finish before waking up the menu system
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	# Open the menu manager
 	menu_manager._initialize_menu("MainMenu")
+	
+	AudioManager.start_music("res://states/title_state/title_theme.mp3", 0.5)
 
 func _tween_in_character() -> void:
 	var tween: Tween = create_tween()

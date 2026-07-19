@@ -131,8 +131,9 @@ func _on_save_slot_selected(slot_id: String) -> void:
 		
 		SaveManager.save_to_disk()
 		
-	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 1.0, "fade", "blinds")
-
+	StateManager.change_state(StateManager.GameState.WORLD, 0.5, 2.0, "fade", "fade")
+	AudioManager.stop_music(2.0)
+	
 func _go_back() -> void:
 	# If there is nothing left in our history stack, we can't go back further
 	if menu_stack.is_empty() or InputManager.input_lock:
@@ -161,7 +162,8 @@ func _go_back() -> void:
 func _quit_to_tile() -> void:
 	get_tree().paused = false
 	SaveManager.close_session()
-	StateManager.change_state(StateManager.GameState.TITLE, 0.5, 1.0, "fade", "blinds")
+	StateManager.change_state(StateManager.GameState.TITLE, 0.5, 2.0, "fade", "fade")
+	AudioManager.stop_music(2.0)
 
 func _on_slot_deleted(slot_id: String) -> void:
 	# Permanently wipe data from RAM and drop the JSON file from disk

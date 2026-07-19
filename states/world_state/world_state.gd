@@ -13,7 +13,6 @@ var current_room_node: Node2D = null
 var current_zone_name: String = ""
 var in_cutscene: bool = false
 
-
 func _ready():
 	# Listen to the global bus for when a room's Area2D triggers a transition
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
@@ -41,6 +40,16 @@ func _toggle_game_pause() -> void:
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")
 
+func _on_change_music() -> void:
+	var room_name = current_room_node.name
+	var zone_data = get_zone_data(room_name)
+	var bgm_path = zone_data.get("bgm","")
+	var target_track = load(bgm_path) as AudioStream if bgm_path != "" else null
+	
+	if target_track:
+		if AudioManager.music_player.stream != target_track:
+			AudioManager.start_music(target_track, 2.0)
+
 func get_zone_data(room_filename:String) -> Dictionary:
 	var tokens: PackedStringArray = room_filename.to_lower().split("_")
 	
@@ -50,7 +59,6 @@ func get_zone_data(room_filename:String) -> Dictionary:
 	
 		print(MapData.ZONE_REGISTRY.get(zone_letter, {}))	
 	return {}
-
 
 func _on_save_station_activated() -> void:
 	if current_room_node:
@@ -91,7 +99,6 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		# transitions and music
 		var zone_data: Dictionary = get_zone_data(current_room_node.name)
 		var target_zone_name: String = zone_data.get("zone_name", "")
-		var bgm_path: String = zone_data.get("bgm", "")
 		
 		# Evaluate Banner Trigger
 		if target_zone_name != current_zone_name:
@@ -101,16 +108,9 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		else:
 			SignalBus.zone_banner_requested.emit("", false)
 			
-		# Music track change
-		var target_track: AudioStream = load(bgm_path) as AudioStream if bgm_path != "" else null
-		var current_playing_track: AudioStream = AudioManager.music_player.stream
-		
-		if target_track:
-			if target_track != current_playing_track:
-				AudioManager.stop_music(2.0)
-				if target_track:
-					AudioManager.start_music(target_track, 2.0)
-
+		# Just tell the manager the new state
+		var bgm_path: String = zone_data.get("bgm", "")
+		AudioManager.start_music(bgm_path, 2.0)
 		# ------------------------------------
 		
 		# Update rooms visited progress in save file
