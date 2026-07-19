@@ -40,24 +40,13 @@ func _toggle_game_pause() -> void:
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")
 
-func _on_change_music() -> void:
-	var room_name = current_room_node.name
-	var zone_data = get_zone_data(room_name)
-	var bgm_path = zone_data.get("bgm","")
-	var target_track = load(bgm_path) as AudioStream if bgm_path != "" else null
-	
-	if target_track:
-		if AudioManager.music_player.stream != target_track:
-			AudioManager.start_music(target_track, 2.0)
-
 func get_zone_data(room_filename:String) -> Dictionary:
 	var tokens: PackedStringArray = room_filename.to_lower().split("_")
 	
 	if tokens.size() > 1:
 		var zone_letter: String = tokens[1]
 		return MapData.ZONE_REGISTRY.get(zone_letter, {})
-	
-		print(MapData.ZONE_REGISTRY.get(zone_letter, {}))	
+
 	return {}
 
 func _on_save_station_activated() -> void:

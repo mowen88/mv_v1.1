@@ -49,7 +49,7 @@ func x_input(_delta: float) -> void:
 	move_component.direction = Input.get_axis("move_left", "move_right")
 
 func _on_died() -> void:
-	fsm.change_state("death")
+	fsm.change_statzze("death")
 
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:
@@ -59,6 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("shoot"):
 		SignalBus.screenshake_requested.emit(15.0, 15.0, 0.5)
+		AudioManager.stop_music()
 		#energy_component.consume_energy(4)
 		#hurtbox_component.receive_damage(3, Vector2(), 100)
 		#print(health_component.current_health)

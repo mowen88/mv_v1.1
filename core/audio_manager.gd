@@ -89,6 +89,7 @@ func stop_music(fade_time: float = 1.0) -> void:
 	fade_tween = create_tween()
 	fade_tween.tween_property(music_player, "volume_db", -60.0, fade_time)
 	fade_tween.tween_callback(music_player.stop)
+	active_bgm_path = ""
 
 func start_music(bgm_path: String, fade_time: float = 2.0) -> void:
 	# Don't interrupt if we are already playing this track
