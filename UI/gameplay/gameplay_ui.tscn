@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ywh0ibl4nbif"]
 
 [ext_resource type="Script" uid="uid://cv5x1276vtmrh" path="res://UI/gameplay/gameplay_ui.gd" id="1_og5kx"]
-[ext_resource type="FontFile" uid="uid://bvh3q6svhp6u" path="res://UI/font/Arcane Nine.otf" id="2_jgtdh"]
+[ext_resource type="FontFile" uid="uid://bpfl0weahsfix" path="res://UI/font/mecha_cf/Mecha.ttf" id="2_jgtdh"]
 
 [node name="GameplayUI" type="CanvasLayer" unique_id=421129531]
 script = ExtResource("1_og5kx")
@@ -33,4 +33,4 @@ offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_jgtdh")
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 144

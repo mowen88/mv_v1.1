@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bvh3q6svhp6u"
-path="res://.godot/imported/Arcane Nine.otf-260eebd23873dea470d0ffe950afef25.fontdata"
+uid="uid://bpfl0weahsfix"
+path="res://.godot/imported/Mecha.ttf-1d71216355236eb43d54bb0e5df48581.fontdata"
 
 [deps]
 
-source_file="res://UI/font/Arcane Nine.otf"
-dest_files=["res://.godot/imported/Arcane Nine.otf-260eebd23873dea470d0ffe950afef25.fontdata"]
+source_file="res://UI/font/mecha_cf/Mecha.ttf"
+dest_files=["res://.godot/imported/Mecha.ttf-1d71216355236eb43d54bb0e5df48581.fontdata"]
 
 [params]
 
