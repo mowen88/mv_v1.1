@@ -15,6 +15,8 @@ script = ExtResource("1_emvdf")
 
 [node name="GameplayUi" parent="." unique_id=187525425 instance=ExtResource("3_i7qgc")]
 
+[node name="GameplayUi" parent="GameplayUi" unique_id=421129531 instance=ExtResource("3_i7qgc")]
+
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=1344565673]
 visible = false
 

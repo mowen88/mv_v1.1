@@ -8,7 +8,7 @@ const ZONE_REGISTRY: Dictionary[String, Dictionary] = {
 	},
 	"b": {
 		"zone_name": "Temple",
-		"bgm": "res://states/world_state/music/temple_theme.wav"
+		"bgm": "res://states/world_state/music/temple_theme.ogg"
 	},
 		"c": {
 		"zone_name": "Grotto",
