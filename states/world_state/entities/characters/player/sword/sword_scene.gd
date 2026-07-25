@@ -2,7 +2,7 @@ extends Node2D
 
 signal attack_finished
 
-@export var sword_sound: AudioStream
+@export var sound: AudioStream
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hitbox_component = $HitboxComponent
 @onready var cooldown_timer = $CooldownTimer
@@ -21,7 +21,7 @@ func attack(facing_direction: int) -> void:
 	position = Vector2(6 * facing_direction, 0)
 	scale.x = facing_direction
 	# Play sfx
-	AudioManager.play_sfx(sword_sound, 1, 0.15)
+	AudioManager.play_sfx(sound, global_position, 1, 0.15)
 	
 	if cooldown_timer.is_stopped():
 		#hitbox_component.clear_hitlist()

@@ -12,7 +12,7 @@ var is_invincible: bool = false
 
 func play_sound() -> void:
 	if sound:
-		AudioManager.play_sfx(sound, 1, 0.15)
+		AudioManager.play_sfx(sound, global_position, 1, 0.15)
 
 func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> bool:
 	if is_invincible or health_component.current_health <= 0:

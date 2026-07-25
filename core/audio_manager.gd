@@ -23,7 +23,7 @@ var fade_tween: Tween
 
 # SFX Player pool settings
 @export var pool_size: int = 8
-var sfx_pool: Array[AudioStreamPlayer] = []
+var sfx_pool: Array[AudioStreamPlayer2D] = []
 
 # ==============================================================================
 #                               INITIALIZATION
@@ -40,7 +40,7 @@ func _ready() -> void:
 	
 	# Dynamically instantiate and register the SFX player pool
 	for i in range(pool_size):
-		var player = AudioStreamPlayer.new()
+		var player = AudioStreamPlayer2D.new()
 		player.bus = "SFX"  # Directs these players to the SFX bus automatically
 		add_child(player)
 		sfx_pool.append(player)
@@ -125,7 +125,7 @@ func start_music(bgm_path: String, fade_time: float = 2.0) -> void:
 # ==============================================================================
 
 ## Finds an available SFX player from our pool that is not currently playing anything
-func _get_available_sfx_player() -> AudioStreamPlayer:
+func _get_available_sfx_player() -> AudioStreamPlayer2D:
 	for player in sfx_pool:
 		if not player.playing:
 			return player
@@ -136,11 +136,14 @@ func _get_available_sfx_player() -> AudioStreamPlayer:
 ## Determine how many loops
 ## Adds 10% pitch_variance
 ## Plays a raw AudioStream directly using the SFX pool (great for unique enemy sounds)
-func play_sfx(sfx:AudioStream, loops:int = 1, pitch_variance:float = 0.0) -> void:
+func play_sfx(sfx:AudioStream, world_pos:Vector2, loops:int = 1, pitch_variance:float = 0.0) -> void:
 	if not sfx:
 		return
 		
 	var player = _get_available_sfx_player()
+	
+	# Add position of sound
+	player.global_position = world_pos
 	
 	if pitch_variance > 0.0:
 		player.pitch_scale = randf_range(1.0 - pitch_variance, 1.0 + pitch_variance)
@@ -150,15 +153,15 @@ func play_sfx(sfx:AudioStream, loops:int = 1, pitch_variance:float = 0.0) -> voi
 	_play_sfx_loop_helper(player, sfx, loops)
 	
 # Helper to handle loop counts dynamically
-func _play_sfx_loop_helper(player: AudioStreamPlayer, stream: AudioStream, loops_left: int) -> void:
+func _play_sfx_loop_helper(player: AudioStreamPlayer2D, sfx: AudioStream, loops_left: int) -> void:
 	if loops_left <= 0:
 		return
 		
-	player.stream = stream
+	player.stream = sfx
 	player.play()
 	
 	await player.finished
 	
 	# Check if player wasn't hijacked by a different SFX during the wait
-	if player.stream == stream:
-		_play_sfx_loop_helper(player, stream, loops_left - 1)
+	if player.stream == sfx:
+		_play_sfx_loop_helper(player, sfx, loops_left - 1)
