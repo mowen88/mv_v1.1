@@ -16,11 +16,10 @@ const MAX_JUMPS: int = 2
 @onready var sword = $SwordScene
 
 var jump_counter: int = 0
-
 		
 func _ready() -> void:	
 	health_component.died.connect(_on_died)
-	
+
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	
@@ -34,7 +33,7 @@ func _ready() -> void:
 	SignalBus.player_energy_changed.emit(energy_component.current_energy)
 	
 	SignalBus.player_energy_gained.connect(_gain_energy)
-	
+
 func _gain_energy(entity:Node2D) -> void:
 	if entity.is_in_group("energy_gaining"):
 		energy_component.gain_energy(4)

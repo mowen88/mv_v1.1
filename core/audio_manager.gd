@@ -129,7 +129,7 @@ func _get_available_sfx_player() -> AudioStreamPlayer2D:
 	for player in sfx_pool:
 		if not player.playing:
 			return player
-	# Fallback: If all are playing, override the oldest/first player
+	# Override the oldest/first player
 	return sfx_pool[0]
 
 ## Plays sound by its key name

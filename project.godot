@@ -81,7 +81,7 @@ swipe_down={
 2d_render/layer_1="World"
 2d_render/layer_2="Player"
 2d_render/layer_3="Player Hitbox"
-2d_render/layer_4="Enemy Hurtbox"
+2d_render/layer_4="Enemy Hurtboxes"
 2d_render/layer_5="Enemy Hitbox"
 
 [physics]
