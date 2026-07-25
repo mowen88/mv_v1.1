@@ -135,22 +135,20 @@ func _get_available_sfx_player() -> AudioStreamPlayer:
 ## Plays sound by its key name
 ## Determine how many loops
 ## Adds 10% pitch_variance
-func play_sfx(sfx_key: String, loops: int = 1, pitch_variance: float = 0.0) -> void:
-	if not SFX.has(sfx_key):
-		push_error("AudioManager: SFX key '" + sfx_key + "' does not exist in the SFX dictionary!")
+## Plays a raw AudioStream directly using the SFX pool (great for unique enemy sounds)
+func play_sfx(sfx:AudioStream, loops:int = 1, pitch_variance:float = 0.0) -> void:
+	if not sfx:
 		return
 		
-	var stream = SFX[sfx_key]
 	var player = _get_available_sfx_player()
 	
-	# Pitch randomization "juice"
 	if pitch_variance > 0.0:
 		player.pitch_scale = randf_range(1.0 - pitch_variance, 1.0 + pitch_variance)
 	else:
 		player.pitch_scale = 1.0
-		
-	_play_sfx_loop_helper(player, stream, loops)
 
+	_play_sfx_loop_helper(player, sfx, loops)
+	
 # Helper to handle loop counts dynamically
 func _play_sfx_loop_helper(player: AudioStreamPlayer, stream: AudioStream, loops_left: int) -> void:
 	if loops_left <= 0:
