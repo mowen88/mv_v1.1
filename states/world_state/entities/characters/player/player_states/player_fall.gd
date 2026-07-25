@@ -12,19 +12,11 @@ func handle_input(event: InputEvent) -> void:
 		actor.energy_component.current_energy == actor.energy_component.max_energy:
 			fsm.change_state("Heal")
 
-func _check_on_ladder():
-	for area in actor.hurtbox_component.get_overlapping_areas():
-		if area.is_in_group("ladders"):
-			# get specific ladder sahpe
-			var shape = area.get_node_or_null("CollisionShape2D")
-			actor.global_position.x = shape.global_position.x
-			return true
-
 func physics_update(_delta: float) -> void:
 	# Add gravity
 	actor.velocity.y += actor.move_component.gravity * _delta
 	
-	if _check_on_ladder():
+	if actor.is_on_ladder():
 		fsm.change_state("OnLadder")
 		return
 

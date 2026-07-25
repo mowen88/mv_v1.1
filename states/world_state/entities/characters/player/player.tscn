@@ -8,12 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bgnyjvdwyghs3" path="res://states/world_state/entities/characters/player/player_spritesheets/attack.png" id="3_ri0vu"]
 [ext_resource type="Texture2D" uid="uid://b0cbavcgjqv3l" path="res://states/world_state/entities/characters/player/player_spritesheets/fall.png" id="4_pnkj8"]
 [ext_resource type="Texture2D" uid="uid://b7vnt8h4y7bqa" path="res://states/world_state/entities/characters/player/player_spritesheets/run.png" id="4_u6uqx"]
+[ext_resource type="Texture2D" uid="uid://br02d51sw5iue" path="res://states/world_state/entities/characters/player/player_spritesheets/climb.png" id="5_5athw"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="5_ri0vu"]
 [ext_resource type="Script" uid="uid://cbj2xr51bn4y0" path="res://states/world_state/entities/characters/player/player_states/player_run.gd" id="6_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://bxp1vt7crs8sx" path="res://states/world_state/entities/characters/player/player_spritesheets/jump.png" id="6_ulhyb"]
 [ext_resource type="Script" uid="uid://dercsmv8k458f" path="res://states/world_state/entities/characters/player/player_states/player_jump.gd" id="8_6on6l"]
 [ext_resource type="Script" uid="uid://crh54bx3jo1y2" path="res://states/world_state/entities/characters/player/player_states/player_fall.gd" id="8_cdm2v"]
 [ext_resource type="Script" uid="uid://cdm8y5micbi5j" path="res://states/world_state/entities/characters/player/player_states/player_attack.gd" id="9_6on6l"]
+[ext_resource type="Texture2D" uid="uid://c8n00tmwnnkbq" path="res://states/world_state/entities/characters/player/player_spritesheets/on_ladder.png" id="9_sju5j"]
 [ext_resource type="Script" uid="uid://brvhdaaglohet" path="res://states/world_state/entities/characters/player/player_states/player_air_attack.gd" id="12_04ry7"]
 [ext_resource type="PackedScene" uid="uid://blmbdhod2re4d" path="res://states/world_state/entities/characters/player/sword/sword_scene.tscn" id="14_pffij"]
 [ext_resource type="Script" uid="uid://bcthucusyriut" path="res://states/world_state/entities/characters/player/player_states/player_death.gd" id="16_pffij"]
@@ -26,6 +28,7 @@
 [ext_resource type="Script" uid="uid://cf672vdbr5m6q" path="res://states/world_state/entities/characters/player/player_states/player_on_ladder.gd" id="20_ya1c0"]
 [ext_resource type="PackedScene" uid="uid://dh1u3fofia6k0" path="res://states/world_state/components/energy_component.tscn" id="21_6mh6f"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="21_edub2"]
+[ext_resource type="Script" uid="uid://c3sm7kuwjlmeg" path="res://states/world_state/entities/characters/player/player_states/player_climb.gd" id="21_nglex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
 atlas = ExtResource("2_2yeee")
@@ -58,6 +61,26 @@ region = Rect2(48, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fbs1"]
 atlas = ExtResource("3_ri0vu")
 region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i1x5"]
+atlas = ExtResource("5_5athw")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puuqg"]
+atlas = ExtResource("5_5athw")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mbyj"]
+atlas = ExtResource("5_5athw")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ln4g"]
+atlas = ExtResource("5_5athw")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7klx"]
+atlas = ExtResource("5_5athw")
+region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ya1c0"]
 atlas = ExtResource("4_pnkj8")
@@ -97,6 +120,10 @@ region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4odu"]
 atlas = ExtResource("6_ulhyb")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tnf3"]
+atlas = ExtResource("9_sju5j")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sju5j"]
@@ -169,6 +196,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1i1x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puuqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mbyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ln4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7klx")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ya1c0")
 }, {
 "duration": 1.0,
@@ -211,6 +258,14 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tnf3")
+}],
+"loop": false,
+"name": &"on_ladder",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -262,7 +317,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 sprite_frames = SubResource("SpriteFrames_g3adm")
-animation = &"run"
+animation = &"climb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
 position = Vector2(0, 1)
@@ -313,6 +368,10 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="OnLadder" type="Node" parent="FiniteStateMachine" unique_id=915276008]
 script = ExtResource("20_ya1c0")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Climb" type="Node" parent="FiniteStateMachine" unique_id=713357275]
+script = ExtResource("21_nglex")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]

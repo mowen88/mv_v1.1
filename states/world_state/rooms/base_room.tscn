@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://c4wwxyhoalfhs" path="res://states/world_state/rooms/room_exits.gd" id="1_peren"]
 [ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/rooms/save_station.gd" id="2_d2ebj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83wd4"]
-size = Vector2(0, 48)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ebj"]
 size = Vector2(16, 16)
 
@@ -21,17 +18,12 @@ size = Vector2(16, 16)
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Ladders" type="Area2D" parent="." unique_id=2006844033 groups=["ladders"]]
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladders" unique_id=1873217024]
-position = Vector2(-4, 32)
-shape = SubResource("RectangleShape2D_83wd4")
+[node name="Ladders" type="Node2D" parent="." unique_id=1340396295 groups=["ladders"]]
 
 [node name="Spawns" type="Node2D" parent="." unique_id=214822847]
 
 [node name="Exits" type="Area2D" parent="." unique_id=1104129518]
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_peren")
 

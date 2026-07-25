@@ -13,13 +13,14 @@ const MAX_JUMPS: int = 2
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
 
+@onready var ladder_collider = $LadderCollider
 @onready var sword = $SwordScene
 
 var jump_counter: int = 0
 		
 func _ready() -> void:	
 	health_component.died.connect(_on_died)
-
+	
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	
@@ -34,6 +35,15 @@ func _ready() -> void:
 	
 	SignalBus.player_energy_gained.connect(_gain_energy)
 
+func is_on_ladder():
+	for area in hurtbox_component.get_overlapping_areas():
+		if area.is_in_group("ladders"):
+			var shape = area.get_node_or_null("CollisionShape2D")
+			global_position.x = shape.global_position.x
+			return true
+		else:
+			return false
+	
 func _gain_energy(entity:Node2D) -> void:
 	if entity.is_in_group("energy_gaining"):
 		energy_component.gain_energy(4)

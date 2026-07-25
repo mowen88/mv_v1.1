@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, local_shape_index: int) -> void:
 	# Check body collided is the player
-	if body.name != "Player":
+	if not body.is_in_group("player"):
 		return
 		
 	# Look up the exact collision shape node using the index provided by the engine
