@@ -9,7 +9,10 @@ func enter() -> void:
 	actor.jump_counter += 1 # Increments for the double jump
 	actor.velocity.y = actor.move_component.jump_velocity
 	
-	gravity = actor.move_component.gravity
+	if not Input.is_action_pressed("jump"):
+		gravity = actor.move_component.gravity * 4
+	else:
+		gravity = actor.move_component.gravity
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):

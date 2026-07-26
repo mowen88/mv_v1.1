@@ -13,8 +13,17 @@ func enter() -> void:
 #func handle_input(event: InputEvent) -> void:
 	#if event.is_action_pressed("PlayerJump"):
 		#fsm.change_state("PlayerJump")
+
+func handle_input(event:InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		actor.jump_buffer_timer.start()
 	#
 func physics_update(_delta: float) -> void:
+		
+	if actor.sword.cooldown_timer.is_stopped():
+		fsm.change_state("Fall")
+		return
+		
 	# Add gravity
 	actor.velocity.y += actor.move_component.gravity * _delta
 
@@ -23,8 +32,7 @@ func physics_update(_delta: float) -> void:
 	actor.move_component.process_movement(_delta)
 	actor.move_and_slide()
 	
-	if actor.sword.cooldown_timer.is_stopped():
-		fsm.change_state("Fall")
+
 
 			
 		

@@ -27,6 +27,8 @@ func physics_update(_delta: float) -> void:
 	
 	# Fall if not on floor
 	if not actor.is_on_floor():
+		if actor.coyote_timer.is_stopped():
+			actor.coyote_timer.start()
 		fsm.change_state("Fall")
 
 		

@@ -1,6 +1,6 @@
 extends State
 
-@export var deceleration: float = 300
+@export var deceleration: float
 @export var sword_scene: PackedScene
 
 func enter() -> void:

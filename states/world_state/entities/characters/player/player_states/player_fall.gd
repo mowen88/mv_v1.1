@@ -5,6 +5,13 @@ func enter() -> void:
 	actor.get_node("AnimatedSprite2D").play("fall")
 
 func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		if not actor.coyote_timer.is_stopped():
+			actor.coyote_timer.stop()
+			fsm.change_state("jump")
+		else:
+			actor.jump_buffer_timer.start()
+		
 	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
 		fsm.change_state("AirAttack")
 
@@ -13,6 +20,15 @@ func handle_input(event: InputEvent) -> void:
 			fsm.change_state("Heal")
 
 func physics_update(_delta: float) -> void:
+	
+	if actor.is_on_floor():
+		if actor.jump_buffer_timer.time_left > 0:
+			actor.jump_buffer_timer.stop()
+			fsm.change_state("Jump")
+		else:
+			fsm.change_state("Idle")
+		return
+
 	# Add gravity
 	actor.velocity.y = min(actor.velocity.y + actor.move_component.gravity * _delta,\
 	actor.move_component.max_fall_speed)
@@ -26,6 +42,3 @@ func physics_update(_delta: float) -> void:
 	actor.move_component.process_movement(_delta)
 	actor.move_and_slide()
 	
-	if actor.is_on_floor():
-		fsm.change_state("Idle")
-		return

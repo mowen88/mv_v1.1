@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const MAX_JUMPS: int = 2
 
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
@@ -14,6 +15,9 @@ const MAX_JUMPS: int = 2
 @onready var flash_component: FlashComponent = $FlashComponent
 
 @onready var sword = $SwordScene
+
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+@onready var coyote_timer: Timer = $CoyoteTimer
 
 var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0

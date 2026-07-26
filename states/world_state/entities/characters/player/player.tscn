@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="21_edub2"]
 [ext_resource type="Script" uid="uid://c3sm7kuwjlmeg" path="res://states/world_state/entities/characters/player/player_states/player_climb.gd" id="21_nglex"]
 [ext_resource type="Script" uid="uid://dyl8kn1wew5sn" path="res://states/world_state/entities/characters/player/player_states/player_hit_hazard.gd" id="24_sju5j"]
+[ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
 atlas = ExtResource("2_2yeee")
@@ -315,6 +316,14 @@ script = ExtResource("2_xul6b")
 wait_time = 0.25
 one_shot = true
 
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=1527013721]
+wait_time = 0.15
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=1549524853]
+wait_time = 0.15
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 sprite_frames = SubResource("SpriteFrames_g3adm")
@@ -347,6 +356,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Attack" type="Node" parent="FiniteStateMachine" unique_id=932327878]
 script = ExtResource("9_6on6l")
+deceleration = 200.0
 sword_scene = ExtResource("14_pffij")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
@@ -380,6 +390,8 @@ script = ExtResource("24_sju5j")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
+gravity = 650.0
+jump_velocity = -260.0
 max_fall_speed = 250.0
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
@@ -403,6 +415,7 @@ hurtbox_component = NodePath("../HurtboxComponent")
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("19_g11l2")]
 collision_layer = 2
 collision_mask = 32
+sound = ExtResource("31_20gxo")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
