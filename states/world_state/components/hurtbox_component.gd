@@ -23,8 +23,9 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 		play_sound()
 	
 	hit_received.emit(attacker_pos, knockback_force)
-	#HitEffect.spawn(get_tree().current_scene, global_position)
+
 	ParticleManager.play("hit_effect", global_position)
+	SignalBus.screenshake_requested.emit(2.0, 0.0, 0.2)
 
 	
 	if get_owner().is_in_group("energy_gaining"):
