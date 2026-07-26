@@ -54,6 +54,9 @@ func _on_died() -> void:
 	fsm.change_state("Death")
 
 func _on_hit_hazard(entity:Node2D, damage:float) -> void:
+	if entity != self:
+		return
+		
 	health_component.damage(damage)
 	flash_component.play_flash()
 	if health_component.current_health <= 0:
