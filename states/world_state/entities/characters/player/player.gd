@@ -60,7 +60,7 @@ func _on_hit_hazard(entity:Node2D, damage:float) -> void:
 	SignalBus.screenshake_requested.emit(5.0, 5.0, 0.2)
 	flash_component.play_flash()
 	health_component.damage(damage)
-	# Check health first otherwise the scene change emits after respawning the player
+	# Check health first otherwise the scene changes AFTER respawning player!
 	if health_component.current_health <= 0:
 		fsm.change_state("Death")
 	else:

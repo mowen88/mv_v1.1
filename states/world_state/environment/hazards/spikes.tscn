@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhuxdkfjd8yie"]
 
 [ext_resource type="Script" uid="uid://cgf7g571oys8q" path="res://states/world_state/environment/hazards/hazard_collision.gd" id="1_r3bnr"]
+[ext_resource type="Texture2D" uid="uid://bsomlh7ybv65a" path="res://states/world_state/environment/hazards/spike_image.png" id="2_edkqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cg1sh"]
 size = Vector2(8, 8)
@@ -14,3 +15,8 @@ damage = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1447248947]
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_cg1sh")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=745793183]
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("2_edkqw")
