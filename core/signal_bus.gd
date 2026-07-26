@@ -14,3 +14,5 @@ signal player_energy_changed(new_energy: int)
 signal player_max_energy_changed(new_max: int)
 
 signal player_energy_gained(entity: Node2D)
+signal player_respawn(position:Vector2)
+signal hit_hazard(entity:Node2D, damage:float)

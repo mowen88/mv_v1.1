@@ -5,7 +5,7 @@ class_name HitboxComponent
 @export var knockback_force: float = 200.0
 
 func _physics_process(_delta: float) -> void:
-	# Only check if this area is monit oring collisions
+	# Only check if this area is monitoring collisions
 	if not monitoring:
 		return
 	# Continuously check overlapping areas every physics frame	

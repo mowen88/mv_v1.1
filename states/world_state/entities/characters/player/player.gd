@@ -13,9 +13,9 @@ const MAX_JUMPS: int = 2
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
 
-@onready var ladder_collider = $LadderCollider
 @onready var sword = $SwordScene
 
+var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
 		
 func _ready() -> void:	
@@ -34,15 +34,32 @@ func _ready() -> void:
 	SignalBus.player_energy_changed.emit(energy_component.current_energy)
 	
 	SignalBus.player_energy_gained.connect(_gain_energy)
+	SignalBus.player_respawn.connect(_update_respawn_point)
+	SignalBus.hit_hazard.connect(_on_hit_hazard)
+	
 
-func is_on_ladder():
+func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():
 		if area.is_in_group("ladders"):
 			var shape = area.get_node_or_null("CollisionShape2D")
 			global_position.x = shape.global_position.x
 			return true
-		else:
-			return false
+	return false
+
+func _update_respawn_point(position:Vector2) -> void:
+	last_safe_position = position
+	print(position)
+
+func _on_died() -> void:
+	fsm.change_state("Death")
+
+func _on_hit_hazard(entity:Node2D, damage:float) -> void:
+	health_component.damage(damage)
+	flash_component.play_flash()
+	if health_component.current_health <= 0:
+		fsm.change_state("Death")
+	else:
+		fsm.change_state("HitHazard")
 	
 func _gain_energy(entity:Node2D) -> void:
 	if entity.is_in_group("energy_gaining"):
@@ -56,9 +73,6 @@ func x_input(_delta: float) -> void:
 		
 	# If not input locked, set zdirection as per the relevant input
 	move_component.direction = Input.get_axis("move_left", "move_right")
-
-func _on_died() -> void:
-	fsm.change_state("death")
 
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:

@@ -14,7 +14,8 @@ func handle_input(event: InputEvent) -> void:
 
 func physics_update(_delta: float) -> void:
 	# Add gravity
-	actor.velocity.y += actor.move_component.gravity * _delta
+	actor.velocity.y = min(actor.velocity.y + actor.move_component.gravity * _delta,\
+	actor.move_component.max_fall_speed)
 	
 	if actor.is_on_ladder():
 		fsm.change_state("OnLadder")

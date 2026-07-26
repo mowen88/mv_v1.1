@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bhuxdkfjd8yie"]
+
+[ext_resource type="Script" uid="uid://cgf7g571oys8q" path="res://states/world_state/environment/hazard_collision.gd" id="1_r3bnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cg1sh"]
+size = Vector2(8, 8)
+
+[node name="Spikes" type="Area2D" unique_id=623717895 groups=["hazards"]]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("1_r3bnr")
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1447248947]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_cg1sh")
