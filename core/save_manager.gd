@@ -78,7 +78,7 @@ func get_game_time_rooms_visited_as_string(slot_id: String = current_slot) -> St
 	
 	var time_string = "%02dh %02dm %02ds" % [hours, minutes, seconds]
 	
-	# We just pull directly from the dictionary value now instead of running math again!
+	# Pull directly from the dictionary value now instead of running math again!
 	var map_percent: int = SAVE_DATA[slot_id].get("percent_complete", 0)
 		
 	return "%s | %d%%" % [time_string, map_percent]

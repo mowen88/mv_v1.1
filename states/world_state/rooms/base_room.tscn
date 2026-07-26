@@ -10,6 +10,8 @@
 
 [node name="HazardTileMap" type="TileMapLayer" parent="." unique_id=1149728441]
 
+[node name="Destructibles" type="Node2D" parent="." unique_id=848199474]
+
 [node name="Hazards" type="Node2D" parent="." unique_id=823391477]
 
 [node name="SafeRespawns" type="Node2D" parent="." unique_id=991808928]

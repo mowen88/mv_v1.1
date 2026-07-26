@@ -24,7 +24,9 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 	
 	hit_received.emit(attacker_pos, knockback_force)
 	HitEffect.spawn(get_tree().current_scene, global_position)
-	SignalBus.player_energy_gained.emit(get_owner())
+	
+	if get_owner().is_in_group("player"):
+		SignalBus.player_energy_gained.emit(get_owner())
 	
 	start_invincibility()
 	return true

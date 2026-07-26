@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dqxwt35304kb2"]
+
+[ext_resource type="Texture2D" uid="uid://b3dtd44uij6xm" path="res://states/world_state/entities/destructibles/bush/bush_spritesheet.png" id="1_pe11j"]
+[ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="1_tqhje"]
+[ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="2_6opqc"]
+[ext_resource type="Script" uid="uid://b62pqgb4y0cyk" path="res://states/world_state/entities/destructibles/bush/bush.gd" id="2_s68ii"]
+[ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="3_ae181"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s68ii"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dnnj"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlnqd"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(16, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mf7ti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s68ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dnnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlnqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bush" type="AnimatedSprite2D" unique_id=467671426]
+sprite_frames = SubResource("SpriteFrames_mf7ti")
+script = ExtResource("2_s68ii")
+
+[node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("1_tqhje")]
+max_health = 3
+
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("2_6opqc")]
+sprite = NodePath("..")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="HurtboxComponent" parent="." unique_id=580697701 instance=ExtResource("3_ae181")]
