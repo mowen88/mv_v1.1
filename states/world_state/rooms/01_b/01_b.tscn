@@ -4,7 +4,32 @@
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_3need"]
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladder.tscn" id="3_3need"]
 [ext_resource type="PackedScene" uid="uid://dqxwt35304kb2" path="res://states/world_state/entities/destructibles/bush/bush.tscn" id="3_ewo3h"]
+[ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/entities/shaders/sprite_flash_shader.gdshader" id="4_2lafy"]
 [ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="4_57hpv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vs2my"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvgnm"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehkm8"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2lafy"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57hpv"]
 size = Vector2(16, 32)
@@ -19,13 +44,20 @@ tile_map_data = PackedByteArray("AAAEAAgAAAAGAAIAAAAWAAgAAAAAAAAAAAAXAAgAAAADAAA
 tile_set = ExtResource("2_3need")
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(848199474) index="0" unique_id=467671426 instance=ExtResource("3_ewo3h")]
-position = Vector2(196, 208)
+material = SubResource("ShaderMaterial_vs2my")
+position = Vector2(204, 208)
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(848199474) index="1" unique_id=1937326277 instance=ExtResource("3_ewo3h")]
-position = Vector2(208, 208)
+material = SubResource("ShaderMaterial_gvgnm")
+position = Vector2(220, 208)
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(848199474) index="2" unique_id=1528004601 instance=ExtResource("3_ewo3h")]
-position = Vector2(220, 208)
+material = SubResource("ShaderMaterial_ehkm8")
+position = Vector2(236, 208)
+
+[node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(848199474) index="3" unique_id=1032635385 instance=ExtResource("3_ewo3h")]
+material = SubResource("ShaderMaterial_2lafy")
+position = Vector2(236, 192)
 
 [node name="SaveStation" parent="." index="6" unique_id=83039258 instance=ExtResource("4_57hpv")]
 position = Vector2(96, 120)

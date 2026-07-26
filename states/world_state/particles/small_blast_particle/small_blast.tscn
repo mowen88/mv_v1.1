@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://d387nur7k3187"]
+
+[ext_resource type="Texture2D" uid="uid://1iiup7l1l4p6" path="res://states/world_state/particles/small_blast_particle/small_blast.png" id="1_dtwk7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmxlo"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67v56"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnocs"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1c31"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgh3w"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2fxv"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxnp7"]
+atlas = ExtResource("1_dtwk7")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bg2am"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmxlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67v56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnocs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1c31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgh3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2fxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxnp7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_dtwk7"]
+script/source = "extends AnimatedSprite2D
+
+func _ready() -> void:
+	set_visible(false)
+	animation_finished.connect(_on_animation_finished)
+
+func _on_animation_finished() -> void:
+	set_visible(false)
+
+func animate() -> void:
+	set_visible(true)
+	play()
+	
+"
+
+[node name="SmallBlast" type="AnimatedSprite2D" unique_id=1887377639]
+sprite_frames = SubResource("SpriteFrames_bg2am")
+script = SubResource("GDScript_dtwk7")

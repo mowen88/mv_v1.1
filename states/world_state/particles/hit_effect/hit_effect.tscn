@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bcgxbhdp6ncv7"]
 
 [ext_resource type="Texture2D" uid="uid://dos4n43li0e62" path="res://states/world_state/particles/hit_effect/hit_effect.png" id="1_67xoo"]
-[ext_resource type="Script" uid="uid://xt1ukpv7m74s" path="res://states/world_state/particles/hit_effect/hit_effect.gd" id="2_67xoo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cqtpw"]
 particles_animation = true
@@ -38,4 +37,3 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_cqtpw")
-script = ExtResource("2_67xoo")

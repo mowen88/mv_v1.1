@@ -15,6 +15,7 @@ run/main_scene="uid://drmnvttwkb5fm"
 config/features=PackedStringArray("4.6", "Mobile")
 run/max_fps=60
 boot_splash/show_image=false
+config/icon="uid://baojxjuffmc3v"
 
 [audio]
 
@@ -30,6 +31,7 @@ SaveManager="*uid://bn6wk7r4s3f7e"
 SignalBus="*uid://cbjuvtldga8b0"
 AudioManager="*uid://cyldynesttc2a"
 VibrateManager="*uid://ilku6ko72ogp"
+ParticleManager="*uid://b2wtfg1req1r1"
 
 [display]
 

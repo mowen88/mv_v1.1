@@ -25,8 +25,6 @@ func _ready() -> void:
 		actor = get_parent()
 
 func process_movement(delta: float) -> void:
-	
-	print(actor.coyote_timer.time_left)
 
 	if direction != 0:
 		self.facing = int(sign(direction))

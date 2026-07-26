@@ -8,48 +8,58 @@
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="3_ae181"]
 [ext_resource type="AudioStream" uid="uid://iodojr45uwla" path="res://states/world_state/entities/destructibles/bush/bush_hit.ogg" id="6_5dnnj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s68ii"]
-atlas = ExtResource("1_pe11j")
-region = Rect2(0, 0, 8, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5dnnj"]
-atlas = ExtResource("1_pe11j")
-region = Rect2(8, 0, 8, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlnqd"]
+size = Vector2(8, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jlnqd"]
 atlas = ExtResource("1_pe11j")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf7ti"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uqt0"]
+atlas = ExtResource("1_pe11j")
 region = Rect2(16, 0, 8, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mf7ti"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrfv5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s68ii")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5dnnj")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_jlnqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf7ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uqt0")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }]
 
-[node name="Bush" type="AnimatedSprite2D" unique_id=467671426 groups=["energy_gaining"]]
+[node name="Bush" type="StaticBody2D" unique_id=1032635385 groups=["energy_gaining"]]
 material = ExtResource("1_jlnqd")
-sprite_frames = SubResource("SpriteFrames_mf7ti")
+collision_mask = 0
 script = ExtResource("2_s68ii")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=913490451]
+shape = SubResource("RectangleShape2D_jlnqd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=177856894]
+sprite_frames = SubResource("SpriteFrames_rrfv5")
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("1_tqhje")]
 max_health = 3
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("2_6opqc")]
-sprite = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("3_ae181")]
+collision_layer = 9
 sound = ExtResource("6_5dnnj")
 health_component = NodePath("../HealthComponent")
 invincibility_duration = 0.25
