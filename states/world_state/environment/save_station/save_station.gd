@@ -1,4 +1,3 @@
-class_name SaveStation
 extends Area2D
 
 func _ready() -> void:

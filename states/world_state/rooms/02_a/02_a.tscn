@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_gk17s"]
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_vfkjq"]
-[ext_resource type="PackedScene" uid="uid://bhuxdkfjd8yie" path="res://states/world_state/environment/spikes.tscn" id="3_uppc8"]
+[ext_resource type="PackedScene" uid="uid://bhuxdkfjd8yie" path="res://states/world_state/environment/hazards/spikes.tscn" id="3_uppc8"]
 [ext_resource type="PackedScene" uid="uid://0oqxdpjjeqp0" path="res://states/world_state/environment/respawn_area.tscn" id="4_1k8se"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uppc8"]
@@ -49,6 +49,6 @@ shape = SubResource("RectangleShape2D_uppc8")
 position = Vector2(2, 84)
 shape = SubResource("RectangleShape2D_uppc8")
 
-[node name="CollisionShape2D" parent="SaveStation" parent_id_path=PackedInt32Array(1453052506) index="0" unique_id=488938937]
+[node name="CollisionShape2D" parent="SaveStation" parent_id_path=PackedInt32Array(1453052506) index="1" unique_id=488938937]
 position = Vector2(112, 168)
 shape = SubResource("RectangleShape2D_vfkjq")

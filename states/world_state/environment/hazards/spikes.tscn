@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhuxdkfjd8yie"]
 
-[ext_resource type="Script" uid="uid://cgf7g571oys8q" path="res://states/world_state/environment/hazard_collision.gd" id="1_r3bnr"]
+[ext_resource type="Script" uid="uid://cgf7g571oys8q" path="res://states/world_state/environment/hazards/hazard_collision.gd" id="1_r3bnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cg1sh"]
 size = Vector2(8, 8)

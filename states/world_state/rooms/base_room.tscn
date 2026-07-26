@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dtgksoxcmiogl"]
 
 [ext_resource type="Script" uid="uid://c4wwxyhoalfhs" path="res://states/world_state/rooms/room_exits.gd" id="1_peren"]
-[ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/rooms/save_station.gd" id="2_d2ebj"]
+[ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/environment/save_station/save_station.gd" id="2_d2ebj"]
+[ext_resource type="Texture2D" uid="uid://crard3vijrxpk" path="res://states/world_state/environment/save_station/save_station_image.png" id="3_83wd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ebj"]
 size = Vector2(16, 16)
@@ -37,6 +38,18 @@ script = ExtResource("1_peren")
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_d2ebj")
+
+[node name="Image" type="TextureRect" parent="SaveStation" unique_id=387006946]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_83wd4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaveStation" unique_id=488938937]
 shape = SubResource("RectangleShape2D_d2ebj")

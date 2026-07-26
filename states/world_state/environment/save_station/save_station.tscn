@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://o2651qiy5vxt"]
+
+[ext_resource type="Texture2D" uid="uid://crard3vijrxpk" path="res://states/world_state/environment/save_station/save_station_image.png" id="1_1qigp"]
+[ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/environment/save_station/save_station.gd" id="1_fg0it"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d22iq"]
+size = Vector2(16, 16)
+
+[node name="SaveStation" type="Area2D" unique_id=83039258]
+script = ExtResource("1_fg0it")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236616777]
+shape = SubResource("RectangleShape2D_d22iq")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=809190147]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1qigp")
