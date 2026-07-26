@@ -7,6 +7,7 @@
 [node name="BGTileMap" type="TileMapLayer" parent="." unique_id=599124256]
 
 [node name="SolidTileMap" type="TileMapLayer" parent="." unique_id=12999079]
+z_index = 1
 
 [node name="HazardTileMap" type="TileMapLayer" parent="." unique_id=1149728441]
 

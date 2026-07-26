@@ -30,6 +30,7 @@ alpha_curve = SubResource("CurveTexture_cqtpw")
 anim_offset_max = 1.0
 
 [node name="HitEffect" type="GPUParticles2D" unique_id=2061164650]
+z_index = 1
 material = SubResource("CanvasItemMaterial_cqtpw")
 emitting = false
 texture = ExtResource("1_67xoo")

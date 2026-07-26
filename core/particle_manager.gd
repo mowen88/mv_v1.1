@@ -34,36 +34,49 @@ func initialize_pools() -> void:
 				fx.emitting = false
 			fx.visible = false
 
-func play(effect_name: String, pos: Vector2) -> void:
-	if not particle_scenes.has(effect_name):
-		push_warning("Particle effect not found in manager: " + effect_name)
+func play(scene: PackedScene, pos: Vector2) -> void:
+	if not scene:
 		return
 		
-	var pool: Array = pools[effect_name]
+	var scene_path = scene.resource_path
+	
+	if not pools.has(scene_path):
+		pools[scene_path] = []
+		for i in range(POOL_SIZE_PER_EFFECT):
+			var fx = scene.instantiate() as Node2D
+			fx.visible = false
+			add_child(fx)
+			if fx is GPUParticles2D:
+				fx.emitting = true
+			pools[scene_path].append(fx)
+			
+		await get_tree().process_frame
+		for fx in pools[scene_path]:
+			if fx is GPUParticles2D:
+				fx.emitting = false
+			fx.visible = false
+		
+	var pool: Array = pools[scene_path]
 	var fx: Node2D = null
 	
-	# Find an available inactive particle in the pool
 	for instance in pool:
 		if not instance.visible:
 			fx = instance
 			break
 			
-	# Fallback if pool is exhausted
 	if not fx:
-		fx = particle_scenes[effect_name].instantiate() as Node2D
+		fx = scene.instantiate() as Node2D
 		add_child(fx)
 		pool.append(fx)
 		
 	fx.global_position = pos
 	fx.visible = true
 	
-	# Handle GPUParticles2D
 	if fx is GPUParticles2D:
 		fx.restart()
 		fx.emitting = true
 		_monitor_gpu_particle(fx)
 		
-
 func _monitor_gpu_particle(fx: GPUParticles2D) -> void:
 	# Wait for the finished signal entirely from the manager
 	await fx.finished

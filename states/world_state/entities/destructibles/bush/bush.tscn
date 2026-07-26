@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b62pqgb4y0cyk" path="res://states/world_state/entities/destructibles/bush/bush.gd" id="2_s68ii"]
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="3_ae181"]
 [ext_resource type="AudioStream" uid="uid://iodojr45uwla" path="res://states/world_state/entities/destructibles/bush/bush_hit.ogg" id="6_5dnnj"]
+[ext_resource type="PackedScene" uid="uid://bcgxbhdp6ncv7" path="res://states/world_state/particles/hit_effect/hit_effect.tscn" id="7_mf7ti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlnqd"]
 size = Vector2(8, 16)
@@ -60,6 +61,7 @@ hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("3_ae181")]
 collision_layer = 9
+particle_scene = ExtResource("7_mf7ti")
 sound = ExtResource("6_5dnnj")
 health_component = NodePath("../HealthComponent")
 invincibility_duration = 0.25
