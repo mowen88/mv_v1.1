@@ -19,7 +19,7 @@ config/icon="uid://baojxjuffmc3v"
 
 [audio]
 
-buses/default_bus_layout="uid://wb3wqhph0i74"
+buses/default_bus_layout=""
 
 [autoload]
 
@@ -32,6 +32,7 @@ SignalBus="*uid://cbjuvtldga8b0"
 AudioManager="*uid://cyldynesttc2a"
 VibrateManager="*uid://ilku6ko72ogp"
 ParticleManager="*uid://b2wtfg1req1r1"
+DialogueData="*uid://djiayyfbrj3uh"
 
 [display]
 

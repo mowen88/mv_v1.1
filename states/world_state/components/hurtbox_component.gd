@@ -24,7 +24,6 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 		play_sound()
 	
 	hit_received.emit(attacker_pos, knockback_force)
-	#ParticleManager.play("hit_effect", global_position)
 	if particle_scene:
 		ParticleManager.play(particle_scene, global_position)
 	SignalBus.screenshake_requested.emit(2.0, 0.0, 0.2)

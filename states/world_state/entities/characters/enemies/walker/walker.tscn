@@ -104,6 +104,7 @@ script = ExtResource("5_mfvvx")
 
 [node name="Death" type="Node" parent="FiniteStateMachine" unique_id=1051133370]
 script = ExtResource("6_7ldib")
+particle_scene = ExtResource("15_gcbma")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=608652713]

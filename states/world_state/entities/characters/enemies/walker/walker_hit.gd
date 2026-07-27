@@ -11,8 +11,13 @@ func enter() -> void:
 	actor.get_node("AnimatedSprite2D").play("idle")
 
 func physics_update(delta: float) -> void:
+	# Increment timer
 	timer -= delta
-	actor.velocity.y += actor.move_component.gravity * delta
+	
+	# Add gravity
+	actor.velocity.y = min(actor.velocity.y + actor.move_component.gravity * delta,\
+	actor.move_component.max_fall_speed)
+	
 	actor.move_and_slide()
 	
 	if timer <= 0:

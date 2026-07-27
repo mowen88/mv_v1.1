@@ -20,13 +20,11 @@ func initialize_pools() -> void:
 			fx.visible = false
 			add_child(fx)
 			
-			# Force shader warm-up on creation
 			if fx is GPUParticles2D:
 				fx.emitting = true
 				
 			pools[key].append(fx)
 			
-	# Wait one frame for shaders to compile, then reset them into an inactive state
 	await get_tree().process_frame
 	for key in pools:
 		for fx in pools[key]:
@@ -34,7 +32,8 @@ func initialize_pools() -> void:
 				fx.emitting = false
 			fx.visible = false
 
-func play(scene: PackedScene, pos: Vector2) -> void:
+## Added duration, one-shot as default by way of making the particle emit only 0.1 secs
+func play(scene: PackedScene, pos: Vector2, duration: float = 0.0) -> void:
 	if not scene:
 		return
 		
@@ -73,15 +72,30 @@ func play(scene: PackedScene, pos: Vector2) -> void:
 	fx.visible = true
 	
 	if fx is GPUParticles2D:
-		fx.restart()
-		fx.emitting = true
-		_monitor_gpu_particle(fx)
-		
-func _monitor_gpu_particle(fx: GPUParticles2D) -> void:
-	# Wait for the finished signal entirely from the manager
+		if duration <= 0.0:
+			fx.one_shot = true
+			fx.restart()
+			fx.emitting = true
+			_monitor_gpu_particle(fx, 0.0)
+		else:
+			fx.one_shot = false
+			fx.restart()
+			fx.emitting = true
+			_monitor_gpu_particle(fx, duration)
+
+func _monitor_gpu_particle(fx: GPUParticles2D, duration: float) -> void:
+	# If a duration is specified, wait for that time, then KILL the emission
+	if duration > 0.0:
+		await get_tree().create_timer(duration).timeout
+		if is_instance_valid(fx):
+			print("Stopping particle emission!")
+			fx.emitting = false
+			
+	# Wait for the remaining active particles to finish
 	await fx.finished
-	fx.emitting = false
-	fx.visible = false
+	if is_instance_valid(fx):
+		fx.emitting = false
+		fx.visible = false
 
 func _on_anim_finished(fx: Node2D, anim_sprite: AnimatedSprite2D) -> void:
 	anim_sprite.stop()

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://b2h3fp6fcnfm4" path="res://UI/menu/confirm_delete_menu.gd" id="9_1r30s"]
 [ext_resource type="Texture2D" uid="uid://b7qjhyjiwb5ep" path="res://UI/menu/elements/checkbox_on.png" id="9_i4w7f"]
 [ext_resource type="Texture2D" uid="uid://c7ira7w4d5i1x" path="res://UI/menu/elements/checkbox_off.png" id="10_p5jt0"]
+[ext_resource type="Script" uid="uid://btuk00pgtok8l" path="res://UI/menu/confirm_quit_menu.gd" id="13_p5jt0"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nh7px"]
 color = Color(1, 1, 1, 1)
@@ -68,11 +69,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
+alignment = 1
 script = ExtResource("5_jgxlf")
 
 [node name="SlotRow1" type="HBoxContainer" parent="SaveSlotMenu" unique_id=1276025206]
 layout_mode = 2
 theme_override_constants/separation = 36
+alignment = 1
 
 [node name="SlotButton1" type="Button" parent="SaveSlotMenu/SlotRow1" unique_id=1234703931]
 layout_mode = 2
@@ -90,6 +93,7 @@ icon_alignment = 1
 [node name="SlotRow2" type="HBoxContainer" parent="SaveSlotMenu" unique_id=710371239]
 layout_mode = 2
 theme_override_constants/separation = 36
+alignment = 1
 
 [node name="SlotButton2" type="Button" parent="SaveSlotMenu/SlotRow2" unique_id=1203599944]
 layout_mode = 2
@@ -107,6 +111,7 @@ icon_alignment = 1
 [node name="SlotRow3" type="HBoxContainer" parent="SaveSlotMenu" unique_id=1150036196]
 layout_mode = 2
 theme_override_constants/separation = 36
+alignment = 1
 
 [node name="SlotButton3" type="Button" parent="SaveSlotMenu/SlotRow3" unique_id=966884406]
 layout_mode = 2
@@ -318,6 +323,35 @@ icon_alignment = 1
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 text = "Back"
+flat = true
+
+[node name="ConfirmQuitMenu" type="VBoxContainer" parent="." unique_id=1822483406]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+script = ExtResource("13_p5jt0")
+
+[node name="Label" type="Label" parent="ConfirmQuitMenu" unique_id=2090592960]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_colors/font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("5_w6o3i")
+text = "Return to main menu?"
+
+[node name="ConfirmButton" type="Button" parent="ConfirmQuitMenu" unique_id=1714836274]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Confirm"
+flat = true
+
+[node name="CancelButton" type="Button" parent="ConfirmQuitMenu" unique_id=2091697113]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+text = "Cancel"
 flat = true
 
 [node name="ConfirmDeleteMenu" type="VBoxContainer" parent="." unique_id=2124360719]

@@ -7,6 +7,7 @@ extends Control
 @onready var save_slot_menu: VBoxContainer = $SaveSlotMenu
 @onready var pause_menu: VBoxContainer = $PauseMenu
 @onready var confirm_delete_menu: VBoxContainer = $ConfirmDeleteMenu
+@onready var confirm_quit_menu: VBoxContainer = $ConfirmQuitMenu
 
 var pending_delete_slot: String = ""
 
@@ -30,7 +31,7 @@ func _ready() -> void:
 	gameplay_menu.vibrate_toggle_requested.connect(_on_vibrate_toggled)
 	gameplay_menu.battery_saver_toggle_requested.connect(_on_battery_saver_toggled)
 
-	pause_menu.quit_requested.connect(_quit_to_tile)
+	pause_menu.quit_requested.connect(func(): show_panel(confirm_quit_menu))
 	settings_menu.back_requested.connect(_go_back)
 	audio_menu.back_requested.connect(_go_back)
 	gameplay_menu.back_requested.connect(_go_back)
@@ -39,6 +40,9 @@ func _ready() -> void:
 	save_slot_menu.delete_requested.connect(_on_delete_requested)
 	confirm_delete_menu.confirm.connect(_on_delete_confirmed)
 	confirm_delete_menu.cancel.connect(_go_back)
+	confirm_quit_menu.confirm.connect(_quit_to_tile)
+	confirm_quit_menu.cancel.connect(_go_back)
+	
 
 func _on_volume_changed(bus_name:String, value:float) -> void:
 	var key = bus_name + " Volume"

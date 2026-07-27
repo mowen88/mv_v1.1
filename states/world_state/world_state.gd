@@ -94,6 +94,7 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 			current_zone_name = target_zone_name
 			if current_zone_name != "":
 				SignalBus.zone_banner_requested.emit(current_zone_name, true)
+
 		else:
 			SignalBus.zone_banner_requested.emit("", false)
 			

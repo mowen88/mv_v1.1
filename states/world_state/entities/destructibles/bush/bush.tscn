@@ -62,6 +62,7 @@ hurtbox_component = NodePath("../HurtboxComponent")
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("3_ae181")]
 collision_layer = 9
 particle_scene = ExtResource("7_mf7ti")
+particle_duration = 0.5
 sound = ExtResource("6_5dnnj")
 health_component = NodePath("../HealthComponent")
 invincibility_duration = 0.25

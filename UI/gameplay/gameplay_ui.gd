@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var energy_hud: HBoxContainer = $EnergyHUD
 @onready var health_hud: HBoxContainer = $HealthHUD
 @onready var zone_label: Label = $ZoneLabel
+@onready var tutorial_message: Label = $TutorialMessage
 
 # Health Textures
 const HEALTH_FULL_TEX = preload("res://UI/gameplay/elements/health_node_full.png")
@@ -15,6 +16,7 @@ const ENERGY_EMPTY_TEX = preload("res://UI/gameplay/elements/energy_empty.png")
 func _ready() -> void:
 	# Messages
 	SignalBus.zone_banner_requested.connect(_on_zone_banner_requested)
+	SignalBus.tutorial_message_requested.connect(_on_tutorial_message_requested)
 	
 	# Health
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
@@ -25,6 +27,29 @@ func _ready() -> void:
 	SignalBus.player_max_energy_changed.connect(_on_max_energy_changed)
 
 var banner_tween: Tween
+var message_tween: Tween
+
+func _on_tutorial_message_requested(message:String, show_message:bool) -> void:
+	# Kill the ongoing fade out/in from previous message
+	if message_tween:
+		message_tween.kill()
+	
+	if not show_message or message == "":
+		tutorial_message.visible = false
+		return
+	
+	tutorial_message.text = message
+	tutorial_message.modulate.a = 0.0
+	tutorial_message.visible = true
+	
+	message_tween = create_tween()
+	# Fade in
+	message_tween.tween_property(tutorial_message, "modulate:a", 1.0, 0.5)
+	# Wait
+	message_tween.tween_interval(2.0)
+	# Fade out
+	message_tween.tween_property(tutorial_message, "modulate:a", 0.0, 0.5)
+	message_tween.tween_callback(func(): tutorial_message.visible = false)
 
 func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 	# Kill the ongoing fade out/in from the previous room immediately

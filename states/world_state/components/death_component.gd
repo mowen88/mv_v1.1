@@ -19,7 +19,6 @@ func _on_death() -> void:
 	if fsm:
 		fsm.change_state("Death")
 
-	
 	# You could even handle delayed cleanup here
 	await get_tree().create_timer(2.0).timeout
 	actor.queue_free()
