@@ -11,6 +11,7 @@ var SETTINGS_DATA: Dictionary = {
 	"Battery Saver": true,
 	"Screenshake": true,
 	"Vibration": true,
+	"Language": "English"
 }
 
 # --- SAVE SLOT CONFIGURATION ---
