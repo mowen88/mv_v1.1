@@ -391,7 +391,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
 gravity = 650.0
-jump_velocity = -260.0
+jump_velocity = -250.0
 max_fall_speed = 250.0
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("17_yrv70")]
@@ -417,7 +417,6 @@ collision_layer = 2
 collision_mask = 32
 sound = ExtResource("31_20gxo")
 health_component = NodePath("../HealthComponent")
-invincibility_duration = null
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
 position = Vector2(0, 1.5)
