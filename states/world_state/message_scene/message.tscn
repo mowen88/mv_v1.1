@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dub6vrea454ju"]
+
+[ext_resource type="Script" uid="uid://drmcqd0v3x6vu" path="res://states/world_state/message_scene/message.gd" id="1_55wqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa55w"]
+
+[node name="Message" type="Area2D" unique_id=839802269]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_55wqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=625801091]
+shape = SubResource("RectangleShape2D_wa55w")

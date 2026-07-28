@@ -29,15 +29,11 @@ func _ready() -> void:
 var banner_tween: Tween
 var message_tween: Tween
 
-func _on_tutorial_message_requested(message:String, show_message:bool) -> void:
-	# Kill the ongoing fade out/in from previous message
-	if message_tween:
-		message_tween.kill()
-	
-	if not show_message or message == "":
-		tutorial_message.visible = false
+func _on_tutorial_message_requested(message:String) -> void:
+	# Only run tween if there is not one currently active
+	if message_tween and message_tween.is_running():
 		return
-	
+
 	tutorial_message.text = message
 	tutorial_message.modulate.a = 0.0
 	tutorial_message.visible = true

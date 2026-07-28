@@ -11,6 +11,8 @@ z_index = 1
 
 [node name="HazardTileMap" type="TileMapLayer" parent="." unique_id=1149728441]
 
+[node name="TutorialMessage" type="Node2D" parent="." unique_id=619374802]
+
 [node name="Destructibles" type="Node2D" parent="." unique_id=848199474]
 
 [node name="Hazards" type="Node2D" parent="." unique_id=823391477]
