@@ -98,4 +98,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.15673482, 0.1454978, 0.37240306, 1)
+environment/defaults/default_clear_color=Color(0.39215687, 0.21568628, 0.2784314, 1)

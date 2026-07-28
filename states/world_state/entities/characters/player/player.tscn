@@ -214,7 +214,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"climb",
-"speed": 9.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -231,7 +231,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"fall",
-"speed": 15.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
