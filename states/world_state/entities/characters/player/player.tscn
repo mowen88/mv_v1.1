@@ -299,9 +299,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdm2v"]
-radius = 3.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20gxo"]
+size = Vector2(6, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fbs1"]
 size = Vector2(6, 13)
@@ -330,8 +329,8 @@ sprite_frames = SubResource("SpriteFrames_g3adm")
 animation = &"climb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_cdm2v")
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_20gxo")
 
 [node name="FiniteStateMachine" type="Node" parent="." unique_id=1602473878 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_ri0vu")
