@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://btuoi8ua8kc3r"]
+
+[ext_resource type="Script" uid="uid://clpdd5djeos12" path="res://states/world_state/camera/camera_triggers.gd" id="1_8m6t6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63sn7"]
+size = Vector2(260, 120)
+
+[node name="CameraTrigger" type="Area2D" unique_id=811432737]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8m6t6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719883877]
+shape = SubResource("RectangleShape2D_63sn7")

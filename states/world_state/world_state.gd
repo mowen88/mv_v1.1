@@ -3,7 +3,6 @@ extends Node2D
 @onready var current_room_container: Node2D = $CurrentRoom
 @onready var player: CharacterBody2D = $Player
 @onready var game_camera: Camera2D = $GameCamera
-@onready var camera_target: Node2D = $CameraTarget
 @onready var touch_controller: CanvasLayer = $TouchController
 @onready var menu_canvas: CanvasLayer = $MenuCanvas
 @onready var menu_manager: Control = $MenuCanvas/MenuAnchor/MenuManager
@@ -12,9 +11,12 @@ extends Node2D
 var current_room_node: Node2D = null
 var current_zone_name: String = ""
 var in_cutscene: bool = false
+var camera_overridden: bool = false
+var camera_target_pos: Vector2 = Vector2.ZERO
 
 func _ready():
-	# Listen to the global bus for when a room's Area2D triggers a transition
+	SignalBus.camera_override_requested.connect(_override_camera_target)
+	SignalBus.camera_override_cleared.connect(_clear_camera_override)
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
 	SignalBus.save_station_activated.connect(_on_save_station_activated)
 	
@@ -25,10 +27,42 @@ func _ready():
 	
 	pause_menu.unpause_requested.connect(_toggle_game_pause)
 
-func _process(_delta):
-	if not in_cutscene and player:
-		camera_target.global_position = player.global_position
+#func _process(_delta):
+	#if not in_cutscene and player:
+		#var target_x_offset = 0.0
+		#target_x_offset = player.move_component.facing * game_camera.x_offset_distance
+		#game_camera.x_offset = lerp(game_camera.x_offset, target_x_offset, game_camera.x_offset_lerp_speed * _delta)
+		#var target_pos = player.global_position
+		#target_pos.x += game_camera.x_offset
+		#camera_target.global_position = target_pos
 
+func _process(delta: float) -> void:
+	if not player:
+		return
+		
+	if in_cutscene:
+		return
+	
+	var target_pos = player.global_position
+	
+	if camera_overridden:
+		target_pos = camera_target_pos
+	else:
+		# Track the player and manage offsets
+		var target_x_offset = player.move_component.facing * game_camera.x_offset_distance
+		game_camera.x_offset = lerp(game_camera.x_offset, target_x_offset, game_camera.lerp_speed * delta)
+		target_pos.x += game_camera.x_offset
+	
+	# Update camera pos
+	game_camera.current_target_pos = target_pos
+	
+func _override_camera_target(pos: Vector2, speed: float) -> void:
+	camera_target_pos = pos
+	camera_overridden = true
+
+func _clear_camera_override() -> void:
+	camera_overridden = false
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):
 		_toggle_game_pause()
@@ -113,7 +147,7 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		# Fallback the last safe position to the room entry
 		SignalBus.player_respawn.emit(spawn_node.global_position)
 		# Shift the cemra target to the player by default
-		camera_target.global_position = player.global_position
+		camera_target_pos = player.global_position
 		# Snap the camera to the player by default
 		game_camera.global_position = player.global_position
 		

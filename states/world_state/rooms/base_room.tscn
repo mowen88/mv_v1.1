@@ -11,25 +11,27 @@ z_index = 1
 
 [node name="HazardTileMap" type="TileMapLayer" parent="." unique_id=1149728441]
 
-[node name="TutorialMessage" type="Node2D" parent="." unique_id=619374802]
+[node name="TutorialMessage" type="Node" parent="." unique_id=1362062078]
 
-[node name="Destructibles" type="Node2D" parent="." unique_id=848199474]
+[node name="Destructibles" type="Node" parent="." unique_id=386555359]
 
-[node name="Hazards" type="Node2D" parent="." unique_id=823391477]
+[node name="Hazards" type="Node" parent="." unique_id=1478642669]
 
-[node name="SafeRespawns" type="Node2D" parent="." unique_id=991808928]
+[node name="SafeRespawns" type="Node" parent="." unique_id=1114979653]
 
 [node name="CameraLimits" type="ReferenceRect" parent="." unique_id=671455297]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Ladders" type="Node2D" parent="." unique_id=1340396295 groups=["ladders"]]
+[node name="CameraTriggers" type="Node" parent="." unique_id=1709709420]
 
-[node name="Spawns" type="Node2D" parent="." unique_id=214822847]
+[node name="Ladders" type="Node" parent="." unique_id=997621068 groups=["ladders"]]
+
+[node name="Spawns" type="Node" parent="." unique_id=1711980423]
 
 [node name="Exits" type="Area2D" parent="." unique_id=1104129518]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_peren")
 
-[node name="Enemies" type="Node2D" parent="." unique_id=948852907]
+[node name="Enemies" type="Node" parent="." unique_id=1127347775]
