@@ -4,6 +4,12 @@
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_78wmb"]
 [ext_resource type="PackedScene" uid="uid://btuoi8ua8kc3r" path="res://states/world_state/camera/camera_trigger.tscn" id="3_vubac"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vubac"]
+size = Vector2(248, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvvud"]
+size = Vector2(64, 32)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rocu"]
 size = Vector2(16, 39.5)
 
@@ -21,6 +27,17 @@ offset_bottom = 128.0
 
 [node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="0" unique_id=811432737 instance=ExtResource("3_vubac")]
 position = Vector2(360, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTriggers/CameraTrigger" index="0" unique_id=1540299573]
+position = Vector2(52, 32)
+shape = SubResource("RectangleShape2D_vubac")
+
+[node name="CameraTrigger2" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="1" unique_id=432386152 instance=ExtResource("3_vubac")]
+position = Vector2(80, -88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTriggers/CameraTrigger2" index="0" unique_id=697244554]
+position = Vector2(88, 168)
+shape = SubResource("RectangleShape2D_jvvud")
 
 [node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=2096936391]
 position = Vector2(522, 88)

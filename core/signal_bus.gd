@@ -1,7 +1,7 @@
 extends Node
 
 signal camera_override_cleared
-signal camera_override_requested(target:Vector2, pan_speed:float)
+signal camera_override_requested(target:Vector2, lock_x:bool, lock_y:bool)
 
 signal room_change_requested(exit_id: int)
 signal save_station_activated

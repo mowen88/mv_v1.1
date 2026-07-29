@@ -52,6 +52,8 @@ process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("5_i7qgc")
+x_offset_distance = null
+lerp_speed = null
 
 [node name="Player" parent="." unique_id=1424915808 instance=ExtResource("3_y6a8n")]
 

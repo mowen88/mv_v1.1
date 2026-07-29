@@ -1,12 +1,6 @@
 extends Area2D
 
-@export_category("Camera Override Settings")
-@export var pan_speed: float = 3.0
-
-@export_group("X-Axis Settings")
 @export var lock_x: bool = true
-
-@export_group("Y-Axis Settings")
 @export var lock_y: bool = true
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -20,15 +14,8 @@ func _on_body_entered(body: Node2D) -> void:
 		var rect_center = global_position
 		if collision_shape:
 			rect_center = collision_shape.global_position
-			
-		var final_target = body.global_position
-		
-		if lock_x:
-			final_target.x = rect_center.x
-		if lock_y:
-			final_target.y = rect_center.y
-			
-		SignalBus.camera_override_requested.emit(final_target, pan_speed)
+
+		SignalBus.camera_override_requested.emit(rect_center, lock_x, lock_y)
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
