@@ -132,16 +132,16 @@ func zoom_pulse(zoom_multiplier: float, duration: float) -> void:
 		zoom_tween.kill()
 		
 	zoom_tween = create_tween()
+	
 	var base_zoom = zoom
-	var target_zoom = base_zoom * zoom_multiplier
-	var half_duration = duration * 0.5
+	var target_zoom = zoom * zoom_multiplier
 	
 	# Tween in the zoom
-	zoom_tween.tween_property(self, "zoom", target_zoom, half_duration)\
+	zoom_tween.tween_property(self, "zoom", target_zoom, duration * 0.5)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 		
 	# Tween out to the original zoom
-	zoom_tween.tween_property(self, "zoom", base_zoom, half_duration)\
+	zoom_tween.tween_property(self, "zoom", base_zoom, duration * 0.5)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN)
