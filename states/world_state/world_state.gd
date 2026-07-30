@@ -113,15 +113,14 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 
 		var spawn_node = current_room_node.get_node_or_null("Spawns/" + str(spawn_id))
 		
+		# Set the respawn fallback to the room entry
+		SignalBus.player_respawn.emit(spawn_node.global_position)
 		# Move the player to the new spawn point in new room
 		player.global_position = spawn_node.global_position
-		# Fallback the last safe position to the room entry
-		SignalBus.player_respawn.emit(spawn_node.global_position)
 		# Shift the cemra target to the player by default
 		game_camera.current_pos = player.global_position
 		# Snap the camera to the player by default
-		game_camera.global_position = player.global_position
-		
+		game_camera.snap_to_target(player)
 		_update_camera_limits(current_room_node)
 		game_camera.reset_smoothing()
 
