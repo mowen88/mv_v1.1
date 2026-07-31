@@ -35,10 +35,24 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):
 		_toggle_game_pause()
+	
+	# --- TEST OVERRIDE ON KEY PRESS ---
+	if event.is_action_pressed("ui_accept"): # Press Space/Enter to test
+		if current_room_node and current_room_node.has_node("Enemies/Walker"):
+			var walker = current_room_node.get_node("Enemies/Walker")
+			# Override camera to follow the walker dynamically!
+			SignalBus.camera_override_requested.emit(walker.global_position, true, true, walker)
+			game_camera.snap_to_target(walker)
+			print("Camera overridden to follow: ", walker.name)
+			
+			
+	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
+		SignalBus.camera_override_cleared.emit()
+		print("Camera override cleared, back to player.")
 		
 func _toggle_game_pause() -> void:
-	get_tree().paused = not get_tree().paused
-	touch_controller.visible = not get_tree().paused
+	get_tree().paused =  not get_tree().paused
+	touch_controller.visible =  not get_tree().paused
 	menu_canvas.visible = get_tree().paused
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")

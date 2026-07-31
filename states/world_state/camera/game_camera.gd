@@ -1,8 +1,9 @@
 extends Camera2D
 
 @export var x_offset_distance: float = 5.0
-@export var player_smoothing_speed: float = 8.0
-@export var pan_smoothing_speed: float = 3.0
+@export var follow_smoothing_speed_x: float = 8.0
+@export var follow_smoothing_down_y: float = 8.0
+@export var pan_smoothing_speed: float = 2.0
 
 var shake_tween: Tween
 var zoom_tween: Tween
@@ -21,22 +22,22 @@ func _ready() -> void:
 	SignalBus.camera_zoom_requested.connect(zoom_pulse)
 	
 	position_smoothing_enabled = true
-	position_smoothing_speed = player_smoothing_speed
+	position_smoothing_speed = follow_smoothing_speed_x
 
 func snap_to_target(node: Node2D = null) -> void:
 	global_position = node.global_position
 	reset_smoothing()
 
 func set_room_limits(room_node: Node2D) -> void:
-	var limits = room_node.get_node_or_null("CameraLimits") as ReferenceRect
-	if limits:
-		var rect_pos = limits.global_position
-		var rect_size = limits.size
-		
-		limit_left = int(rect_pos.x)
-		limit_top = int(rect_pos.y)
-		limit_right = int(rect_pos.x + rect_size.x)
-		limit_bottom = int(rect_pos.y + rect_size.y)
+	var limits = room_node.get_node("CameraLimits")
+
+	var rect_pos = limits.global_position
+	var rect_size = limits.size
+	
+	limit_left = int(rect_pos.x)
+	limit_top = int(rect_pos.y)
+	limit_right = int(rect_pos.x + rect_size.x)
+	limit_bottom = int(rect_pos.y + rect_size.y)
 
 func clamp_position(raw_target: Vector2) -> Vector2:
 	# Get half of the viewport size, scaled down by current camera zoom
@@ -47,25 +48,33 @@ func clamp_position(raw_target: Vector2) -> Vector2:
 		clamp(raw_target.y, limit_top + viewport_half.y, limit_bottom - viewport_half.y)
 	)
 
-func update_target(player: CharacterBody2D, _delta: float) -> void:
+func update_target(player: CharacterBody2D, delta: float) -> void:
+	var desired_pos = global_position
+	var current_smoothing = follow_smoothing_speed_x
+	
 	if not overridden:
 		var target_pos = player.global_position
 		target_pos.x += player.move_component.facing * x_offset_distance
-		position_smoothing_speed = player_smoothing_speed
-		global_position = clamp_position(target_pos)
+		desired_pos = target_pos
+		current_smoothing = follow_smoothing_speed_x
 	else:
 		var pan_target = locked_position
 		if followed_target and is_instance_valid(followed_target):
 			pan_target = followed_target.global_position
 		
-		var final_target = global_position
-		if lock_x: final_target.x = pan_target.x
-		if lock_y: final_target.y = pan_target.y
-		
-		position_smoothing_speed = pan_smoothing_speed
-		global_position = clamp_position(final_target)
+		desired_pos = global_position
+		if lock_x: desired_pos.x = pan_target.x
+		if lock_y: desired_pos.y = pan_target.y
+
+		current_smoothing = pan_smoothing_speed
+
+	var smoothed_pos = global_position.lerp(desired_pos, current_smoothing * delta)
+	global_position = clamp_position(smoothed_pos)
+	
+	print(current_smoothing)
 
 func set_override(pos: Vector2, x: bool = true, y: bool = true, follow: Node2D = null) -> void:
+
 	locked_position = pos
 	followed_target = follow
 	lock_x = x
