@@ -8,12 +8,7 @@
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/entities/shaders/sprite_flash_shader.gdshader" id="4_2lafy"]
 [ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="4_57hpv"]
 [ext_resource type="PackedScene" uid="uid://btuoi8ua8kc3r" path="res://states/world_state/camera/camera_trigger.tscn" id="7_gvgnm"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvgnm"]
-resource_local_to_scene = true
-shader = ExtResource("4_2lafy")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
+[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/room_exit_scene/room_exit.tscn" id="9_ehkm8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehkm8"]
 resource_local_to_scene = true
@@ -33,11 +28,11 @@ shader = ExtResource("4_2lafy")
 shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_57hpv"]
-size = Vector2(16, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewo3h"]
-size = Vector2(16, 32)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odhqf"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [node name="01_b" unique_id=315341494 instance=ExtResource("1_ani36")]
 
@@ -50,19 +45,19 @@ position = Vector2(221, 55)
 text = "New message!"
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="0" unique_id=467671426 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_gvgnm")
+material = SubResource("ShaderMaterial_ehkm8")
 position = Vector2(204, 207)
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="1" unique_id=1937326277 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_ehkm8")
+material = SubResource("ShaderMaterial_7bhqf")
 position = Vector2(220, 208)
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="2" unique_id=1528004601 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_7bhqf")
+material = SubResource("ShaderMaterial_0881p")
 position = Vector2(236, 208)
 
 [node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="3" unique_id=1032635385 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_0881p")
+material = SubResource("ShaderMaterial_odhqf")
 position = Vector2(236, 192)
 
 [node name="SaveStation" parent="." index="6" unique_id=83039258 instance=ExtResource("4_57hpv")]
@@ -101,12 +96,11 @@ position = Vector2(264, 56)
 [node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="2" unique_id=2136896978]
 position = Vector2(264, 208)
 
-[node name="1" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="0" unique_id=271907378]
-position = Vector2(280, 48)
-shape = SubResource("RectangleShape2D_57hpv")
+[node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("9_ehkm8")]
+position = Vector2(280, 44)
 
-[node name="2" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="1" unique_id=1396875582]
-position = Vector2(280, 200)
-shape = SubResource("RectangleShape2D_ewo3h")
+[node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=45354482 instance=ExtResource("9_ehkm8")]
+position = Vector2(280, 204)
+exit_id = 2
 
 [editable path="CameraTriggers/CameraTrigger"]

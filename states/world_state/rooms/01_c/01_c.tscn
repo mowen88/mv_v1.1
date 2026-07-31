@@ -4,9 +4,7 @@
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_78wmb"]
 [ext_resource type="PackedScene" uid="uid://btuoi8ua8kc3r" path="res://states/world_state/camera/camera_trigger.tscn" id="3_vubac"]
 [ext_resource type="PackedScene" uid="uid://dwidwetcutapw" path="res://states/world_state/entities/characters/enemies/walker/walker.tscn" id="4_0rocu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rocu"]
-size = Vector2(16, 39.5)
+[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/room_exit_scene/room_exit.tscn" id="4_jvvud"]
 
 [node name="01_c" unique_id=315341494 instance=ExtResource("1_670kj")]
 
@@ -38,17 +36,17 @@ position = Vector2(16, 88)
 [node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="2" unique_id=1382357343]
 position = Vector2(472, 16)
 
-[node name="1" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="0" unique_id=1470391992]
-position = Vector2(538, 84.25)
-shape = SubResource("RectangleShape2D_0rocu")
+[node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("4_jvvud")]
+position = Vector2(542, 84)
 
-[node name="2" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="1" unique_id=1763114340]
-position = Vector2(0, 81)
-shape = SubResource("RectangleShape2D_0rocu")
+[node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=2013622056 instance=ExtResource("4_jvvud")]
+position = Vector2(-2, 76)
+exit_id = 2
 
-[node name="3" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="2" unique_id=1562345301]
-position = Vector2(472, -8.5)
-shape = SubResource("RectangleShape2D_0rocu")
+[node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=950792212 instance=ExtResource("4_jvvud")]
+position = Vector2(472, -13)
+exit_id = 3
+vertical_exit = true
 
 [node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(1127347775) index="0" unique_id=1164829458 instance=ExtResource("4_0rocu")]
 position = Vector2(272, 88)

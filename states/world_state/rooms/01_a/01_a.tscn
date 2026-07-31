@@ -3,12 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_3w1bs"]
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_ulidl"]
 [ext_resource type="PackedScene" uid="uid://dwidwetcutapw" path="res://states/world_state/entities/characters/enemies/walker/walker.tscn" id="3_5x8u3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uak8j"]
-size = Vector2(16, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3w1bs"]
-size = Vector2(16, 24)
+[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/room_exit_scene/room_exit.tscn" id="3_ulidl"]
 
 [node name="01_a" unique_id=315341494 instance=ExtResource("1_3w1bs")]
 
@@ -22,32 +17,31 @@ offset_top = 8.0
 offset_right = 268.0
 offset_bottom = 128.0
 
-[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="0" unique_id=1545362515]
+[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=1545362515]
 position = Vector2(32, 56)
 
-[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="1" unique_id=361293440]
+[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="1" unique_id=361293440]
 position = Vector2(16, 56)
 
-[node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="2" unique_id=628599950]
+[node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="2" unique_id=628599950]
 position = Vector2(260, 88)
 
-[node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(214822847) index="3" unique_id=1219690085]
+[node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="3" unique_id=1219690085]
 position = Vector2(216, 104)
 
-[node name="1" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="0" unique_id=70518795]
-position = Vector2(0, 48)
-shape = SubResource("RectangleShape2D_uak8j")
+[node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_ulidl")]
+position = Vector2(-5, 52)
 
-[node name="2" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="1" unique_id=1375053477]
-position = Vector2(277, 84)
-shape = SubResource("RectangleShape2D_3w1bs")
+[node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=885076999 instance=ExtResource("3_ulidl")]
+position = Vector2(280, 84)
+exit_id = 2
 
-[node name="3" type="CollisionShape2D" parent="Exits" parent_id_path=PackedInt32Array(1104129518) index="2" unique_id=1465769157]
-position = Vector2(216, 144)
-shape = SubResource("RectangleShape2D_3w1bs")
+[node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=1011407160 instance=ExtResource("3_ulidl")]
+position = Vector2(216, 148)
+exit_id = 3
 
-[node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(948852907) index="0" unique_id=1164829458 instance=ExtResource("3_5x8u3")]
+[node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(1127347775) index="0" unique_id=1164829458 instance=ExtResource("3_5x8u3")]
 position = Vector2(154, 88)
 
-[node name="Walker2" parent="Enemies" parent_id_path=PackedInt32Array(948852907) index="1" unique_id=2102040901 instance=ExtResource("3_5x8u3")]
+[node name="Walker2" parent="Enemies" parent_id_path=PackedInt32Array(1127347775) index="1" unique_id=2102040901 instance=ExtResource("3_5x8u3")]
 position = Vector2(78, 88)
