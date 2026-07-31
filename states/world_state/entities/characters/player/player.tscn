@@ -372,6 +372,10 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("17_g11l2")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
+[node name="HitHazard" type="Node" parent="FiniteStateMachine" unique_id=35046359]
+script = ExtResource("24_sju5j")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
 [node name="Heal" type="Node" parent="FiniteStateMachine" unique_id=1322156733]
 script = ExtResource("19_y4odu")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
@@ -382,10 +386,6 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Climb" type="Node" parent="FiniteStateMachine" unique_id=713357275]
 script = ExtResource("21_nglex")
-metadata/_custom_type_script = "uid://w6r4fliln4v5"
-
-[node name="HitHazard" type="Node" parent="FiniteStateMachine" unique_id=35046359]
-script = ExtResource("24_sju5j")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
@@ -399,13 +399,10 @@ max_health = 4
 [node name="EnergyComponent" parent="." unique_id=712779835 instance=ExtResource("21_6mh6f")]
 max_energy = 24
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "health_component", "hurtbox_component", "hit_state", "death_state") instance=ExtResource("20_g11l2")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "hurtbox_component") instance=ExtResource("20_g11l2")]
 actor = NodePath("..")
 fsm = NodePath("../FiniteStateMachine")
-health_component = NodePath("../HealthComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
-hit_state = NodePath("../FiniteStateMachine/Hit")
-death_state = NodePath("../FiniteStateMachine/Death")
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("21_edub2")]
 sprite = NodePath("../AnimatedSprite2D")

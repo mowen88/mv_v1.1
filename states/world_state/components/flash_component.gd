@@ -16,15 +16,12 @@ func _on_hurtbox_hit(_attacker_pos: Vector2, _knockback_force: float) -> void:
 		play_flash()
 
 func play_flash() -> void:
-	# Stop if no sprite, no material, OR if the current state is "Death"
+	# Stop ifz no sprite, no material
 	if not sprite or not sprite.material:
 		return
-		
-	if fsm and fsm.current_state.name == "Death":
-		return
-		
+
 	# Flicker effect logic
-	for i in range(3):
+	for i in range(2):
 		sprite.material.set_shader_parameter("flash_active", true)
 		await get_tree().create_timer(flash_duration).timeout
 		sprite.material.set_shader_parameter("flash_active", false)

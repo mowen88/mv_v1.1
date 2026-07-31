@@ -15,8 +15,10 @@ func physics_update(delta: float) -> void:
 	# Add gravity
 	actor.velocity.y = min(actor.velocity.y + actor.move_component.gravity * delta,\
 	actor.move_component.max_fall_speed)
-	
 	actor.move_and_slide()
 	
 	if timer <= 0:
-		fsm.change_state("Fall")
+		if actor.health_component.current_health <= 0:
+			fsm.change_state("Death")
+		else:
+			fsm.change_state("Fall")

@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://bhuxdkfjd8yie"]
 
 [ext_resource type="Script" uid="uid://cgf7g571oys8q" path="res://states/world_state/environment/hazards/hazard_collision.gd" id="1_r3bnr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cg1sh"]
-size = Vector2(8, 8)
+[ext_resource type="Script" uid="uid://bktajshmva8fp" path="res://states/world_state/components/hitbox_component.gd" id="2_edkqw"]
+[ext_resource type="Texture2D" uid="uid://bsomlh7ybv65a" path="res://states/world_state/environment/hazards/spike_image.png" id="3_2w1bt"]
 
 [node name="Spikes" type="Area2D" unique_id=623717895 groups=["hazards"]]
 collision_layer = 0
@@ -11,6 +10,16 @@ collision_mask = 10
 script = ExtResource("1_r3bnr")
 damage = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1447248947]
-position = Vector2(4, 4)
-shape = SubResource("RectangleShape2D_cg1sh")
+[node name="SpikeImage" type="Sprite2D" parent="." unique_id=1510070761]
+texture = ExtResource("3_2w1bt")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1751768186]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("2_edkqw")
+knockback_force = 100.0
+metadata/_custom_type_script = "uid://bktajshmva8fp"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent" unique_id=408038129]
+position = Vector2(0, 4)
+polygon = PackedVector2Array(-0.5, -8, 3, 0, -4, 0, -4, 0)

@@ -1,6 +1,6 @@
 extends State
 
-@export var deceleration: float = 300.0
+@export var deceleration: float = 1000.0
 @export var duration: float = 1.5
 var timer: float = 1.5
 
@@ -11,8 +11,7 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	timer += delta
 	
-	# Stop motion
-	actor.velocity = Vector2(0,0)
+	actor.velocity = actor.velocity.move_toward(Vector2.ZERO, deceleration * delta)
 	actor.move_and_slide()
 	
 	if timer >= duration:

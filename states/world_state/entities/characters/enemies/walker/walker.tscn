@@ -117,10 +117,9 @@ max_health = 3
 [node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("8_ctpbx")]
 speed = 25.0
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "hurtbox_component", "hit_state") instance=ExtResource("10_gsglv")]
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "hurtbox_component") instance=ExtResource("10_gsglv")]
 actor = NodePath("..")
 hurtbox_component = NodePath("../HurtboxComponent")
-hit_state = NodePath("../FiniteStateMachine/Hit")
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component", "fsm") instance=ExtResource("11_mmfun")]
 sprite = NodePath("../AnimatedSprite2D")
@@ -146,7 +145,7 @@ shape = SubResource("RectangleShape2D_ctpbx")
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("10_jji3v")]
 collision_layer = 0
 collision_mask = 2
-knockback_force = 100.0
+knockback_force = 60.0
 
 [node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=1317764610]
 position = Vector2(0, -0.5)

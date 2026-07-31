@@ -1,7 +1,6 @@
 extends State
 
-@export var deceleration: float = 300
-#@export var heal_particles: PackedScene
+@export var deceleration: float = 1000.0
 @export var duration: float = 1.0
 
 var timer: float = 0.0
@@ -19,14 +18,13 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
 		go_to_special = false
 	
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	
 	# Stop motion
-	actor.velocity.x = move_toward(actor.velocity.x, 0, deceleration * _delta)
-	actor.velocity.y = move_toward(actor.velocity.y, 0, deceleration * _delta)
+	actor.velocity = actor.velocity.move_toward(Vector2.ZERO, deceleration * delta)
 	actor.move_and_slide()
 	
-	timer -= _delta
+	timer -= delta
 	if timer <= 0:
 		actor.energy_component.consume_energy(actor.energy_component.max_energy)
 		if go_to_special:
