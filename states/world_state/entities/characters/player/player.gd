@@ -90,11 +90,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 
 	if event.is_action_pressed("shoot"):
-		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
-		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
-		SignalBus.zone_banner_requested.emit("Big Bad Boss", true)
-		AudioManager.start_music("res://states/world_state/music/temple_theme.ogg", 1.0)
-		AudioManager.stop_music()
+		pass
+		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)
+		#SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
+		#SignalBus.zone_banner_requested.emit("Big Bad Boss", true)
+		#AudioManager.start_music("res://states/world_state/music/temple_theme.ogg", 1.0)
+		#AudioManager.stop_music()
 		
 		#energy_component.consume_energy(4)
 		#hurtbox_component.receive_damage(3, Vector2(), 100)

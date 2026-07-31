@@ -4,10 +4,6 @@
 
 [node name="BaseRoom" type="Node2D" unique_id=315341494]
 
-[node name="CameraLimits" type="ReferenceRect" parent="." unique_id=671455297]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="BGTileMap" type="TileMapLayer" parent="." unique_id=599124256]
 
 [node name="SolidTileMap" type="TileMapLayer" parent="." unique_id=12999079]
@@ -22,6 +18,10 @@ z_index = 1
 [node name="Hazards" type="Node" parent="." unique_id=1478642669]
 
 [node name="SafeRespawns" type="Node" parent="." unique_id=1114979653]
+
+[node name="CameraLimits" type="ReferenceRect" parent="." unique_id=671455297]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="CameraTriggers" type="Node" parent="." unique_id=1709709420]
 

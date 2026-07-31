@@ -11,19 +11,17 @@ extends Node2D
 var current_room_node: Node2D = null
 var current_zone_name: String = ""
 var in_cutscene: bool = false
-var camera_overridden: bool = false
 
 
 func _ready():
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
 	SignalBus.save_station_activated.connect(_on_save_station_activated)
+	pause_menu.unpause_requested.connect(_toggle_game_pause)
 	
 	# Instantiates the first room
 	var saved_room_name: String = SaveManager.get_saved_room()
 	var saved_room_path: String = "res://states/world_state/rooms/%s/%s.tscn" % [saved_room_name, saved_room_name]
 	_load_room(saved_room_path, 0)
-	
-	pause_menu.unpause_requested.connect(_toggle_game_pause)
 
 func _process(delta: float) -> void:
 	if not player:
@@ -31,7 +29,7 @@ func _process(delta: float) -> void:
 		
 	if in_cutscene:
 		return
-	
+		
 	game_camera.update_target(player, delta)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -39,8 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_toggle_game_pause()
 		
 func _toggle_game_pause() -> void:
-	get_tree().paused = !get_tree().paused
-	touch_controller.visible = !get_tree().paused
+	get_tree().paused = not get_tree().paused
+	touch_controller.visible = not get_tree().paused
 	menu_canvas.visible = get_tree().paused
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")
@@ -115,19 +113,8 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		
 		# Set the respawn fallback to the room entry
 		SignalBus.player_respawn.emit(spawn_node.global_position)
+		game_camera.set_room_limits(current_room_node)
 		# Move the player to the new spawn point in new room
 		player.global_position = spawn_node.global_position
-		# Shift the cemra target to the player by default
-		game_camera.current_pos = player.global_position
 		# Snap the camera to the player by default
-		game_camera.snap_to_target(player)
-		_update_camera_limits(current_room_node)
-		game_camera.reset_smoothing()
-
-func _update_camera_limits(room_node):
-	var limits = room_node.get_node_or_null("CameraLimits") as ReferenceRect
-	if limits:
-		game_camera.limit_left = int(limits.global_position.x)
-		game_camera.limit_top = int(limits.global_position.y)
-		game_camera.limit_right = int(limits.global_position.x + limits.size.x)
-		game_camera.limit_bottom = int(limits.global_position.y + limits.size.y)
+		game_camera.snap_to_target(spawn_node)

@@ -1,19 +1,13 @@
 extends Camera2D
 
-@export var x_offset_distance: float = 4.0
-@export var player_lerp_speed: float = 6.0
-@export var player_down_lerp_speed: float = 100.0
-@export var player_up_lerp_speed: float = 12.0
-@export var pan_lerp_speed: float = 4.0
+@export var x_offset_distance: float = 5.0
+@export var player_smoothing_speed: float = 8.0
+@export var pan_smoothing_speed: float = 3.0
 
-var player_offset: Vector2 = Vector2.ZERO
-var current_pos: Vector2 = Vector2.ZERO
 var shake_tween: Tween
 var zoom_tween: Tween
 
-# 1. Clear, descriptive states
-enum CameraState {SNAP, FOLLOW, PAN, RETURNING }
-var current_state: CameraState = CameraState.SNAP
+var overridden = false
 
 var locked_position: Vector2 = Vector2.ZERO
 var followed_target: Node2D = null
@@ -25,83 +19,62 @@ func _ready() -> void:
 	SignalBus.camera_override_requested.connect(set_override)
 	SignalBus.camera_override_cleared.connect(clear_override)
 	SignalBus.camera_zoom_requested.connect(zoom_pulse)
+	
+	position_smoothing_enabled = true
+	position_smoothing_speed = player_smoothing_speed
 
 func snap_to_target(node: Node2D = null) -> void:
-	current_state = CameraState.SNAP
-	# Instantly seed positions to avoid the zero-vector lerp frame bounce
-	player_offset = Vector2(node.global_position)
-	current_pos = node.global_position
-	global_position = current_pos
+	global_position = node.global_position
+	reset_smoothing()
 
-func update_target(player: CharacterBody2D, delta: float) -> void:
-	# Calculate player target info normally
+func set_room_limits(room_node: Node2D) -> void:
+	var limits = room_node.get_node_or_null("CameraLimits") as ReferenceRect
+	if limits:
+		var rect_pos = limits.global_position
+		var rect_size = limits.size
+		
+		limit_left = int(rect_pos.x)
+		limit_top = int(rect_pos.y)
+		limit_right = int(rect_pos.x + rect_size.x)
+		limit_bottom = int(rect_pos.y + rect_size.y)
+
+func clamp_position(raw_target: Vector2) -> Vector2:
+	# Get half of the viewport size, scaled down by current camera zoom
+	var viewport_half = get_viewport_rect().size * 0.5 / zoom
 	
-	var target_pos = player.global_position
-	var target_x_offset = player.move_component.facing * x_offset_distance
-	player_offset.x = lerp(player_offset.x, target_x_offset, player_lerp_speed * delta)
-	target_pos.x += player_offset.x
-	
-	# Add faster lerp if going down past the camera
-	if player.global_position.y > global_position.y:
-		player_offset.y = lerp(player_offset.y, target_pos.y, player_down_lerp_speed  * delta)
+	return Vector2(
+		clamp(raw_target.x, limit_left + viewport_half.x, limit_right - viewport_half.x),
+		clamp(raw_target.y, limit_top + viewport_half.y, limit_bottom - viewport_half.y)
+	)
+
+func update_target(player: CharacterBody2D, _delta: float) -> void:
+	if not overridden:
+		var target_pos = player.global_position
+		target_pos.x += player.move_component.facing * x_offset_distance
+		position_smoothing_speed = player_smoothing_speed
+		global_position = clamp_position(target_pos)
 	else:
-		player_offset.y = lerp(player_offset.y, target_pos.y, player_up_lerp_speed  * delta)
-	
-	target_pos.y = player_offset.y
-
-	match current_state:
-
-		CameraState.FOLLOW:
-			current_pos = target_pos
-
-		CameraState.PAN:
-			if followed_target and is_instance_valid(followed_target):
-				locked_position = followed_target.global_position
-			
-			var pan_target = global_position
-			if lock_x: pan_target.x = locked_position.x
-			if lock_y: pan_target.y = locked_position.y
-			current_pos = pan_target
-
-		CameraState.RETURNING:
-			# Returning to player smootly and slowly
-			current_pos = target_pos
-			
-			# Snap back to player when close enough
-			if global_position.distance_to(current_pos) < 15.0:
-				current_state = CameraState.FOLLOW
+		var pan_target = locked_position
+		if followed_target and is_instance_valid(followed_target):
+			pan_target = followed_target.global_position
+		
+		var final_target = global_position
+		if lock_x: final_target.x = pan_target.x
+		if lock_y: final_target.y = pan_target.y
+		
+		position_smoothing_speed = pan_smoothing_speed
+		global_position = clamp_position(final_target)
 
 func set_override(pos: Vector2, x: bool = true, y: bool = true, follow: Node2D = null) -> void:
 	locked_position = pos
 	followed_target = follow
 	lock_x = x
 	lock_y = y
-	current_state = CameraState.PAN
+	overridden = true
 
 func clear_override() -> void:
 	followed_target = null
-
-	current_state = CameraState.RETURNING
-
-func _process(delta: float) -> void:
-	# Clamp target position to room limits so it doesn't lerp to off screen position, making it stop abruptly
-	var viewport_half = (get_viewport_rect().size * 0.5) / zoom
-	current_pos.x = clamp(current_pos.x, limit_left + viewport_half.x, limit_right - viewport_half.x)
-	current_pos.y = clamp(current_pos.y, limit_top + viewport_half.y, limit_bottom - viewport_half.y)
-	
-	if current_state == CameraState.SNAP:
-		global_position = current_pos
-		current_state = CameraState.FOLLOW
-		return
-		
-	# Determine speed based entirely on clean states
-	var active_speed = player_lerp_speed
-	if current_state == CameraState.PAN:
-		active_speed = pan_lerp_speed
-	elif current_state == CameraState.RETURNING:
-		active_speed = pan_lerp_speed # Glides smoothly back to player without popping
-
-	global_position = global_position.lerp(current_pos, active_speed * delta)
+	overridden = false
 
 func shake(max_x: float, max_y: float, duration: float) -> void:
 	if not SaveManager.SETTINGS_DATA.get("Screenshake", true):
@@ -126,22 +99,18 @@ func shake(max_x: float, max_y: float, duration: float) -> void:
 			
 	shake_tween.tween_property(self, "offset", Vector2.ZERO, shake_speed)
 
-
 func zoom_pulse(zoom_multiplier: float, duration: float) -> void:
 	if zoom_tween:
 		zoom_tween.kill()
 		
 	zoom_tween = create_tween()
-	
 	var base_zoom = zoom
-	var target_zoom = zoom * zoom_multiplier
+	var target_zoom = base_zoom * zoom_multiplier
 	
-	# Tween in the zoom
 	zoom_tween.tween_property(self, "zoom", target_zoom, duration * 0.5)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 		
-	# Tween out to the original zoom
 	zoom_tween.tween_property(self, "zoom", base_zoom, duration * 0.5)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN)
