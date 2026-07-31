@@ -23,8 +23,8 @@ var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
 		
 func _ready() -> void:	
+
 	health_component.died.connect(_on_died)
-	
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	
@@ -41,6 +41,17 @@ func _ready() -> void:
 	SignalBus.player_respawn.connect(_update_respawn_point)
 	SignalBus.hit_hazard.connect(_on_hit_hazard)
 	
+	# Get swipe signal
+	SignalBus.swipe_down_detected.connect(_on_swipe_down)
+
+func _on_swipe_down() -> void:
+	if is_on_floor():
+		set_collision_mask_value(2, false)
+		await get_tree().create_timer(0.1).timeout
+		set_collision_mask_value(2, true)
+		print("swiping!")
+	else:
+		pass # Ground slam!
 
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():
@@ -86,7 +97,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	fsm.handle_input(event)
 
-	if event.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		pass
 		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)
 		#SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)

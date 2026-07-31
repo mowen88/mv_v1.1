@@ -70,8 +70,6 @@ func update_target(player: CharacterBody2D, delta: float) -> void:
 
 	var smoothed_pos = global_position.lerp(desired_pos, current_smoothing * delta)
 	global_position = clamp_position(smoothed_pos)
-	
-	print(current_smoothing)
 
 func set_override(pos: Vector2, x: bool = true, y: bool = true, follow: Node2D = null) -> void:
 

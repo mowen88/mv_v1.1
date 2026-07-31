@@ -309,6 +309,7 @@ size = Vector2(6, 13)
 process_mode = 1
 physics_interpolation_mode = 1
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("2_xul6b")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=586844928]

@@ -1,13 +1,18 @@
 extends Control
 
-# Percentage of screen height (0.08 = 8% of screen height)
-@export var swipe_threshold_percent: float = 0.1
+# Percentage of screen height
+@export var swipe_threshold_percent: float = 0.2
 @export var max_swipe_time: float = 0.2
 
 var start_pos: Vector2
 var is_tracking: bool = false
 
 func _input(event: InputEvent) -> void:
+	# lEarly return if touch controller is not in use and hidden
+	if not owner.visible:
+		is_tracking = false
+		return
+		
 	# Start tracking on initial touch
 	if event is InputEventScreenTouch and event.pressed:
 		start_pos = event.position
@@ -27,12 +32,10 @@ func _input(event: InputEvent) -> void:
 		
 		# Check distance and ensure it is primarily a vertical swipe
 		if swipe_vector.length() >= dynamic_threshold and swipe_vector.y > abs(swipe_vector.x) * 2:
-			Input.action_press("swipe_down")
-			Input.action_release("swipe_down")
 			
 			# Stop tracking to prevent repeated triggers during the same drag
 			is_tracking = false 
-			print("Swipe Down Triggered!")
+			SignalBus.swipe_down_detected.emit()
 
 	# 3. Stop tracking if touch is released
 	elif event is InputEventScreenTouch and not event.pressed:

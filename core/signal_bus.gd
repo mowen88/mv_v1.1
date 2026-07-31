@@ -1,5 +1,7 @@
 extends Node
 
+signal swipe_down_detected
+
 signal camera_override_cleared
 signal camera_override_requested(target:Vector2, lock_x:bool, lock_y:bool)
 signal camera_zoom_requested(multiplier: float, duration: float)
