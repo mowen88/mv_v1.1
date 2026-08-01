@@ -20,7 +20,7 @@ position = Vector2(133, 172)
 position = Vector2(101, 140)
 
 [node name="SaveStation" parent="." index="6" unique_id=83039258 instance=ExtResource("5_7wvdq")]
-position = Vector2(112, 168)
+position = Vector2(160, 112)
 
 [node name="SafeRespawnArea" parent="SafeRespawns" parent_id_path=PackedInt32Array(1114979653) index="0" unique_id=880050542 instance=ExtResource("4_1k8se")]
 position = Vector2(56, 128)
@@ -32,7 +32,7 @@ offset_right = 530.0
 offset_bottom = 248.0
 
 [node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=1825468541]
-position = Vector2(112, 168)
+position = Vector2(160, 112)
 
 [node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="1" unique_id=277981071]
 position = Vector2(16, 216)

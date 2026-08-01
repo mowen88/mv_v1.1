@@ -45,7 +45,16 @@ func _ready() -> void:
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
 func _on_swipe_down() -> void:
-	if is_on_floor():
+	
+	if InputManager.input_lock:
+		return
+	
+	var valid_states = ["Idle", "Run"]
+	if fsm.current_state.name in valid_states and is_on_floor():
+		# Stop player sticking to wall in run state fix by bouncing away slightly
+		if is_on_wall():
+			velocity.x = 25 * -move_component.facing
+		# Disable the platform collisions, wait short time and reenable
 		set_collision_mask_value(2, false)
 		await get_tree().create_timer(0.1).timeout
 		set_collision_mask_value(2, true)
@@ -83,6 +92,7 @@ func _gain_energy(entity:Node2D) -> void:
 		energy_component.gain_energy(4)
 	
 func x_input(_delta: float) -> void:
+	print(fsm.current_state.name)
 	if InputManager.input_lock:
 		# Keep the player moving on room transition when input locked
 		velocity.x = sign(velocity.x) * move_component.speed

@@ -1,7 +1,7 @@
 extends Control
 
 # Percentage of screen height
-@export var swipe_threshold_percent: float = 0.2
+@export var swipe_threshold_percent: float = 0.25
 @export var max_swipe_time: float = 0.2
 
 var start_pos: Vector2
