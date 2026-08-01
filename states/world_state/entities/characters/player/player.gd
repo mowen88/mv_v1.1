@@ -22,7 +22,7 @@ var jump_counter: int = 0
 		
 func _ready() -> void:	
 
-	health_component.died.connect(_on_died)
+	health_component.died.connect(_on_death)
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	
@@ -71,7 +71,7 @@ func _update_respawn_point(position:Vector2) -> void:
 	last_safe_position = position
 	print(position)
 
-func _on_died() -> void:
+func _on_death() -> void:
 	fsm.change_state("Death")
 
 func _on_hit_hazard(entity:Node2D, damage:float) -> void:

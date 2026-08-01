@@ -11,21 +11,16 @@ signal hit_received(attacker_pos: Vector2, knockback_force:float)
 
 var is_invincible: bool = false
 
-func play_sound() -> void:
-	if sound:
-		AudioManager.play_sfx(sound, global_position, 1, 0.15)
-
 func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> bool:
 	if is_invincible or health_component.current_health <= 0:
 		return false
 	
 	if health_component:
 		health_component.damage(amount)
-		play_sound()
+		AudioManager.play_sfx(sound, global_position, 1, 0.15)
+		ParticleManager.play(particle_name, global_position)
 	
 	hit_received.emit(attacker_pos, knockback_force)
-	
-	ParticleManager.play(particle_name, global_position)
 	SignalBus.screenshake_requested.emit(2.0, 0.0, 0.2)
 	
 	if get_owner().is_in_group("energy_gaining"):

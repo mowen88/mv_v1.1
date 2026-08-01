@@ -1,6 +1,7 @@
 class_name Walker
 extends CharacterBody2D
 
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
@@ -10,11 +11,17 @@ extends CharacterBody2D
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
 
+
 func _ready() -> void:
 	health_component.died.connect(_on_death)
 
 func _on_death() -> void:
+	set_collision_mask_value(2, false)
+	hitbox_component.monitoring = false
+	hurtbox_component.monitorable = false
+	
 	fsm.change_state("Death")
+
 
 #Testing with input - to be deleted for shipping !!!!
 func _unhandled_input(event: InputEvent) -> void:
