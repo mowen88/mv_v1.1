@@ -60,4 +60,5 @@ animations = [{
 }]
 
 [node name="SmallBlast" type="AnimatedSprite2D" unique_id=1887377639]
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_bg2am")

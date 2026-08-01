@@ -78,7 +78,7 @@ size = Vector2(8, 13)
 
 [node name="Walker" type="CharacterBody2D" unique_id=1164829458 groups=["enemies", "energy_gaining"]]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 65
 script = ExtResource("2_ukh86")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]

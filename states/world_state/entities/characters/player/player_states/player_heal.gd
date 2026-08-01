@@ -33,5 +33,5 @@ func physics_update(delta: float) -> void:
 			fsm.change_state("jump")
 		else:
 			actor.health_component.heal(actor.health_component.max_health)
-			ParticleManager.play_sprite(heal_particle, actor.global_position)
+			ParticleManager.play(heal_particle, actor.global_position)
 			fsm.change_state("fall")

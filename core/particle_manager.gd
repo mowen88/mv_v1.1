@@ -45,19 +45,20 @@ func play(effect_name: String, pos: Vector2, duration: float = 0.0) -> void:
 	if not particle_scenes.has(effect_name):
 		return
 		
-	# If pool doesn't exist, create it safely using the string key
+	# Ensure the pool exists
 	if not pools.has(effect_name):
 		await _create_pool_for_scene(effect_name, particle_scenes[effect_name])
 		
 	var pool: Array = pools[effect_name]
 	var fx: Node2D = null
 	
+	# Find an inactive node in the pool
 	for instance in pool:
 		if is_instance_valid(instance) and not instance.visible:
 			fx = instance
 			break
 			
-	# Dynamic fallback if pool is completely exhausted
+	# Dynamic fallback if pool is exhausted
 	if not fx:
 		var scene = particle_scenes[effect_name]
 		fx = scene.instantiate() as Node2D
@@ -67,6 +68,7 @@ func play(effect_name: String, pos: Vector2, duration: float = 0.0) -> void:
 	fx.global_position = pos
 	fx.visible = true
 	
+	# Handle GPUParticles2D
 	if fx is GPUParticles2D:
 		if duration <= 0.0:
 			fx.one_shot = true
@@ -79,20 +81,20 @@ func play(effect_name: String, pos: Vector2, duration: float = 0.0) -> void:
 			fx.emitting = true
 			_monitor_gpu_particle(fx, duration)
 			
-	elif fx.has_method("animate"):
-		fx.animate()
+	# Handle AnimatedSprite2D (either root node or child node)
+	else:
+		var anim_sprite: AnimatedSprite2D = fx if fx is AnimatedSprite2D else fx.get_node_or_null("AnimatedSprite2D")
+		if anim_sprite:
+			anim_sprite.play()
+			if not anim_sprite.animation_finished.is_connected(_on_sprite_finished.bind(fx, anim_sprite)):
+				anim_sprite.animation_finished.connect(_on_sprite_finished.bind(fx, anim_sprite), CONNECT_ONE_SHOT)
 
-func play_sprite(effect_name: String, pos: Vector2) -> void:
-	if not particle_scenes.has(effect_name):
-		return
+func _on_sprite_finished(fx: Node2D, anim_sprite: AnimatedSprite2D) -> void:
+	if is_instance_valid(anim_sprite):
+		anim_sprite.stop()
+	if is_instance_valid(fx):
+		fx.visible = false
 		
-	var scene = particle_scenes[effect_name]
-	var fx = scene.instantiate() as Node2D
-	add_child(fx)
-	fx.global_position = pos
-	fx.play()
-	fx.animation_finished.connect(fx.queue_free)
-	
 func _monitor_gpu_particle(fx: GPUParticles2D, duration: float) -> void:
 	if duration > 0.0:
 		await get_tree().create_timer(duration).timeout
@@ -104,10 +106,4 @@ func _monitor_gpu_particle(fx: GPUParticles2D, duration: float) -> void:
 	
 	if is_instance_valid(fx):
 		fx.emitting = false
-		fx.visible = false
-
-func _on_anim_finished(fx: Node2D, anim_sprite: AnimatedSprite2D) -> void:
-	if is_instance_valid(anim_sprite):
-		anim_sprite.stop()
-	if is_instance_valid(fx):
 		fx.visible = false

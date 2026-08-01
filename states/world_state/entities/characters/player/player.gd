@@ -52,9 +52,9 @@ func _on_swipe_down() -> void:
 		if is_on_wall():
 			velocity.x = 25 * -move_component.facing
 		# Disable the platform collisions, wait short time and reenable
-		set_collision_mask_value(2, false)
+		set_collision_mask_value(7, false)
 		await get_tree().create_timer(0.1).timeout
-		set_collision_mask_value(2, true)
+		set_collision_mask_value(7, true)
 
 	else:
 		pass # Ground slam!

@@ -9,7 +9,7 @@ func enter() -> void:
 	actor.get_node("AnimatedSprite2D").play("jump")
 	timer = 0.0
 	
-	ParticleManager.play_sprite(death_particle, actor.global_position)
+	ParticleManager.play(death_particle, actor.global_position)
 
 func physics_update(delta: float) -> void:
 	timer += delta

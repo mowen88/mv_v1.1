@@ -21,7 +21,7 @@ func _on_health_reduced(current_health: int) -> void:
 	
 	# If health hits 0, queue_free or trigger destruction particles
 	if health_component.current_health <= 0:
-		ParticleManager.play_sprite(particle_name, global_position)
+		ParticleManager.play(particle_name, global_position)
 		queue_free()
 		
 	

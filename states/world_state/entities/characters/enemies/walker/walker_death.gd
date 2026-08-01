@@ -9,7 +9,7 @@ func enter() -> void:
 	var timer = actor.get_tree().create_timer(1)
 	timer.timeout.connect(actor.queue_free)
 
-	ParticleManager.play_sprite(death_particle, actor.global_position)
+	ParticleManager.play(death_particle, actor.global_position)
 	actor.set_collision_mask_value(2, false)
 	actor.hitbox_component.monitoring = false
 	actor.hurtbox_component.monitorable = false

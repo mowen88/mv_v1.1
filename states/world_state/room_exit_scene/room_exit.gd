@@ -24,7 +24,7 @@ func _on_body_entered(player: Node2D) -> void:
 
 	# Impulse up if player is transitioning up
 	if exit_up:
-		player.velocity.y = -250
+		player.velocity.y = -player.move_component.jump_velocity
 	
 	player.fsm.change_state("Transition")
 	
