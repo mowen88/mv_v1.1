@@ -6,9 +6,15 @@ extends CharacterBody2D
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
 
+func _ready() -> void:
+	health_component.died.connect(_on_death)
+
+func _on_death() -> void:
+	fsm.change_state("Death")
 
 #Testing with input - to be deleted for shipping !!!!
 func _unhandled_input(event: InputEvent) -> void:

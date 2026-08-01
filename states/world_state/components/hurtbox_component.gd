@@ -4,7 +4,7 @@ extends Area2D
 
 signal hit_received(attacker_pos: Vector2, knockback_force:float)
 
-@export var particle_scene: PackedScene
+@export var particle_name: String
 @export var sound: AudioStream
 @export var health_component: HealthComponent
 @export var invincibility_duration: float = 0.75
@@ -25,8 +25,7 @@ func receive_damage(amount:int, attacker_pos:Vector2, knockback_force:float) -> 
 	
 	hit_received.emit(attacker_pos, knockback_force)
 	
-	if particle_scene:
-		ParticleManager.play(particle_scene, global_position)
+	ParticleManager.play(particle_name, global_position)
 	SignalBus.screenshake_requested.emit(2.0, 0.0, 0.2)
 	
 	if get_owner().is_in_group("energy_gaining"):

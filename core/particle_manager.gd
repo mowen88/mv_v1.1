@@ -1,9 +1,9 @@
 extends Node
 
 var particle_scenes = {
-	"hit_effect": preload("res://states/world_state/particles/hit_effect/hit_effect.tscn")
+	"hit_effect": preload("res://states/world_state/particles/hit_effect/hit_effect.tscn"),
+	"small_blast": preload("res://states/world_state/particles/small_blast/small_blast.tscn"),
 }
-
 var pools: Dictionary = {}
 const POOL_SIZE_PER_EFFECT: int = 15
 
@@ -11,59 +11,55 @@ func _ready() -> void:
 	initialize_pools()
 
 func initialize_pools() -> void:
-	for key in particle_scenes:
-		pools[key] = []
-		var scene = particle_scenes[key]
+	for effect_name in particle_scenes:
+		var scene = particle_scenes[effect_name]
+		_create_pool_for_scene(effect_name, scene)
+
+# Helper function now indexes by string name directly
+func _create_pool_for_scene(effect_name: String, scene: PackedScene) -> Array:
+	var pool: Array = []
+	
+	for i in range(POOL_SIZE_PER_EFFECT):
+		var fx = scene.instantiate() as Node2D
+		fx.visible = false
+		add_child(fx)
 		
-		for i in range(POOL_SIZE_PER_EFFECT):
-			var fx = scene.instantiate() as Node2D
-			fx.visible = false
-			add_child(fx)
+		if fx is GPUParticles2D:
+			fx.emitting = true
 			
-			if fx is GPUParticles2D:
-				fx.emitting = true
-				
-			pools[key].append(fx)
-			
+		pool.append(fx)
+		
+	pools[effect_name] = pool
+	
+	# Wait a frame to let GPU particles initialize properly without freezing
 	await get_tree().process_frame
-	for key in pools:
-		for fx in pools[key]:
+	for fx in pool:
+		if is_instance_valid(fx):
 			if fx is GPUParticles2D:
 				fx.emitting = false
 			fx.visible = false
+			
+	return pool
 
-## Added duration, one-shot as default by way of making the particle emit only 0.1 secs
-func play(scene: PackedScene, pos: Vector2, duration: float = 0.0) -> void:
-	if not scene:
+func play(effect_name: String, pos: Vector2, duration: float = 0.0) -> void:
+	if not particle_scenes.has(effect_name):
 		return
 		
-	var scene_path = scene.resource_path
-	
-	if not pools.has(scene_path):
-		pools[scene_path] = []
-		for i in range(POOL_SIZE_PER_EFFECT):
-			var fx = scene.instantiate() as Node2D
-			fx.visible = false
-			add_child(fx)
-			if fx is GPUParticles2D:
-				fx.emitting = true
-			pools[scene_path].append(fx)
-			
-		await get_tree().process_frame
-		for fx in pools[scene_path]:
-			if fx is GPUParticles2D:
-				fx.emitting = false
-			fx.visible = false
+	# If pool doesn't exist, create it safely using the string key
+	if not pools.has(effect_name):
+		await _create_pool_for_scene(effect_name, particle_scenes[effect_name])
 		
-	var pool: Array = pools[scene_path]
+	var pool: Array = pools[effect_name]
 	var fx: Node2D = null
 	
 	for instance in pool:
-		if not instance.visible:
+		if is_instance_valid(instance) and not instance.visible:
 			fx = instance
 			break
 			
+	# Dynamic fallback if pool is completely exhausted
 	if not fx:
+		var scene = particle_scenes[effect_name]
 		fx = scene.instantiate() as Node2D
 		add_child(fx)
 		pool.append(fx)
@@ -82,21 +78,36 @@ func play(scene: PackedScene, pos: Vector2, duration: float = 0.0) -> void:
 			fx.restart()
 			fx.emitting = true
 			_monitor_gpu_particle(fx, duration)
+			
+	elif fx.has_method("animate"):
+		fx.animate()
 
+func play_sprite(effect_name: String, pos: Vector2) -> void:
+	if not particle_scenes.has(effect_name):
+		return
+		
+	var scene = particle_scenes[effect_name]
+	var fx = scene.instantiate() as Node2D
+	add_child(fx)
+	fx.global_position = pos
+	fx.play()
+	fx.animation_finished.connect(fx.queue_free)
+	
 func _monitor_gpu_particle(fx: GPUParticles2D, duration: float) -> void:
-	# If a duration is specified, wait for that time, then KILL the emission
 	if duration > 0.0:
 		await get_tree().create_timer(duration).timeout
 		if is_instance_valid(fx):
-			print("Stopping particle emission!")
 			fx.emitting = false
 			
-	# Wait for the remaining active particles to finish
-	await fx.finished
+	if is_instance_valid(fx):
+		await fx.finished
+	
 	if is_instance_valid(fx):
 		fx.emitting = false
 		fx.visible = false
 
 func _on_anim_finished(fx: Node2D, anim_sprite: AnimatedSprite2D) -> void:
-	anim_sprite.stop()
-	fx.visible = false
+	if is_instance_valid(anim_sprite):
+		anim_sprite.stop()
+	if is_instance_valid(fx):
+		fx.visible = false

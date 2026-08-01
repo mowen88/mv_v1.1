@@ -5,12 +5,12 @@ extends StaticBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var flash_component: FlashComponent = $FlashComponent
+@export var particle_name: String
 
 func _ready() -> void:	
 	health_component.health_changed.connect(_on_health_reduced)
 
 func _on_health_reduced(current_health: int) -> void:
-	# Play your flash feedback
 	flash_component.play_flash()
 		
 	var damage_taken = health_component.max_health - health_component.current_health
@@ -21,5 +21,7 @@ func _on_health_reduced(current_health: int) -> void:
 	
 	# If health hits 0, queue_free or trigger destruction particles
 	if health_component.current_health <= 0:
+		ParticleManager.play_sprite(particle_name, global_position)
 		queue_free()
+		
 	

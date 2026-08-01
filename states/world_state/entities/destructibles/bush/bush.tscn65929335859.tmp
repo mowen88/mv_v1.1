@@ -44,7 +44,7 @@ animations = [{
 material = ExtResource("1_jlnqd")
 collision_mask = 0
 script = ExtResource("2_s68ii")
-particle_name = "small_blast"
+particle_name = "hit_effect"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=913490451]
 shape = SubResource("RectangleShape2D_jlnqd")

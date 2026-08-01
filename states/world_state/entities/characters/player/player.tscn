@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="21_edub2"]
 [ext_resource type="Script" uid="uid://c3sm7kuwjlmeg" path="res://states/world_state/entities/characters/player/player_states/player_climb.gd" id="21_nglex"]
 [ext_resource type="Script" uid="uid://dyl8kn1wew5sn" path="res://states/world_state/entities/characters/player/player_states/player_hit_hazard.gd" id="24_sju5j"]
+[ext_resource type="Script" uid="uid://be7575jdlvj8" path="res://states/world_state/entities/characters/player/player_states/player_transition.gd" id="25_t7bfy"]
 [ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
@@ -367,6 +368,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Death" type="Node" parent="FiniteStateMachine" unique_id=327399938]
 script = ExtResource("16_pffij")
+death_particle = "small_blast"
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=65880390]
@@ -379,6 +381,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Heal" type="Node" parent="FiniteStateMachine" unique_id=1322156733]
 script = ExtResource("19_y4odu")
+heal_particle = "small_blast"
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="OnLadder" type="Node" parent="FiniteStateMachine" unique_id=915276008]
@@ -387,6 +390,10 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Climb" type="Node" parent="FiniteStateMachine" unique_id=713357275]
 script = ExtResource("21_nglex")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Transition" type="Node" parent="FiniteStateMachine" unique_id=421602773]
+script = ExtResource("25_t7bfy")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]

@@ -1,5 +1,6 @@
 extends State
 
+@export var heal_particle: String
 @export var deceleration: float = 1000.0
 @export var duration: float = 1.0
 
@@ -26,9 +27,11 @@ func physics_update(delta: float) -> void:
 	
 	timer -= delta
 	if timer <= 0:
+
 		actor.energy_component.consume_energy(actor.energy_component.max_energy)
 		if go_to_special:
 			fsm.change_state("jump")
 		else:
 			actor.health_component.heal(actor.health_component.max_health)
+			ParticleManager.play_sprite(heal_particle, actor.global_position)
 			fsm.change_state("fall")

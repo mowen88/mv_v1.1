@@ -14,8 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="10_gsglv"]
 [ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="10_jji3v"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="11_mmfun"]
-[ext_resource type="PackedScene" uid="uid://bjfpfu1addx2o" path="res://states/world_state/components/death_component.tscn" id="13_qjhv6"]
-[ext_resource type="PackedScene" uid="uid://bcgxbhdp6ncv7" path="res://states/world_state/particles/hit_effect/hit_effect.tscn" id="15_gcbma"]
 [ext_resource type="AudioStream" uid="uid://bnbldahdi3xwa" path="res://states/world_state/entities/characters/enemies/walker/walker_hit.ogg" id="15_uubgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctpbx"]
@@ -80,6 +78,7 @@ size = Vector2(8, 13)
 
 [node name="Walker" type="CharacterBody2D" unique_id=1164829458 groups=["enemies", "energy_gaining"]]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("2_ukh86")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
@@ -104,7 +103,7 @@ script = ExtResource("5_mfvvx")
 
 [node name="Death" type="Node" parent="FiniteStateMachine" unique_id=1051133370]
 script = ExtResource("6_7ldib")
-particle_scene = ExtResource("15_gcbma")
+death_particle = "small_blast"
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
@@ -126,14 +125,7 @@ sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
 fsm = NodePath("../FiniteStateMachine")
 
-[node name="DeathComponent" parent="." unique_id=1292699959 node_paths=PackedStringArray("actor", "health_component", "hitbox_component", "fsm") instance=ExtResource("13_qjhv6")]
-actor = NodePath("..")
-health_component = NodePath("../HealthComponent")
-hitbox_component = NodePath("../HitboxComponent")
-fsm = NodePath("../FiniteStateMachine")
-
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") groups=["enemies", "energy_gaining"] instance=ExtResource("9_ctpbx")]
-particle_scene = ExtResource("15_gcbma")
 sound = ExtResource("15_uubgs")
 health_component = NodePath("../HealthComponent")
 invincibility_duration = 0.2
