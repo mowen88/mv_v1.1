@@ -11,5 +11,5 @@ func _physics_process(_delta: float) -> void:
 	# Continuously check overlapping areas every physics frame	
 	for area in get_overlapping_areas():
 		if area is HurtboxComponent:
-			area.receive_damage(damage_amount, global_position, knockback_force)
+			area.receive_damage(self, damage_amount, knockback_force)
 			

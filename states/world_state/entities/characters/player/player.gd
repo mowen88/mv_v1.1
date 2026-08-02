@@ -21,7 +21,8 @@ var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
 		
 func _ready() -> void:	
-
+	
+	hurtbox_component.hit_received.connect(_on_hit)
 	health_component.died.connect(_on_death)
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
@@ -37,7 +38,6 @@ func _ready() -> void:
 	
 	SignalBus.player_energy_gained.connect(_gain_energy)
 	SignalBus.player_respawn.connect(_update_respawn_point)
-	SignalBus.hit_hazard.connect(_on_hit_hazard)
 	
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
@@ -71,25 +71,24 @@ func _update_respawn_point(position:Vector2) -> void:
 	last_safe_position = position
 	print(position)
 
+func _on_hit(hitbox: Area2D, knockback_force:float):
+	if health_component.current_health <= 0:
+		return
+	var hazard = true if hitbox.owner.is_in_group("hazards") else false
+
+	if hazard:
+		fsm.change_state("HitHazard")
+	else:
+		fsm.change_state("Hit")
+
 func _on_death() -> void:
 	fsm.change_state("Death")
-
-func _on_hit_hazard(entity:Node2D, damage:float) -> void:
-	if entity != self:
-		return
-
-	# Check health first otherwise the scene changes AFTER respawning player!
-	if health_component.current_health <= 0:
-		fsm.change_state("Death")
-	else:
-		fsm.change_state("HitHazard")
 	
 func _gain_energy(entity:Node2D) -> void:
 	if entity.is_in_group("energy_gaining"):
 		energy_component.gain_energy(4)
 	
 func x_input(_delta: float) -> void:
-	print(fsm.current_state.name)
 	if InputManager.input_lock:
 		# Keep the player moving on room transition when input locked
 		velocity.x = sign(velocity.x) * move_component.speed

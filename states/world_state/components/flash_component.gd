@@ -7,16 +7,12 @@ extends Node
 @export var flash_duration: float = 0.05
 
 func _ready() -> void:
+	# Connected via hit recieved signal from hurtbox
 	if hurtbox_component:
-		# Connect to a wrapper function to handle the signal arguments
-		hurtbox_component.hit_received.connect(_on_hurtbox_hit)
-
-# This wrapper captures the two arguments emitted by the signal
-func _on_hurtbox_hit(_attacker_pos: Vector2, _knockback_force: float) -> void:
-		play_flash()
+		hurtbox_component.hit_received.connect(play_flash)
 
 func play_flash() -> void:
-	# Stop ifz no sprite, no material
+	# Early return if no sprite, no material
 	if not sprite or not sprite.material:
 		return
 

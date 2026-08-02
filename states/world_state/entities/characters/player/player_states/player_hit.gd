@@ -18,7 +18,4 @@ func physics_update(delta: float) -> void:
 	actor.move_and_slide()
 	
 	if timer <= 0:
-		if actor.health_component.current_health <= 0:
-			fsm.change_state("Death")
-		else:
-			fsm.change_state("Fall")
+		fsm.change_state("Fall")

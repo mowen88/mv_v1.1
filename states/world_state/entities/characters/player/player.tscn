@@ -369,6 +369,8 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="Death" type="Node" parent="FiniteStateMachine" unique_id=327399938]
 script = ExtResource("16_pffij")
 death_particle = "small_blast"
+deceleration = null
+duration = null
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=65880390]
