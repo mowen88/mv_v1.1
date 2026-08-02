@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		return
 		
 	game_camera.update_target(player, delta)
-	print(player.fsm.current_state.name)
+	#print(player.fsm.current_state.name)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):

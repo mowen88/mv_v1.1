@@ -20,6 +20,9 @@ func handle_input(event: InputEvent) -> void:
 			fsm.change_state("Heal")
 
 func physics_update(_delta: float) -> void:
+
+	if actor.move_component.handle_ramp_slide():
+		pass#fsm.change_state("Jump")
 	
 	if actor.is_on_floor():
 		if actor.jump_buffer_timer.time_left > 0:

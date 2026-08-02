@@ -25,6 +25,23 @@ func _ready() -> void:
 	
 	actor.floor_max_angle = deg_to_rad(40.0)
 
+func handle_ramp_slide() -> bool:
+	if actor.get_slide_collision_count() > 0:
+		var collision = actor.get_last_slide_collision()
+		if collision:
+			var collider = collision.get_collider()
+			
+			# DEBUG: See what we are actually colliding with in the Output tab
+			print("Collided with: ", collider, " | Name: ", collider.name if collider else "None")
+			
+			if collider.is_in_group("slopes"):
+				var normal = collision.get_normal()
+				actor.velocity = actor.velocity.slide(normal)
+				facing = -int(sign(normal.x))
+				return true
+				
+	return false
+
 func process_movement(delta: float) -> void:
 
 	if direction != 0:
