@@ -21,8 +21,9 @@ var facing: int = 1:
 		actor.animated_sprite.flip_h = (facing == -1)
 
 func _ready() -> void:
-	if get_parent() is CharacterBody2D:
-		actor = get_parent()
+	actor = get_parent()
+	
+	actor.floor_max_angle = deg_to_rad(40.0)
 
 func process_movement(delta: float) -> void:
 

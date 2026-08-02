@@ -5,14 +5,17 @@ extends State
 func enter() -> void:
 	actor.get_node("AnimatedSprite2D").play("idle")
 	
-	# Get variable timer and switch state when complete
+	# Queue free after set time
 	var timer = actor.get_tree().create_timer(1)
 	timer.timeout.connect(actor.queue_free)
 
-	ParticleManager.play(death_particle, actor.global_position)
+	# Remove from collisions while death plays out
 	actor.set_collision_mask_value(2, false)
 	actor.hitbox_component.monitoring = false
 	actor.hurtbox_component.monitorable = false
+	
+	# Play particles
+	ParticleManager.play(death_particle, actor.global_position)
 
 func physics_update(delta: float) -> void:
 	# Add gravity

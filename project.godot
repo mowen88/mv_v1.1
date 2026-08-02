@@ -88,6 +88,7 @@ swipe_down={
 2d_render/layer_5="Enemy Hitboxes"
 2d_render/layer_6="Ladders"
 2d_render/layer_7="platforms"
+2d_render/layer_8="slopes"
 
 [physics]
 
