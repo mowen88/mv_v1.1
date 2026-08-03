@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0oqxdpjjeqp0"]
 
-[ext_resource type="Script" uid="uid://cnhv8p368vdfr" path="res://states/world_state/environment/respawn_area.gd" id="1_of25t"]
+[ext_resource type="Script" uid="uid://cnhv8p368vdfr" path="res://states/world_state/environment/respawn_area/respawn_area.gd" id="1_of25t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfkuy"]
 size = Vector2(16, 16)

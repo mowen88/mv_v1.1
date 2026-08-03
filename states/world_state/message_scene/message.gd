@@ -7,4 +7,5 @@ func _ready() -> void:
 	print("collided")
 
 func _on_body_entered(body: Node2D) -> void:
-	SignalBus.tutorial_message_requested.emit(text)
+	if body.is_in_group("player"):
+		SignalBus.tutorial_message_requested.emit(text)
