@@ -109,7 +109,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		pass
 		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)
-		#SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
+		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
 		#SignalBus.zone_banner_requested.emit("Big Bad Boss", true)
 		#AudioManager.start_music("res://states/world_state/music/temple_theme.ogg", 1.0)
 		#AudioManager.stop_music()

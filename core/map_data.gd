@@ -12,6 +12,7 @@ const ZONE_REGISTRY: Dictionary[String, Dictionary] = {
 	},
 		"c": {
 		"zone_name": "Grotto",
+		"bgm": "res://states/world_state/music/temple_theme.ogg"
 	}
 }
 
@@ -23,7 +24,8 @@ const ROOM_REGISTRY: Dictionary[String, Dictionary] = {
 	},
 	"02_a": {
 		1: "01_c",
-		2: "01_a"
+		2: "01_a",
+		3: "02_c"
 	},
 	"01_b": {
 		1: "01_a",
@@ -33,5 +35,8 @@ const ROOM_REGISTRY: Dictionary[String, Dictionary] = {
 		1: "02_a",
 		2: "01_b",
 		3: "01_a"
+	},
+		"02_c": {
+		3: "02_a"
 	}
 }

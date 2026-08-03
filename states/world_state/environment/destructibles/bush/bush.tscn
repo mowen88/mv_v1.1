@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dqxwt35304kb2"]
 
 [ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/entities/shaders/sprite_flash_shader.tres" id="1_jlnqd"]
-[ext_resource type="Texture2D" uid="uid://b3dtd44uij6xm" path="res://states/world_state/entities/destructibles/bush/bush_spritesheet.png" id="1_pe11j"]
+[ext_resource type="Texture2D" uid="uid://b3dtd44uij6xm" path="res://states/world_state/environment/destructibles/bush/bush_spritesheet.png" id="1_pe11j"]
 [ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="1_tqhje"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="2_6opqc"]
-[ext_resource type="Script" uid="uid://b62pqgb4y0cyk" path="res://states/world_state/entities/destructibles/bush/bush.gd" id="2_s68ii"]
+[ext_resource type="Script" uid="uid://b62pqgb4y0cyk" path="res://states/world_state/environment/destructibles/bush/bush.gd" id="2_s68ii"]
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="3_ae181"]
-[ext_resource type="AudioStream" uid="uid://iodojr45uwla" path="res://states/world_state/entities/destructibles/bush/bush_hit.ogg" id="6_5dnnj"]
+[ext_resource type="AudioStream" uid="uid://iodojr45uwla" path="res://states/world_state/environment/destructibles/bush/bush_hit.ogg" id="6_5dnnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlnqd"]
 size = Vector2(8, 16)

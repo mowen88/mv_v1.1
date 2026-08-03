@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_ani36"]
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_3need"]
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="3_3need"]
-[ext_resource type="PackedScene" uid="uid://dqxwt35304kb2" path="res://states/world_state/entities/destructibles/bush/bush.tscn" id="3_ewo3h"]
+[ext_resource type="PackedScene" uid="uid://dqxwt35304kb2" path="res://states/world_state/environment/destructibles/bush/bush.tscn" id="3_ewo3h"]
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="3_vs2my"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/entities/shaders/sprite_flash_shader.gdshader" id="4_2lafy"]
 [ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="4_57hpv"]
