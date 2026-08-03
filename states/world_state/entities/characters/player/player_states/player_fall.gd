@@ -21,8 +21,8 @@ func handle_input(event: InputEvent) -> void:
 
 func physics_update(_delta: float) -> void:
 
-	if owner.move_component.handle_ramp_slide():
-		pass#fsm.change_state("Jump")
+	if owner.move_component.on_slope():
+		fsm.change_state("Slide")
 	
 	if owner.is_on_floor():
 		if owner.jump_buffer_timer.time_left > 0:
