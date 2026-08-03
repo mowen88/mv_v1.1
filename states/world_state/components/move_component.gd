@@ -25,7 +25,7 @@ func _ready() -> void:
 	owner.floor_max_angle = deg_to_rad(40.0)
 
 # In move component as it will be same for all characters
-func on_slope() -> bool:
+func is_on_slope() -> bool:
 	if owner.get_slide_collision_count() > 0:
 		var collision = owner.get_last_slide_collision()
 		if collision:
@@ -36,9 +36,12 @@ func on_slope() -> bool:
 				
 				# Calculate the downward slide vector down slope
 				var slide_dir = Vector2.DOWN.slide(normal).normalized()
-				# Update velocity with the export variable slide speed
+				# Update velocity multiplied by export variable slide speed
 				owner.velocity = slide_dir * slide_speed
-
+				# Slight impulse to snap player to slope
+				owner.velocity.y += 20
+				# Force the facing direction
+				facing = int(sign(owner.velocity.x))
 				return true
 				
 	return false

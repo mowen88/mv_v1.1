@@ -19,11 +19,8 @@ func handle_input(event: InputEvent) -> void:
 		owner.energy_component.current_energy == owner.energy_component.max_energy:
 			fsm.change_state("Heal")
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 
-	if owner.move_component.on_slope():
-		fsm.change_state("Slide")
-	
 	if owner.is_on_floor():
 		if owner.jump_buffer_timer.time_left > 0:
 			owner.jump_buffer_timer.stop()
@@ -31,17 +28,23 @@ func physics_update(_delta: float) -> void:
 		else:
 			fsm.change_state("Idle")
 		return
-
+		
+	#if owner.move_component.on_slope():
+		#fsm.change_state("Slide")
+		
 	# Add gravity
-	owner.velocity.y = min(owner.velocity.y + owner.move_component.gravity * _delta,\
+	owner.velocity.y = min(owner.velocity.y + owner.move_component.gravity * delta,\
 	owner.move_component.max_fall_speed)
 	
 	if owner.is_on_ladder():
 		fsm.change_state("OnLadder")
-		return
 
 	# Handle horizontal movement
-	owner.x_input(_delta)
-	owner.move_component.process_movement(_delta)
+	owner.x_input(delta)
+	owner.move_component.process_movement(delta)
 	owner.move_and_slide()
+	
+	# After move and slide so we get the correct wall normal for is_on_slope
+	if owner.move_component.is_on_slope():
+		fsm.change_state("Slide")
 	

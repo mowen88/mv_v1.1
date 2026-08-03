@@ -43,10 +43,9 @@ func _ready() -> void:
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
 func _process(delta:float) -> void:
-	print(is_on_wall())
-	#print(fsm.currzent_state.name)
-	#move_component.on_slope()
-
+	
+	print(fsm.current_state.name)
+	
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:
 		return
@@ -63,7 +62,6 @@ func _on_swipe_down() -> void:
 
 	else:
 		pass # Ground slam!
-
 
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():
