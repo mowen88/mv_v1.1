@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://crh54bx3jo1y2" path="res://states/world_state/entities/characters/player/player_states/player_fall.gd" id="8_cdm2v"]
 [ext_resource type="Script" uid="uid://cdm8y5micbi5j" path="res://states/world_state/entities/characters/player/player_states/player_attack.gd" id="9_6on6l"]
 [ext_resource type="Texture2D" uid="uid://c8n00tmwnnkbq" path="res://states/world_state/entities/characters/player/player_spritesheets/on_ladder.png" id="9_sju5j"]
+[ext_resource type="Texture2D" uid="uid://bbapmkmdlscxj" path="res://states/world_state/entities/characters/player/player_spritesheets/slide.png" id="11_yewsr"]
 [ext_resource type="Script" uid="uid://brvhdaaglohet" path="res://states/world_state/entities/characters/player/player_states/player_air_attack.gd" id="12_04ry7"]
 [ext_resource type="PackedScene" uid="uid://blmbdhod2re4d" path="res://states/world_state/entities/characters/player/sword/sword_scene.tscn" id="14_pffij"]
 [ext_resource type="Script" uid="uid://bcthucusyriut" path="res://states/world_state/entities/characters/player/player_states/player_death.gd" id="16_pffij"]
@@ -162,6 +163,18 @@ region = Rect2(144, 0, 24, 24)
 atlas = ExtResource("4_u6uqx")
 region = Rect2(168, 0, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuga7"]
+atlas = ExtResource("11_yewsr")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr382"]
+atlas = ExtResource("11_yewsr")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsr7x"]
+atlas = ExtResource("11_yewsr")
+region = Rect2(48, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g3adm"]
 animations = [{
 "frames": [{
@@ -299,6 +312,20 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuga7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr382")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsr7x")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20gxo"]
@@ -319,17 +346,17 @@ wait_time = 0.25
 one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=1527013721]
-wait_time = 0.15
+wait_time = 0.12
 one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=1549524853]
-wait_time = 0.15
+wait_time = 0.12
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 sprite_frames = SubResource("SpriteFrames_g3adm")
-animation = &"climb"
+animation = &"slide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
 position = Vector2(0, 1.5)

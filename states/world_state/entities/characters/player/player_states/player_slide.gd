@@ -3,7 +3,7 @@ extends State
 
 func enter() -> void:
 
-	owner.get_node("AnimatedSprite2D").play("jump")
+	owner.get_node("AnimatedSprite2D").play("slide")
 	
 	# Handle jump buffer and immediately transition to jump WITH a horizontal impulse
 	if owner.jump_buffer_timer.time_left > 0:
@@ -22,7 +22,8 @@ func physics_update(delta: float) -> void:
 	#owner.velocity.y = min(owner.velocity.y + owner.move_component.gravity * delta,\
 	#owner.move_component.max_fall_speed)
 	#owner.move_zcomponent.facing = int(sign(owner.velocity.x))
-
+	
+	# Overide facing direction during physcis update
 	owner.move_component.facing = int(sign(owner.velocity.x))
 	owner.move_and_slide()
 	
