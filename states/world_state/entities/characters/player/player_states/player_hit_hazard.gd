@@ -7,14 +7,14 @@ var timer: float = 0.0
 
 func enter() -> void:
 	SignalBus.screenshake_requested.emit(5.0, 5.0, 0.2)
-	actor.get_node("AnimatedSprite2D").play("jump")
+	owner.get_node("AnimatedSprite2D").play("jump")
 	timer = 0.0
 
 func physics_update(delta: float) -> void:
 	timer += delta
 	
-	actor.velocity = actor.velocity.move_toward(Vector2.ZERO, deceleration * delta)
-	actor.move_and_slide()
+	owner.velocity = owner.velocity.move_toward(Vector2.ZERO, deceleration * delta)
+	owner.move_and_slide()
 
 	# Once the timer finishes, teleport to the safe position and transition back
 	if timer >= hurt_duration:

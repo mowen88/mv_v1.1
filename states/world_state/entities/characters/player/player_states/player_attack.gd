@@ -5,9 +5,9 @@ extends State
 
 func enter() -> void:
 	# Animate
-	actor.get_node("AnimatedSprite2D").play("attack")
+	owner.get_node("AnimatedSprite2D").play("attack")
 	
-	actor.sword.attack(actor.move_component.facing)
+	owner.sword.attack(owner.move_component.facing)
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -15,11 +15,11 @@ func handle_input(event: InputEvent) -> void:
 	
 func physics_update(_delta: float) -> void:
 	# Add gravity
-	actor.velocity.y += actor.move_component.gravity * _delta
+	owner.velocity.y += owner.move_component.gravity * _delta
 	
 	# Handle horizontal slow down
-	actor.velocity.x = move_toward(actor.velocity.x, 0, deceleration * _delta)
-	actor.move_and_slide()
+	owner.velocity.x = move_toward(owner.velocity.x, 0, deceleration * _delta)
+	owner.move_and_slide()
 	
-	if actor.sword.cooldown_timer.is_stopped():
+	if owner.sword.cooldown_timer.is_stopped():
 		fsm.change_state("Idle")

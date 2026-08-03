@@ -1,6 +1,8 @@
 class_name MoveComponent
 extends Node
 
+signal hit_slope
+
 # Configurable movement metrics per entity
 @export var gravity: float = 800.0
 @export var speed: float = 75.0
@@ -8,6 +10,7 @@ extends Node
 @export var deceleration: float = 900.0
 @export var jump_velocity: float = -280.0
 @export var max_fall_speed: float = 800.0
+@export var slide_speed: float = 100.00
 
 # Add parent reference
 var actor: CharacterBody2D
@@ -18,26 +21,28 @@ var actor: CharacterBody2D
 var facing: int = 1:
 	set(value):
 		facing = value
-		actor.animated_sprite.flip_h = (facing == -1)
+		owner.animated_sprite.flip_h = (facing == -1)
 
 func _ready() -> void:
-	actor = get_parent()
-	
-	actor.floor_max_angle = deg_to_rad(40.0)
+	owner.floor_max_angle = deg_to_rad(40.0)
 
+# In move component as it will be same for all characters
 func handle_ramp_slide() -> bool:
-	if actor.get_slide_collision_count() > 0:
-		var collision = actor.get_last_slide_collision()
+	if owner.get_slide_collision_count() > 0:
+		var collision = owner.get_last_slide_collision()
 		if collision:
 			var collider = collision.get_collider()
 			
-			# DEBUG: See what we are actually colliding with in the Output tab
-			print("Collided with: ", collider, " | Name: ", collider.name if collider else "None")
-			
-			if collider.is_in_group("slopes"):
+			if collider and collider.is_in_group("slopes"):
 				var normal = collision.get_normal()
-				actor.velocity = actor.velocity.slide(normal)
-				facing = -int(sign(normal.x))
+				
+				# Calculate the downward slide vector down slope
+				var slide_dir = Vector2.DOWN.slide(normal).normalized()
+				
+				owner.velocity = slide_dir * slide_speed
+				
+				# Transition to Slide state
+				hit_slope.emit()
 				return true
 				
 	return false
@@ -48,7 +53,7 @@ func process_movement(delta: float) -> void:
 		self.facing = int(sign(direction))
 		
 		# Smoothly accelerate toward maximum run speed
-		actor.velocity.x = move_toward(actor.velocity.x, direction * speed, acceleration * delta)
+		owner.velocity.x = move_toward(owner.velocity.x, direction * speed, acceleration * delta)
 	else:
 		# Smoothly decelerate to a stop instead of instantly cutting to 0
-		actor.velocity.x = move_toward(actor.velocity.x, 0, deceleration * delta)
+		owner.velocity.x = move_toward(owner.velocity.x, 0, deceleration * delta)

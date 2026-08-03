@@ -2,34 +2,34 @@ extends State
 class_name PlayerRun
 
 func enter() -> void:
-	actor.get_node("AnimatedSprite2D").play("run")
+	owner.get_node("AnimatedSprite2D").play("run")
 	
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		fsm.change_state("Jump")
 	
-	if event.is_action_pressed("attack") and actor.get_node("AttackTimer").is_stopped():
+	if event.is_action_pressed("attack") and owner.get_node("AttackTimer").is_stopped():
 		fsm.change_state("Attack")
 	
 	if event.is_action_pressed("shoot") and\
-	actor.energy_component.current_energy == actor.energy_component.max_energy:
+	owner.energy_component.current_energy == owner.energy_component.max_energy:
 		fsm.change_state("Heal")
 	
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 		
 	# Handle horizontal movement
-	actor.x_input(_delta)
-	actor.move_component.process_movement(_delta)
-	actor.move_and_slide()
+	owner.x_input(delta)
+	owner.move_component.process_movement(delta)
+	owner.move_and_slide()
 	
 	# Fall if not on floor
-	if not actor.is_on_floor():
-		if actor.coyote_timer.is_stopped():
-			actor.coyote_timer.start()
+	if not owner.is_on_floor():
+		if owner.coyote_timer.is_stopped():
+			owner.coyote_timer.start()
 		fsm.change_state("Fall")
 		return
 	
-	if actor.move_component.direction == 0:
+	if owner.move_component.direction == 0:
 		fsm.change_state("Idle")
 		return
 	

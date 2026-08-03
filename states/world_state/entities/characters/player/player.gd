@@ -16,12 +16,12 @@ extends CharacterBody2D
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
 
-
 var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
 		
 func _ready() -> void:	
 	
+	move_component.hit_slope.connect(_on_slope)
 	hurtbox_component.hit_received.connect(_on_hit)
 	health_component.died.connect(_on_death)
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
@@ -42,6 +42,9 @@ func _ready() -> void:
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
+func _process(delta:float) -> void:
+	print(fsm.current_state.name)
+
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:
 		return
@@ -58,6 +61,9 @@ func _on_swipe_down() -> void:
 
 	else:
 		pass # Ground slam!
+
+func _on_slope() -> void:
+	fsm.change_state("Slide")
 
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():

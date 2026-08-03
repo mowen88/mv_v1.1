@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://c3sm7kuwjlmeg" path="res://states/world_state/entities/characters/player/player_states/player_climb.gd" id="21_nglex"]
 [ext_resource type="Script" uid="uid://dyl8kn1wew5sn" path="res://states/world_state/entities/characters/player/player_states/player_hit_hazard.gd" id="24_sju5j"]
 [ext_resource type="Script" uid="uid://be7575jdlvj8" path="res://states/world_state/entities/characters/player/player_states/player_transition.gd" id="25_t7bfy"]
+[ext_resource type="Script" uid="uid://bcopnf2bruebq" path="res://states/world_state/entities/characters/player/player_states/player_slide.gd" id="26_m3cwm"]
 [ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
@@ -369,8 +370,6 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="Death" type="Node" parent="FiniteStateMachine" unique_id=327399938]
 script = ExtResource("16_pffij")
 death_particle = "small_blast"
-deceleration = null
-duration = null
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=65880390]
@@ -398,6 +397,10 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("25_t7bfy")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
+[node name="Slide" type="Node" parent="FiniteStateMachine" unique_id=947585989]
+script = ExtResource("26_m3cwm")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
 gravity = 650.0
 jump_velocity = -250.0
@@ -409,9 +412,7 @@ max_health = 4
 [node name="EnergyComponent" parent="." unique_id=712779835 instance=ExtResource("21_6mh6f")]
 max_energy = 24
 
-[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("actor", "fsm", "hurtbox_component") instance=ExtResource("20_g11l2")]
-actor = NodePath("..")
-fsm = NodePath("../FiniteStateMachine")
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("hurtbox_component") instance=ExtResource("20_g11l2")]
 hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("21_edub2")]

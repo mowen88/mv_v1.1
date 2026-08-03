@@ -5,32 +5,32 @@ extends State
 
 func enter() -> void:
 	# Animate
-	actor.get_node("AnimatedSprite2D").play("air_attack")
+	owner.get_node("AnimatedSprite2D").play("air_attack")
 
-	actor.sword.attack(actor.move_component.facing)
+	owner.sword.attack(owner.move_component.facing)
 
-	actor.get_node("AttackTimer").start()
+	owner.get_node("AttackTimer").start()
 #func handle_input(event: InputEvent) -> void:
 	#if event.is_action_pressed("PlayerJump"):
 		#fsm.change_state("PlayerJump")
 
 func handle_input(event:InputEvent) -> void:
 	if event.is_action_pressed("jump"):
-		actor.jump_buffer_timer.start()
+		owner.jump_buffer_timer.start()
 	#
 func physics_update(_delta: float) -> void:
 		
-	if actor.sword.cooldown_timer.is_stopped():
+	if owner.sword.cooldown_timer.is_stopped():
 		fsm.change_state("Fall")
 		return
 		
 	# Add gravity
-	actor.velocity.y += actor.move_component.gravity * _delta
+	owner.velocity.y += owner.move_component.gravity * _delta
 
 	# Handle horizontal movement
-	actor.x_input(_delta)
-	actor.move_component.process_movement(_delta)
-	actor.move_and_slide()
+	owner.x_input(_delta)
+	owner.move_component.process_movement(_delta)
+	owner.move_and_slide()
 	
 
 

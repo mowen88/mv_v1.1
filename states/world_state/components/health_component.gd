@@ -12,13 +12,6 @@ signal died
 
 @onready var current_health: int = max_health
 
-# Add parent reference
-var actor: Node2D
-
-func _ready() -> void:
-	if get_parent() is Node2D:
-		actor = get_parent()
-
 func damage(amount:int) -> void:
 
 	current_health = clampi(current_health - amount, 0, max_health)

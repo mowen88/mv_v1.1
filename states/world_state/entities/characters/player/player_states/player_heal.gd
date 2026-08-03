@@ -9,11 +9,11 @@ var go_to_special = true
 
 func enter() -> void:
 	# Animate
-	actor.get_node("AnimatedSprite2D").play("fall")
+	owner.get_node("AnimatedSprite2D").play("fall")
 	timer = duration
 	go_to_special = true
 
-	#actor.sword.attack(actor.move_component.facing)
+	#owner.sword.attack(owner.move_component.facing)
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
@@ -22,16 +22,16 @@ func handle_input(event: InputEvent) -> void:
 func physics_update(delta: float) -> void:
 	
 	# Stop motion
-	actor.velocity = actor.velocity.move_toward(Vector2.ZERO, deceleration * delta)
-	actor.move_and_slide()
+	owner.velocity = owner.velocity.move_toward(Vector2.ZERO, deceleration * delta)
+	owner.move_and_slide()
 	
 	timer -= delta
 	if timer <= 0:
 
-		actor.energy_component.consume_energy(actor.energy_component.max_energy)
+		owner.energy_component.consume_energy(owner.energy_component.max_energy)
 		if go_to_special:
 			fsm.change_state("jump")
 		else:
-			actor.health_component.heal(actor.health_component.max_health)
-			ParticleManager.play(heal_particle, actor.global_position)
+			owner.health_component.heal(owner.health_component.max_health)
+			ParticleManager.play(heal_particle, owner.global_position)
 			fsm.change_state("fall")

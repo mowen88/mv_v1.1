@@ -13,7 +13,7 @@ func _ready() -> void:
 		if state is State:
 			states[state.name.to_lower()] = state
 			state.fsm = self
-			state.actor = get_parent()
+			state.owner = get_parent()
 	
 	# Start on initial state
 	if initial_state:

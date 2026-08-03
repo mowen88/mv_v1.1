@@ -7,15 +7,15 @@ var timer: float = 0.0
 func enter() -> void:
 	timer = duration
 	# Play a "hit" animation if you have one
-	actor.get_node("AnimatedSprite2D").play("fall")
+	owner.get_node("AnimatedSprite2D").play("fall")
 
 func physics_update(delta: float) -> void:
 	timer -= delta
 	
 	# Add gravity
-	actor.velocity.y = min(actor.velocity.y + actor.move_component.gravity * delta,\
-	actor.move_component.max_fall_speed)
-	actor.move_and_slide()
+	owner.velocity.y = min(owner.velocity.y + owner.move_component.gravity * delta,\
+	owner.move_component.max_fall_speed)
+	owner.move_and_slide()
 	
 	if timer <= 0:
 		fsm.change_state("Fall")
