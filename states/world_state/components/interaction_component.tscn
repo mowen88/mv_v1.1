@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ca1vr2c7wdcbf" path="res://states/world_state/components/interaction_component.gd" id="1_qxvul"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="2_03x4n"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="3_01riy"]
+[ext_resource type="Texture2D" uid="uid://d21qenqv7yyu3" path="res://UI/gameplay/elements/swipe_up_icon.png" id="4_2t5qm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03x4n"]
 size = Vector2(16, 32)
@@ -37,3 +38,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_s8sdo")
 text = "Default"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SwipeIcon" type="Sprite2D" parent="." unique_id=1446681373]
+position = Vector2(0, -38)
+texture = ExtResource("4_2t5qm")

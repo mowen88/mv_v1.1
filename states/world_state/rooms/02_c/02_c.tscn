@@ -30,7 +30,7 @@ position = Vector2(-4, 92)
 exit_id = 3
 
 [node name="Door" parent="Doors" parent_id_path=PackedInt32Array(477402032) index="0" unique_id=229081297 instance=ExtResource("4_t40ox")]
-position = Vector2(128, 88)
+position = Vector2(132, 88)
 
 [node name="InteractionComponent" parent="Doors/Door" index="1" unique_id=108345276]
 prompt_text = "Enter"

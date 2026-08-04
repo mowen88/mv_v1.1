@@ -2,14 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/environment/save_station/save_station.gd" id="1_fg0it"]
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="2_fg0it"]
-[ext_resource type="Texture2D" uid="uid://d21qenqv7yyu3" path="res://states/world_state/environment/doors/swipe_up_icon.png" id="2_sh5sn"]
 
 [node name="SaveStation" type="Sprite2D" unique_id=249855072]
 script = ExtResource("1_fg0it")
-
-[node name="SwipeIcon" type="Sprite2D" parent="." unique_id=2092040304]
-position = Vector2(0, -37)
-texture = ExtResource("2_sh5sn")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1471144874]
 anchors_preset = 8

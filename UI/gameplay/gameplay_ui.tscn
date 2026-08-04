@@ -22,19 +22,17 @@ offset_bottom = 78.0
 theme_override_constants/separation = -4
 
 [node name="ZoneLabel" type="Label" parent="." unique_id=782064036]
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -0.5
-offset_top = -45.0
+offset_top = 160.0
 offset_right = 0.5
-offset_bottom = 45.0
+offset_bottom = 304.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_jgtdh")
 theme_override_font_sizes/font_size = 144
+horizontal_alignment = 1
 
 [node name="TutorialMessage" type="Label" parent="." unique_id=1434587093]
 anchors_preset = 5

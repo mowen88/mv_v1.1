@@ -55,11 +55,11 @@ func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 	if not show_banner or zone_name == "":
 		zone_label.visible = false
 		return
-		
+
 	zone_label.text = zone_name
 	zone_label.modulate.a = 0.0
 	zone_label.visible = true
-	
+
 	banner_tween = create_tween()
 	# Fade in
 	banner_tween.tween_property(zone_label, "modulate:a", 1.0, 0.5)

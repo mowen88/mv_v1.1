@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d21qenqv7yyu3"
-path="res://.godot/imported/swipe_up_icon.png-6485b3c8d95b49e11e756ecb61cff99e.ctex"
+uid="uid://42r83yhmv8sx"
+path="res://.godot/imported/banner_underline_animation.png-ebde3c43cf8456d2c2be437a25249814.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://states/world_state/environment/doors/swipe_up_icon.png"
-dest_files=["res://.godot/imported/swipe_up_icon.png-6485b3c8d95b49e11e756ecb61cff99e.ctex"]
+source_file="res://UI/gameplay/elements/banner_underline_animation.png"
+dest_files=["res://.godot/imported/banner_underline_animation.png-ebde3c43cf8456d2c2be437a25249814.ctex"]
 
 [params]
 
