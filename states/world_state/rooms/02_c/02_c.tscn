@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_8cwyv"]
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_c7dy6"]
-[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/room_exit_scene/room_exit.tscn" id="3_jgxeo"]
+[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit_scene/room_exit.tscn" id="3_jgxeo"]
+[ext_resource type="PackedScene" uid="uid://splu6w0qaa22" path="res://states/world_state/exits/door_exit_scene/door_exit.tscn" id="4_t40ox"]
 
 [node name="02_c" unique_id=315341494 instance=ExtResource("1_8cwyv")]
 
@@ -13,7 +14,7 @@ tile_set = ExtResource("2_c7dy6")
 [node name="SlopeTileMap" parent="." index="2" unique_id=1149728441]
 tile_set = ExtResource("2_c7dy6")
 
-[node name="CameraLimits" parent="." index="7" unique_id=671455297]
+[node name="CameraLimits" parent="." index="8" unique_id=671455297]
 offset_left = 2.0
 offset_right = 262.0
 offset_bottom = 120.0
@@ -24,3 +25,9 @@ position = Vector2(16, 96)
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_jgxeo")]
 position = Vector2(-4, 92)
 exit_id = 3
+
+[node name="DoorExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=2042009232 instance=ExtResource("4_t40ox")]
+position = Vector2(128, 88)
+text = "Exit through door"
+
+[editable path="RoomExits/DoorExit"]

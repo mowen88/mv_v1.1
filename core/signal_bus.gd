@@ -11,6 +11,8 @@ signal save_station_activated
 
 signal zone_banner_requested(zone_name: String)
 signal tutorial_message_requested(message:String)
+signal show_interaction_prompt()
+signal hide_interaction_prompt()
 
 signal screenshake_requested(x_offset:float, y_offset:float, duration:float)
 
