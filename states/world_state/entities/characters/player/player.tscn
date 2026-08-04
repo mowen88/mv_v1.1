@@ -33,6 +33,8 @@
 [ext_resource type="Script" uid="uid://dyl8kn1wew5sn" path="res://states/world_state/entities/characters/player/player_states/player_hit_hazard.gd" id="24_sju5j"]
 [ext_resource type="Script" uid="uid://be7575jdlvj8" path="res://states/world_state/entities/characters/player/player_states/player_transition.gd" id="25_t7bfy"]
 [ext_resource type="Script" uid="uid://bcopnf2bruebq" path="res://states/world_state/entities/characters/player/player_states/player_slide.gd" id="26_m3cwm"]
+[ext_resource type="Script" uid="uid://bblrqgr5l4nsn" path="res://states/world_state/entities/characters/player/player_states/player_enter_door.gd" id="28_ak1tp"]
+[ext_resource type="Script" uid="uid://b7iahl8t08p7c" path="res://states/world_state/entities/characters/player/player_states/player_exit_door.gd" id="29_hpgvl"]
 [ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
@@ -426,6 +428,14 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Slide" type="Node" parent="FiniteStateMachine" unique_id=947585989]
 script = ExtResource("26_m3cwm")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="EnterDoor" type="Node" parent="FiniteStateMachine" unique_id=109089133]
+script = ExtResource("28_ak1tp")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="ExitDoor" type="Node" parent="FiniteStateMachine" unique_id=18660354]
+script = ExtResource("29_hpgvl")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]

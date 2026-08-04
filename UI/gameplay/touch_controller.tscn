@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dc7xoiyp7isgh" path="res://UI/gameplay/elements/b_button.png" id="4_0yjk1"]
 [ext_resource type="Texture2D" uid="uid://bthqouvpo6sf6" path="res://UI/gameplay/elements/c_button.png" id="5_fsqso"]
 [ext_resource type="Texture2D" uid="uid://51sgw14yfqp7" path="res://UI/gameplay/elements/pause_button.png" id="6_hfat2"]
-[ext_resource type="Texture2D" uid="uid://b1fanbprgpumb" path="res://UI/gameplay/elements/interact_button.png" id="8_bw6v4"]
-[ext_resource type="Script" uid="uid://lj0ec4kyehex" path="res://UI/gameplay/interact_button.gd" id="9_fsqso"]
 
 [node name="TouchController" type="CanvasLayer" unique_id=1149322206]
 layer = 100
@@ -93,21 +91,3 @@ position = Vector2(50, 50)
 scale = Vector2(10, 10)
 texture_normal = ExtResource("6_hfat2")
 action = "toggle_pause"
-
-[node name="Interact" type="Control" parent="." unique_id=408255371]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.0
-offset_top = 120.0
-offset_right = 100.0
-offset_bottom = 320.0
-grow_horizontal = 2
-
-[node name="InteractButton" type="TouchScreenButton" parent="Interact" unique_id=2035413976]
-modulate = Color(1, 1, 1, 0.5019608)
-scale = Vector2(10, 10)
-texture_normal = ExtResource("8_bw6v4")
-action = "interact"
-script = ExtResource("9_fsqso")

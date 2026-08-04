@@ -43,7 +43,7 @@ func _ready() -> void:
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
 func _process(delta:float) -> void:
-	pass#print(fsm.current_state.name)
+	print(fsm.current_state.name)
 	
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:

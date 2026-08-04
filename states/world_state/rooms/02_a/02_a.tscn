@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0oqxdpjjeqp0" path="res://states/world_state/environment/respawn_area/respawn_area.tscn" id="4_1k8se"]
 [ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="5_7wvdq"]
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="6_tm0mi"]
-[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit_scene/room_exit.tscn" id="6_yyfbe"]
+[ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit.tscn" id="6_yyfbe"]
 [ext_resource type="PackedScene" uid="uid://grf7v6d3tx84" path="res://states/world_state/environment/secret_walls/secret_wall.tscn" id="8_1w3qu"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/entities/shaders/sprite_flash_shader.gdshader" id="9_i0e5b"]
 
