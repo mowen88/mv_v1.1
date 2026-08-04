@@ -2,15 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ca1vr2c7wdcbf" path="res://states/world_state/components/interaction_component.gd" id="1_qxvul"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="2_03x4n"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="3_01riy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03x4n"]
-size = Vector2(32, 32)
+size = Vector2(16, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01riy"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2t5qm"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ky4x2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s8sdo"]
 
@@ -22,20 +19,21 @@ script = ExtResource("1_qxvul")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674074497]
 shape = SubResource("RectangleShape2D_03x4n")
 
-[node name="InteractButton" type="Button" parent="." unique_id=525947996]
+[node name="InteractLabel" type="Label" parent="." unique_id=305582225]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -144.0
-offset_top = -70.0
-offset_right = 144.0
-offset_bottom = 20.0
+offset_left = -18.0
+offset_top = -32.0
+offset_right = 18.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_03x4n")
+theme_override_fonts/font = ExtResource("3_01riy")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxEmpty_01riy")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_2t5qm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ky4x2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s8sdo")
 text = "Default"
+horizontal_alignment = 1
+vertical_alignment = 1

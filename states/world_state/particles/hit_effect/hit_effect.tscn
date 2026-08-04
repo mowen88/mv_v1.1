@@ -4,7 +4,7 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cqtpw"]
 particles_animation = true
-particles_anim_h_frames = 6
+particles_anim_h_frames = 8
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
@@ -33,6 +33,7 @@ anim_offset_max = 1.0
 z_index = 1
 material = SubResource("CanvasItemMaterial_cqtpw")
 emitting = false
+amount = 16
 texture = ExtResource("1_67xoo")
 lifetime = 0.5
 explosiveness = 1.0

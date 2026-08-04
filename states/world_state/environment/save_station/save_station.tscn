@@ -1,23 +1,31 @@
 [gd_scene format=3 uid="uid://o2651qiy5vxt"]
 
-[ext_resource type="Texture2D" uid="uid://crard3vijrxpk" path="res://states/world_state/environment/save_station/save_station_image.png" id="1_1qigp"]
 [ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/environment/save_station/save_station.gd" id="1_fg0it"]
+[ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="2_fg0it"]
+[ext_resource type="Texture2D" uid="uid://d21qenqv7yyu3" path="res://states/world_state/environment/doors/swipe_up_icon.png" id="2_sh5sn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d22iq"]
-size = Vector2(16, 16)
-
-[node name="SaveStation" type="Area2D" unique_id=83039258]
-collision_layer = 0
-collision_mask = 2
+[node name="SaveStation" type="Sprite2D" unique_id=249855072]
 script = ExtResource("1_fg0it")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236616777]
-shape = SubResource("RectangleShape2D_d22iq")
+[node name="SwipeIcon" type="Sprite2D" parent="." unique_id=2092040304]
+position = Vector2(0, -37)
+texture = ExtResource("2_sh5sn")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=809190147]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1471144874]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -16.5
+offset_right = 7.5
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_1qigp")
+color = Color(0, 1, 0, 1)
+
+[node name="InteractionComponent" parent="." unique_id=108345276 instance=ExtResource("2_fg0it")]
+prompt_text = "Save"
+
+[editable path="InteractionComponent"]

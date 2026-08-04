@@ -31,11 +31,15 @@ func _input(event: InputEvent) -> void:
 		var dynamic_threshold = screen_height * swipe_threshold_percent
 		
 		# Check distance and ensure it is primarily a vertical swipe
-		if swipe_vector.length() >= dynamic_threshold and swipe_vector.y > abs(swipe_vector.x) * 2:
+		if swipe_vector.length() >= dynamic_threshold and abs(swipe_vector.y) > abs(swipe_vector.x) * 2:
 			
 			# Stop tracking to prevent repeated triggers during the same drag
 			is_tracking = false 
-			SignalBus.swipe_down_detected.emit()
+			
+			if swipe_vector.y > 0:
+				SignalBus.swipe_down_detected.emit()
+			else:
+				SignalBus.swipe_up_detected.emit()
 
 	# 3. Stop tracking if touch is released
 	elif event is InputEventScreenTouch and not event.pressed:

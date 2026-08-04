@@ -2,10 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="1_43b8i"]
 [ext_resource type="Script" uid="uid://b3ib38tmk41ly" path="res://states/world_state/environment/doors/door.gd" id="1_rv6ty"]
+[ext_resource type="Texture2D" uid="uid://d21qenqv7yyu3" path="res://states/world_state/environment/doors/swipe_up_icon.png" id="2_egtxo"]
 
 [node name="Door" type="Sprite2D" unique_id=229081297]
 z_index = -1
 script = ExtResource("1_rv6ty")
+
+[node name="SwipeIcon" type="Sprite2D" parent="." unique_id=409788796]
+position = Vector2(0, -37)
+texture = ExtResource("2_egtxo")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1608988034]
 anchors_preset = 8

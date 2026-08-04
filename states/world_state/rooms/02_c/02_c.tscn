@@ -19,7 +19,10 @@ offset_left = 2.0
 offset_right = 262.0
 offset_bottom = 120.0
 
-[node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=1102689590]
+[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=7102166]
+position = Vector2(128, 96)
+
+[node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="1" unique_id=1102689590]
 position = Vector2(16, 96)
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_jgxeo")]
@@ -30,7 +33,7 @@ exit_id = 3
 position = Vector2(128, 88)
 
 [node name="InteractionComponent" parent="Doors/Door" index="1" unique_id=108345276]
-prompt_text = "Enter door"
+prompt_text = "Enter"
 
 [editable path="Doors/Door"]
 [editable path="Doors/Door/InteractionComponent"]

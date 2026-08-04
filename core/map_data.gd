@@ -18,6 +18,7 @@ const ZONE_REGISTRY: Dictionary[String, Dictionary] = {
 
 const ROOM_REGISTRY: Dictionary[String, Dictionary] = {
 	"01_a": {
+		0: "02_c",
 		1: "01_b",
 		2: "02_a",
 		3: "01_c"

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b7vnt8h4y7bqa" path="res://states/world_state/entities/characters/player/player_spritesheets/run.png" id="4_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://br02d51sw5iue" path="res://states/world_state/entities/characters/player/player_spritesheets/climb.png" id="5_5athw"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="5_ri0vu"]
+[ext_resource type="Texture2D" uid="uid://bnpwbw52p6aam" path="res://states/world_state/entities/characters/player/player_spritesheets/exit_door.png" id="6_240cd"]
 [ext_resource type="Script" uid="uid://cbj2xr51bn4y0" path="res://states/world_state/entities/characters/player/player_states/player_run.gd" id="6_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://bxp1vt7crs8sx" path="res://states/world_state/entities/characters/player/player_spritesheets/jump.png" id="6_ulhyb"]
 [ext_resource type="Script" uid="uid://dercsmv8k458f" path="res://states/world_state/entities/characters/player/player_states/player_jump.gd" id="8_6on6l"]
@@ -87,6 +88,26 @@ region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7klx"]
 atlas = ExtResource("5_5athw")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pnom"]
+atlas = ExtResource("6_240cd")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu1jg"]
+atlas = ExtResource("6_240cd")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgm01"]
+atlas = ExtResource("6_240cd")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf4nt"]
+atlas = ExtResource("6_240cd")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tamm"]
+atlas = ExtResource("6_240cd")
 region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ya1c0"]
@@ -235,6 +256,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1pnom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu1jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgm01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf4nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tamm")
+}],
+"loop": true,
+"name": &"exit_door",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ya1c0")
 }, {
 "duration": 1.0,
@@ -358,7 +399,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 sprite_frames = SubResource("SpriteFrames_g3adm")
-animation = &"slide"
+animation = &"exit_door"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
 position = Vector2(0, 1.5)

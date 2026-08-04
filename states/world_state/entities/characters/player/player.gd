@@ -43,7 +43,9 @@ func _ready() -> void:
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
 func _process(delta:float) -> void:
-	print(fsm.current_state.name)
+	pass
+	#print(InputManager.input_lock)
+	#print(fsm.current_state.name)
 	
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:
@@ -72,7 +74,6 @@ func is_on_ladder() -> bool:
 
 func _update_respawn_point(position:Vector2) -> void:
 	last_safe_position = position
-	#print(position)
 
 func _on_hit(hitbox: Area2D, knockback_force:float):
 	if health_component.current_health <= 0:
@@ -106,12 +107,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	fsm.handle_input(event)
 	
-	
-
-	if Input.is_action_just_pressed("interact"):
-		#pass
-		print("pressed")
-		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)
+	if Input.is_action_just_pressed("shoot"):
+		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
 		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
 		#SignalBus.zone_banner_requested.emit("Big Bad Boss", true)
 		#AudioManager.start_music("res://states/world_state/music/temple_theme.ogg", 1.0)

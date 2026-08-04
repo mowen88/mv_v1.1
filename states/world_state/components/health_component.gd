@@ -31,7 +31,6 @@ func _check_for_persistence_on_death() -> void:
 	if owner.is_in_group("persistent"):
 		if "persistent_id" in owner and owner.persistent_id != "":
 				SaveManager.save_persistent_object(owner.persistent_id)
-				print(owner.persistent_id)
 
 func damage(amount:int) -> void:
 

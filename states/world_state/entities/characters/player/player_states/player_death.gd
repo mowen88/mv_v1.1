@@ -6,7 +6,6 @@ extends State
 var timer: float = 1.5
 
 func enter() -> void:
-	print("Death state ENTERED")
 	ParticleManager.play(death_particle, owner.global_position)
 	owner.get_node("AnimatedSprite2D").play("jump")
 	timer = 0.0
