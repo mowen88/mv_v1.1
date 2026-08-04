@@ -1,8 +1,11 @@
 extends Node
 
 # --- SETTINGS CONFIGURATION ---
+
+# Device path to save data to
 const SETTINGS_PATH = "user://settings.json"
-const TOTAL_ROOMS: float = 4.0
+# Total room count var not const due to .size() being runtime function not compile time
+var TOTAL_ROOMS: float = MapData.ROOM_REGISTRY.size()
 
 var SETTINGS_DATA: Dictionary = {
 	"Master Volume": 1.0,
@@ -17,9 +20,8 @@ var SETTINGS_DATA: Dictionary = {
 # --- SAVE SLOT CONFIGURATION ---
 var current_slot: String = "1"
 var game_timer_active: bool = false
-# REMOVED: var percent_complete: float = 0.0 (Now completely managed inside SAVE_DATA)
 
-# Your runtime game memory
+# Runtime game memory
 var SAVE_DATA: Dictionary = {
 	"1": {},
 	"2": {},
@@ -29,7 +31,7 @@ var SAVE_DATA: Dictionary = {
 func _ready() -> void:
 	load_settings()
 	process_mode = Node.PROCESS_MODE_PAUSABLE
-
+	
 func _process(delta:float) -> void:
 	if game_timer_active and SAVE_DATA.has(current_slot):
 		if not SAVE_DATA[current_slot].has("game_time"):
@@ -120,6 +122,20 @@ func load_settings() -> void:
 
 func _get_save_path(slot_id: String) -> String:
 	return "user://save_slot_%s.json" % slot_id
+
+## Universal tracker for any persistent entity (secret walls, bosses, special items)
+func save_persistent_object(object_id: String) -> void:
+	if not SAVE_DATA.has(current_slot):
+		return
+		
+	if not SAVE_DATA[current_slot].has("persistent_objects"):
+		SAVE_DATA[current_slot]["persistent_objects"] = []
+		
+	var persistent_list: Array = SAVE_DATA[current_slot]["persistent_objects"]
+	if not persistent_list.has(object_id):
+		persistent_list.append(object_id)
+		SAVE_DATA[current_slot]["persistent_objects"] = persistent_list
+		print_rich("[color=yellow]SAVE SYSTEM: Registered persistent object %s[/color]" % object_id)
 
 func save_at_station(room_name: String) -> void:
 	if not SAVE_DATA.has(current_slot):

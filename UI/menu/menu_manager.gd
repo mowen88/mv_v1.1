@@ -47,7 +47,6 @@ func _ready() -> void:
 func _on_volume_changed(bus_name:String, value:float) -> void:
 	var key = bus_name + " Volume"
 	SaveManager.update_setting(key, value)
-	print(key, value)
 	## 2. Update the AudioServer
 	## Make sure your Audio Bus is named exactly "Music", "SFX", or "Master"
 	#var bus_idx = AudioServer.get_bus_index(bus_name)

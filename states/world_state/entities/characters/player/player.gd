@@ -43,7 +43,7 @@ func _ready() -> void:
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
 func _process(delta:float) -> void:
-	print(fsm.current_state.name)
+	pass#print(fsm.current_state.name)
 	
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:
@@ -72,7 +72,7 @@ func is_on_ladder() -> bool:
 
 func _update_respawn_point(position:Vector2) -> void:
 	last_safe_position = position
-	print(position)
+	#print(position)
 
 func _on_hit(hitbox: Area2D, knockback_force:float):
 	if health_component.current_health <= 0:

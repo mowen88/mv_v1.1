@@ -1,6 +1,7 @@
 class_name Walker
 extends CharacterBody2D
 
+@export var persistent_id: String = ""
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
@@ -21,7 +22,6 @@ func _on_death() -> void:
 	hurtbox_component.monitorable = false
 	
 	fsm.change_state("Death")
-
 
 #Testing with input - to be deleted for shipping !!!!
 func _unhandled_input(event: InputEvent) -> void:

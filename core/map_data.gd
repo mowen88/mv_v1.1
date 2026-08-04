@@ -36,7 +36,7 @@ const ROOM_REGISTRY: Dictionary[String, Dictionary] = {
 		2: "01_b",
 		3: "01_a"
 	},
-		"02_c": {
+	"02_c": {
 		3: "02_a"
 	}
 }

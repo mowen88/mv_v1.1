@@ -1,6 +1,8 @@
 class_name SecretWall
 extends StaticBody2D
 
+@export var persistent_id: String = ""
+
 @onready var canvas_group: CanvasGroup = $CanvasGroup
 @onready var tile_map_layer: TileMapLayer = $CanvasGroup/TileMapLayer
 @onready var health_component: HealthComponent = $HealthComponent

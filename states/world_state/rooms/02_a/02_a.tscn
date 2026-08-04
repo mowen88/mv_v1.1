@@ -28,6 +28,7 @@ tile_map_data = PackedByteArray("AAAqABkAAAANAAsAAAApABoAAAANAAsAAAAoABsAAAANAAs
 [node name="SecretWall" parent="SecretWalls" parent_id_path=PackedInt32Array(485952299) index="0" unique_id=1032635385 instance=ExtResource("8_1w3qu")]
 material = SubResource("ShaderMaterial_1w3qu")
 position = Vector2(516, 210)
+persistent_id = "secret_wall_test"
 
 [node name="TileMapLayer" parent="SecretWalls/SecretWall/CanvasGroup" parent_id_path=PackedInt32Array(1032635385, 732142432) index="0" unique_id=1529808715]
 material = SubResource("ShaderMaterial_1w3qu")

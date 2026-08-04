@@ -31,7 +31,6 @@ func _process(delta: float) -> void:
 		return
 		
 	game_camera.update_target(player, delta)
-	#print(player.fsm.current_state.name)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):
@@ -40,7 +39,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
 		SignalBus.camera_override_cleared.emit()
-		print("Camera override cleared, back to player.")
 		
 func _toggle_game_pause() -> void:
 	get_tree().paused =  not get_tree().paused
