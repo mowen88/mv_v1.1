@@ -31,17 +31,21 @@ position = Vector2(216, 104)
 
 [node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_ulidl")]
 position = Vector2(-5, 52)
+target_room_path = "uid://4wap6g2l3are"
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=885076999 instance=ExtResource("3_ulidl")]
 position = Vector2(280, 84)
 exit_id = 2
+target_room_path = "uid://b8av6vwrjoaku"
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=1011407160 instance=ExtResource("3_ulidl")]
 position = Vector2(216, 148)
 exit_id = 3
+target_room_path = "uid://b8fpdwap0vxjg"
 
 [node name="Door" parent="Doors" parent_id_path=PackedInt32Array(477402032) index="0" unique_id=229081297 instance=ExtResource("4_5x8u3")]
 position = Vector2(80, 80)
+target_room_path = "uid://dgpp7kn8tswe6"
 
 [node name="ColorRect" parent="Doors/Door" index="0" unique_id=1608988034]
 offset_left = -8.5

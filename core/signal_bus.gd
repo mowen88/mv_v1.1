@@ -7,8 +7,8 @@ signal camera_override_cleared
 signal camera_override_requested(target:Vector2, lock_x:bool, lock_y:bool)
 signal camera_zoom_requested(multiplier: float, duration: float)
 
-signal room_change_requested(exit_id: int)
-signal enter_door_requested(exit_id: int)
+signal room_change_requested(room_scene: PackedScene, exit_id: int)
+signal enter_door_requested(room_scene: PackedScene, exit_id: int)
 signal save_station_activated
 
 signal zone_banner_requested(zone_name: String)

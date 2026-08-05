@@ -1,6 +1,8 @@
 extends Sprite2D
 
+
 @export var exit_id: int = 0
+@export_file("*.tscn") var target_room_path: String
 
 @onready var interaction_component: InteractionComponent = $InteractionComponent
 
@@ -10,6 +12,9 @@ func _ready() -> void:
 func _on_door_interacted(player: CharacterBody2D) -> void:
 	# Make sure player is on ground and not moving too fast before leaving
 	if abs(player.velocity.x) < 10 and player.is_on_floor():
+		
+		# Load the PackedScene dynamically when colliding
+		var room_scene = load(target_room_path) as PackedScene
 	
 		# Set player state to enter door
 		player.fsm.change_state("EnterDoor")
@@ -25,4 +30,4 @@ func _on_door_interacted(player: CharacterBody2D) -> void:
 		
 		# Change state and start new room
 		player.fsm.change_state("ExitDoor")
-		SignalBus.room_change_requested.emit(exit_id)
+		SignalBus.room_change_requested.emit(room_scene, exit_id)

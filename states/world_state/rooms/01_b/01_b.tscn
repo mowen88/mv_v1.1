@@ -53,7 +53,7 @@ position = Vector2(236, 216)
 [node name="SaveStation" parent="." index="6" unique_id=83039258 instance=ExtResource("4_57hpv")]
 position = Vector2(96, 120)
 
-[node name="CameraLimits" parent="." index="8" unique_id=671455297]
+[node name="CameraLimits" parent="." index="9" unique_id=671455297]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 268.0
@@ -88,9 +88,11 @@ position = Vector2(264, 216)
 
 [node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("9_ehkm8")]
 position = Vector2(280, 44)
+target_room_path = "uid://bixnwgirh71ew"
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=45354482 instance=ExtResource("9_ehkm8")]
 position = Vector2(280, 204)
 exit_id = 2
+target_room_path = "uid://b8fpdwap0vxjg"
 
 [editable path="CameraTriggers/CameraTrigger"]

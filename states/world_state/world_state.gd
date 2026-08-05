@@ -19,9 +19,7 @@ func _ready():
 	pause_menu.unpause_requested.connect(_toggle_game_pause)
 	
 	# Instantiates the first room
-	var saved_room_name: String = SaveManager.get_saved_room()
-	var saved_room_path: String = "res://states/world_state/rooms/%s/%s.tscn" % [saved_room_name, saved_room_name]
-	_load_room(saved_room_path, 0)
+	_load_room(SaveManager.get_saved_room(), 0)
 
 func _process(delta: float) -> void:
 	if not player:
@@ -61,34 +59,28 @@ func _on_save_station_activated() -> void:
 		SaveManager.save_at_station(current_room_node.name)
 		print_rich("[color=green]SAVE SYSTEM: Game successfully saved at room: %s[/color]" % current_room_node.name)
 
-func _on_room_change_requested(exit_id: int) -> void:
+func _on_room_change_requested(room_scene:PackedScene, target_spawn_id:int) -> void:
 	if not current_room_node:
 		return
 		
-	var current_room_name = current_room_node.name.to_lower()
-	
-	if MapData.ROOM_REGISTRY.has(current_room_name):
-		var target_room_name: String = MapData.ROOM_REGISTRY[current_room_name][exit_id]
-		var target_room_path: String = "res://states/world_state/rooms/%s/%s.tscn" % [target_room_name, target_room_name]
-		
-		_execute_room_swap(target_room_path, exit_id)
-		
-func _execute_room_swap(next_room_path, target_spawn_id):
 	TransitionManager.transition(func():
 		for child in current_room_container.get_children():
 			child.queue_free()
 		
-		_load_room(next_room_path, target_spawn_id),
+		_load_room(room_scene, target_spawn_id),
 		0.2, 0.2, "grid", "grid"
 	)
 
-func _load_room(room_path: String, spawn_id: int) -> void:
-	current_room_node = null
-	var next_room_scene = load(room_path)
+func _load_room(room_scene: PackedScene, spawn_id: int) -> void:
+
+	# 1. Instantiate the PackedScene once directly into current_room_node
+	current_room_node = room_scene.instantiate()
 	
-	if next_room_scene:
-		current_room_node = next_room_scene.instantiate()
-		# Force the node name to match the file name so the MapData dictionary works perfectly
+	if current_room_node:
+		# 2. Get the filename from the PackedScene's resource_path
+		var room_path = room_scene.resource_path
+		
+		# 3. Force the node name to match the file name so the MapData dictionary works perfectly
 		current_room_node.name = room_path.get_file().get_basename() 
 		current_room_container.add_child(current_room_node)
 		

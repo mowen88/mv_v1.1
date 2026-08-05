@@ -28,9 +28,11 @@ position = Vector2(16, 96)
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_jgxeo")]
 position = Vector2(-4, 92)
 exit_id = 3
+target_room_path = "uid://b8av6vwrjoaku"
 
 [node name="Door" parent="Doors" parent_id_path=PackedInt32Array(477402032) index="0" unique_id=229081297 instance=ExtResource("4_t40ox")]
 position = Vector2(132, 88)
+target_room_path = "uid://bixnwgirh71ew"
 
 [node name="InteractionComponent" parent="Doors/Door" index="1" unique_id=108345276]
 prompt_text = "Enter"
