@@ -1,9 +1,9 @@
 extends Camera2D
 
-@export var x_offset_distance: float = 5.0
-@export var follow_smoothing_speed_x: float = 8.0
-@export var follow_smoothing_down_y: float = 8.0
-@export var pan_smoothing_speed: float = 2.0
+@export var x_offset_distance: float = 6.0
+@export var look_down_modifier: float = 0.12 # percentage of y velocity
+@export var follow_smoothing_speed: float = 12.0
+@export var pan_smoothing_speed: float = 1.0
 
 var shake_tween: Tween
 var zoom_tween: Tween
@@ -22,7 +22,7 @@ func _ready() -> void:
 	SignalBus.camera_zoom_requested.connect(zoom_pulse)
 	
 	position_smoothing_enabled = true
-	position_smoothing_speed = follow_smoothing_speed_x
+	position_smoothing_speed = follow_smoothing_speed
 
 func snap_to_target(node: Node2D = null) -> void:
 	global_position = node.global_position
@@ -50,13 +50,15 @@ func clamp_position(raw_target: Vector2) -> Vector2:
 
 func update_target(player: CharacterBody2D, delta: float) -> void:
 	var desired_pos = global_position
-	var current_smoothing = follow_smoothing_speed_x
 	
 	if not overridden:
-		var target_pos = player.global_position
-		target_pos.x += player.move_component.facing * x_offset_distance
-		desired_pos = target_pos
-		current_smoothing = follow_smoothing_speed_x
+		desired_pos = player.global_position
+		desired_pos.x += player.move_component.facing * x_offset_distance
+		# Push look down based on a percentage of player's fall speed for smoothness
+		if player.velocity.y > 0:
+			desired_pos.y += player.velocity.y * look_down_modifier
+
+		position_smoothing_speed = follow_smoothing_speed
 	else:
 		var target_pos = locked_position
 		if followed_target and is_instance_valid(followed_target):
@@ -67,9 +69,9 @@ func update_target(player: CharacterBody2D, delta: float) -> void:
 		if lock_y:
 			desired_pos.y = target_pos.y
 
-		current_smoothing = pan_smoothing_speed
+		position_smoothing_speed = pan_smoothing_speed
 
-	var smoothed_pos = global_position.lerp(desired_pos, current_smoothing * delta)
+	var smoothed_pos = global_position.lerp(desired_pos, position_smoothing_speed * delta)
 	global_position = clamp_position(smoothed_pos)
 
 func set_override(pos: Vector2, x: bool = true, y: bool = true, follow: Node2D = null) -> void:

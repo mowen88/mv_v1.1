@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfvigo6oh546p"]
 
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="1_43b8i"]
-[ext_resource type="Script" uid="uid://b3ib38tmk41ly" path="res://states/world_state/environment/doors/door.gd" id="1_rv6ty"]
+[ext_resource type="Script" uid="uid://b3ib38tmk41ly" path="res://states/world_state/exits/door.gd" id="1_rv6ty"]
 
 [node name="Door" type="Sprite2D" unique_id=229081297]
 z_index = -1

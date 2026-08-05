@@ -146,8 +146,8 @@ func save_at_station(room_name: String) -> void:
 		
 	SAVE_DATA[current_slot]["player_data"] = {
 		"room_id": room_name,
-		"health": 5, 
-		"max_health": 5,
+		"health": 4, 
+		"max_health": 4,
 		"energy": 5
 	}
 	SAVE_DATA[current_slot]["game_time"] = current_time
@@ -190,19 +190,19 @@ func load_from_disk(slot_id: String) -> bool:
 	return false
 
 func get_saved_room() -> PackedScene:
-	var room_name: String = "01_a"
+	var room_name: String = "a_01"
 	
 	if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("player_data"):
 		room_name = SAVE_DATA[current_slot]["player_data"].get("room_id", "01_a")
 		
-	var room_path: String = "res://states/world_state/rooms/%s/%s.tscn" % [room_name, room_name]
+	var room_path: String = "res://states/world_state/rooms/%s.tscn" % [room_name]
 	
 	if FileAccess.file_exists(room_path):
 		var loaded_scene = load(room_path) as PackedScene
 		if loaded_scene:
 			return loaded_scene
 			
-	return preload("res://states/world_state/rooms/01_a/01_a.tscn")
+	return preload("res://states/world_state/rooms/a_01.tscn")
 
 func delete_slot(slot_id: String) -> void:
 	SAVE_DATA[slot_id] = {}

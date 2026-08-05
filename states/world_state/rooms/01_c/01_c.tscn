@@ -19,13 +19,13 @@ offset_right = 530.0
 offset_bottom = 128.0
 
 [node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="0" unique_id=811432737 instance=ExtResource("3_vubac")]
-position = Vector2(360, 48)
+position = Vector2(375, 76)
 
 [node name="CollisionShape2D" parent="CameraTriggers/CameraTrigger" index="0" unique_id=1096877515]
 position = Vector2(30, 0)
 
 [node name="Marker2D" parent="CameraTriggers/CameraTrigger" index="1" unique_id=491164102]
-position = Vector2(96, 32)
+position = Vector2(97, 4)
 
 [node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=2096936391]
 position = Vector2(522, 88)

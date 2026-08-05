@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):
 		_toggle_game_pause()
-	
 
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
 		SignalBus.camera_override_cleared.emit()
@@ -49,7 +48,7 @@ func get_zone_data(room_filename:String) -> Dictionary:
 	var tokens: PackedStringArray = room_filename.to_lower().split("_")
 	
 	if tokens.size() > 1:
-		var zone_letter: String = tokens[1]
+		var zone_letter: String = tokens[0]
 		return MapData.ZONE_REGISTRY.get(zone_letter, {})
 
 	return {}

@@ -51,3 +51,4 @@ position_smoothing_speed = 0.0
 script = ExtResource("5_i7qgc")
 
 [node name="Player" parent="." unique_id=1424915808 instance=ExtResource("3_y6a8n")]
+position = Vector2(-1, 0)

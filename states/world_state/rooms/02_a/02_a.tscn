@@ -95,7 +95,7 @@ target_room_path = "uid://bixnwgirh71ew"
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=1216138397 instance=ExtResource("6_yyfbe")]
 position = Vector2(540, 208)
 exit_id = 3
-target_room_path = "uid://dtgksoxcmiogl"
+target_room_path = "uid://dgpp7kn8tswe6"
 
 [editable path="SecretWalls/SecretWall"]
 [editable path="SecretWalls/SecretWall/HurtboxComponent"]

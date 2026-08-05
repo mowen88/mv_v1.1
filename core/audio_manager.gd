@@ -95,6 +95,7 @@ func start_music(bgm_path: String, fade_time: float = 2.0) -> void:
 	# Don't interrupt if we are already playing this track
 	if active_bgm_path == bgm_path:
 		return
+		
 	active_bgm_path = bgm_path
 	
 	# Kill current transition

@@ -63,10 +63,10 @@ offset_bottom = 248.0
 lock_x = false
 
 [node name="CollisionShape2D" parent="CameraTriggers/CameraTrigger" index="0" unique_id=1096877515]
-position = Vector2(172, 184)
+position = Vector2(180, 44)
 
 [node name="Marker2D" parent="CameraTriggers/CameraTrigger" index="1" unique_id=491164102]
-position = Vector2(176, 159)
+position = Vector2(184, 120)
 
 [node name="Ladder" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="0" unique_id=1028036334 instance=ExtResource("3_3need")]
 position = Vector2(148, 48)
