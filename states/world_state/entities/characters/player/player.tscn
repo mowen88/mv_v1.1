@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://bblrqgr5l4nsn" path="res://states/world_state/entities/characters/player/player_states/player_enter_door.gd" id="28_ak1tp"]
 [ext_resource type="Script" uid="uid://b7iahl8t08p7c" path="res://states/world_state/entities/characters/player/player_states/player_exit_door.gd" id="29_hpgvl"]
 [ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
+[ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="38_1i1x5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
 atlas = ExtResource("2_2yeee")
@@ -399,8 +400,10 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
+position = Vector2(0, 12)
 sprite_frames = SubResource("SpriteFrames_g3adm")
 animation = &"exit_door"
+offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
 position = Vector2(0, 1.5)
@@ -496,6 +499,10 @@ max_energy = 24
 hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("21_edub2")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="SquashStretchComponent" parent="." unique_id=843710349 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("38_1i1x5")]
 sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
 

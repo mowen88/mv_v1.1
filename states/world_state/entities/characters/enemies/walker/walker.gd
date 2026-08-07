@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
+@onready var squash_stretch_component: SquashStretchComponent = $SquashStretchComponent
 
 
 func _ready() -> void:

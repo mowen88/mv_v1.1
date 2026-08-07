@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b58p3b86k27c0"]
+
+[ext_resource type="Texture2D" uid="uid://d3sikhb2yh4pi" path="res://states/world_state/particles/bush_leaves/bush_leaves_particles.png" id="1_6fw0j"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cqtpw"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_67xoo"]
+_data = [Vector2(0, 1), 0.0, -0.16115803, 0, 1, Vector2(1, 0), -1.5659183, 0.0, 1, 0]
+point_count = 2
+metadata/_snap_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cqtpw"]
+curve = SubResource("Curve_67xoo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cqtpw"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -1, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 89.999985
+gravity = Vector3(0, 250, 0)
+linear_accel_min = -300.0
+linear_accel_max = -200.0
+alpha_curve = SubResource("CurveTexture_cqtpw")
+anim_offset_max = 1.0
+
+[node name="BushLeavesParticle" type="GPUParticles2D" unique_id=2061164650]
+z_index = 1
+material = SubResource("CanvasItemMaterial_cqtpw")
+emitting = false
+amount = 16
+texture = ExtResource("1_6fw0j")
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cqtpw")

@@ -12,6 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://blhc6gxnqgk8o" path="res://states/world_state/environment/platforms/disappearing_platform/disappearing_platform.tscn" id="9_0881p"]
 [ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit.tscn" id="9_ehkm8"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0881p"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_odhqf"]
 resource_local_to_scene = true
 shader = ExtResource("4_2lafy")
@@ -19,12 +25,6 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_va2i6"]
-resource_local_to_scene = true
-shader = ExtResource("4_2lafy")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7134i"]
 resource_local_to_scene = true
 shader = ExtResource("4_2lafy")
 shader_parameter/flash_active = false
@@ -50,16 +50,16 @@ text = "New message!"
 position = Vector2(96, 120)
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="0" unique_id=467671426 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_odhqf")
-position = Vector2(204, 216)
+material = SubResource("ShaderMaterial_0881p")
+position = Vector2(204, 218)
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="1" unique_id=1937326277 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_va2i6")
-position = Vector2(220, 216)
+material = SubResource("ShaderMaterial_odhqf")
+position = Vector2(220, 218)
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="2" unique_id=1528004601 instance=ExtResource("3_ewo3h")]
-material = SubResource("ShaderMaterial_7134i")
-position = Vector2(236, 216)
+material = SubResource("ShaderMaterial_va2i6")
+position = Vector2(236, 218)
 
 [node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="0" unique_id=811432737 instance=ExtResource("7_gvgnm")]
 lock_x = false

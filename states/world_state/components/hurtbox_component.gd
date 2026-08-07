@@ -27,7 +27,7 @@ func receive_damage(hitbox: Node2D, amount:int, knockback_force:float) -> bool:
 	hit_received.emit(hitbox, knockback_force)
 	
 	if owner.is_in_group("energy_gaining"):
-		SignalBus.player_energy_gained.emit(get_owner())
+		SignalBus.player_energy_gained.emit(owner)
 	
 	start_invincibility()
 	return true

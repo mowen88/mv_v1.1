@@ -22,6 +22,7 @@ func handle_input(event: InputEvent) -> void:
 func physics_update(delta: float) -> void:
 
 	if owner.is_on_floor():
+		owner.squash_stretch_component.squash_stretch(Vector2(1.25, 0.75), Vector2(0.9, 1.1), 0.12)
 		if owner.jump_buffer_timer.time_left > 0:
 			owner.jump_buffer_timer.stop()
 			fsm.change_state("Jump")

@@ -7,9 +7,11 @@ extends CharacterBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var energy_component: EnergyComponent = $EnergyComponent
 
+
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
+@onready var squash_stretch_component: SquashStretchComponent = $SquashStretchComponent
 
 @onready var sword = $SwordScene
 

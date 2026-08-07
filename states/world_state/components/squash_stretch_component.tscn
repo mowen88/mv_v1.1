@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dduhheq66d0n2"]
+
+[ext_resource type="Script" uid="uid://dd67nr2x3ksn5" path="res://states/world_state/components/squash_stretch_component.gd" id="1_o2d3n"]
+
+[node name="SquashStretchComponent" type="Node" unique_id=843710349]
+script = ExtResource("1_o2d3n")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://csmygkq7icmjr" path="res://states/world_state/components/hurtbox_component.gd" id="1_us04d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us04d"]
-size = Vector2(8, 16)
+size = Vector2(4, 16)
 
 [node name="HurtboxComponent" type="Area2D" unique_id=580697701]
 collision_layer = 8

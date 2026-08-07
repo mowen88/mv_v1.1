@@ -5,6 +5,8 @@ extends StaticBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var flash_component: FlashComponent = $FlashComponent
+@onready var squash_stretch_component: SquashStretchComponent = $SquashStretchComponent
+
 @export var particle_name: String
 
 func _ready() -> void:	
@@ -12,6 +14,7 @@ func _ready() -> void:
 
 func _on_health_reduced(current_health: int) -> void:
 	flash_component.play_flash()
+	squash_stretch_component.squash_stretch(Vector2(1.3, 0.7), Vector2(0.8, 1.2), 0.15)
 		
 	var damage_taken = health_component.max_health - health_component.current_health
 	

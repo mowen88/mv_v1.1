@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="10_jji3v"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="11_mmfun"]
 [ext_resource type="AudioStream" uid="uid://bnbldahdi3xwa" path="res://states/world_state/entities/characters/enemies/walker/walker_hit.ogg" id="15_uubgs"]
+[ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="16_uubgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctpbx"]
 atlas = ExtResource("3_xdke5")
@@ -83,8 +84,10 @@ script = ExtResource("2_ukh86")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_gf6qi")
+position = Vector2(0, 12)
 sprite_frames = SubResource("SpriteFrames_7ldib")
 animation = &"idle"
+offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
 shape = SubResource("CapsuleShape2D_y1g45")
@@ -123,6 +126,10 @@ hurtbox_component = NodePath("../HurtboxComponent")
 sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
 fsm = NodePath("../FiniteStateMachine")
+
+[node name="SquashStretchComponent" parent="." unique_id=1691292316 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("16_uubgs")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") groups=["enemies", "energy_gaining"] instance=ExtResource("9_ctpbx")]
 sound = ExtResource("15_uubgs")
