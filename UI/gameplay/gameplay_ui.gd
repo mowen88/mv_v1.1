@@ -53,36 +53,41 @@ func _on_tutorial_message_requested(message:String) -> void:
 	message_tween.tween_callback(func(): tutorial_message.visible = false)
 
 func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
-	
-	# Kill the ongoing fade out/in from the previous room immediately
+	# Instantly kill any ongoing animation or pending delay from a previous room
 	if banner_tween:
 		banner_tween.kill()
 	
 	if not show_banner or zone_name == "":
 		zone_label.visible = false
 		return
-	
-	# Wait a sec before sliding in banner
-	await get_tree().create_timer(1.0).timeout
 
+	# Reset visual state immediately in case an old one was partway through fading out
 	zone_label.text = zone_name
 	zone_label.position.x = banner_initial_x
-	zone_label.modulate.a = 1.0
-	zone_label.visible = true
-	
+	zone_label.modulate.a = 0.0  # Start invisible, or 1.0 if you want it to pop
+	zone_label.visible = false
+
 	var target_x = banner_initial_x - zone_label.size.x
 
 	banner_tween = create_tween()
-	# Fade in
+	
+	# 1. Wait a sec before starting the animation (safely killed if you leave early)
+	banner_tween.tween_interval(1.0)
+	
+	# 2. Make visible right as the slide starts
+	banner_tween.tween_callback(func(): zone_label.visible = true)
+	
+	# 3. Slide in / Fade in
 	banner_tween.tween_property(zone_label, "position:x", target_x, 1.5)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	# Wait visible for 2 seconds
-	banner_tween.tween_interval(2.0)
-	# Fade out
-	banner_tween.tween_property(zone_label, "modulate:a", 0.0, 0.5)
-	banner_tween.tween_callback(func():
-		zone_label.visible = false)
+	banner_tween.parallel().tween_property(zone_label, "modulate:a", 1.0, 0.5)
 	
+	# 4. Hold visible for 2 seconds
+	banner_tween.tween_interval(2.0)
+	
+	# 5. Fade out and hide
+	banner_tween.tween_property(zone_label, "modulate:a", 0.0, 0.5)
+	banner_tween.tween_callback(func(): zone_label.visible = false)
 
 # Energy logic
 func _on_max_energy_changed(new_max: int) -> void:
