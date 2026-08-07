@@ -1,5 +1,9 @@
 extends Control
 
+@export var select_sound = AudioStream
+@export var go_to_game_sound = AudioStream
+@export var back_sound = AudioStream
+
 @onready var main_menu: VBoxContainer = $MainMenu
 @onready var settings_menu: VBoxContainer = $SettingsMenu
 @onready var audio_menu: VBoxContainer = $AudioMenu
@@ -45,16 +49,17 @@ func _ready() -> void:
 	
 
 func _on_volume_changed(bus_name:String, value:float) -> void:
+	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
 	var key = bus_name + " Volume"
 	SaveManager.update_setting(key, value)
-	## 2. Update the AudioServer
-	## Make sure your Audio Bus is named exactly "Music", "SFX", or "Master"
-	#var bus_idx = AudioServer.get_bus_index(bus_name)
-	#
-	#if bus_idx != -1:
-		#AudioServer.set_bus_volume_db(bus_idx, linear_to_db(value))
-	#else:
-		#push_warning("Audio Bus not found: " + bus_name)
+	
+	# Update the AudioServer, matched string names exactly
+	var bus_idx = AudioServer.get_bus_index(bus_name)
+	
+	if bus_idx != -1:
+		AudioServer.set_bus_volume_db(bus_idx, linear_to_db(value))
+	else:
+		push_warning("Audio Bus not found: " + bus_name)
 		
 func _on_battery_saver_toggled(is_on: bool) -> void:
 	VibrateManager.run(200)
@@ -84,6 +89,9 @@ func show_panel(target_menu: VBoxContainer) -> void:
 	if InputManager.input_lock:
 		return
 		
+	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
+	VibrateManager.run(200)
+	
 	InputManager.input_lock = true
 	
 	# Fade out current active menu panel
@@ -116,6 +124,10 @@ func _on_delete_confirmed() -> void:
 	_go_back()
 
 func _on_save_slot_selected(slot_id: String) -> void:
+	
+	AudioManager.play_sfx(go_to_game_sound, global_position, 1, 0.15)
+	VibrateManager.run(200)
+	
 	SaveManager.current_slot = slot_id
 	
 	var save_exists: bool = SaveManager.load_from_disk(slot_id)
@@ -138,6 +150,10 @@ func _on_save_slot_selected(slot_id: String) -> void:
 	AudioManager.stop_music(2.0)
 	
 func _go_back() -> void:
+	
+	AudioManager.play_sfx(back_sound, global_position, 1, 0.15)
+	VibrateManager.run(200)
+	
 	# If there is nothing left in our history stack, we can't go back further
 	if menu_stack.is_empty() or InputManager.input_lock:
 		return

@@ -33,10 +33,7 @@ func _on_slider_changed(value: float, bus_name: String) -> void:
 	
 	# Apply changes to Godot's Audio Server
 	_apply_volume_to_server(bus_name, value)
-	
-	# (Optional) If your SaveManager writes to disk on change, call it here:
-	# SaveManager.save_settings()
-	
+
 	volume_changed.emit(bus_name, value)
 	
 func _apply_volume_to_server(bus_name: String, linear_value: float) -> void:

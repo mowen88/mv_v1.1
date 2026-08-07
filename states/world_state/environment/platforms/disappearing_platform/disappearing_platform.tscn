@@ -172,6 +172,7 @@ size = Vector2(16, 9)
 [node name="DisappearingPlatform" type="StaticBody2D" unique_id=1856274342]
 collision_mask = 0
 script = ExtResource("1_ov6jt")
+reappear_time = 2.0
 
 [node name="Timer" type="Timer" parent="." unique_id=100245705]
 
