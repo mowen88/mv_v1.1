@@ -30,6 +30,18 @@ shader = ExtResource("4_2lafy")
 shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7134i"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3p7t"]
+resource_local_to_scene = true
+shader = ExtResource("4_2lafy")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
 [node name="01_b" unique_id=315341494 instance=ExtResource("1_ani36")]
 
 [node name="CameraLimits" parent="." index="0" unique_id=671455297]
@@ -60,6 +72,20 @@ position = Vector2(220, 218)
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="2" unique_id=1528004601 instance=ExtResource("3_ewo3h")]
 material = SubResource("ShaderMaterial_va2i6")
 position = Vector2(236, 218)
+
+[node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="3" unique_id=1032635385 instance=ExtResource("3_ewo3h")]
+material = SubResource("ShaderMaterial_7134i")
+position = Vector2(230, 218)
+
+[node name="AnimatedSprite2D" parent="Destructibles/Bush4" index="0" unique_id=177856894]
+flip_h = true
+
+[node name="Bush5" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="4" unique_id=1144978135 instance=ExtResource("3_ewo3h")]
+material = SubResource("ShaderMaterial_g3p7t")
+position = Vector2(196, 218)
+
+[node name="AnimatedSprite2D" parent="Destructibles/Bush5" index="0" unique_id=177856894]
+flip_h = true
 
 [node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="0" unique_id=811432737 instance=ExtResource("7_gvgnm")]
 lock_x = false
@@ -112,5 +138,9 @@ position = Vector2(280, 204)
 exit_id = 2
 target_room_path = "uid://b8fpdwap0vxjg"
 
+[editable path="Destructibles/Bush4"]
+[editable path="Destructibles/Bush4/HurtboxComponent"]
+[editable path="Destructibles/Bush5"]
+[editable path="Destructibles/Bush5/HurtboxComponent"]
 [editable path="CameraTriggers/CameraTrigger"]
 [editable path="Platforms/DisappearingPlatformGroup"]
