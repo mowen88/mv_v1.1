@@ -88,11 +88,12 @@ func _initialize_menu(menu_name: String = "MainMenu") -> void:
 	fade_in.tween_property(current_menu, "modulate:a", 1.0, fade_speed)
 
 func show_panel(target_menu: VBoxContainer) -> void:
-	if InputManager.input_lock:
-		return
-		
+	
 	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
 	VibrateManager.run(200)
+	
+	if InputManager.input_lock:
+		return
 	
 	InputManager.input_lock = true
 	
