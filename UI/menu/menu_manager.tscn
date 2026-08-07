@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://x16rq371yhov" path="res://UI/menu/menu_manager.gd" id="1_8qffr"]
 [ext_resource type="Script" uid="uid://8r0c5x8gij5a" path="res://UI/menu/main_menu.gd" id="2_b8rgm"]
-[ext_resource type="AudioStream" uid="uid://bf0ati1ei77cd" path="res://UI/menu/audio/menu_select.ogg" id="2_souut"]
+[ext_resource type="AudioStream" uid="uid://c0ma4ew8ccppo" path="res://UI/menu/audio/menu_select.mp3" id="2_dw6nm"]
+[ext_resource type="AudioStream" uid="uid://b7lo15eehy8gm" path="res://UI/menu/audio/menu_start_game.mp3" id="3_665ki"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_b8rgm"]
-[ext_resource type="AudioStream" uid="uid://pjlwgym6w38d" path="res://UI/menu/audio/menu_back.ogg" id="3_dw6nm"]
 [ext_resource type="Script" uid="uid://datic66a6nfo3" path="res://UI/menu/settings_menu.gd" id="3_jgxlf"]
+[ext_resource type="AudioStream" uid="uid://bsmifkbqdiqa2" path="res://UI/menu/audio/menu_back.mp3" id="4_2gngb"]
 [ext_resource type="Script" uid="uid://b6e66k6rwq6qt" path="res://UI/menu/audio_menu.gd" id="5_ems2t"]
 [ext_resource type="Script" uid="uid://ccwnj4sqg0jvc" path="res://UI/menu/save_slot_menu.gd" id="5_jgxlf"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="5_w6o3i"]
@@ -32,9 +33,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8qffr")
-select_sound = ExtResource("2_souut")
-go_to_game_sound = ExtResource("2_souut")
-back_sound = ExtResource("3_dw6nm")
+select_sound = ExtResource("2_dw6nm")
+go_to_game_sound = ExtResource("3_665ki")
+back_sound = ExtResource("4_2gngb")
 
 [node name="MainMenu" type="VBoxContainer" parent="." unique_id=1991166084]
 visible = false

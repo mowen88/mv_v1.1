@@ -49,7 +49,6 @@ func _ready() -> void:
 	
 
 func _on_volume_changed(bus_name:String, value:float) -> void:
-	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
 	var key = bus_name + " Volume"
 	SaveManager.update_setting(key, value)
 	
@@ -62,15 +61,18 @@ func _on_volume_changed(bus_name:String, value:float) -> void:
 		push_warning("Audio Bus not found: " + bus_name)
 		
 func _on_battery_saver_toggled(is_on: bool) -> void:
+	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
 	VibrateManager.run(200)
 	SaveManager.update_setting("Battery Saver", is_on)
 	Engine.max_fps = 30 if is_on else 60
 
 func _on_vibrate_toggled(is_on: bool) -> void:
+	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
 	VibrateManager.run(200)
 	SaveManager.update_setting("Vibration", is_on)
 
 func _on_screenshake_toggled(is_on: bool) -> void:
+	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
 	VibrateManager.run(200)
 	SaveManager.update_setting("Screenshake", is_on)
 

@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var zone_label: Label = $ZoneLabel
 @onready var tutorial_message: Label = $TutorialMessage
 
+@onready var banner_initial_x = zone_label.position.x
+
 # Health Textures
 const HEALTH_FULL_TEX = preload("res://UI/gameplay/elements/health_node_full.png")
 const HEALTH_EMPTY_TEX = preload("res://UI/gameplay/elements/health_node_empty.png")
@@ -13,7 +15,10 @@ const HEALTH_EMPTY_TEX = preload("res://UI/gameplay/elements/health_node_empty.p
 const ENERGY_FULL_TEX = preload("res://UI/gameplay/elements/energy_full.png") 
 const ENERGY_EMPTY_TEX = preload("res://UI/gameplay/elements/energy_empty.png")
 
+
+
 func _ready() -> void:
+	
 	# Messages
 	SignalBus.zone_banner_requested.connect(_on_zone_banner_requested)
 	SignalBus.tutorial_message_requested.connect(_on_tutorial_message_requested)
@@ -48,6 +53,7 @@ func _on_tutorial_message_requested(message:String) -> void:
 	message_tween.tween_callback(func(): tutorial_message.visible = false)
 
 func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
+	
 	# Kill the ongoing fade out/in from the previous room immediately
 	if banner_tween:
 		banner_tween.kill()
@@ -55,19 +61,28 @@ func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 	if not show_banner or zone_name == "":
 		zone_label.visible = false
 		return
+	
+	# Wait a sec before sliding in banner
+	await get_tree().create_timer(1.0).timeout
 
 	zone_label.text = zone_name
-	zone_label.modulate.a = 0.0
+	zone_label.position.x = banner_initial_x
+	zone_label.modulate.a = 1.0
 	zone_label.visible = true
+	
+	var target_x = banner_initial_x - zone_label.size.x
 
 	banner_tween = create_tween()
 	# Fade in
-	banner_tween.tween_property(zone_label, "modulate:a", 1.0, 0.5)
+	banner_tween.tween_property(zone_label, "position:x", target_x, 1.5)\
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	# Wait visible for 2 seconds
 	banner_tween.tween_interval(2.0)
 	# Fade out
 	banner_tween.tween_property(zone_label, "modulate:a", 0.0, 0.5)
-	banner_tween.tween_callback(func(): zone_label.visible = false)
+	banner_tween.tween_callback(func():
+		zone_label.visible = false)
+	
 
 # Energy logic
 func _on_max_energy_changed(new_max: int) -> void:

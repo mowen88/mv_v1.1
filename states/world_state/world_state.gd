@@ -48,7 +48,7 @@ func get_zone_data(room_filename:String) -> Dictionary:
 	var tokens: PackedStringArray = room_filename.to_lower().split("_")
 	
 	if tokens.size() > 1:
-		var zone_letter: String = tokens[0]
+		var zone_letter: String = tokens[1]
 		return MapData.ZONE_REGISTRY.get(zone_letter, {})
 
 	return {}
