@@ -1382,7 +1382,7 @@ offset_bottom = 40.0
 [node name="BGTileMap" type="TileMapLayer" parent="." unique_id=599124256]
 
 [node name="SolidTileMap" type="TileMapLayer" parent="." unique_id=12999079]
-z_index = 1
+z_index = 2
 
 [node name="SlopeTileMap" type="TileMapLayer" parent="." unique_id=1149728441 groups=["slopes"]]
 tile_set = SubResource("TileSet_83wd4")
@@ -1398,6 +1398,8 @@ tile_set = SubResource("TileSet_83wd4")
 [node name="SafeRespawns" type="Node" parent="." unique_id=1114979653]
 
 [node name="CameraTriggers" type="Node" parent="." unique_id=1709709420]
+
+[node name="Platforms" type="Node" parent="." unique_id=225921246]
 
 [node name="Ladders" type="Node" parent="." unique_id=997621068 groups=["ladders"]]
 

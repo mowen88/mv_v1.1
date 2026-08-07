@@ -55,10 +55,10 @@ func register_room_visited(room_name:String) -> void:
 		print_rich("[color=orange]MAP SYSTEM: Discovered new room: %s[/color]" % room_name)
 		
 		# Update the dictionary percentage value live whenever a new room is registered
-		_update_runtime_percentage(current_slot)
+		_update_game_completion_percentage(current_slot)
 
-## Private helper that calculates and saves the integer percentage directly into the slot dict
-func _update_runtime_percentage(slot_id: String) -> void:
+## Helper that calculates and saves the integer percentage directly into the slot dict
+func _update_game_completion_percentage(slot_id: String) -> void:
 	if not SAVE_DATA.has(slot_id) or not SAVE_DATA[slot_id].has("visited_rooms"):
 		SAVE_DATA[slot_id]["percent_complete"] = 0
 		return
@@ -66,7 +66,7 @@ func _update_runtime_percentage(slot_id: String) -> void:
 	var visited_room_count: float = float(SAVE_DATA[slot_id]["visited_rooms"].size())
 	var percentage = (visited_room_count / TOTAL_ROOMS) * 100.0
 	
-	# Keep it right here inside your primary dictionary state!
+	# Keep it right here inside primary dictionary state
 	SAVE_DATA[slot_id]["percent_complete"] = int(clamp(percentage, 0.0, 100.0))
 
 ## Formats both total play time and map completion percentage into a clean, combined string layout
@@ -154,7 +154,7 @@ func save_at_station(room_name: String) -> void:
 	SAVE_DATA[current_slot]["visited_rooms"] = visited_room_list
 	
 	# Make sure the dictionary contains the correct value before writing
-	_update_runtime_percentage(current_slot)
+	_update_game_completion_percentage(current_slot)
 	save_to_disk()
 
 func save_to_disk() -> void:
@@ -189,20 +189,35 @@ func load_from_disk(slot_id: String) -> bool:
 			
 	return false
 
+#func get_saved_room() -> PackedScene:
+	#var room_name: String = "a_01"
+	#
+	#if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("player_data"):
+		#room_name = SAVE_DATA[current_slot]["player_data"].get("room_id", "01_a")
+		#
+	#var room_path: String = "res://states/world_state/rooms/%s.tscn" % [room_name]
+	#
+	#if FileAccess.file_exists(room_path):
+		#var loaded_scene = load(room_path) as PackedScene
+		#if loaded_scene:
+			#return loaded_scene
+			#
+	#return preload("res://states/world_state/rooms/a_01.tscn")
+
 func get_saved_room() -> PackedScene:
-	var room_name: String = "a_01"
+	var room_name: String = "01_a"
 	
 	if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("player_data"):
 		room_name = SAVE_DATA[current_slot]["player_data"].get("room_id", "01_a")
 		
-	var room_path: String = "res://states/world_state/rooms/%s.tscn" % [room_name]
+	var room_path: String = "res://states/world_state/rooms/%s/%s.tscn" % [room_name, room_name]
 	
 	if FileAccess.file_exists(room_path):
 		var loaded_scene = load(room_path) as PackedScene
 		if loaded_scene:
 			return loaded_scene
 			
-	return preload("res://states/world_state/rooms/a_01.tscn")
+	return preload("res://states/world_state/rooms/01_a/01_a.tscn")
 
 func delete_slot(slot_id: String) -> void:
 	SAVE_DATA[slot_id] = {}
