@@ -136,6 +136,8 @@ func save_persistent_object(object_id: String) -> void:
         persistent_list.append(object_id)
         SAVE_DATA[current_slot]["persistent_objects"] = persistent_list
         print_rich("[color=yellow]SAVE SYSTEM: Registered persistent object %s[/color]" % object_id)
+    else:
+        print_rich("[color=red]SAVE SYSTEM: Persistent object already registered %s[/color]" % object_id)
 
 func save_at_station(room_name: String) -> void:
     if not SAVE_DATA.has(current_slot):

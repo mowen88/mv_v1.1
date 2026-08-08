@@ -31,7 +31,7 @@ position = Vector2(16, 12)
 position = Vector2(48, 12)
 
 [node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=1545362515]
-position = Vector2(80, 88)
+position = Vector2(48, 88)
 
 [node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="1" unique_id=361293440]
 position = Vector2(16, 56)
@@ -41,6 +41,8 @@ position = Vector2(260, 88)
 
 [node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="3" unique_id=1219690085]
 position = Vector2(216, 104)
+
+[node name="4" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="4" unique_id=1391325317]
 
 [node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_ulidl")]
 position = Vector2(-5, 52)
@@ -58,6 +60,7 @@ target_room_path = "uid://b8fpdwap0vxjg"
 
 [node name="Door" parent="Doors" parent_id_path=PackedInt32Array(477402032) index="0" unique_id=229081297 instance=ExtResource("4_5x8u3")]
 position = Vector2(80, 80)
+exit_id = 4
 target_room_path = "uid://dgpp7kn8tswe6"
 
 [node name="ColorRect" parent="Doors/Door" index="0" unique_id=1608988034]

@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://b3mmuwhweywvm"]
+
+[ext_resource type="Script" uid="uid://cix0kiy1w8hso" path="res://states/world_state/environment/trap_doors/trap_door.gd" id="1_o38md"]
+[ext_resource type="Texture2D" uid="uid://yqg7nsnhruyc" path="res://states/world_state/environment/trap_doors/trap_door_spritsheet.png" id="1_u2sut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o38md"]
+size = Vector2(8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lumva"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(32, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0wuq"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(24, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7chn"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(16, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmdbm"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(8, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqh76"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(0, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gycw"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(0, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wiah"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(8, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh7ub"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(16, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewtfi"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(24, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yowos"]
+atlas = ExtResource("1_u2sut")
+region = Rect2(32, 0, 8, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2qak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lumva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0wuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7chn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmdbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqh76")
+}],
+"loop": false,
+"name": &"close",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gycw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wiah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh7ub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewtfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yowos")
+}],
+"loop": false,
+"name": &"open",
+"speed": 12.0
+}]
+
+[node name="TrapDoor" type="StaticBody2D" unique_id=1771786173]
+script = ExtResource("1_o38md")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1935697797]
+shape = SubResource("RectangleShape2D_o38md")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=687886265]
+sprite_frames = SubResource("SpriteFrames_a2qak")
+animation = &"open"

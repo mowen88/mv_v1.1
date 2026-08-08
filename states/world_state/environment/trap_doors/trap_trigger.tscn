@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b0q07bohysmys"]
+
+[ext_resource type="Script" uid="uid://duwhuesd8mun1" path="res://states/world_state/environment/trap_doors/trap_trigger.gd" id="1_5ps2a"]
+[ext_resource type="PackedScene" uid="uid://b3mmuwhweywvm" path="res://states/world_state/environment/trap_doors/trap_door.tscn" id="2_vpxuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s45pc"]
+size = Vector2(24, 50)
+
+[node name="TrapTrigger" type="Area2D" unique_id=627399350 groups=["persistent"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_5ps2a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552174093]
+shape = SubResource("RectangleShape2D_s45pc")
+
+[node name="DoorContainer" type="Node2D" parent="." unique_id=1263912219 groups=["persistent"]]
+
+[node name="TrapDoor" parent="DoorContainer" unique_id=276141706 instance=ExtResource("2_vpxuq")]

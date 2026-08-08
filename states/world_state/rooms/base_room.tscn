@@ -1410,3 +1410,5 @@ tile_set = SubResource("TileSet_83wd4")
 [node name="Doors" type="Node" parent="." unique_id=477402032]
 
 [node name="Enemies" type="Node" parent="." unique_id=1127347775]
+
+[node name="TrapDoors" type="Node" parent="." unique_id=1668417706]

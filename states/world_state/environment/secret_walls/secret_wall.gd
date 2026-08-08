@@ -12,7 +12,7 @@ extends StaticBody2D
 func _ready() -> void:	
 	# Connect to hit_received instead of health_changed so we can capture the hitbox/attacker data
 	hurtbox_component.hit_received.connect(_on_hit_received)
-	health_component.health_changed.connect(_on_health_reduced)
+	health_component.died.connect(_on_death)
 
 func _on_hit_received(hitbox: Area2D, knockback_force: float) -> void:
 	
@@ -27,15 +27,13 @@ func _on_hit_received(hitbox: Area2D, knockback_force: float) -> void:
 	# Settle back home
 	tween.tween_property(self, "position:x", home_x, 0.08)
 
-func _on_health_reduced(current_health: int) -> void:
-	# If health hits 0, trigger particles and fade out / destroy
-	if current_health <= 0:
-		if owner and owner.is_in_group("persistent"):
-			var persistent_id = str(owner.get_path())
-			# SaveManager.save_destroyed_object(persistent_id)
-			
-		ParticleManager.play(particle_name, global_position)
-		_fade_and_destroy()
+func _on_death() -> void:
+	# trigger particles and fade out / destroy
+	if owner and owner.is_in_group("persistent"):
+		SaveManager.save_destroyed_object(persistent_id)
+		
+	ParticleManager.play(particle_name, global_position)
+	_fade_and_destroy()
 
 func _fade_and_destroy() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)

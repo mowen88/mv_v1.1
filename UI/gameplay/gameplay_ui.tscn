@@ -38,6 +38,7 @@ theme_override_font_sizes/font_size = 144
 
 [node name="ZoneLabelUnderline" type="Line2D" parent="ZoneLabel" unique_id=1511416545]
 points = PackedVector2Array(0, 0, 800, 0)
+width = 9.0
 
 [node name="TutorialMessage" type="Label" parent="." unique_id=1434587093]
 anchors_preset = 5
