@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="3_tctj2"]
 [ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="4_haym2"]
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="4_xdbp3"]
+[ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="6_yf6r0"]
 [ext_resource type="AudioStream" uid="uid://cmjrx76meckax" path="res://states/world_state/environment/destructibles/chest/chest_hit_sound.ogg" id="7_xdbp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdbp3"]
@@ -40,9 +41,10 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="Chest" type="StaticBody2D" unique_id=154791020 groups=["persistent"]]
+[node name="Chest" type="StaticBody2D" unique_id=1938050104 groups=["persistent"]]
 collision_mask = 0
 script = ExtResource("1_4wxkn")
+currency_value = null
 particle_name = "money_burst"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187662859]
@@ -64,6 +66,9 @@ hurtbox_component = NodePath("../HurtboxComponent")
 [node name="SquashStretchComponent" parent="." unique_id=843710349 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("4_haym2")]
 sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="PersistenceComponent" parent="." unique_id=375036549 instance=ExtResource("6_yf6r0")]
+persistent_id = "chest_test_01"
 
 [node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("4_xdbp3")]
 sound = ExtResource("7_xdbp3")

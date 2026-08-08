@@ -110,7 +110,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 	
 	if Input.is_action_just_pressed("shoot"):
-		SignalBus.trap_doors_unlocked.emit("trap_room_01")
+		SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
 		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
 		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
 		#SignalBus.zone_banner_requested.emit("Big Bad Boss", true)

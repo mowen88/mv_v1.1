@@ -1,20 +1,11 @@
 extends Area2D
 
-@export var persistent_id: String = ""
 @onready var door_container: Node2D = $DoorContainer
+@onready var persistence_component: PersistenceComponent = $PersistenceComponent
 
 func _ready() -> void:
-	_kill_if_not_persistent()
-	body_entered.connect(_on_body_entered)
-	
-	# Check if should be spawned or not, queue free if not
-func _kill_if_not_persistent() -> void:
-	if is_in_group("persistent") and persistent_id != "":
-			var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
-			var persistent_list = slot_data.get("persistent_objects", [])
-			
-			if persistent_id in persistent_list:
-				queue_free()
+	persistence_component.persistent_state_loaded.connect(_on_persistent_state_loaded)
+	body_entered.connect(_on_body_entered)	
 	
 func _on_body_entered(player: Node2D) -> void:
 	if not player.is_in_group("player"):
@@ -24,5 +15,10 @@ func _on_body_entered(player: Node2D) -> void:
 	for child in door_container.get_children():
 		if child.has_method("activate"):
 			child.activate()
-				
+			## Connect the main add to persistent function to child doors and run
+			## it when the door calls to signal for this particular persistent id
+			child.open_doors.connect(func():persistence_component.add_to_peristent_list())
 	set_deferred("monitoring", false)
+
+func _on_persistent_state_loaded(_previous_position:Vector2) -> void:
+	queue_free()

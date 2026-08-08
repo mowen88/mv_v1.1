@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal open_doors
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
@@ -16,9 +18,8 @@ func _on_trap_doors_unlocked(encounter_id:String) -> void:
 	animated_sprite.animation_finished.connect(func():queue_free())
 
 	# Change/stop music
-	
+	open_doors.emit()
 	# Add encounter to persistent states
-	SaveManager.save_persistent_object(encounter_id)
 
 func activate() -> void:
 	if state == "close":

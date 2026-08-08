@@ -1,7 +1,7 @@
 class_name Walker
 extends CharacterBody2D
 
-@export var persistent_id: String = ""
+
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine

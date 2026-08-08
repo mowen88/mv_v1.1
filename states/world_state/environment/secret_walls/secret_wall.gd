@@ -1,20 +1,19 @@
 class_name SecretWall
 extends StaticBody2D
 
-@export var persistent_id: String = ""
-
 @onready var canvas_group: CanvasGroup = $CanvasGroup
 @onready var tile_map_layer: TileMapLayer = $CanvasGroup/TileMapLayer
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var persistence_component: PersistenceComponent = $PersistenceComponent
 @export var particle_name: String = "small_blast"
 
 func _ready() -> void:	
-	# Connect to hit_received instead of health_changed so we can capture the hitbox/attacker data
+	persistence_component.persistent_state_loaded.connect(_on_persistent_state_loaded)
 	hurtbox_component.hit_received.connect(_on_hit_received)
 	health_component.died.connect(_on_death)
 
-func _on_hit_received(hitbox: Area2D, knockback_force: float) -> void:
+func _on_hit_received(hitbox:Area2D, _knockback_force:float) -> void:
 	
 	var direction = sign(global_position.x - hitbox.global_position.x)
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
@@ -27,13 +26,15 @@ func _on_hit_received(hitbox: Area2D, knockback_force: float) -> void:
 	# Settle back home
 	tween.tween_property(self, "position:x", home_x, 0.08)
 
+func _on_persistent_state_loaded(previous_position:Vector2 = global_position) -> void:
+	queue_free()
+
 func _on_death() -> void:
-	# trigger particles and fade out / destroy
-	if owner and owner.is_in_group("persistent"):
-		SaveManager.save_destroyed_object(persistent_id)
-		
+	persistence_component.add_to_peristent_list()
+
 	ParticleManager.play(particle_name, global_position)
 	_fade_and_destroy()
+
 
 func _fade_and_destroy() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)

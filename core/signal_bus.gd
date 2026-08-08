@@ -28,4 +28,4 @@ signal player_max_energy_changed(new_max: int)
 signal player_energy_gained(entity: Node2D)
 signal player_respawn(position:Vector2)
 
-signal trap_doors_unlocked(encounter_id:String)
+signal trap_doors_unlocked(_id:String)
