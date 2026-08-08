@@ -1403,6 +1403,8 @@ tile_set = SubResource("TileSet_83wd4")
 
 [node name="Ladders" type="Node" parent="." unique_id=997621068 groups=["ladders"]]
 
+[node name="TrapDoors" type="Node" parent="." unique_id=1668417706]
+
 [node name="Spawns" type="Node" parent="." unique_id=1711980423]
 
 [node name="RoomExits" type="Node" parent="." unique_id=725630175]
@@ -1410,5 +1412,3 @@ tile_set = SubResource("TileSet_83wd4")
 [node name="Doors" type="Node" parent="." unique_id=477402032]
 
 [node name="Enemies" type="Node" parent="." unique_id=1127347775]
-
-[node name="TrapDoors" type="Node" parent="." unique_id=1668417706]

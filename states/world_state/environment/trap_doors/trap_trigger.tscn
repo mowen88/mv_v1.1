@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="3_vpxuq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s45pc"]
+resource_local_to_scene = true
 size = Vector2(24, 50)
 
 [node name="TrapTrigger" type="Area2D" unique_id=627399350]

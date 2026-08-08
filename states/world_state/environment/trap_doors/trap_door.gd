@@ -15,10 +15,10 @@ func _ready() -> void:
 func _on_trap_doors_unlocked(encounter_id:String) -> void:
 	state = "open"
 	animated_sprite.play("open")
-	animated_sprite.animation_finished.connect(func():queue_free())
+	animated_sprite.animation_finished.connect(func():open_doors.emit())
 
 	# Change/stop music
-	open_doors.emit()
+	#open_doors.emit()
 	# Add encounter to persistent states
 
 func activate() -> void:

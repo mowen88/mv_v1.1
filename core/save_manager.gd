@@ -17,6 +17,9 @@ var SETTINGS_DATA: Dictionary = {
     "Language": "English"
 }
 
+## Debug override start room for testing
+var debug_override_room: PackedScene = preload("res://states/world_state/rooms/b_01.tscn")
+
 # --- SAVE SLOT CONFIGURATION ---
 var current_slot: String = "1"
 var game_timer_active: bool = false
@@ -192,6 +195,10 @@ func load_from_disk(slot_id: String) -> bool:
     return false
 
 func get_saved_room() -> PackedScene:
+    # If a test room is dragged into the inspector, use it first for testing!
+    if debug_override_room != null:
+        return debug_override_room
+        
     var room_name: String = "a_01"
     
     if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("player_data"):

@@ -64,9 +64,9 @@ func update_target(player: CharacterBody2D, delta: float) -> void:
 		if followed_target and is_instance_valid(followed_target):
 			target_pos = followed_target.global_position
 		
-		if lock_x: 
+		if lock_y: 
 			desired_pos.x = target_pos.x
-		if lock_y:
+		if lock_x:
 			desired_pos.y = target_pos.y
 
 		position_smoothing_speed = pan_smoothing_speed
