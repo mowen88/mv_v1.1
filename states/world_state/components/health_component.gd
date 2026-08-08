@@ -13,10 +13,10 @@ signal died
 @onready var current_health: int = max_health
 
 func _ready() -> void:
-	_kill_if_not_persistent()
+	_action_if_not_persistent()
 
 # Check if should be spawned or not, queue free if not
-func _kill_if_not_persistent() -> void:
+func _action_if_not_persistent() -> void:
 	if owner.is_in_group("persistent"):
 		if "persistent_id" in owner and owner.persistent_id != "":
 			var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})

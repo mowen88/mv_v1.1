@@ -77,7 +77,7 @@ func is_on_ladder() -> bool:
 func _update_respawn_point(position:Vector2) -> void:
 	last_safe_position = position
 
-func _on_hit(hitbox: Area2D, knockback_force:float):
+func _on_hit(hitbox: Area2D, _knockback_force:float):
 	if health_component.current_health <= 0:
 		return
 	var hazard = true if hitbox.owner.is_in_group("hazards") else false

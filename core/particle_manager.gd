@@ -1,6 +1,7 @@
 extends Node
 
 var particle_scenes = {
+	"money_burst": preload("res://states/world_state/particles/money_burst/money_burst_particle.tscn"),
 	"bush_leaves": preload("res://states/world_state/particles/bush_leaves/bush_leaves_particle.tscn"),
 	"hit_effect": preload("res://states/world_state/particles/hit_effect/hit_effect.tscn"),
 	"small_blast": preload("res://states/world_state/particles/small_blast/small_blast.tscn"),

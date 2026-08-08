@@ -3,7 +3,6 @@ extends Node
 
 @export var sprite: AnimatedSprite2D 
 @export var hurtbox_component: HurtboxComponent
-@export var fsm: FiniteStateMachine
 @export var flash_duration: float = 0.05
 
 func _ready() -> void:

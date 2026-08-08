@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_8cwyv"]
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_c7dy6"]
+[ext_resource type="PackedScene" uid="uid://ca8ek1t4js2pq" path="res://states/world_state/environment/destructibles/chest/chest.tscn" id="3_h8uma"]
 [ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit.tscn" id="3_jgxeo"]
 [ext_resource type="PackedScene" uid="uid://cfvigo6oh546p" path="res://states/world_state/exits/door.tscn" id="4_t40ox"]
 [ext_resource type="PackedScene" uid="uid://b0q07bohysmys" path="res://states/world_state/environment/trap_doors/trap_trigger.tscn" id="5_3xwmy"]
@@ -21,6 +22,10 @@ tile_set = ExtResource("2_c7dy6")
 
 [node name="SlopeTileMap" parent="." index="3" unique_id=1149728441]
 tile_set = ExtResource("2_c7dy6")
+
+[node name="Chest" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="0" unique_id=47844970 instance=ExtResource("3_h8uma")]
+position = Vector2(168, 98)
+persistent_id = "chest_test_01"
 
 [node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=7102166]
 position = Vector2(200, 96)

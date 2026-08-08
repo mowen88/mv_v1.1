@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://ca8ek1t4js2pq"]
+
+[ext_resource type="Script" uid="uid://sba028iwwtpy" path="res://states/world_state/environment/destructibles/chest/chest.gd" id="1_4wxkn"]
+[ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="2_haym2"]
+[ext_resource type="Texture2D" uid="uid://ucm64xxx8w3o" path="res://states/world_state/environment/destructibles/chest/chest_spritesheet.png" id="2_tctj2"]
+[ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="3_tctj2"]
+[ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="4_haym2"]
+[ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="4_xdbp3"]
+[ext_resource type="AudioStream" uid="uid://cmjrx76meckax" path="res://states/world_state/environment/destructibles/chest/chest_hit_sound.ogg" id="7_xdbp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdbp3"]
+size = Vector2(8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdbp3"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf6r0"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqhym"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf6r0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdbp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf6r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqhym")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Chest" type="StaticBody2D" unique_id=154791020 groups=["persistent"]]
+collision_mask = 0
+script = ExtResource("1_4wxkn")
+particle_name = "money_burst"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187662859]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_xdbp3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411869412]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_yf6r0")
+offset = Vector2(0, -6)
+
+[node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("2_haym2")]
+max_health = 3
+
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("3_tctj2")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="SquashStretchComponent" parent="." unique_id=843710349 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("4_haym2")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("4_xdbp3")]
+sound = ExtResource("7_xdbp3")
+health_component = NodePath("../HealthComponent")
+invincibility_duration = 0.2
+
+[editable path="HurtboxComponent"]

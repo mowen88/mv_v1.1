@@ -19,7 +19,7 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		_slope_jump()
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	
 	# Get off wall determines not sliding anymore robustly as slope is classed as wall
 	if not owner.is_on_wall():
