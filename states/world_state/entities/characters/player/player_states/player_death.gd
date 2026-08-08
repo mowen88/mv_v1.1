@@ -9,6 +9,9 @@ func enter() -> void:
 	ParticleManager.play(death_particle, owner.global_position)
 	owner.get_node("AnimatedSprite2D").play("jump")
 	timer = 0.0
+	
+	# Set the player facing
+	owner.move_component.facing = -1 if owner.velocity.x > 0 else 1
 
 func physics_update(delta: float) -> void:
 	timer += delta

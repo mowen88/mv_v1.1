@@ -11,6 +11,7 @@ texture = ExtResource("3_2w1bt")
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("3_tctmc")]
 collision_layer = 0
 collision_mask = 10
+knockback_force = 120.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent" unique_id=2060166261]
 position = Vector2(0, -4)

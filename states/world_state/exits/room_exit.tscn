@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c4wwxyhoalfhs" path="res://states/world_state/exits/room_exit.gd" id="1_rl7v4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2u8d"]
-size = Vector2(24, 40)
+size = Vector2(32, 32)
 
 [node name="RoomExit" type="Area2D" unique_id=656111511]
 collision_layer = 0

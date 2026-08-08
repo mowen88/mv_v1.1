@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c2v2w4v0uqdr5"]
+
+[ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_nqm25"]
+
+[node name="b01" unique_id=315341494 instance=ExtResource("1_nqm25")]
+
+[node name="CameraLimits" parent="." index="0" unique_id=671455297]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -120.0
+offset_right = 260.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2

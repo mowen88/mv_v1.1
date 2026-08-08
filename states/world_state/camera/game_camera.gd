@@ -3,7 +3,7 @@ extends Camera2D
 @export var x_offset_distance: float = 6.0
 @export var look_down_modifier: float = 0.12 # percentage of y velocity
 @export var follow_smoothing_speed: float = 12.0
-@export var pan_smoothing_speed: float = 1.0
+@export var pan_smoothing_speed: float = 2.0
 
 var shake_tween: Tween
 var zoom_tween: Tween
