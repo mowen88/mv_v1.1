@@ -75,11 +75,11 @@ func _on_timer_timeout() -> void:
 			# If bodies out the way then respawn all platforms
 			for i in range(platforms.size()):
 				collision_shapes[i].set_deferred("disabled", false)
-				sprites[i].visible = true
+				#sprites[i].visible = true
 				sprites[i].play("returning")
 				
 			triggered = false # Reset so they can be triggered again
 
 func _on_sprite_animation_finished(sprite: AnimatedSprite2D) -> void:
-	if sprite.animation == "breaking":
-		sprite.visible = false
+	pass#if sprite.animation == "breaking":
+		#sprite.visible = false

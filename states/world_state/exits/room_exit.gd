@@ -4,7 +4,7 @@ class_name RoomExits
 @export var exit_id: int = 1
 @export var exit_up: bool = false
 @export var exit_down: bool = false
-@export var transition_x_speed: float = 45.0
+@export var transition_x_speed: float = 75.0
 @export var transition_y_speed: float = 240.0
 @export_file("*.tscn") var target_room_path: String
 

@@ -7,28 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="4_ufact"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="5_lrovk"]
 [ext_resource type="PackedScene" uid="uid://qh68jfyhjbkd" path="res://states/world_state/environment/platforms/disappearing_platform_group.tscn" id="6_t7mqc"]
-[ext_resource type="Texture2D" uid="uid://d3wynh7xrik3j" path="res://states/world_state/environment/platforms/disappearing_platform/platform_breaking.png" id="7_6xldl"]
 [ext_resource type="Shader" uid="uid://852afqaskhkl" path="res://states/world_state/shaders/godray_sprite_shader.gdshader" id="7_e3r4f"]
 [ext_resource type="Texture2D" uid="uid://cmykn8xbenobj" path="res://states/world_state/environment/platforms/disappearing_platform/platform_returning.png" id="8_s5aot"]
 [ext_resource type="Texture2D" uid="uid://80i13jy77g5h" path="res://states/world_state/environment/platforms/disappearing_platform/platform_shaking.png" id="9_731cl"]
 [ext_resource type="Texture2D" uid="uid://cfo1ab4nob4n0" path="res://states/world_state/particles/waterfall/waterfall_bubble.png" id="12_s5aot"]
 [ext_resource type="Texture2D" uid="uid://cn32n3qhhlodr" path="res://states/world_state/particles/waterfall/waterfall_sprite.png" id="13_s5aot"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mqc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5aot"]
 resource_local_to_scene = true
 size = Vector2(24, 66)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xldl"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s5aot"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_731cl"]
 resource_local_to_scene = true
@@ -37,12 +24,6 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_33653"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7mqc"]
 resource_local_to_scene = true
 shader = ExtResource("5_lrovk")
 shader_parameter/flash_active = false
@@ -60,97 +41,108 @@ shader = ExtResource("5_lrovk")
 shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2gpo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5knyr"]
 resource_local_to_scene = true
-size = Vector2(16, 8)
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuk5d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmla3"]
 resource_local_to_scene = true
-size = Vector2(16, 8)
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knwst"]
+resource_local_to_scene = true
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewkg4"]
+atlas = ExtResource("8_s5aot")
+region = Rect2(96, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiwx5"]
+atlas = ExtResource("8_s5aot")
+region = Rect2(80, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25s33"]
+atlas = ExtResource("8_s5aot")
+region = Rect2(64, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg72"]
+atlas = ExtResource("8_s5aot")
+region = Rect2(48, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43yg1"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(0, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(32, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4i5c"]
-atlas = ExtResource("7_6xldl")
+atlas = ExtResource("8_s5aot")
 region = Rect2(16, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h0qt"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(32, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(0, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ts62"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(48, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(0, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8fsx"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(64, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(16, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phdh6"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(80, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(32, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1fkn"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(96, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(48, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_em7qs"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(112, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(64, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4l4oc"]
-atlas = ExtResource("7_6xldl")
-region = Rect2(128, 0, 16, 8)
+atlas = ExtResource("8_s5aot")
+region = Rect2(80, 0, 16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6b33q"]
 atlas = ExtResource("8_s5aot")
-region = Rect2(0, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p3l5y"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(16, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v0fvr"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(32, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_griq5"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(48, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6mod"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(64, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vph6l"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(80, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwsyn"]
-atlas = ExtResource("8_s5aot")
 region = Rect2(96, 0, 16, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bq5p8"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(112, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jjk0"]
-atlas = ExtResource("8_s5aot")
-region = Rect2(128, 0, 16, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_poyn5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3l5y"]
 atlas = ExtResource("9_731cl")
-region = Rect2(0, 0, 16, 8)
+region = Rect2(0, 0, 16, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ryxtm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0fvr"]
 atlas = ExtResource("9_731cl")
-region = Rect2(16, 0, 16, 8)
+region = Rect2(32, 0, 16, 10)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ewkg4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_griq5"]
+atlas = ExtResource("9_731cl")
+region = Rect2(16, 0, 16, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuk5d"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewkg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiwx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25s33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg72")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_43yg1")
 }, {
@@ -159,7 +151,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0h0qt")
+}],
+"loop": false,
+"name": &"breaking",
+"speed": 18.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0ts62")
 }, {
@@ -177,15 +174,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4l4oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b33q")
 }],
 "loop": false,
-"name": &"breaking",
+"name": &"returning",
 "speed": 18.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6b33q")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p3l5y")
 }, {
@@ -194,21 +191,66 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_griq5")
+}],
+"loop": true,
+"name": &"shaking",
+"speed": 18.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb67v"]
+resource_local_to_scene = true
+size = Vector2(16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6xldl"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewkg4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e6mod")
+"texture": SubResource("AtlasTexture_oiwx5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vph6l")
+"texture": SubResource("AtlasTexture_25s33")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jwsyn")
+"texture": SubResource("AtlasTexture_qlg72")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bq5p8")
+"texture": SubResource("AtlasTexture_43yg1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2jjk0")
+"texture": SubResource("AtlasTexture_b4i5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h0qt")
+}],
+"loop": false,
+"name": &"breaking",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ts62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8fsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phdh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1fkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em7qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l4oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b33q")
 }],
 "loop": false,
 "name": &"returning",
@@ -216,28 +258,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_poyn5")
+"texture": SubResource("AtlasTexture_p3l5y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ryxtm")
+"texture": SubResource("AtlasTexture_v0fvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_griq5")
 }],
 "loop": true,
 "name": &"shaking",
-"speed": 9.0
+"speed": 18.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_731cl"]
+resource_local_to_scene = true
+size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oiwx5"]
 size = Vector2(16, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_00ua2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2e4l"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5knyr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ihj"]
 resource_local_to_scene = true
 size = Vector2(48, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmla3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wns0m"]
 resource_local_to_scene = true
 size = Vector2(32, 56)
 
@@ -286,114 +335,127 @@ text = "Attack objects to gain prana energy"
 
 [node name="CollisionShape2D" parent="TutorialMessage/Message" index="0" unique_id=625801091]
 position = Vector2(-4, -23)
-shape = SubResource("RectangleShape2D_t7mqc")
+shape = SubResource("RectangleShape2D_s5aot")
 
 [node name="PersistenceComponent" parent="TutorialMessage/Message" index="1" unique_id=907069416]
 persistent_id = "tutorial_gain_energy"
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="0" unique_id=706351147 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_6xldl")
+material = SubResource("ShaderMaterial_731cl")
 position = Vector2(136, 26)
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="1" unique_id=728165885 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_s5aot")
+material = SubResource("ShaderMaterial_33653")
 position = Vector2(155, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush2" index="0" unique_id=177856894]
 flip_h = true
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="2" unique_id=1118628196 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_731cl")
+material = SubResource("ShaderMaterial_a2gpo")
 position = Vector2(168, 26)
 
 [node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="3" unique_id=1989416586 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_33653")
+material = SubResource("ShaderMaterial_00ua2")
 position = Vector2(175, 26)
 
 [node name="Bush5" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="4" unique_id=802669373 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_t7mqc")
+material = SubResource("ShaderMaterial_5knyr")
 position = Vector2(84, 26)
 
 [node name="Bush6" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="5" unique_id=1463685042 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_a2gpo")
+material = SubResource("ShaderMaterial_wmla3")
 position = Vector2(57, 26)
 
 [node name="Bush7" parent="Destructibles" parent_id_path=PackedInt32Array(386555359) index="6" unique_id=628251889 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_00ua2")
+material = SubResource("ShaderMaterial_knwst")
 position = Vector2(66, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush7" index="0" unique_id=177856894]
 flip_h = true
 
 [node name="DisappearingPlatformGroup" parent="Platforms" parent_id_path=PackedInt32Array(225921246) index="0" unique_id=520227805 instance=ExtResource("6_t7mqc")]
-position = Vector2(-152, 4)
+position = Vector2(-128, 4)
 
-[node name="Platform1" parent="Platforms/DisappearingPlatformGroup" index="1" unique_id=986976773]
-position = Vector2(-8, 0)
+[node name="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform1" parent_id_path=PackedInt32Array(520227805, 986976773) index="0" unique_id=343587440]
+sprite_frames = SubResource("SpriteFrames_nuk5d")
 
-[node name="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform1" index="0" unique_id=1006470669]
-shape = SubResource("RectangleShape2D_a2gpo")
+[node name="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform1" parent_id_path=PackedInt32Array(520227805, 986976773) index="1" unique_id=1006470669]
+shape = SubResource("RectangleShape2D_pb67v")
 
-[node name="Platform2" parent="Platforms/DisappearingPlatformGroup" index="2" unique_id=1592548804]
-position = Vector2(8, 0)
-
-[node name="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform2" index="0" unique_id=1444511061]
-shape = SubResource("RectangleShape2D_a2gpo")
-
-[node name="Platform3" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="3" unique_id=2061133848]
-position = Vector2(24, 0)
+[node name="Platform2" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="2" unique_id=492204025]
+position = Vector2(-16, 0)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform3" index="0" unique_id=1007306787]
-shape = SubResource("RectangleShape2D_nuk5d")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform3" index="1" unique_id=722243250]
-sprite_frames = SubResource("SpriteFrames_ewkg4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform2" index="0" unique_id=1104597456]
+sprite_frames = SubResource("SpriteFrames_6xldl")
 animation = &"shaking"
 
-[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform3" index="2" unique_id=1515743787]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform2" index="1" unique_id=486186806]
+shape = SubResource("RectangleShape2D_731cl")
+
+[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform2" index="2" unique_id=555223778]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform3/Area2D" index="0" unique_id=2065368062]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform2/Area2D" index="0" unique_id=1397640530]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_oiwx5")
 
-[node name="Platform4" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="4" unique_id=1182717375]
-position = Vector2(40, 0)
+[node name="Platform3" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="3" unique_id=2107159857]
+position = Vector2(-32, 0)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform4" index="0" unique_id=447253639]
-shape = SubResource("RectangleShape2D_nuk5d")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform4" index="1" unique_id=1643821874]
-sprite_frames = SubResource("SpriteFrames_ewkg4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform3" index="0" unique_id=855061331]
+sprite_frames = SubResource("SpriteFrames_6xldl")
 animation = &"shaking"
 
-[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform4" index="2" unique_id=154161403]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform3" index="1" unique_id=479954022]
+shape = SubResource("RectangleShape2D_731cl")
+
+[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform3" index="2" unique_id=836775061]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform4/Area2D" index="0" unique_id=757539737]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform3/Area2D" index="0" unique_id=289893256]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_oiwx5")
 
-[node name="Platform5" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="5" unique_id=1932712631]
-position = Vector2(56, 0)
+[node name="Platform4" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="4" unique_id=557005244]
+position = Vector2(16, 0)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform5" index="0" unique_id=164715657]
-shape = SubResource("RectangleShape2D_nuk5d")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform5" index="1" unique_id=16247379]
-sprite_frames = SubResource("SpriteFrames_ewkg4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform4" index="0" unique_id=1455368286]
+sprite_frames = SubResource("SpriteFrames_6xldl")
 animation = &"shaking"
 
-[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform5" index="2" unique_id=1887181311]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform4" index="1" unique_id=1815539324]
+shape = SubResource("RectangleShape2D_731cl")
+
+[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform4" index="2" unique_id=269873540]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform5/Area2D" index="0" unique_id=881069168]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform4/Area2D" index="0" unique_id=1109458413]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_oiwx5")
+
+[node name="Platform5" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="5" unique_id=469612492]
+position = Vector2(32, 0)
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform5" index="0" unique_id=531001856]
+sprite_frames = SubResource("SpriteFrames_6xldl")
+animation = &"shaking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform5" index="1" unique_id=1220513414]
+shape = SubResource("RectangleShape2D_731cl")
+
+[node name="Area2D" type="Area2D" parent="Platforms/DisappearingPlatformGroup/Platform5" index="2" unique_id=325357894]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform5/Area2D" index="0" unique_id=299221032]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_oiwx5")
 
@@ -412,7 +474,7 @@ target_room_path = "uid://c2v2w4v0uqdr5"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_00ua2")
+shape = SubResource("RectangleShape2D_y2e4l")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=236050036 instance=ExtResource("3_er4tc")]
 position = Vector2(299, 4)
@@ -423,7 +485,7 @@ target_room_path = "uid://d0xlr5oc1fkqt"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit2" index="0" unique_id=519681351]
 position = Vector2(-427, 84)
-shape = SubResource("RectangleShape2D_5knyr")
+shape = SubResource("RectangleShape2D_x2ihj")
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=1263021935 instance=ExtResource("3_er4tc")]
 position = Vector2(245, 4)
@@ -431,7 +493,7 @@ exit_id = 3
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit3" index="0" unique_id=519681351]
 position = Vector2(-525, -12)
-shape = SubResource("RectangleShape2D_wmla3")
+shape = SubResource("RectangleShape2D_wns0m")
 
 [node name="GodRays" type="Sprite2D" parent="." index="17" unique_id=6554219]
 z_index = 2
