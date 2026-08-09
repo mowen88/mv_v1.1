@@ -2,7 +2,7 @@ extends State
 
 @export var death_particle: String
 @export var deceleration: float = 1000.0
-@export var duration: float = 3.0
+@export var duration: float = 3.5
 var timer: float = 1.5
 
 func enter() -> void:
@@ -11,6 +11,7 @@ func enter() -> void:
 	owner.animated_sprite.play("jump")
 	# Play death particle
 	ParticleManager.play(death_particle, owner.global_position)
+	SignalBus.flash_screen.emit()
 
 	# Set the player facing
 	owner.move_component.facing = -1 if owner.velocity.x > 0 else 1
@@ -28,4 +29,4 @@ func physics_update(delta: float) -> void:
 	owner.move_and_slide()
 	
 	if timer >= duration:
-		StateManager.change_state(StateManager.GameState.WORLD, 1.0, 1.0, "fade", "blinds")
+		StateManager.change_state(StateManager.GameState.WORLD, 0.5, 1.0, "fade", "blinds")

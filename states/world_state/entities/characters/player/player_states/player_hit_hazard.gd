@@ -6,9 +6,13 @@ extends State
 var timer: float = 0.0
 
 func enter() -> void:
-	SignalBus.screenshake_requested.emit(5.0, 5.0, 0.2)
-	owner.get_node("AnimatedSprite2D").play("jump")
+	
 	timer = 0.0
+	
+	SignalBus.hit_stop_requested.emit(0.12
+	)
+	owner.animated_sprite.play("fall")
+	SignalBus.screenshake_requested.emit(5.0, 5.0, 0.2)
 	
 	# Set the player facing
 	owner.move_component.facing = -1 if owner.velocity.x > 0 else 1

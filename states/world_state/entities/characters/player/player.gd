@@ -112,8 +112,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("shoot"):
 		
-		SignalBus.flash_screen.emit()
-		
 		SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
 		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
 		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)

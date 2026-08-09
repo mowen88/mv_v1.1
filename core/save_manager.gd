@@ -18,7 +18,8 @@ var SETTINGS_DATA: Dictionary = {
 }
 
 ## Debug override start room for testing
-var debug_override_room: PackedScene = preload("res://states/world_state/rooms/b_01.tscn")
+#var debug_override_room: PackedScene = preload("res://states/world_state/rooms/01_a/01_a.tscn")
+var debug_override_room: PackedScene = preload("res://states/world_state/rooms/b_02.tscn")
 
 # --- SAVE SLOT CONFIGURATION ---
 var current_slot: String = "1"

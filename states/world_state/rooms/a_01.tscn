@@ -36,7 +36,7 @@ position = Vector2(-120, -24)
 position = Vector2(120, -24)
 
 [node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("3_x87aq")]
-position = Vector2(-144, 76)
+position = Vector2(-148, 76)
 target_room_path = "uid://dnqh43xyrsipk"
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=968177515 instance=ExtResource("3_x87aq")]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dwidwetcutapw"]
 
-[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/entities/shaders/sprite_flash_shader.tres" id="2_gf6qi"]
+[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/shaders/sprite_flash_shader.tres" id="2_gf6qi"]
 [ext_resource type="Script" uid="uid://48qbeskurr8w" path="res://states/world_state/entities/characters/enemies/walker/walker.gd" id="2_ukh86"]
 [ext_resource type="Texture2D" uid="uid://dsypmg8473p4b" path="res://states/world_state/entities/characters/enemies/walker/spritesheets/idle.png" id="3_xdke5"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="3_y1g45"]

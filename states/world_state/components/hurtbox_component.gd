@@ -12,8 +12,7 @@ signal hit_received(hitbox: Area2D, knockback_force:float)
 var is_invincible: bool = false
 
 func receive_damage(hitbox: Node2D, amount:int, knockback_force:float) -> bool:
-	var attacker_pos = hitbox.global_position
-	
+
 	if is_invincible or health_component.current_health <= 0:
 		return false
 	

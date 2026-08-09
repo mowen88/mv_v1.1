@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqxwt35304kb2"]
 
-[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/entities/shaders/sprite_flash_shader.tres" id="1_jlnqd"]
+[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/shaders/sprite_flash_shader.tres" id="1_jlnqd"]
 [ext_resource type="Texture2D" uid="uid://b3dtd44uij6xm" path="res://states/world_state/environment/destructibles/bush/bush_spritesheet.png" id="1_pe11j"]
 [ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="1_tqhje"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="2_6opqc"]
@@ -44,7 +44,6 @@ size = Vector2(12, 12)
 [node name="Bush" type="Node2D" unique_id=706351147 groups=["energy_gaining"]]
 material = ExtResource("1_jlnqd")
 script = ExtResource("2_s68ii")
-particle_name = "small_blast"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=177856894]
 position = Vector2(0, 6)

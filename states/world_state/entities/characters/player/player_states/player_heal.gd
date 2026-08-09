@@ -9,7 +9,7 @@ var go_to_special = true
 
 func enter() -> void:
 	# Animate
-	owner.get_node("AnimatedSprite2D").play("fall")
+	owner.animated_sprite.play("fall")
 	timer = duration
 	go_to_special = true
 
@@ -27,6 +27,7 @@ func physics_update(delta: float) -> void:
 	
 	timer -= delta
 	if timer <= 0:
+		SignalBus.flash_screen.emit()
 
 		owner.energy_component.consume_energy(owner.energy_component.max_energy)
 		if go_to_special:

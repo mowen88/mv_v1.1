@@ -21,6 +21,6 @@ grow_vertical = 2
 color = Color(0, 1, 0, 1)
 
 [node name="InteractionComponent" parent="." unique_id=108345276 instance=ExtResource("2_fg0it")]
-prompt_text = "Save"
+prompt_text = "Save Game"
 
 [editable path="InteractionComponent"]

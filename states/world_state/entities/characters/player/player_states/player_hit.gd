@@ -6,8 +6,8 @@ var timer: float = 0.0
 
 func enter() -> void:
 	timer = duration
-	# Play a "hit" animation if you have one
-	owner.get_node("AnimatedSprite2D").play("fall")
+
+	owner.animated_sprite.play("fall")
 
 func physics_update(delta: float) -> void:
 	timer -= delta

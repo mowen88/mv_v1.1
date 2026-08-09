@@ -10,6 +10,7 @@ func _on_save_station_interacted(player: CharacterBody2D) -> void:
 	if abs(player.velocity.x) < 10 and player.is_on_floor():
 		
 		SignalBus.save_station_activated.emit()
+		SignalBus.flash_screen.emit()
 		
 		ParticleManager.play("hit_effect", interaction_component.global_position)
 		player.flash_component.play_flash()

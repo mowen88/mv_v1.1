@@ -14,8 +14,10 @@ var in_cutscene: bool = false
 
 
 func _ready():
+	
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
 	SignalBus.save_station_activated.connect(_on_save_station_activated)
+	SignalBus.hit_stop_requested.connect(_on_hit_stop)
 	pause_menu.unpause_requested.connect(_toggle_game_pause)
 	
 	# Instantiates the first room
@@ -27,9 +29,16 @@ func _process(delta: float) -> void:
 		
 	if in_cutscene:
 		return
+	
+	print(player.fsm.current_state.name)
 		
 	game_camera.update_target(player, delta)
-
+		
+func _on_hit_stop(duration: float) -> void:
+	Engine.time_scale = 0.0 # Freeze everything
+	await get_tree().create_timer(duration, true, false, true).timeout # Real-time timer that ignores time_scale
+	Engine.time_scale = 1.0 # Resume normal game speed
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):
 		_toggle_game_pause()
@@ -38,8 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		SignalBus.camera_override_cleared.emit()
 		
 func _toggle_game_pause() -> void:
-	get_tree().paused =  not get_tree().paused
-	touch_controller.visible =  not get_tree().paused
+	get_tree().paused = not get_tree().paused
+	touch_controller.visible = not get_tree().paused
 	menu_canvas.visible = get_tree().paused
 	if get_tree().paused:
 		menu_manager._initialize_menu("PauseMenu")

@@ -7,18 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://b0q07bohysmys" path="res://states/world_state/environment/trap_doors/trap_trigger.tscn" id="4_mgaoa"]
 [ext_resource type="PackedScene" uid="uid://b3mmuwhweywvm" path="res://states/world_state/environment/trap_doors/trap_door.tscn" id="5_i3uko"]
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="7_i3uko"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3uko"]
-resource_local_to_scene = true
-size = Vector2(248, 88)
+[ext_resource type="Shader" uid="uid://852afqaskhkl" path="res://states/world_state/shaders/godray_sprite_shader.gdshader" id="8_e2lyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2lyu"]
 resource_local_to_scene = true
-size = Vector2(32, 56)
+size = Vector2(248, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vu3n"]
 resource_local_to_scene = true
 size = Vector2(32, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dh28k"]
+resource_local_to_scene = true
+size = Vector2(32, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vu3n"]
+shader = ExtResource("8_e2lyu")
 
 [node name="b01" unique_id=315341494 instance=ExtResource("1_nqm25")]
 
@@ -47,7 +51,7 @@ lock_y = false
 
 [node name="CollisionShape2D" parent="CameraTriggers/CameraTrigger" index="0" unique_id=1096877515]
 position = Vector2(-140, 76)
-shape = SubResource("RectangleShape2D_i3uko")
+shape = SubResource("RectangleShape2D_e2lyu")
 
 [node name="Marker2D" parent="CameraTriggers/CameraTrigger" index="1" unique_id=491164102]
 position = Vector2(-140, 80)
@@ -58,7 +62,7 @@ position = Vector2(-240, 72)
 
 [node name="CollisionShape2D" parent="TrapDoors/TrapTrigger" index="0" unique_id=552174093]
 position = Vector2(104, -12)
-shape = SubResource("RectangleShape2D_e2lyu")
+shape = SubResource("RectangleShape2D_7vu3n")
 
 [node name="TrapDoor" parent="TrapDoors/TrapTrigger/DoorContainer" parent_id_path=PackedInt32Array(627399350, 1263912219) index="0" unique_id=276141706]
 position = Vector2(-4, 12)
@@ -83,7 +87,8 @@ position = Vector2(-272, 60)
 target_room_path = "uid://cox0t74p6kkon"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
-shape = SubResource("RectangleShape2D_7vu3n")
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_dh28k")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=1561035608 instance=ExtResource("4_hx30x")]
 position = Vector2(72, 168)
@@ -105,6 +110,18 @@ position = Vector2(-136, -8)
 
 [node name="Ladder3" parent="." index="19" unique_id=783096849 instance=ExtResource("7_i3uko")]
 position = Vector2(-160, -56)
+
+[node name="GodRays" type="Sprite2D" parent="." index="20" unique_id=1393466460]
+z_index = 2
+
+[node name="ColorRect" type="ColorRect" parent="GodRays" index="0" unique_id=693414327]
+z_index = 2
+material = SubResource("ShaderMaterial_7vu3n")
+offset_left = -120.0
+offset_top = 88.0
+offset_right = -88.0
+offset_bottom = 367.5
+rotation = 3.1415927
 
 [editable path="CameraTriggers/CameraTrigger"]
 [editable path="TrapDoors/TrapTrigger"]

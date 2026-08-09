@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="3_3need"]
 [ext_resource type="PackedScene" uid="uid://dqxwt35304kb2" path="res://states/world_state/environment/destructibles/bush/bush.tscn" id="3_ewo3h"]
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="3_vs2my"]
-[ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/entities/shaders/sprite_flash_shader.gdshader" id="4_2lafy"]
+[ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="4_2lafy"]
 [ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="4_57hpv"]
 [ext_resource type="PackedScene" uid="uid://btuoi8ua8kc3r" path="res://states/world_state/camera/camera_trigger.tscn" id="7_gvgnm"]
 [ext_resource type="PackedScene" uid="uid://qh68jfyhjbkd" path="res://states/world_state/environment/platforms/disappearing_platform_group.tscn" id="8_7bhqf"]

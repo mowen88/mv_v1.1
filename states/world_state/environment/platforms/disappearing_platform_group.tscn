@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://80i13jy77g5h" path="res://states/world_state/environment/platforms/disappearing_platform/platform_shaking.png" id="4_qlg72"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhrvj"]
+resource_local_to_scene = true
 size = Vector2(16, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43yg1"]

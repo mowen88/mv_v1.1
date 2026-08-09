@@ -11,6 +11,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr02o"]
 resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwh0s"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cex6"]
+resource_local_to_scene = true
 size = Vector2(232, 72)
 
 [node name="a02" unique_id=315341494 instance=ExtResource("1_iworu")]
@@ -38,6 +44,10 @@ text = "Swipe down to drop through thin platforms"
 
 [node name="CollisionShape2D" parent="TutorialMessage/Message" index="0" unique_id=625801091]
 position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_kr02o")
+
+[node name="PersistenceComponent" parent="TutorialMessage/Message" index="1" unique_id=907069416]
+persistent_id = "tutorial_drop_through"
 
 [node name="Message2" parent="TutorialMessage" parent_id_path=PackedInt32Array(1362062078) index="1" unique_id=595590048 instance=ExtResource("3_tuntv")]
 position = Vector2(-27, -64)
@@ -45,6 +55,10 @@ text = "Jump left or right while sliding on a ladder to dismount"
 
 [node name="CollisionShape2D" parent="TutorialMessage/Message2" index="0" unique_id=625801091]
 position = Vector2(59, 120)
+shape = SubResource("RectangleShape2D_gwh0s")
+
+[node name="PersistenceComponent" parent="TutorialMessage/Message2" index="1" unique_id=907069416]
+persistent_id = "tutorial_ladders"
 
 [node name="Spikes" parent="Hazards" parent_id_path=PackedInt32Array(1478642669) index="0" unique_id=147814035 instance=ExtResource("3_qhgnq")]
 position = Vector2(-11, 92)
@@ -87,7 +101,7 @@ position = Vector2(-88, -16)
 
 [node name="CollisionShape2D" parent="CameraTriggers/CameraTrigger" index="0" unique_id=1096877515]
 position = Vector2(0, 36)
-shape = SubResource("RectangleShape2D_kr02o")
+shape = SubResource("RectangleShape2D_6cex6")
 
 [node name="Marker2D" parent="CameraTriggers/CameraTrigger" index="1" unique_id=491164102]
 position = Vector2(8, 40)

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="6_tm0mi"]
 [ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit.tscn" id="6_yyfbe"]
 [ext_resource type="PackedScene" uid="uid://grf7v6d3tx84" path="res://states/world_state/environment/secret_walls/secret_wall.tscn" id="8_1w3qu"]
-[ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/entities/shaders/sprite_flash_shader.gdshader" id="9_i0e5b"]
+[ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="9_i0e5b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1w3qu"]
 resource_local_to_scene = true

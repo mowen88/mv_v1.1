@@ -19,6 +19,8 @@ func handle_input(event:InputEvent) -> void:
 		owner.jump_buffer_timer.start()
 	#
 func physics_update(_delta: float) -> void:
+	if owner.is_on_floor():
+		fsm.change_state("Idle")
 		
 	if owner.sword.cooldown_timer.is_stopped():
 		fsm.change_state("Fall")
