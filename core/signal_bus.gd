@@ -17,6 +17,8 @@ signal show_interaction_prompt()
 signal hide_interaction_prompt()
 
 signal screenshake_requested(x_offset:float, y_offset:float, duration:float)
+signal death_screen_fade(color:Color, duration:float)
+signal flash_screen(color:Color, duration:float)
 
 signal player_health_changed(new_health: int)
 signal player_max_health_changed(new_max: int)

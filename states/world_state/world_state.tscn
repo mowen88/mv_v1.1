@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbqtpis5y7yt5" path="res://states/world_state/world_state.gd" id="1_emvdf"]
 [ext_resource type="PackedScene" uid="uid://78wkklni1sfd" path="res://UI/gameplay/touch_controller.tscn" id="2_6c3gn"]
+[ext_resource type="Script" uid="uid://dyqtednoh4tfr" path="res://states/world_state/overlay_effects.gd" id="2_wdfha"]
 [ext_resource type="PackedScene" uid="uid://ywh0ibl4nbif" path="res://UI/gameplay/gameplay_ui.tscn" id="3_i7qgc"]
 [ext_resource type="PackedScene" uid="uid://cnru7g4rqfgo3" path="res://states/world_state/entities/characters/player/player.tscn" id="3_y6a8n"]
 [ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="4_6c3gn"]
@@ -11,7 +12,20 @@
 process_mode = 3
 script = ExtResource("1_emvdf")
 
+[node name="OverlayEffects" type="CanvasLayer" parent="." unique_id=71559434]
+layer = 10
+script = ExtResource("2_wdfha")
+
+[node name="ColorRect" type="ColorRect" parent="OverlayEffects" unique_id=1507907730]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TouchController" parent="." unique_id=1149322206 instance=ExtResource("2_6c3gn")]
+layer = 9
 
 [node name="GameplayUi" parent="." unique_id=187525425 instance=ExtResource("3_i7qgc")]
 

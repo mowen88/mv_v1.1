@@ -1,12 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var death_canvas_layer: CanvasLayer = $DeathCanvasLayer
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var energy_component: EnergyComponent = $EnergyComponent
-
 
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
@@ -23,7 +24,6 @@ var jump_counter: int = 0
 		
 func _ready() -> void:	
 	
-
 	hurtbox_component.hit_received.connect(_on_hit)
 	health_component.died.connect(_on_death)
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
@@ -88,6 +88,7 @@ func _on_hit(hitbox: Area2D, _knockback_force:float):
 		fsm.change_state("Hit")
 
 func _on_death() -> void:
+	# Start the death fade screen
 	fsm.change_state("Death")
 	
 func _gain_energy(entity:Node2D) -> void:
@@ -110,6 +111,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 	
 	if Input.is_action_just_pressed("shoot"):
+		
+		SignalBus.flash_screen.emit()
+		
 		SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
 		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
 		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
