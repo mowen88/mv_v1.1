@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ipqjqw5hxc52"]
+
+[ext_resource type="Script" uid="uid://c34s282f6ur1b" path="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1.gd" id="1_llhpi"]
+[ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="1_yyhdu"]
+[ext_resource type="Script" uid="uid://w6r4fliln4v5" path="res://states/world_state/entities/characters/finite_state_machine/base_state.gd" id="2_ljkyi"]
+[ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="4_ahn33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_banb6"]
+size = Vector2(12, 24)
+
+[node name="NPC1" type="CharacterBody2D" unique_id=1014089368]
+collision_layer = 0
+script = ExtResource("1_llhpi")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=636311723]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=877957615]
+shape = SubResource("RectangleShape2D_banb6")
+
+[node name="FiniteStateMachine" type="Node" parent="." unique_id=1148612139 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_yyhdu")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://diq7imuclpv4v"
+
+[node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=329824088]
+script = ExtResource("2_ljkyi")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="InteractionComponent" parent="." unique_id=108345276 instance=ExtResource("4_ahn33")]
+prompt_text = "Interact"
+
+[editable path="InteractionComponent"]

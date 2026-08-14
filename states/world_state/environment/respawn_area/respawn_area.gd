@@ -5,4 +5,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		SignalBus.player_respawn.emit(global_position)
+		var marker = get_node_or_null("Marker2D")
+		SignalBus.player_respawn.emit(marker.global_position)

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://1vpbh8a10iu"]
+
+[ext_resource type="AudioStream" uid="uid://bqhfr2gj40cy1" path="res://states/world_state/environment/decoration/waterfall/amb_waterfall.ogg" id="1_q1qa3"]
+[ext_resource type="Texture2D" uid="uid://cfo1ab4nob4n0" path="res://states/world_state/environment/decoration/waterfall/waterfall_bubble.png" id="2_0nrlo"]
+[ext_resource type="Texture2D" uid="uid://cn32n3qhhlodr" path="res://states/world_state/environment/decoration/waterfall/waterfall_sprite.png" id="3_u3aay"]
+
+[sub_resource type="Curve" id="Curve_jhk7q"]
+_data = [Vector2(0.12765959, 1), 0.0, 0.0, 0, 0, Vector2(0.9840425, 0.029850721), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_33653"]
+curve = SubResource("Curve_jhk7q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ubls"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(24, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -30, 0)
+scale_min = 0.5
+scale_max = 1.4
+alpha_curve = SubResource("CurveTexture_33653")
+
+[node name="Waterfall" type="Node2D" unique_id=376559831]
+z_index = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1382550673]
+stream = ExtResource("1_q1qa3")
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="WaterfallParallax" type="Parallax2D" parent="." unique_id=1920050117]
+modulate = Color(1, 1, 1, 0.7058824)
+scroll_offset = Vector2(104, 0)
+repeat_size = Vector2(0, 96)
+autoscroll = Vector2(0, 180)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="Waterfall" type="Sprite2D" parent="WaterfallParallax" unique_id=31455989]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(-104, 0)
+texture = ExtResource("3_u3aay")
+
+[node name="WaterfallParticles" type="GPUParticles2D" parent="." unique_id=552992224]
+amount = 40
+texture = ExtResource("2_0nrlo")
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_8ubls")

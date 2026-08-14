@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://cmjrx76meckax" path="res://states/world_state/environment/destructibles/chest/chest_hit_sound.ogg" id="7_xdbp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdbp3"]
-resource_local_to_scene = true
 size = Vector2(8, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xdbp3"]

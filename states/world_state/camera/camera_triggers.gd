@@ -5,8 +5,6 @@ extends Area2D
 
 # Area that triggers the camera ovveride
 @onready var activation_area: CollisionShape2D = $CollisionShape2D
-# The point the camera will go to
-@onready var camera_target: Marker2D = $Marker2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -15,6 +13,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# Passing through a bool for lock x and y here when player hits the collider to activate the camera override
 	if body.is_in_group("player"):
+		var camera_target = get_node_or_null("Marker2D")
 		SignalBus.camera_override_requested.emit(camera_target.global_position, lock_x, lock_y)
 
 func _on_body_exited(body: Node2D) -> void:

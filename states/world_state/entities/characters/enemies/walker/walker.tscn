@@ -111,6 +111,8 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
 script = ExtResource("7_n1w0g")
+knockback_force = null
+stun_duration = null
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("8_7ldib")]
@@ -122,10 +124,9 @@ speed = 25.0
 [node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("hurtbox_component") instance=ExtResource("10_gsglv")]
 hurtbox_component = NodePath("../HurtboxComponent")
 
-[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component", "fsm") instance=ExtResource("11_mmfun")]
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("11_mmfun")]
 sprite = NodePath("../AnimatedSprite2D")
 hurtbox_component = NodePath("../HurtboxComponent")
-fsm = NodePath("../FiniteStateMachine")
 
 [node name="SquashStretchComponent" parent="." unique_id=1691292316 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("16_uubgs")]
 sprite = NodePath("../AnimatedSprite2D")

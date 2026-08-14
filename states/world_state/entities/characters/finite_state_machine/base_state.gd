@@ -1,4 +1,3 @@
-# Description: Base class blueprint for all individual states
 
 extends Node
 class_name State

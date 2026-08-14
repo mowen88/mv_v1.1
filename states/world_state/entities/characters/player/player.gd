@@ -1,8 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var death_canvas_layer: CanvasLayer = $DeathCanvasLayer
-
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent

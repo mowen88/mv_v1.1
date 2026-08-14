@@ -1387,6 +1387,8 @@ z_index = 2
 [node name="SlopeTileMap" type="TileMapLayer" parent="." unique_id=1149728441 groups=["slopes"]]
 tile_set = SubResource("TileSet_83wd4")
 
+[node name="Decoration" type="Node" parent="." unique_id=65517679]
+
 [node name="SecretWalls" type="Node" parent="." unique_id=485952299]
 
 [node name="TutorialMessage" type="Node" parent="." unique_id=1362062078]

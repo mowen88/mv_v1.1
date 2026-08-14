@@ -2,35 +2,29 @@
 
 [ext_resource type="PackedScene" uid="uid://dtgksoxcmiogl" path="res://states/world_state/rooms/base_room.tscn" id="1_nqm25"]
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="2_hj3nn"]
+[ext_resource type="Texture2D" uid="uid://ouqgn4ol4tg5" path="res://states/world_state/environment/decoration/trellis.png" id="3_gvesa"]
 [ext_resource type="PackedScene" uid="uid://btuoi8ua8kc3r" path="res://states/world_state/camera/camera_trigger.tscn" id="3_p5cj8"]
+[ext_resource type="PackedScene" uid="uid://b32gu6pc11bs0" path="res://states/world_state/environment/decoration/god_rays/god_ray.tscn" id="4_gvesa"]
 [ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit.tscn" id="4_hx30x"]
 [ext_resource type="PackedScene" uid="uid://b0q07bohysmys" path="res://states/world_state/environment/trap_doors/trap_trigger.tscn" id="4_mgaoa"]
 [ext_resource type="PackedScene" uid="uid://b3mmuwhweywvm" path="res://states/world_state/environment/trap_doors/trap_door.tscn" id="5_i3uko"]
 [ext_resource type="PackedScene" uid="uid://dwidwetcutapw" path="res://states/world_state/entities/characters/enemies/walker/walker.tscn" id="7_dh28k"]
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="7_i3uko"]
-[ext_resource type="Shader" uid="uid://852afqaskhkl" path="res://states/world_state/shaders/godray_sprite_shader.gdshader" id="8_e2lyu"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="8_gvesa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2lyu"]
-resource_local_to_scene = true
-size = Vector2(248, 88)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vu3n"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m40ur"]
 resource_local_to_scene = true
 size = Vector2(32, 56)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dh28k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg7br"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m40ur"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55kmn"]
 resource_local_to_scene = true
 shader = ExtResource("8_gvesa")
 shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vu3n"]
-shader = ExtResource("8_e2lyu")
 
 [node name="b01" unique_id=315341494 instance=ExtResource("1_nqm25")]
 
@@ -54,23 +48,49 @@ tile_set = ExtResource("2_hj3nn")
 [node name="SlopeTileMap" parent="." index="3" unique_id=1149728441]
 tile_map_data = PackedByteArray("AADn//v/AAAQAAsAAADo//z/AAAPAAoAAADp//3/AAAPAAoAAADq//7/AAAPAAoAAADr////AAAPAAoAAADy////AAAOAAoAAADz//7/AAAOAAoAAAD0//3/AAAOAAoAAAD1//z/AAANAAsAAAD2//v/AAANAAsAAADs/wAAAAAQAAsAAADx/wAAAAAOAAoAAAA=")
 
+[node name="Trellis" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="0" unique_id=968688113]
+position = Vector2(-172, 36)
+texture = ExtResource("3_gvesa")
+
+[node name="Trellis2" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="1" unique_id=1866698564]
+position = Vector2(-172, 76)
+texture = ExtResource("3_gvesa")
+
+[node name="Trellis3" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="2" unique_id=1123338962]
+position = Vector2(-100, 36)
+texture = ExtResource("3_gvesa")
+
+[node name="Trellis4" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="3" unique_id=1977549294]
+position = Vector2(-100, 76)
+texture = ExtResource("3_gvesa")
+
+[node name="GodRay" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="4" unique_id=1833501944 instance=ExtResource("4_gvesa")]
+
+[node name="ColorRect" parent="Decoration/GodRay" index="0" unique_id=1494312954]
+offset_left = -120.50001
+offset_top = 87.67716
+offset_right = -88.50001
+offset_bottom = 311.67715
+rotation = 3.1415927
+
 [node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="0" unique_id=811432737 instance=ExtResource("3_p5cj8")]
 lock_y = false
 
-[node name="CollisionShape2D" parent="CameraTriggers/CameraTrigger" index="0" unique_id=1096877515]
-position = Vector2(-140, 76)
-shape = SubResource("RectangleShape2D_e2lyu")
+[node name="Ladder" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="0" unique_id=1028036334 instance=ExtResource("7_i3uko")]
+position = Vector2(-136, 40)
 
-[node name="Marker2D" parent="CameraTriggers/CameraTrigger" index="1" unique_id=491164102]
-position = Vector2(-140, 80)
-gizmo_extents = 0.0
+[node name="Ladder2" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="1" unique_id=176479550 instance=ExtResource("7_i3uko")]
+position = Vector2(-136, -8)
+
+[node name="Ladder3" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="2" unique_id=783096849 instance=ExtResource("7_i3uko")]
+position = Vector2(-160, -56)
 
 [node name="TrapTrigger" parent="TrapDoors" parent_id_path=PackedInt32Array(1668417706) index="0" unique_id=627399350 instance=ExtResource("4_mgaoa")]
 position = Vector2(-240, 72)
 
 [node name="CollisionShape2D" parent="TrapDoors/TrapTrigger" index="0" unique_id=552174093]
 position = Vector2(104, -12)
-shape = SubResource("RectangleShape2D_7vu3n")
+shape = SubResource("RectangleShape2D_m40ur")
 
 [node name="TrapDoor" parent="TrapDoors/TrapTrigger/DoorContainer" parent_id_path=PackedInt32Array(627399350, 1263912219) index="0" unique_id=276141706]
 position = Vector2(-4, 12)
@@ -95,15 +115,14 @@ position = Vector2(-272, 60)
 target_room_path = "uid://cox0t74p6kkon"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_dh28k")
+shape = SubResource("RectangleShape2D_gg7br")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=1561035608 instance=ExtResource("4_hx30x")]
 position = Vector2(72, 168)
 exit_id = 2
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=1018268978 instance=ExtResource("4_hx30x")]
-position = Vector2(-272, -52)
+position = Vector2(-278, -52)
 exit_id = 3
 target_room_path = "uid://dnqh43xyrsipk"
 
@@ -117,30 +136,10 @@ position = Vector2(-192, 80)
 position = Vector2(-80, 80)
 
 [node name="AnimatedSprite2D" parent="Enemies/Walker2" index="0" unique_id=62056824]
-material = SubResource("ShaderMaterial_m40ur")
+material = SubResource("ShaderMaterial_55kmn")
 flip_h = true
 
-[node name="Ladder" parent="." index="17" unique_id=1028036334 instance=ExtResource("7_i3uko")]
-position = Vector2(-136, 40)
-
-[node name="Ladder2" parent="." index="18" unique_id=176479550 instance=ExtResource("7_i3uko")]
-position = Vector2(-136, -8)
-
-[node name="Ladder3" parent="." index="19" unique_id=783096849 instance=ExtResource("7_i3uko")]
-position = Vector2(-160, -56)
-
-[node name="GodRays" type="Sprite2D" parent="." index="20" unique_id=1393466460]
-z_index = 2
-
-[node name="ColorRect" type="ColorRect" parent="GodRays" index="0" unique_id=693414327]
-z_index = 2
-material = SubResource("ShaderMaterial_7vu3n")
-offset_left = -120.0
-offset_top = 88.0
-offset_right = -88.0
-offset_bottom = 367.5
-rotation = 3.1415927
-
+[editable path="Decoration/GodRay"]
 [editable path="CameraTriggers/CameraTrigger"]
 [editable path="TrapDoors/TrapTrigger"]
 [editable path="RoomExits/RoomExit"]
