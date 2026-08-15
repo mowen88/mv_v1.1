@@ -107,11 +107,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	fsm.handle_input(event)
 	
-	if Input.is_action_just_pressed("shoot"):
-		
+
+	if event.is_action_pressed("shoot"):
+
 		SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
 		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
 		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
+		
+		# Testing cycle through states to test: inactive -> in_progress -> completed
+		if QuestManager.get_quest_state("find_the_key") == "inactive":
+			QuestManager.set_quest_state("find_the_key", "in_progress")
+			print("Quest State Changed: IN_PROGRESS")
+		elif QuestManager.get_quest_state("find_the_key") == "in_progress":
+			QuestManager.set_quest_state("find_the_key", "completed")
+			print("Quest State Changed: COMPLETED")
+		return
+		
 		#SignalBus.zone_banner_requested.emit("Big Bad Boss", true)
 		#AudioManager.start_music("res://states/world_state/music/temple_theme.ogg", 1.0)
 		#AudioManager.stop_music()

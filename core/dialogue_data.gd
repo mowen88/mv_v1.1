@@ -1,22 +1,28 @@
 
 extends Node
 
-const DIALOGUE_DATA: Dictionary[String, Dictionary] = {
-	"English":
-		{"Tutorials":
-			{"Drop through platforms":"Swipe down to drop through platforms",
-			"Jump":"Press A to jump",
-			"Attack":"Press B to attack"}
-		},
-	"Polish":
-		{"Tutorials":
-			{"Drop through platforms":"Swipe down to drop through platforms",
-			"Jump":"Press A to jump",
-			"Attack":"Press B to attack"}
-		}
-}
-
 const DATABASE = {
+	"test_quest": [
+		"Halt, traveler! The bridge is closed.",
+		{
+			"type": "quest_branch",
+			"quest_id": "find_the_key",
+			"branches": {
+				"inactive": [
+					"If you want to pass, you'll need to find the old gate key.",
+					"Bring it to me and I'll let you through."
+				],
+				"in_progress": [
+					"Hurry up and find that key! It should be somewhere in the ruins."
+				],
+				"completed": [
+					"Ah, you got the key! Go right on through."
+				]
+			}
+		}
+	],
+
+
 	"test_intro": [
 		"Hello traveler! Welcome to the ruins.",
 		{

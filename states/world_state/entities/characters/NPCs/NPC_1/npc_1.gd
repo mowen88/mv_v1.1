@@ -9,7 +9,8 @@ func _ready() -> void:
 	interaction_component.interact.connect(_on_interacted)
 	
 
-func _on_interacted(player:CharacterBody2D):
-	SignalBus.play_cutscene.emit("test_intro")
+func _on_interacted(_player:CharacterBody2D):
+	SignalBus.play_cutscene.emit("test_quest")
+	#SignalBus.play_cutscene.emit("test_intro")
 	
 	

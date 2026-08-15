@@ -88,14 +88,13 @@ func run_cutscene(sequence: Array) -> void:
 	for item in sequence:
 		# CASE 1: Normal text string
 		if item is String:
-			await type_line(item, true) # Normal lines wait for click to continue
+			await type_line(item, true)
 				
-		# CASE 2: Choice dictionary
-		elif item is Dictionary:
+		# CASE 2: Choice dictionary (Player picks)
+		elif item is Dictionary and item.has("choices"):
 			var question_text = item.get("text", "")
-			await type_line(question_text, false) # Choice prompts DO NOT wait for extra click, move straight to choices!
+			await type_line(question_text, false)
 			
-			# Setup and show buttons
 			var choices = item.get("choices", ["Yes", "No"])
 			button_a.text = choices[0] if choices.size() > 0 else "Yes"
 			button_b.text = choices[1] if choices.size() > 1 else "No"
@@ -108,17 +107,28 @@ func run_cutscene(sequence: Array) -> void:
 				
 			await tween_choice_container(false)
 			
-			# Play the chosen branch path
 			var branches = item.get("branches", [])
 			if branches.size() > selected_choice_index:
 				for branch_line in branches[selected_choice_index]:
 					await type_line(branch_line, true)
+
+		# CASE 3: Quest State Query (Automatic branch based on progress)
+		elif item is Dictionary and item.get("type") == "quest_branch":
+			var quest_id = item.get("quest_id", "")
+			# Query your quest manager for status ("inactive", "in_progress", "completed")
+			var current_state = QuestManager.get_quest_state(quest_id) 
+			
+			var quest_branches = item.get("branches", {})
+			if quest_branches.has(current_state):
+				for line in quest_branches[current_state]:
+					await type_line(line, true)
 
 	text_label.text = ""
 	await toggle_bars(false)
 	
 	InputManager.cutscene_lock = false
 	is_playing = false
+
 
 # Helper function updated with a flag to optionally skip waiting for input
 func type_line(content: String, wait_for_keypress: bool) -> void:

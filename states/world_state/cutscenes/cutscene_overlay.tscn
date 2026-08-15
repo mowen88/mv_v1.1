@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://brpg1pdk4sj3e" path="res://states/world_state/cutscenes/cutscene_manager.gd" id="1_mmuiu"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_py15q"]
 [ext_resource type="AudioStream" uid="uid://qjj21g1l1ws5" path="res://states/world_state/cutscenes/digital_typing_sound_effect_trimmed.mp3" id="2_sdhns"]
+[ext_resource type="AudioStream" uid="uid://dnxopskch5bnb" path="res://UI/menu/audio/ui_Accept_sound.mp3" id="2_v8dmu"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_gyyh3"]
 [ext_resource type="AudioStream" uid="uid://bsmifkbqdiqa2" path="res://UI/menu/audio/menu_back.mp3" id="3_yo42h"]
 
@@ -41,6 +42,7 @@ expand_margin_bottom = 24.0
 
 [node name="CutsceneOverlay" type="CanvasLayer" unique_id=520239919]
 script = ExtResource("1_mmuiu")
+select_sound = ExtResource("2_v8dmu")
 back_sound = ExtResource("3_yo42h")
 
 [node name="TypingSound" type="AudioStreamPlayer" parent="." unique_id=685354831]
