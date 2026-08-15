@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c8kn5s416smcp"]
+
+[ext_resource type="Script" uid="uid://brpg1pdk4sj3e" path="res://states/world_state/cutscenes/cutscene_manager.gd" id="1_mmuiu"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_py15q"]
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_gyyh3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyyh3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdhns"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8dmu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yo42h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbtps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yh60n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w37a7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3dk1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tcsp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3tmww"]
+
+[node name="CutsceneOverlay" type="CanvasLayer" unique_id=520239919]
+script = ExtResource("1_mmuiu")
+
+[node name="TopBar" type="ColorRect" parent="." unique_id=552031017]
+custom_minimum_size = Vector2(0, 120)
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+color = Color(0.12941177, 0.11372549, 0.14509805, 1)
+
+[node name="BottomBar" type="ColorRect" parent="." unique_id=1685690414]
+custom_minimum_size = Vector2(0, 120)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.12941177, 0.11372549, 0.14509805, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BottomBar" unique_id=835136829]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_py15q")
+theme_override_font_sizes/normal_font_size = 90
+horizontal_alignment = 1
+
+[node name="ChoiceContainer" type="VBoxContainer" parent="." unique_id=308588210]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="ButtonA" type="Button" parent="ChoiceContainer" unique_id=1945727141]
+layout_mode = 2
+theme = ExtResource("3_gyyh3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gyyh3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sdhns")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v8dmu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yo42h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tbtps")
+
+[node name="ButtonB" type="Button" parent="ChoiceContainer" unique_id=1760401154]
+layout_mode = 2
+theme = ExtResource("3_gyyh3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yh60n")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_w37a7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x3dk1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2tcsp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3tmww")

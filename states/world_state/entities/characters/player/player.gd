@@ -42,7 +42,7 @@ func _ready() -> void:
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
-func _process(delta:float) -> void:
+func _process(_delta:float) -> void:
 	pass
 	#print(InputManager.input_lock)
 	#print(fsm.current_state.name)
@@ -72,8 +72,8 @@ func is_on_ladder() -> bool:
 			return true
 	return false
 
-func _update_respawn_point(position:Vector2) -> void:
-	last_safe_position = position
+func _update_respawn_point(respawn_position:Vector2) -> void:
+	last_safe_position = respawn_position
 
 func _on_hit(hitbox: Area2D, _knockback_force:float):
 	if health_component.current_health <= 0:
@@ -94,9 +94,7 @@ func _gain_energy(entity:Node2D) -> void:
 		energy_component.gain_energy(3)
 	
 func x_input(_delta: float) -> void:
-	if InputManager.input_lock:
-		# Keep the player moving on room transition when input locked
-		velocity.x = sign(velocity.x) * move_component.speed
+	if InputManager.cutscene_lock or InputManager.input_lock:
 		return
 		
 	# If not input locked, set zdirection as per the relevant input
@@ -104,8 +102,9 @@ func x_input(_delta: float) -> void:
 
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:
-	if InputManager.input_lock:
+	if InputManager.cutscene_lock or InputManager.input_lock:
 		return
+		
 	fsm.handle_input(event)
 	
 	if Input.is_action_just_pressed("shoot"):

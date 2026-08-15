@@ -16,6 +16,8 @@ signal tutorial_message_requested(message:String)
 signal show_interaction_prompt()
 signal hide_interaction_prompt()
 
+signal play_cutscene()
+
 signal screenshake_requested(x_offset:float, y_offset:float, duration:float)
 signal death_screen_fade(color:Color, duration:float)
 signal flash_screen(color:Color, duration:float)
@@ -29,6 +31,6 @@ signal player_energy_changed(new_energy: int)
 signal player_max_energy_changed(new_max: int)
 
 signal player_energy_gained(entity: Node2D)
-signal player_respawn(position:Vector2)
+signal player_respawn(respawn_position:Vector2)
 
 signal trap_doors_unlocked(_id:String)

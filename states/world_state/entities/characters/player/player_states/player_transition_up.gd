@@ -11,12 +11,14 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	timer -= delta
 	
-	owner.velocity.y = -50
+	owner.velocity.y = -60
 	owner.move_and_slide()
 
 	if timer <= 0:
-		fsm.change_state("Fall")
-
+		if owner.is_on_floor():
+			fsm.change_state("Idle")
+		else:
+			fsm.change_state("Fall")
 	
 
 

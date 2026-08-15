@@ -33,7 +33,7 @@ func _handle_player_momentum(player: Node2D) -> void:
 	# Update player facing
 	player.move_component.facing = true_travel_dir
 	
-	# No need to "push" or force the player to move in x axis when falling down
+	## No need to "push" or force the player to move in x axis when falling down
 	if not exit_down:
 		player.velocity.x = true_travel_dir * transition_x_speed
 
@@ -42,3 +42,5 @@ func _handle_player_state(player: Node2D) -> void:
 		player.fsm.change_state("Fall")
 	elif exit_up:
 		player.fsm.change_state("TransitionUp")
+	else:
+		player.fsm.change_state("Transition")

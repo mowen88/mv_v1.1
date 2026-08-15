@@ -5,13 +5,14 @@ extends Node2D
 @onready var game_camera: Camera2D = $GameCamera
 @onready var touch_controller: CanvasLayer = $TouchController
 @onready var menu_canvas: CanvasLayer = $MenuCanvas
+@onready var cutscene_canvas: CanvasLayer = $CutsceneOverlay
+@onready var gameplay_ui: CanvasLayer = $GameplayUI
 @onready var menu_manager: Control = $MenuCanvas/MenuAnchor/MenuManager
 @onready var pause_menu: VBoxContainer = $MenuCanvas/MenuAnchor/MenuManager/PauseMenu
 
 var current_room_node: Node2D = null
 var current_zone_name: String = ""
 var in_cutscene: bool = false
-
 
 func _ready():
 	
@@ -23,29 +24,32 @@ func _ready():
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
 
+
 func _process(delta: float) -> void:
 	if not player:
 		return
 		
 	if in_cutscene:
 		return
-	
-	print(player.fsm.current_state.name)
 		
 	game_camera.update_target(player, delta)
 		
-func _on_hit_stop(duration: float) -> void:
-	Engine.time_scale = 0.0 # Freeze everything
-	await get_tree().create_timer(duration, true, false, true).timeout # Real-time timer that ignores time_scale
-	Engine.time_scale = 1.0 # Resume normal game speed
-	
 func _unhandled_input(event: InputEvent) -> void:
+	if InputManager.cutscene_lock:
+		return
+		
 	if event.is_action_pressed("toggle_pause"):
 		_toggle_game_pause()
 
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
 		SignalBus.camera_override_cleared.emit()
-		
+		SignalBus.play_cutscene.emit("test_intro")
+
+func _on_hit_stop(duration: float) -> void:
+	Engine.time_scale = 0.0 # Freeze everything
+	await get_tree().create_timer(duration, true, false, true).timeout # Real-time timer that ignores time_scale
+	Engine.time_scale = 1.0 # Resume normal game speed
+	
 func _toggle_game_pause() -> void:
 	get_tree().paused = not get_tree().paused
 	touch_controller.visible = not get_tree().paused

@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://bcopnf2bruebq" path="res://states/world_state/entities/characters/player/player_states/player_slide.gd" id="26_m3cwm"]
 [ext_resource type="Script" uid="uid://bblrqgr5l4nsn" path="res://states/world_state/entities/characters/player/player_states/player_enter_door.gd" id="28_ak1tp"]
 [ext_resource type="Script" uid="uid://b7iahl8t08p7c" path="res://states/world_state/entities/characters/player/player_states/player_exit_door.gd" id="29_hpgvl"]
+[ext_resource type="Script" uid="uid://be7575jdlvj8" path="res://states/world_state/entities/characters/player/player_states/player_transition.gd" id="31_5mbyj"]
 [ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
 [ext_resource type="Script" uid="uid://dub405aebb00b" path="res://states/world_state/entities/characters/player/player_states/player_transition_up.gd" id="31_puuqg"]
 [ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="38_1i1x5"]
@@ -481,6 +482,10 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="ExitDoor" type="Node" parent="FiniteStateMachine" unique_id=18660354]
 script = ExtResource("29_hpgvl")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Transition" type="Node" parent="FiniteStateMachine" unique_id=193154427]
+script = ExtResource("31_5mbyj")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
