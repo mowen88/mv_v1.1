@@ -1,16 +1,24 @@
 extends CanvasLayer
 
-@onready var choice_container: Container = $ChoiceContainer # Or wherever you placed it
-@onready var button_a: Button = $ChoiceContainer/ButtonA
-@onready var button_b: Button = $ChoiceContainer/ButtonB
+@onready var typing_sound: AudioStreamPlayer = $TypingSound
+
+@onready var choice_container: Container = $ChoiceContainer
+@onready var button_a: Button = $ChoiceContainer/ButtonAContainer/ButtonA
+@onready var button_b: Button = $ChoiceContainer/ButtonBContainer/ButtonB
 
 @onready var top_bar: ColorRect = $TopBar
 @onready var bottom_bar: ColorRect = $BottomBar
 @onready var text_label: RichTextLabel = $BottomBar/RichTextLabel
 
-@export var bar_height: float = 120.0
 @export var player: Node2D
 @export var typing_speed: float = 0.03
+
+@export var select_sound: AudioStream
+@export var back_sound: AudioStream
+
+# Preset dimensions
+var screen_height:float = ProjectSettings.get_setting("display/window/size/viewport_height")
+var bar_height: float
 
 var is_playing: bool = false
 var waiting_for_input: bool = false
@@ -20,7 +28,7 @@ var current_tween: Tween = null
 var selected_choice_index: int = -1
 
 func _ready() -> void:
-	var screen_height = float(ProjectSettings.get_setting("display/window/size/viewport_height"))
+	bar_height = top_bar.size.y
 	top_bar.position.y = -bar_height
 	bottom_bar.position.y = screen_height
 	text_label.text = ""
@@ -30,17 +38,23 @@ func _ready() -> void:
 	button_b.pressed.connect(_on_button_b_pressed)
 
 func _on_button_a_pressed() -> void:
+	AudioManager.play_sfx(select_sound)
 	selected_choice_index = 0
 
 func _on_button_b_pressed() -> void:
+	AudioManager.play_sfx(back_sound)
 	selected_choice_index = 1	
 
 # Captures input to skip typing, advance lines, or close the cutscene
 func _input(event: InputEvent) -> void:
 	if not is_playing or not waiting_for_input:
 		return
+	
+	# Check for keyboard/gamepad action OR a mobile touchscreen tap
+	var is_accept = event.is_action_pressed("ui_accept")
+	var is_touch = event is InputEventScreenTouch and event.pressed
 		
-	if event.is_action_pressed("ui_accept"):
+	if is_accept or is_touch:
 		if is_typing:
 			# 1. If text is still typing, finish it instantly
 			if current_tween and current_tween.is_valid():
@@ -72,77 +86,103 @@ func run_cutscene(sequence: Array) -> void:
 	await toggle_bars(true)
 	
 	for item in sequence:
-		# CASE 1: The item is a normal text string
+		# CASE 1: Normal text string
 		if item is String:
-			text_label.text = item
-			text_label.visible_ratio = 0.0
-			is_typing = true
-			waiting_for_input = true
-			
-			var text_duration = max(0.5, item.length() * typing_speed)
-			current_tween = create_tween()
-			current_tween.tween_property(text_label, "visible_ratio", 1.0, text_duration)
-			
-			await current_tween.finished
-			is_typing = false
-			
-			while waiting_for_input:
-				await get_tree().process_frame
+			await type_line(item, true) # Normal lines wait for click to continue
 				
-		# CASE 2: The item is a choice dictionary
+		# CASE 2: Choice dictionary
 		elif item is Dictionary:
-			text_label.text = item.get("text", "")
-			text_label.visible_ratio = 1.0 # Show prompt text instantly
+			var question_text = item.get("text", "")
+			await type_line(question_text, false) # Choice prompts DO NOT wait for extra click, move straight to choices!
 			
+			# Setup and show buttons
 			var choices = item.get("choices", ["Yes", "No"])
 			button_a.text = choices[0] if choices.size() > 0 else "Yes"
 			button_b.text = choices[1] if choices.size() > 1 else "No"
 			
-			choice_container.visible = true
 			selected_choice_index = -1
+			await tween_choice_container(true)
 			
 			while selected_choice_index == -1:
 				await get_tree().process_frame
 				
-			choice_container.visible = false
+			await tween_choice_container(false)
 			
-			# BRANCH HANDLING: Check if this choice has a specific branch attached
+			# Play the chosen branch path
 			var branches = item.get("branches", [])
 			if branches.size() > selected_choice_index:
-				var chosen_branch = branches[selected_choice_index]
-				
-				# Play the sub-sequence for the chosen path line-by-line
-				for branch_line in chosen_branch:
-					text_label.text = branch_line
-					text_label.visible_ratio = 0.0
-					is_typing = true
-					waiting_for_input = true
-					
-					var b_duration = max(0.5, branch_line.length() * typing_speed)
-					current_tween = create_tween()
-					current_tween.tween_property(text_label, "visible_ratio", 1.0, b_duration)
-					
-					await current_tween.finished
-					is_typing = false
-					
-					while waiting_for_input:
-						await get_tree().process_frame
+				for branch_line in branches[selected_choice_index]:
+					await type_line(branch_line, true)
+
 	text_label.text = ""
 	await toggle_bars(false)
 	
 	InputManager.cutscene_lock = false
 	is_playing = false
+
+# Helper function updated with a flag to optionally skip waiting for input
+func type_line(content: String, wait_for_keypress: bool) -> void:
+	text_label.text = content
+	text_label.visible_ratio = 0.0
+	is_typing = true
+	waiting_for_input = true
+	
+	var text_duration = max(0.5, content.length() * typing_speed)
+	current_tween = create_tween()
+	current_tween.tween_property(text_label, "visible_ratio", 1.0, text_duration)
+	
+	# Play sound effect while typing
+	if typing_sound.stream and not typing_sound.playing:
+		typing_sound.play()
+	
+	await current_tween.finished
+	
+	# Stop the typing sound immediately when text finishes or is skipped
+	if typing_sound.playing:
+		typing_sound.stop()
+		
+	is_typing = false
+	
+	if not wait_for_keypress:
+		waiting_for_input = false
+		return
+	
+	while waiting_for_input:
+		await get_tree().process_frame
+
+func tween_choice_container(show_choices: bool) -> void:
+	var target_y = screen_height/2 if show_choices else screen_height + 100
+	
+	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(choice_container, "position:y", target_y, 1.0)
+	
+	if show_choices:
+		choice_container.visible = true
+		await tween.finished
+	else:
+		await tween.finished
+		choice_container.visible = false
 	
 func toggle_bars(open: bool) -> void:
 	var duration = 0.7
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	var screen_height = float(ProjectSettings.get_setting("display/window/size/viewport_height"))
-	
+
 	if open:
+		# Hide UIs straight away
+		SignalBus.toggle_gameplay_ui.emit(false)
+		SignalBus.toggle_touch_controller.emit(false)
+		
 		tween.tween_property(top_bar, "position:y", 0.0, duration)
 		tween.tween_property(bottom_bar, "position:y", screen_height - bar_height, duration)
 	else:
 		tween.tween_property(top_bar, "position:y", -bar_height, duration)
 		tween.tween_property(bottom_bar, "position:y", screen_height, duration)
-		
+	
 	await tween.finished
+	
+	# Await finished black bars and then show UIs again
+	if not open:	
+		SignalBus.toggle_gameplay_ui.emit(true)
+		SignalBus.toggle_touch_controller.emit(true)
+		
+	

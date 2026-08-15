@@ -19,7 +19,7 @@ func receive_damage(hitbox: Node2D, amount:int, knockback_force:float) -> bool:
 	if health_component:
 		health_component.damage(amount)
 		
-	AudioManager.play_sfx(sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(sound)
 	ParticleManager.play(particle_name, global_position)
 	SignalBus.screenshake_requested.emit(2.0, 0.0, 0.2)
 	

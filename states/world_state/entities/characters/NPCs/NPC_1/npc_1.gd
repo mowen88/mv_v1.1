@@ -10,6 +10,6 @@ func _ready() -> void:
 	
 
 func _on_interacted(player:CharacterBody2D):
-	pass
+	SignalBus.play_cutscene.emit("test_intro")
 	
 	

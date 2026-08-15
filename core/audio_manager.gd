@@ -137,14 +137,11 @@ func _get_available_sfx_player() -> AudioStreamPlayer2D:
 ## Determine how many loops
 ## Adds 10% pitch_variance
 ## Plays a raw AudioStream directly using the SFX pool (great for unique enemy sounds)
-func play_sfx(sfx:AudioStream, world_pos:Vector2, loops:int = 1, pitch_variance:float = 0.0) -> void:
+func play_sfx(sfx:AudioStream, loops:int = 1, pitch_variance:float = 0.0) -> void:
 	if not sfx:
 		return
 		
 	var player = _get_available_sfx_player()
-	
-	# Add position of sound
-	player.global_position = world_pos
 	
 	if pitch_variance > 0.0:
 		player.pitch_scale = randf_range(1.0 - pitch_variance, 1.0 + pitch_variance)

@@ -15,12 +15,15 @@ var current_zone_name: String = ""
 var in_cutscene: bool = false
 
 func _ready():
+	SignalBus.toggle_gameplay_ui.connect(func(val): gameplay_ui.visible = val)
+	SignalBus.toggle_touch_controller.connect(func(val): touch_controller.visible = val)
+	
 	
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
 	SignalBus.save_station_activated.connect(_on_save_station_activated)
 	SignalBus.hit_stop_requested.connect(_on_hit_stop)
 	pause_menu.unpause_requested.connect(_toggle_game_pause)
-	
+
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
 
@@ -43,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
 		SignalBus.camera_override_cleared.emit()
-		SignalBus.play_cutscene.emit("test_intro")
+
 
 func _on_hit_stop(duration: float) -> void:
 	Engine.time_scale = 0.0 # Freeze everything

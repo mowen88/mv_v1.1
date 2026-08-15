@@ -2,7 +2,22 @@
 
 [ext_resource type="Script" uid="uid://brpg1pdk4sj3e" path="res://states/world_state/cutscenes/cutscene_manager.gd" id="1_mmuiu"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_py15q"]
+[ext_resource type="AudioStream" uid="uid://qjj21g1l1ws5" path="res://states/world_state/cutscenes/digital_typing_sound_effect_trimmed.mp3" id="2_sdhns"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_gyyh3"]
+[ext_resource type="AudioStream" uid="uid://bsmifkbqdiqa2" path="res://UI/menu/audio/menu_back.mp3" id="3_yo42h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyyh3"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 40.0
+bg_color = Color(0, 0, 0, 0.7058824)
+corner_radius_top_right = 40
+corner_radius_bottom_left = 40
+expand_margin_left = 24.0
+expand_margin_top = 24.0
+expand_margin_right = 24.0
+expand_margin_bottom = 24.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyyh3"]
 
@@ -26,14 +41,19 @@
 
 [node name="CutsceneOverlay" type="CanvasLayer" unique_id=520239919]
 script = ExtResource("1_mmuiu")
+back_sound = ExtResource("3_yo42h")
+
+[node name="TypingSound" type="AudioStreamPlayer" parent="." unique_id=685354831]
+stream = ExtResource("2_sdhns")
+parameters/looping = true
 
 [node name="TopBar" type="ColorRect" parent="." unique_id=552031017]
 custom_minimum_size = Vector2(0, 120)
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -120.0
+offset_top = -152.0
 grow_horizontal = 2
-color = Color(0.12941177, 0.11372549, 0.14509805, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="BottomBar" type="ColorRect" parent="." unique_id=1685690414]
 custom_minimum_size = Vector2(0, 120)
@@ -41,48 +61,62 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 120.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.12941177, 0.11372549, 0.14509805, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BottomBar" unique_id=835136829]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_py15q")
 theme_override_font_sizes/normal_font_size = 90
 horizontal_alignment = 1
 
-[node name="ChoiceContainer" type="VBoxContainer" parent="." unique_id=308588210]
-anchors_preset = 8
+[node name="ChoiceContainer" type="HBoxContainer" parent="." unique_id=1473348286]
+z_index = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = 120.0
+offset_right = 124.0
+offset_bottom = 192.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 32
+grow_vertical = 0
+theme_override_constants/separation = 120
 
-[node name="ButtonA" type="Button" parent="ChoiceContainer" unique_id=1945727141]
+[node name="ButtonAContainer" type="PanelContainer" parent="ChoiceContainer" unique_id=1825944843]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyyh3")
+
+[node name="ButtonA" type="Button" parent="ChoiceContainer/ButtonAContainer" unique_id=1945727141]
 layout_mode = 2
 theme = ExtResource("3_gyyh3")
+theme_override_constants/align_to_largest_stylebox = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gyyh3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_sdhns")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_v8dmu")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_yo42h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tbtps")
 
-[node name="ButtonB" type="Button" parent="ChoiceContainer" unique_id=1760401154]
+[node name="ButtonBContainer" type="PanelContainer" parent="ChoiceContainer" unique_id=5270088]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyyh3")
+
+[node name="ButtonB" type="Button" parent="ChoiceContainer/ButtonBContainer" unique_id=961438061]
 layout_mode = 2
 theme = ExtResource("3_gyyh3")
+theme_override_constants/align_to_largest_stylebox = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yh60n")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_w37a7")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x3dk1")

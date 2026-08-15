@@ -61,18 +61,18 @@ func _on_volume_changed(bus_name:String, value:float) -> void:
 		push_warning("Audio Bus not found: " + bus_name)
 		
 func _on_battery_saver_toggled(is_on: bool) -> void:
-	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(select_sound)
 	VibrateManager.run(200)
 	SaveManager.update_setting("Battery Saver", is_on)
 	Engine.max_fps = 30 if is_on else 60
 
 func _on_vibrate_toggled(is_on: bool) -> void:
-	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(select_sound)
 	VibrateManager.run(200)
 	SaveManager.update_setting("Vibration", is_on)
 
 func _on_screenshake_toggled(is_on: bool) -> void:
-	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(select_sound)
 	VibrateManager.run(200)
 	SaveManager.update_setting("Screenshake", is_on)
 
@@ -89,7 +89,7 @@ func _initialize_menu(menu_name: String = "MainMenu") -> void:
 
 func show_panel(target_menu: VBoxContainer) -> void:
 	
-	AudioManager.play_sfx(select_sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(select_sound)
 	VibrateManager.run(200)
 	
 	if InputManager.input_lock:
@@ -128,7 +128,7 @@ func _on_delete_confirmed() -> void:
 
 func _on_save_slot_selected(slot_id: String) -> void:
 	
-	AudioManager.play_sfx(go_to_game_sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(go_to_game_sound)
 	VibrateManager.run(200)
 	
 	SaveManager.current_slot = slot_id
@@ -154,7 +154,7 @@ func _on_save_slot_selected(slot_id: String) -> void:
 	
 func _go_back() -> void:
 	
-	AudioManager.play_sfx(back_sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(back_sound)
 	VibrateManager.run(200)
 	
 	# If there is nothing left in our history stack, we can't go back further

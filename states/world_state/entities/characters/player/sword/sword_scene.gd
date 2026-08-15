@@ -21,7 +21,7 @@ func attack(facing_direction: int) -> void:
 	position = Vector2(6 * facing_direction, 0)
 	scale.x = facing_direction
 	# Play sfx
-	AudioManager.play_sfx(sound, global_position, 1, 0.15)
+	AudioManager.play_sfx(sound)
 	
 	if cooldown_timer.is_stopped():
 		#hitbox_component.clear_hitlist()
