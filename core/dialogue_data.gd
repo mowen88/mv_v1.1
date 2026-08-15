@@ -1,6 +1,5 @@
 
 extends Node
-
 const DATABASE = {
 	"test_quest": [
 		"Halt, traveler! The bridge is closed.",
@@ -10,7 +9,18 @@ const DATABASE = {
 			"branches": {
 				"inactive": [
 					"If you want to pass, you'll need to find the old gate key.",
-					"Bring it to me and I'll let you through."
+					{
+						"text": "Will you help me find it?",
+						"choices": ["Accept Quest", "Decline"],
+						"branches": [
+							[
+								"Thank you! Seek it within the ruins."
+							],
+							[
+								"Come back if you change your mind."
+							]
+						]
+					}
 				],
 				"in_progress": [
 					"Hurry up and find that key! It should be somewhere in the ruins."
@@ -22,18 +32,29 @@ const DATABASE = {
 		}
 	],
 
-
-	"test_intro": [
+	"test_choices": [
 		"Hello traveler! Welcome to the ruins.",
 		{
 			"text": "Do you wish to enter the dangerous zone?",
 			"choices": ["Enter ruins", "Turn back"],
-			# Define what happens next for each choice index [0] and [1]
 			"branches": [
-				["You bravely step past the gates...", "The air grows cold."], # Path for Choice 0
-				["You turn around and walk away.", "Coward!"]                  # Path for Choice 1
+				["You bravely step past the gates...", "The air grows cold."],
+				["You turn around and walk away.", "Coward!"]
 			]
 		},
 		"This line plays after the choice branch finishes!"
-	]
+	],
+	
+	"test_intro": [
+		"Hello traveler! Welcome to the ruins.",
+		"This line plays after the choice branch finishes!"
+	],
+		"npc_1_initial": [
+		"Hello traveler! Welcome to the ruins.",
+		"Watch out round here!"
+	],
+		"npc_1_spoken": [
+		"Hello again traveler!",
+		"Good to see you again!"
+	],
 }

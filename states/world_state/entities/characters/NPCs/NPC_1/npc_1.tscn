@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="1_yyhdu"]
 [ext_resource type="Script" uid="uid://w6r4fliln4v5" path="res://states/world_state/entities/characters/finite_state_machine/base_state.gd" id="2_ljkyi"]
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="4_ahn33"]
+[ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="5_ahn33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_banb6"]
 size = Vector2(12, 24)
@@ -39,5 +40,8 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="InteractionComponent" parent="." unique_id=108345276 instance=ExtResource("4_ahn33")]
 prompt_text = "Interact"
+
+[node name="PersistenceComponent" parent="." unique_id=907069416 instance=ExtResource("5_ahn33")]
+persistent_id = "npc_1"
 
 [editable path="InteractionComponent"]

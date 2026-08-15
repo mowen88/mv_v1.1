@@ -26,6 +26,7 @@ var is_typing: bool = false
 var current_tween: Tween = null
 
 var selected_choice_index: int = -1
+var current_quest_context_id: String = ""
 
 func _ready() -> void:
 	bar_height = top_bar.size.y
@@ -80,8 +81,7 @@ func run_cutscene(sequence: Array) -> void:
 	if player:
 		player.move_component.direction = 0.0
 		player.velocity.x = 0.0
-		if player.has_node("FiniteStateMachine"):
-			player.get_node("FiniteStateMachine").change_state("Idle")
+		player.fsm.change_state("Idle")
 		
 	await toggle_bars(true)
 	
@@ -107,21 +107,61 @@ func run_cutscene(sequence: Array) -> void:
 				
 			await tween_choice_container(false)
 			
+			# --- QUEST ACCEPTANCE HOOK ---
+			# If this choice prompt is part of the inactive quest branch, update quest state based on choice index!
+			if current_quest_context_id != "":
+				if selected_choice_index == 0:
+					QuestManager.set_quest_state(current_quest_context_id, "in_progress")
+				# Index 1 is decline, so we keep it inactive (or handle as needed)
+			
 			var branches = item.get("branches", [])
 			if branches.size() > selected_choice_index:
 				for branch_line in branches[selected_choice_index]:
 					await type_line(branch_line, true)
+					
+			# Clear tracking variable after resolving choices
+			current_quest_context_id = ""
 
 		# CASE 3: Quest State Query (Automatic branch based on progress)
 		elif item is Dictionary and item.get("type") == "quest_branch":
 			var quest_id = item.get("quest_id", "")
-			# Query your quest manager for status ("inactive", "in_progress", "completed")
 			var current_state = QuestManager.get_quest_state(quest_id) 
+			
+			# Track which quest we are currently evaluating choices for
+			current_quest_context_id = quest_id if current_state == "inactive" else ""
 			
 			var quest_branches = item.get("branches", {})
 			if quest_branches.has(current_state):
 				for line in quest_branches[current_state]:
-					await type_line(line, true)
+					if line is String:
+						await type_line(line, true)
+					elif line is Dictionary and line.has("choices"):
+						# Handles choice dictionary nested directly inside quest states
+						var question_text = line.get("text", "")
+						await type_line(question_text, false)
+						
+						var choices = line.get("choices", ["Yes", "No"])
+						button_a.text = choices[0] if choices.size() > 0 else "Yes"
+						button_b.text = choices[1] if choices.size() > 1 else "No"
+						
+						selected_choice_index = -1
+						await tween_choice_container(true)
+						
+						while selected_choice_index == -1:
+							await get_tree().process_frame
+							
+						await tween_choice_container(false)
+						
+						# If they picked choice 0 (Accept), update quest state immediately!
+						if selected_choice_index == 0:
+							QuestManager.set_quest_state(quest_id, "in_progress")
+							
+						var branches = line.get("branches", [])
+						if branches.size() > selected_choice_index:
+							for branch_line in branches[selected_choice_index]:
+								await type_line(branch_line, true)
+								
+			current_quest_context_id = ""
 
 	text_label.text = ""
 	await toggle_bars(false)
