@@ -486,6 +486,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Transition" type="Node" parent="FiniteStateMachine" unique_id=193154427]
 script = ExtResource("31_5mbyj")
+duration = 0.3
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]

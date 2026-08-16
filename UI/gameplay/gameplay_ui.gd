@@ -77,7 +77,7 @@ func _on_coins_changed(new_total_coins: int) -> void:
 		func(val: int):
 			# Only play effect when number changes in the UI
 			if val != displayed_coins:
-				AudioManager.play_sfx(coin_collect_sound,1,0.1)
+				AudioManager.play_sfx(coin_collect_sound,1,0.02)
 			displayed_coins = val
 			coin_hud.text = str(displayed_coins),
 		displayed_coins,

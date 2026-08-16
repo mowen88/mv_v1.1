@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://byogx7enghk64"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vkwl2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(130, 0, 1)
+direction = Vector3(0.2, 1, 0)
+spread = 15.0
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 2.0
+turbulence_noise_scale = 0.5
+turbulence_initial_displacement_min = 0.5000015
+turbulence_initial_displacement_max = 0.5000015
+
+[node name="WeatherParticles" type="GPUParticles2D" unique_id=1842684134]
+z_index = 1
+amount = 150
+lifetime = 12.0
+preprocess = 12.0
+randomness = 0.5
+visibility_rect = Rect2(0, 0, 200, 200)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_vkwl2")

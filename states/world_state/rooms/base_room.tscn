@@ -1379,6 +1379,9 @@ z_index = 100
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Background" type="Node2D" parent="." unique_id=2100246147]
+z_index = -1
+
 [node name="BGTileMap" type="TileMapLayer" parent="." unique_id=599124256]
 
 [node name="SolidTileMap" type="TileMapLayer" parent="." unique_id=12999079]
