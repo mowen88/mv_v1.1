@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://sba028iwwtpy" path="res://states/world_state/environment/destructibles/chest/chest.gd" id="1_4wxkn"]
 [ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="2_haym2"]
 [ext_resource type="Texture2D" uid="uid://ucm64xxx8w3o" path="res://states/world_state/environment/destructibles/chest/chest_spritesheet.png" id="2_tctj2"]
+[ext_resource type="PackedScene" uid="uid://c67d806srgy4d" path="res://states/world_state/environment/collectibles/coin/coin.tscn" id="2_tqhym"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="3_tctj2"]
 [ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="4_haym2"]
 [ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="4_xdbp3"]
@@ -44,8 +45,8 @@ animations = [{
 [node name="Chest" type="StaticBody2D" unique_id=1938050104 groups=["persistent"]]
 collision_mask = 0
 script = ExtResource("1_4wxkn")
-currency_value = null
-particle_name = "money_burst"
+coin_burst_scene = ExtResource("2_tqhym")
+particle_name = "coin_burst"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187662859]
 position = Vector2(0, 1)

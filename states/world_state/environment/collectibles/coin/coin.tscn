@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c67d806srgy4d"]
+
+[ext_resource type="Texture2D" uid="uid://drm3egaasbw0p" path="res://states/world_state/environment/collectibles/coin/coin_spritesheet.png" id="1_8iytl"]
+[ext_resource type="Script" uid="uid://rs7xt35efrbc" path="res://states/world_state/environment/collectibles/coin/coin.gd" id="1_cp84l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cp84l"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ns5by"]
+radius = 3.0
+
+[node name="Coin" type="RigidBody2D" unique_id=1705729155]
+collision_layer = 0
+script = ExtResource("1_cp84l")
+collect_particle = "small_blast"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1548798029]
+shape = SubResource("CircleShape2D_cp84l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1207059676]
+texture = ExtResource("1_8iytl")
+hframes = 6
+
+[node name="Area2D" type="Area2D" parent="." unique_id=993210395]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=606387683]
+shape = SubResource("CircleShape2D_ns5by")

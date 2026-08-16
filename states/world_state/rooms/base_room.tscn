@@ -1387,30 +1387,32 @@ z_index = 2
 [node name="SlopeTileMap" type="TileMapLayer" parent="." unique_id=1149728441 groups=["slopes"]]
 tile_set = SubResource("TileSet_83wd4")
 
-[node name="Decoration" type="Node" parent="." unique_id=65517679]
+[node name="Decoration" type="Node2D" parent="." unique_id=1978398061]
 
-[node name="SecretWalls" type="Node" parent="." unique_id=485952299]
+[node name="SecretWalls" type="Node2D" parent="." unique_id=811405275]
 
-[node name="TutorialMessage" type="Node" parent="." unique_id=1362062078]
+[node name="TutorialMessage" type="Node2D" parent="." unique_id=999535073]
 
-[node name="Destructibles" type="Node" parent="." unique_id=386555359]
+[node name="Collectibles" type="Node2D" parent="." unique_id=1420056401]
 
-[node name="Hazards" type="Node" parent="." unique_id=1478642669]
+[node name="Destructibles" type="Node2D" parent="." unique_id=1383385415]
 
-[node name="SafeRespawns" type="Node" parent="." unique_id=1114979653]
+[node name="Hazards" type="Node2D" parent="." unique_id=296270661]
 
-[node name="CameraTriggers" type="Node" parent="." unique_id=1709709420]
+[node name="SafeRespawns" type="Node2D" parent="." unique_id=140974015]
 
-[node name="Platforms" type="Node" parent="." unique_id=225921246]
+[node name="CameraTriggers" type="Node2D" parent="." unique_id=1757734446]
 
-[node name="Ladders" type="Node" parent="." unique_id=997621068 groups=["ladders"]]
+[node name="Platforms" type="Node2D" parent="." unique_id=1468945143]
 
-[node name="TrapDoors" type="Node" parent="." unique_id=1668417706]
+[node name="Ladders" type="Node2D" parent="." unique_id=452901069 groups=["ladders"]]
 
-[node name="Spawns" type="Node" parent="." unique_id=1711980423]
+[node name="TrapDoors" type="Node2D" parent="." unique_id=1374909456]
 
-[node name="RoomExits" type="Node" parent="." unique_id=725630175]
+[node name="Spawns" type="Node2D" parent="." unique_id=848313442]
 
-[node name="Doors" type="Node" parent="." unique_id=477402032]
+[node name="RoomExits" type="Node2D" parent="." unique_id=718247589]
 
-[node name="Enemies" type="Node" parent="." unique_id=1127347775]
+[node name="Doors" type="Node2D" parent="." unique_id=1649377259]
+
+[node name="Enemies" type="Node2D" parent="." unique_id=978055959]

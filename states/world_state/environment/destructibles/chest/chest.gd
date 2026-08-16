@@ -3,7 +3,7 @@ extends StaticBody2D
 
 @export var currency_value: int = 25
 @export var coin_burst_scene: PackedScene
-@export var particle_name: String = "small_blast"
+@export var particle_name: String
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -34,10 +34,24 @@ func _on_death() -> void:
 	ParticleManager.play(particle_name, global_position)
 	collision_shape.set_deferred("disabled", true)
 	
+	#ParticleManager.play(particle_name, global_position)
+	
 	if coin_burst_scene:
-		var burst = coin_burst_scene.instantiate()
-		burst.global_position = global_position
-		get_tree().current_scene.add_child(burst)
+		# Spawn 20 coins one by one with a slight random stagger
+		for i in range(20):
+			var coin = coin_burst_scene.instantiate() as RigidBody2D
+			coin.global_position = global_position
+			get_tree().current_scene.add_child(coin)
+			
+			# Apply a random upward/sideways spray force within a ~35-degree cone for a wider burst
+			var random_angle = deg_to_rad(randf_range(-17.5, 17.5))
+			var direction = Vector2(0, -1).rotated(random_angle)
+			var speed = randf_range(280.0, 450.0)
+			coin.apply_central_impulse(direction * speed)
+			
+			# Wait a randomized bit between 0.1 and 0.2 seconds before the next coin
+			var wait_time = randf_range(0.1, 0.2)
+			await get_tree().create_timer(wait_time).timeout
 		
 
 func _on_persistent_state_loaded(previous_position:Vector2) -> void:
