@@ -71,7 +71,7 @@ func get_zone_data(room_filename:String) -> Dictionary:
 
 func _on_save_station_activated() -> void:
 	if current_room_node:
-		SaveManager.save_at_station(current_room_node.name)
+		SaveManager.save_at_station(current_room_node.name, player)
 		print_rich("[color=green]SAVE SYSTEM: Game successfully saved at room: %s[/color]" % current_room_node.name)
 
 func _on_room_change_requested(room_scene:PackedScene, target_spawn_id:int) -> void:

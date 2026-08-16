@@ -13,21 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://80i13jy77g5h" path="res://states/world_state/environment/platforms/disappearing_platform/platform_shaking.png" id="9_731cl"]
 [ext_resource type="PackedScene" uid="uid://ipqjqw5hxc52" path="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1.tscn" id="12_6xldl"]
 [ext_resource type="PackedScene" uid="uid://ca8ek1t4js2pq" path="res://states/world_state/environment/destructibles/chest/chest.tscn" id="13_s5aot"]
+[ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="14_731cl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mqc"]
 size = Vector2(40, 56)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s5aot"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_731cl"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_33653"]
 resource_local_to_scene = true
@@ -54,6 +43,18 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmla3"]
+resource_local_to_scene = true
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knwst"]
+resource_local_to_scene = true
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nuk5d"]
 resource_local_to_scene = true
 shader = ExtResource("5_lrovk")
 shader_parameter/flash_active = false
@@ -127,7 +128,7 @@ region = Rect2(32, 0, 16, 10)
 atlas = ExtResource("9_731cl")
 region = Rect2(16, 0, 16, 10)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_knwst"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb67v"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -197,7 +198,7 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuk5d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30ay1"]
 resource_local_to_scene = true
 size = Vector2(16, 8)
 
@@ -278,15 +279,15 @@ size = Vector2(16, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oiwx5"]
 size = Vector2(16, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb67v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rqw6"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_30ay1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bruir"]
 resource_local_to_scene = true
 size = Vector2(48, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rqw6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juj2j"]
 resource_local_to_scene = true
 size = Vector2(32, 56)
 
@@ -345,35 +346,41 @@ shape = SubResource("RectangleShape2D_t7mqc")
 [node name="Chest" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="0" unique_id=1938050104 instance=ExtResource("13_s5aot")]
 position = Vector2(144, 26)
 
+[node name="Chest2" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="1" unique_id=1499950282 instance=ExtResource("13_s5aot")]
+position = Vector2(-32, 26)
+
+[node name="PersistenceComponent" parent="Collectibles/Chest2" index="5" unique_id=375036549]
+persistent_id = "chest_test_02"
+
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="0" unique_id=706351147 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_s5aot")
+material = SubResource("ShaderMaterial_33653")
 position = Vector2(136, 26)
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="1" unique_id=728165885 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_731cl")
+material = SubResource("ShaderMaterial_a2gpo")
 position = Vector2(155, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush2" index="0" unique_id=177856894]
 flip_h = true
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="2" unique_id=1118628196 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_33653")
+material = SubResource("ShaderMaterial_00ua2")
 position = Vector2(168, 26)
 
 [node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="3" unique_id=1989416586 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_a2gpo")
+material = SubResource("ShaderMaterial_5knyr")
 position = Vector2(175, 26)
 
 [node name="Bush5" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="4" unique_id=802669373 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_00ua2")
+material = SubResource("ShaderMaterial_wmla3")
 position = Vector2(84, 26)
 
 [node name="Bush6" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="5" unique_id=1463685042 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_5knyr")
+material = SubResource("ShaderMaterial_knwst")
 position = Vector2(57, 26)
 
 [node name="Bush7" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="6" unique_id=628251889 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_wmla3")
+material = SubResource("ShaderMaterial_nuk5d")
 position = Vector2(66, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush7" index="0" unique_id=177856894]
@@ -383,10 +390,10 @@ flip_h = true
 position = Vector2(-128, 4)
 
 [node name="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform1" parent_id_path=PackedInt32Array(520227805, 986976773) index="0" unique_id=343587440]
-sprite_frames = SubResource("SpriteFrames_knwst")
+sprite_frames = SubResource("SpriteFrames_pb67v")
 
 [node name="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform1" parent_id_path=PackedInt32Array(520227805, 986976773) index="1" unique_id=1006470669]
-shape = SubResource("RectangleShape2D_nuk5d")
+shape = SubResource("RectangleShape2D_30ay1")
 
 [node name="Platform2" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="2" unique_id=492204025]
 position = Vector2(-16, 0)
@@ -465,7 +472,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_oiwx5")
 
 [node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="0" unique_id=1180928040]
-position = Vector2(-72, 0)
+position = Vector2(20, 24)
 
 [node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="1" unique_id=1001637926]
 position = Vector2(248, 24)
@@ -479,7 +486,7 @@ target_room_path = "uid://c2v2w4v0uqdr5"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_pb67v")
+shape = SubResource("RectangleShape2D_3rqw6")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=236050036 instance=ExtResource("3_er4tc")]
 position = Vector2(299, 4)
@@ -490,7 +497,7 @@ target_room_path = "uid://d0xlr5oc1fkqt"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit2" index="0" unique_id=519681351]
 position = Vector2(-427, 84)
-shape = SubResource("RectangleShape2D_30ay1")
+shape = SubResource("RectangleShape2D_bruir")
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="2" unique_id=1263021935 instance=ExtResource("3_er4tc")]
 position = Vector2(245, 4)
@@ -498,12 +505,17 @@ exit_id = 3
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit3" index="0" unique_id=519681351]
 position = Vector2(-525, -12)
-shape = SubResource("RectangleShape2D_3rqw6")
+shape = SubResource("RectangleShape2D_juj2j")
 
 [node name="NPC1" parent="." index="18" unique_id=1014089368 instance=ExtResource("12_6xldl")]
 position = Vector2(-8, 20)
 
+[node name="SaveStation" parent="." index="20" unique_id=249855072 instance=ExtResource("14_731cl")]
+position = Vector2(20, 20)
+
 [editable path="TutorialMessage/Message"]
+[editable path="Collectibles/Chest2"]
+[editable path="Collectibles/Chest2/HurtboxComponent"]
 [editable path="Destructibles/Bush2"]
 [editable path="Destructibles/Bush2/HurtboxComponent"]
 [editable path="Destructibles/Bush7"]

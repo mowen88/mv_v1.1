@@ -19,8 +19,14 @@ extends CharacterBody2D
 
 var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
+
+var current_coins: int = 0
+var banked_coins: int = 0
 		
 func _ready() -> void:	
+	
+	_get_initial_coins()
+	_get_initial_energy()
 	
 	hurtbox_component.hit_received.connect(_on_hit)
 	health_component.died.connect(_on_death)
@@ -43,8 +49,8 @@ func _ready() -> void:
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
 func _process(_delta:float) -> void:
-	pass
-	#print(InputManager.input_lock)
+	
+	print(banked_coins + current_coins)
 	#print(fsm.current_state.name)
 	
 func _on_swipe_down() -> void:
@@ -64,6 +70,22 @@ func _on_swipe_down() -> void:
 	else:
 		pass # Ground slam!
 
+func _get_initial_coins() -> void:
+	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		banked_coins = SaveManager.SAVE_DATA[SaveManager.current_slot].get("coins", 0)
+	else:
+		banked_coins = 0
+	current_coins = 0 # Fresh run starts with 0 unbanked coins
+	# Signal to update UI
+	SignalBus.player_coins_changed.emit(banked_coins)
+	
+func _get_initial_energy() -> void:
+	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		var saved_energy = SaveManager.SAVE_DATA[SaveManager.current_slot].get("energy", 0)
+		energy_component.current_energy = saved_energy
+	else:
+		energy_component.current_energy = 0
+			
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():
 		if area.is_in_group("ladders"):
@@ -78,6 +100,7 @@ func _update_respawn_point(respawn_position:Vector2) -> void:
 func _on_hit(hitbox: Area2D, _knockback_force:float):
 	if health_component.current_health <= 0:
 		return
+		
 	var hazard = true if hitbox.owner.is_in_group("hazards") else false
 
 	if hazard:
@@ -85,9 +108,15 @@ func _on_hit(hitbox: Area2D, _knockback_force:float):
 	else:
 		fsm.change_state("Hit")
 
+func collect_coin(amount: int) -> void:
+	current_coins += amount
+	# Signal to update UI
+	SignalBus.player_coins_changed.emit(banked_coins + current_coins)
+
 func _on_death() -> void:
 	# Start the death fade screen
 	fsm.change_state("Death")
+	current_coins = 0
 	
 func _gain_energy(entity:Node2D) -> void:
 	if entity.is_in_group("energy_gaining"):

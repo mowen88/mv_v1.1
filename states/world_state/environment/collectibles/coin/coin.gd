@@ -21,8 +21,8 @@ func _ready() -> void:
 	# Connect the Area2D's overlap signal
 	collection_area.body_entered.connect(_on_body_entered)
 	
-	# 3. Wait for the 1-second scatter/bounce phase
-	await get_tree().create_timer(1.0).timeout
+	# 3. Wait for a small time for scatter phase before collection allowed
+	await get_tree().create_timer(0.2).timeout
 	
 	if is_collected or not is_inside_tree():
 		return
@@ -35,7 +35,8 @@ func _on_body_entered(body: Node) -> void:
 		return
 		
 	# Check if the overlapping body is your player
-	if body.is_in_group("player") or body.name == "Player":
+	if body.is_in_group("player"):
 		is_collected = true
+		body.collect_coin(1)
 		ParticleManager.play(collect_particle, global_position)
 		queue_free()

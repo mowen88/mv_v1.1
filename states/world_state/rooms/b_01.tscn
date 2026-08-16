@@ -11,16 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://dwidwetcutapw" path="res://states/world_state/entities/characters/enemies/walker/walker.tscn" id="7_dh28k"]
 [ext_resource type="PackedScene" uid="uid://d3mlq0ai20oq8" path="res://states/world_state/environment/ladders/ladder.tscn" id="7_i3uko"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="8_gvesa"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m40ur"]
-resource_local_to_scene = true
-size = Vector2(32, 56)
+[ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="12_m40ur"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg7br"]
 resource_local_to_scene = true
+size = Vector2(32, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55kmn"]
+resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_55kmn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kv3wn"]
 resource_local_to_scene = true
 shader = ExtResource("8_gvesa")
 shader_parameter/flash_active = false
@@ -48,23 +49,23 @@ tile_set = ExtResource("2_hj3nn")
 [node name="SlopeTileMap" parent="." index="3" unique_id=1149728441]
 tile_map_data = PackedByteArray("AADn//v/AAAQAAsAAADo//z/AAAPAAoAAADp//3/AAAPAAoAAADq//7/AAAPAAoAAADr////AAAPAAoAAADy////AAAOAAoAAADz//7/AAAOAAoAAAD0//3/AAAOAAoAAAD1//z/AAANAAsAAAD2//v/AAANAAsAAADs/wAAAAAQAAsAAADx/wAAAAAOAAoAAAA=")
 
-[node name="Trellis" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="0" unique_id=968688113]
+[node name="Trellis" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="0" unique_id=968688113]
 position = Vector2(-172, 36)
 texture = ExtResource("3_gvesa")
 
-[node name="Trellis2" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="1" unique_id=1866698564]
+[node name="Trellis2" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="1" unique_id=1866698564]
 position = Vector2(-172, 76)
 texture = ExtResource("3_gvesa")
 
-[node name="Trellis3" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="2" unique_id=1123338962]
+[node name="Trellis3" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="2" unique_id=1123338962]
 position = Vector2(-100, 36)
 texture = ExtResource("3_gvesa")
 
-[node name="Trellis4" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="3" unique_id=1977549294]
+[node name="Trellis4" type="Sprite2D" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="3" unique_id=1977549294]
 position = Vector2(-100, 76)
 texture = ExtResource("3_gvesa")
 
-[node name="GodRay" parent="Decoration" parent_id_path=PackedInt32Array(65517679) index="4" unique_id=1833501944 instance=ExtResource("4_gvesa")]
+[node name="GodRay" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="4" unique_id=1833501944 instance=ExtResource("4_gvesa")]
 
 [node name="ColorRect" parent="Decoration/GodRay" index="0" unique_id=1494312954]
 offset_left = -120.50001
@@ -73,24 +74,24 @@ offset_right = -88.50001
 offset_bottom = 311.67715
 rotation = 3.1415927
 
-[node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1709709420) index="0" unique_id=811432737 instance=ExtResource("3_p5cj8")]
+[node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1757734446) index="0" unique_id=811432737 instance=ExtResource("3_p5cj8")]
 lock_y = false
 
-[node name="Ladder" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="0" unique_id=1028036334 instance=ExtResource("7_i3uko")]
+[node name="Ladder" parent="Ladders" parent_id_path=PackedInt32Array(452901069) index="0" unique_id=1028036334 instance=ExtResource("7_i3uko")]
 position = Vector2(-136, 40)
 
-[node name="Ladder2" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="1" unique_id=176479550 instance=ExtResource("7_i3uko")]
+[node name="Ladder2" parent="Ladders" parent_id_path=PackedInt32Array(452901069) index="1" unique_id=176479550 instance=ExtResource("7_i3uko")]
 position = Vector2(-136, -8)
 
-[node name="Ladder3" parent="Ladders" parent_id_path=PackedInt32Array(997621068) index="2" unique_id=783096849 instance=ExtResource("7_i3uko")]
+[node name="Ladder3" parent="Ladders" parent_id_path=PackedInt32Array(452901069) index="2" unique_id=783096849 instance=ExtResource("7_i3uko")]
 position = Vector2(-160, -56)
 
-[node name="TrapTrigger" parent="TrapDoors" parent_id_path=PackedInt32Array(1668417706) index="0" unique_id=627399350 instance=ExtResource("4_mgaoa")]
+[node name="TrapTrigger" parent="TrapDoors" parent_id_path=PackedInt32Array(1374909456) index="0" unique_id=627399350 instance=ExtResource("4_mgaoa")]
 position = Vector2(-240, 72)
 
 [node name="CollisionShape2D" parent="TrapDoors/TrapTrigger" index="0" unique_id=552174093]
 position = Vector2(104, -12)
-shape = SubResource("RectangleShape2D_m40ur")
+shape = SubResource("RectangleShape2D_gg7br")
 
 [node name="TrapDoor" parent="TrapDoors/TrapTrigger/DoorContainer" parent_id_path=PackedInt32Array(627399350, 1263912219) index="0" unique_id=276141706]
 position = Vector2(-4, 12)
@@ -101,43 +102,46 @@ position = Vector2(-4, -12)
 [node name="TrapDoor3" parent="TrapDoors/TrapTrigger/DoorContainer" parent_id_path=PackedInt32Array(627399350, 1263912219) index="2" unique_id=1603991647 instance=ExtResource("5_i3uko")]
 position = Vector2(-4, -36)
 
-[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="0" unique_id=488187583]
-position = Vector2(-216, -48)
+[node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="0" unique_id=488187583]
+position = Vector2(-216, 80)
 
-[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="1" unique_id=1945506473]
+[node name="1" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="1" unique_id=1945506473]
 position = Vector2(-249, 80)
 
-[node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1711980423) index="2" unique_id=220702977]
+[node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="2" unique_id=220702977]
 position = Vector2(-248, -48)
 
-[node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="0" unique_id=656111511 instance=ExtResource("4_hx30x")]
+[node name="RoomExit" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="0" unique_id=656111511 instance=ExtResource("4_hx30x")]
 position = Vector2(-272, 60)
 target_room_path = "uid://cox0t74p6kkon"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
-shape = SubResource("RectangleShape2D_gg7br")
+shape = SubResource("RectangleShape2D_55kmn")
 
-[node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="1" unique_id=1561035608 instance=ExtResource("4_hx30x")]
+[node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=1561035608 instance=ExtResource("4_hx30x")]
 position = Vector2(72, 168)
 exit_id = 2
 
-[node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="2" unique_id=1018268978 instance=ExtResource("4_hx30x")]
+[node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="2" unique_id=1018268978 instance=ExtResource("4_hx30x")]
 position = Vector2(-278, -52)
 exit_id = 3
 target_room_path = "uid://dnqh43xyrsipk"
 
-[node name="RoomExit4" parent="RoomExits" parent_id_path=PackedInt32Array(725630175) index="3" unique_id=720845904 instance=ExtResource("4_hx30x")]
+[node name="RoomExit4" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="3" unique_id=720845904 instance=ExtResource("4_hx30x")]
 position = Vector2(312, 88)
 
-[node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(1127347775) index="0" unique_id=1164829458 instance=ExtResource("7_dh28k")]
+[node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="0" unique_id=1164829458 instance=ExtResource("7_dh28k")]
 position = Vector2(-192, 80)
 
-[node name="Walker2" parent="Enemies" parent_id_path=PackedInt32Array(1127347775) index="1" unique_id=622967336 instance=ExtResource("7_dh28k")]
+[node name="Walker2" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="1" unique_id=622967336 instance=ExtResource("7_dh28k")]
 position = Vector2(-80, 80)
 
 [node name="AnimatedSprite2D" parent="Enemies/Walker2" index="0" unique_id=62056824]
-material = SubResource("ShaderMaterial_55kmn")
+material = SubResource("ShaderMaterial_kv3wn")
 flip_h = true
+
+[node name="SaveStation" parent="." index="19" unique_id=249855072 instance=ExtResource("12_m40ur")]
+position = Vector2(-216, 76)
 
 [editable path="Decoration/GodRay"]
 [editable path="CameraTriggers/CameraTrigger"]

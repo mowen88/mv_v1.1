@@ -1,7 +1,10 @@
 extends CanvasLayer
 
+@export var coin_collect_sound: AudioStream
+
 @onready var energy_hud: HBoxContainer = $EnergyHUD
 @onready var health_hud: HBoxContainer = $HealthHUD
+@onready var coin_hud: Label = $CoinContainer/CoinLabel
 @onready var zone_label: Label = $ZoneLabel
 @onready var tutorial_message: Label = $TutorialMessage
 
@@ -15,7 +18,10 @@ const HEALTH_EMPTY_TEX = preload("res://UI/gameplay/elements/health_node_empty.p
 const ENERGY_FULL_TEX = preload("res://UI/gameplay/elements/energy_full.png") 
 const ENERGY_EMPTY_TEX = preload("res://UI/gameplay/elements/energy_empty.png")
 
-
+var displayed_coins: int = 0
+var coin_tween: Tween
+var banner_tween: Tween
+var message_tween: Tween
 
 func _ready() -> void:
 	
@@ -30,9 +36,9 @@ func _ready() -> void:
 	# Energy
 	SignalBus.player_energy_changed.connect(_on_energy_changed)
 	SignalBus.player_max_energy_changed.connect(_on_max_energy_changed)
-
-var banner_tween: Tween
-var message_tween: Tween
+	
+	# Coins
+	SignalBus.player_coins_changed.connect(_on_coins_changed)
 
 func _on_tutorial_message_requested(message:String) -> void:
 	# Only run tween if there is not one currently active
@@ -51,6 +57,33 @@ func _on_tutorial_message_requested(message:String) -> void:
 	# Fade out
 	message_tween.tween_property(tutorial_message, "modulate:a", 0.0, 0.5)
 	message_tween.tween_callback(func(): tutorial_message.visible = false)
+
+func _on_coins_changed(new_total_coins: int) -> void:
+
+	# If a tween is already running, kill it so we can start a new count target
+	if coin_tween and coin_tween.is_running():
+		coin_tween.kill()
+	
+	
+	coin_tween = create_tween()
+	
+	# Tween the 'displayed_coins' variable integer value up to the new total
+	# Duration scales slightly based on how many coins are being added
+	var difference = abs(new_total_coins - displayed_coins)
+	 # Update rate at roughly 0.1s per coin, capped to take 2 secs max to update
+	var anim_duration = clamp(difference * 0.1, 0.1, 2.0)
+	
+	coin_tween.tween_method(
+		func(val: int):
+			# Only play effect when number changes in the UI
+			if val != displayed_coins:
+				AudioManager.play_sfx(coin_collect_sound,1,0.1)
+			displayed_coins = val
+			coin_hud.text = str(displayed_coins),
+		displayed_coins,
+		new_total_coins,
+		anim_duration
+	).set_trans(Tween.TRANS_LINEAR)
 
 func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 	# Instantly kill any ongoing animation or pending delay from a previous room

@@ -19,7 +19,7 @@ var SETTINGS_DATA: Dictionary = {
 
 ## Debug override start room for testing
 #var debug_override_room: PackedScene = preload("res://states/world_state/rooms/01_a/01_a.tscn")
-var debug_override_room: PackedScene = preload("res://states/world_state/rooms/b_02.tscn")
+var debug_override_room: PackedScene = null#preload("res://states/world_state/rooms/b_02.tscn")
 
 # --- SAVE SLOT CONFIGURATION ---
 var current_slot: String = "1"
@@ -143,23 +143,32 @@ func save_persistent_object(object_id: String) -> void:
 	else:
 		print_rich("[color=red]SAVE SYSTEM: Persistent object already registered %s[/color]" % object_id)
 
-func save_at_station(room_name: String) -> void:
+func save_at_station(room_name: String, player: CharacterBody2D) -> void:
 	if not SAVE_DATA.has(current_slot):
 		SAVE_DATA[current_slot] = {}
 	
+	# Grab existing values or fallbacks
 	var current_time = SAVE_DATA[current_slot].get("game_time", 0.0)
 	var visited_room_list = SAVE_DATA[current_slot].get("visited_rooms", [room_name])
-		
-	SAVE_DATA[current_slot]["player_data"] = {
-		"room_id": room_name,
-		"health": 4, 
-		"max_health": 4,
-		"energy": 5
-	}
+	var existing_banked_coins = SAVE_DATA[current_slot].get("coins", player.banked_coins)
+	
+	# Calculate new banked total
+	var new_banked_total = existing_banked_coins + player.current_coins
+	
+	# Update player runtime state
+	player.banked_coins = new_banked_total
+	player.current_coins = 0
+	
+	# Store everything flat at the slot level
+	SAVE_DATA[current_slot]["room_id"] = room_name
+	SAVE_DATA[current_slot]["spawn_id"] = 0
+	SAVE_DATA[current_slot]["health"] = player.health_component.max_health
+	SAVE_DATA[current_slot]["max_health"] = player.health_component.max_health
+	SAVE_DATA[current_slot]["energy"] = player.energy_component.current_energy
+	SAVE_DATA[current_slot]["coins"] = new_banked_total
 	SAVE_DATA[current_slot]["game_time"] = current_time
 	SAVE_DATA[current_slot]["visited_rooms"] = visited_room_list
 	
-	# Make sure the dictionary contains the correct value before writing
 	_update_game_completion_percentage(current_slot)
 	save_to_disk()
 
@@ -200,10 +209,10 @@ func get_saved_room() -> PackedScene:
 	if debug_override_room != null:
 		return debug_override_room
 		
-	var room_name: String = "a_01"
+	var room_name: String = "b_01"
 	
-	if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("player_data"):
-		room_name = SAVE_DATA[current_slot]["player_data"].get("room_id", "a_01")
+	# Look directly for the room_id within the slot
+	room_name = SAVE_DATA[current_slot].get("room_id", "b_01")
 		
 	var room_path: String = "res://states/world_state/rooms/%s.tscn" % [room_name]
 	
@@ -212,8 +221,7 @@ func get_saved_room() -> PackedScene:
 		if loaded_scene:
 			return loaded_scene
 			
-	return preload("res://states/world_state/rooms/a_01.tscn")
-
+	return preload("res://states/world_state/rooms/b_01.tscn")
 #func get_saved_room() -> PackedScene:
 	#var room_name: String = "01_a"
 	#
