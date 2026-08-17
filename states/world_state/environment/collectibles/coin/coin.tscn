@@ -7,7 +7,7 @@
 radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ns5by"]
-radius = 3.0
+radius = 4.0
 
 [node name="Coin" type="RigidBody2D" unique_id=1705729155]
 collision_layer = 0

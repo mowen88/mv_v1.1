@@ -48,10 +48,6 @@ func _ready() -> void:
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 
-func _process(_delta:float) -> void:
-	
-	print(banked_coins + current_coins)
-	#print(fsm.current_state.name)
 	
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:

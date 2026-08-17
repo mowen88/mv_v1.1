@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://de408da02oa4h"]
+
+[ext_resource type="Script" uid="uid://cwt6m6ysci3nk" path="res://UI/gameplay/inventory_overlay.gd" id="1_qbni1"]
+[ext_resource type="AudioStream" uid="uid://dnxopskch5bnb" path="res://UI/menu/audio/ui_Accept_sound.mp3" id="2_6numo"]
+[ext_resource type="Texture2D" uid="uid://dnta3fpggaj57" path="res://UI/gameplay/elements/close_button.png" id="2_knvk0"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_s3d7j"]
+[ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="3_knvk0"]
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_twydy"]
+[ext_resource type="Texture2D" uid="uid://cvs22kboaslif" path="res://UI/gameplay/elements/close_button_pressed.png" id="6_fsspa"]
+
+[node name="InventoryOverlay" type="CanvasLayer" unique_id=267181138]
+script = ExtResource("1_qbni1")
+ui_sound = ExtResource("2_6numo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1878299833]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12941177, 0.11372549, 0.14509805, 0.9411765)
+
+[node name="Control" type="Control" parent="." unique_id=1974712213]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=228214554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabHeaderBar" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=1799099816]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="MapButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1456571202]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "Map"
+flat = true
+
+[node name="InventoryButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=558864051]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "Inventory"
+flat = true
+
+[node name="QuestsButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1154818915]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "Quests"
+flat = true
+
+[node name="SystemButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1469800886]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "System"
+flat = true
+
+[node name="TabUnderline" type="ColorRect" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1684136327]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+color = Color(1, 0.7411765, 0.43529412, 1)
+
+[node name="TabContentContainer" type="Control" parent="Control/VBoxContainer" unique_id=1810679076]
+layout_mode = 2
+
+[node name="MapPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=1738415567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=1362808704]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestsPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=628508964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SystemPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=328616534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuAnchor" type="Control" parent="Control/VBoxContainer/TabContentContainer/SystemPanel" unique_id=256643696]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 400.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuManager" parent="Control/VBoxContainer/TabContentContainer/SystemPanel/MenuAnchor" unique_id=1846845566 instance=ExtResource("3_knvk0")]
+layout_mode = 1
+
+[node name="CloseButton" type="TextureButton" parent="." unique_id=1068073704]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("2_knvk0")
+texture_pressed = ExtResource("6_fsspa")
+stretch_mode = 3

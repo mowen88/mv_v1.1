@@ -7,8 +7,7 @@ extends Node2D
 @onready var menu_canvas: CanvasLayer = $MenuCanvas
 @onready var cutscene_canvas: CanvasLayer = $CutsceneOverlay
 @onready var gameplay_ui: CanvasLayer = $GameplayUI
-@onready var menu_manager: Control = $MenuCanvas/MenuAnchor/MenuManager
-@onready var pause_menu: VBoxContainer = $MenuCanvas/MenuAnchor/MenuManager/PauseMenu
+@onready var inventory_overlay: CanvasLayer = $InventoryOverlay
 
 var current_room_node: Node2D = null
 var current_zone_name: String = ""
@@ -22,7 +21,8 @@ func _ready():
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
 	SignalBus.save_station_activated.connect(_on_save_station_activated)
 	SignalBus.hit_stop_requested.connect(_on_hit_stop)
-	pause_menu.unpause_requested.connect(_toggle_game_pause)
+	# Connect pause/inventory overlay switch signal
+	inventory_overlay.unpause_requested.connect(_toggle_game_pause)
 
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
@@ -47,18 +47,20 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
 		SignalBus.camera_override_cleared.emit()
 
+func _toggle_game_pause() -> void:
+	get_tree().paused = not get_tree().paused
+	touch_controller.visible = not get_tree().paused
+	gameplay_ui.visible = not get_tree().paused
+	inventory_overlay.visible = get_tree().paused
+	
+	if get_tree().paused:
+		inventory_overlay.open_inventory()
+		#menu_manager._initialize_menu("PauseMenu")
 
 func _on_hit_stop(duration: float) -> void:
 	Engine.time_scale = 0.0 # Freeze everything
 	await get_tree().create_timer(duration, true, false, true).timeout # Real-time timer that ignores time_scale
 	Engine.time_scale = 1.0 # Resume normal game speed
-	
-func _toggle_game_pause() -> void:
-	get_tree().paused = not get_tree().paused
-	touch_controller.visible = not get_tree().paused
-	menu_canvas.visible = get_tree().paused
-	if get_tree().paused:
-		menu_manager._initialize_menu("PauseMenu")
 
 func get_zone_data(room_filename:String) -> Dictionary:
 	var tokens: PackedStringArray = room_filename.to_lower().split("_")

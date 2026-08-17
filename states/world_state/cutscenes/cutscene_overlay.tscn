@@ -103,6 +103,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gyyh3")
 
 [node name="ButtonA" type="Button" parent="ChoiceContainer/ButtonAContainer" unique_id=1945727141]
 layout_mode = 2
+size_flags_vertical = 4
 theme = ExtResource("3_gyyh3")
 theme_override_constants/align_to_largest_stylebox = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gyyh3")
@@ -110,9 +111,11 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_sdhns")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_v8dmu")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_yo42h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tbtps")
+icon_alignment = 1
 
 [node name="ButtonBContainer" type="PanelContainer" parent="ChoiceContainer" unique_id=5270088]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_gyyh3")
 
 [node name="ButtonB" type="Button" parent="ChoiceContainer/ButtonBContainer" unique_id=961438061]
@@ -124,3 +127,4 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_w37a7")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x3dk1")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_2tcsp")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3tmww")
+icon_alignment = 1
