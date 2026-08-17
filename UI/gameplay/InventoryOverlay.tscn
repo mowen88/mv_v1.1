@@ -10,7 +10,7 @@
 
 [node name="InventoryOverlay" type="CanvasLayer" unique_id=267181138]
 script = ExtResource("1_qbni1")
-ui_sound = ExtResource("2_6numo")
+tab_switch_sound = ExtResource("2_6numo")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1878299833]
 anchors_preset = 15

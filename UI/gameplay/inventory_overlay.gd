@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal unpause_requested
 
-@export var ui_sound: AudioStream
+@export var tab_switch_sound: AudioStream
 
 @onready var tab_header_bar: HBoxContainer = $Control/VBoxContainer/TabHeaderBar
 @onready var content_container: Control = $Control/VBoxContainer/TabContentContainer
@@ -75,7 +75,7 @@ func switch_tab(new_index: int) -> void:
 	last_tab_index = new_index
 	
 	# Play sound
-	AudioManager.play_sfx(ui_sound)
+	AudioManager.play_sfx(tab_switch_sound)
 	
 	# Kill any active transition so they don't stutter
 	if active_tween and active_tween.is_running():
@@ -83,7 +83,7 @@ func switch_tab(new_index: int) -> void:
 		
 	active_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
-	# Fade out old tab content / fade in new tab content
+	# Fade out old tab content / fade in new tab 
 	active_tween.tween_property(old_tab, "modulate:a", 0.0, 0.15)
 	new_tab.visible = true
 	new_tab.modulate.a = 0.0
