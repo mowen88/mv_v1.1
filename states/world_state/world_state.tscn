@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dok3g7paayf8q"]
 
 [ext_resource type="Script" uid="uid://cbqtpis5y7yt5" path="res://states/world_state/world_state.gd" id="1_emvdf"]
-[ext_resource type="PackedScene" uid="uid://de408da02oa4h" path="res://UI/gameplay/InventoryOverlay.tscn" id="2_0jlim"]
+[ext_resource type="PackedScene" uid="uid://de408da02oa4h" path="res://UI/gameplay/PauseMenu/InventoryOverlay.tscn" id="2_0jlim"]
 [ext_resource type="PackedScene" uid="uid://78wkklni1sfd" path="res://UI/gameplay/touch_controller.tscn" id="2_6c3gn"]
 [ext_resource type="Script" uid="uid://dyqtednoh4tfr" path="res://states/world_state/overlay_effects.gd" id="2_wdfha"]
 [ext_resource type="PackedScene" uid="uid://ywh0ibl4nbif" path="res://UI/gameplay/gameplay_ui.tscn" id="3_i7qgc"]

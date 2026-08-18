@@ -468,10 +468,6 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("21_nglex")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
-[node name="TransitionUp" type="Node" parent="FiniteStateMachine" unique_id=74789244]
-script = ExtResource("31_puuqg")
-metadata/_custom_type_script = "uid://w6r4fliln4v5"
-
 [node name="Slide" type="Node" parent="FiniteStateMachine" unique_id=947585989]
 script = ExtResource("26_m3cwm")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
@@ -482,6 +478,10 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="ExitDoor" type="Node" parent="FiniteStateMachine" unique_id=18660354]
 script = ExtResource("29_hpgvl")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="TransitionUp" type="Node" parent="FiniteStateMachine" unique_id=74789244]
+script = ExtResource("31_puuqg")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Transition" type="Node" parent="FiniteStateMachine" unique_id=193154427]
