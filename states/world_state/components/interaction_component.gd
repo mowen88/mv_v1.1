@@ -4,6 +4,8 @@ class_name InteractionComponent
 signal interact(player: CharacterBody2D)
 
 @export var prompt_text: String = "Interact here!"
+# Set a visual root with scale down to 0.1 so pixel offset
+# will look clean with the text not being on canvas layer
 @onready var interact_label: Label = $VisualRoot/InteractLabel
 @onready var swipe_icon: Sprite2D = $SwipeIcon
 

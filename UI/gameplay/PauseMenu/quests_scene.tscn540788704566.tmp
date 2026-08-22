@@ -76,7 +76,7 @@ theme_override_constants/separation = 45
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 60
+theme_override_constants/separation = 45
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1669765906]
 custom_minimum_size = Vector2(700, 0)

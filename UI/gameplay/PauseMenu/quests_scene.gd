@@ -6,6 +6,7 @@ extends Control
 @onready var title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var status_label: Label = $HBoxContainer/DetailPanel/StatusLabel
 @onready var desc_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
+@onready var reward_label: Label = $HBoxContainer/DetailPanel/RewardLabel
 
 @export var ICON_IN_PROGRESS: Texture
 @export var ICON_COMPLETED: Texture
@@ -13,24 +14,29 @@ extends Control
 # Dictionary containing titles and descriptions for your quests
 const QUEST_DETAILS: Dictionary = {
 	"find_the_key": {
-		"title": "The Lost Key",
-		"description": "Find the rusty key hidden deep in the lower caverns to unlock the heavy gate."
+		"title": "The Lost Key is a long line of text",
+		"description": "Find the rusty key hidden deep in the lower caverns to unlock the heavy gate.",
+		"reward": "A really long sentence to test the box padding of this reward text box"
 	},
 	"defeat_boss": {
 		"title": "Defeat The Slime King",
-		"description": "Slay the ruler of the sludge depths to clear the path forward."
+		"description": "Slay the ruler of the sludge depths to clear the path forward.",
+		"reward": "Gain access to the tomb!"
 	},
 		"find_the_boss": {
 		"title": "The Lost Key",
-		"description": "Find the rusty key hidden deep in the lower caverns to unlock the heavy gate."
+		"description": "Find the rusty key hidden deep in the lower caverns to unlock the heavy gate.",
+		"reward": "Gain access to the tomb!"
 	},
 	"defeat_dude": {
 		"title": "Defeat The Slime King",
-		"description": "Slay the ruler of the sludge depths to clear the path forward."
+		"description": "Slay the ruler of the sludge depths to clear the path forward.",
+		"reward": "Gain access to the tomb!"
 	},
 		"death_quest": {
 		"title": "Defeat The Slime King",
-		"description": "Slay the ruler of the sludge depths to clear the path forward."
+		"description": "Slay the ruler of the sludge depths to clear the path forward.",
+		"reward": "Gain access to the tomb!"
 	}
 }
 
@@ -42,7 +48,7 @@ func update_current_details() -> void:
 		var details = QUEST_DETAILS[quest_id]
 		if details["title"] == title_label.text:
 			var live_state = QuestManager.get_quest_state(quest_id)
-			display_quest_details(details["title"], live_state, details["description"])
+			display_quest_details(details["title"], live_state, details["description"], details["reward"])
 			return
 
 func populate_quest_ui() -> void:
@@ -64,29 +70,38 @@ func populate_quest_ui() -> void:
 		var row_button = Button.new()
 		row_button.text = details["title"]
 		row_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		
-		match state.to_lower():
-			"In Progress":
+		row_button.mouse_filter = Control.MOUSE_FILTER_PASS
+		row_button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
+		match state:
+			"In progress":
 				row_button.icon = ICON_IN_PROGRESS
 			"Completed":
 				row_button.icon = ICON_COMPLETED
 			"Inactive":
 				row_button.icon = ICON_IN_PROGRESS
-
+		
+		var empty_style = StyleBoxEmpty.new()
+		row_button.add_theme_stylebox_override("normal", empty_style)
+		row_button.add_theme_stylebox_override("hover", empty_style)
+		row_button.add_theme_stylebox_override("pressed", empty_style)
+		row_button.add_theme_stylebox_override("focus", empty_style)
+		
 		# Connect the press event to update the right panel
 		row_button.pressed.connect(func(): 
-			display_quest_details(details["title"], state, details["description"])
+			display_quest_details(details["title"], state, details["description"], details["reward"])
 		)
 		
 		quest_list_vbox.add_child(row_button)
 
-func display_quest_details(q_title: String, q_state: String, q_desc: String) -> void:
+func display_quest_details(q_title:String, q_state:String, q_desc:String, q_reward:String) -> void:
 		
 	title_label.text = q_title
 	status_label.text = q_state
 	desc_label.text = q_desc
+	reward_label.text = "REWARD :  " + q_reward
 	
-	match q_state.to_lower():
+	match q_state:
 		"In Progress":
 			status_label.add_theme_color_override("font_color", Color8(229, 88, 88))   # Red/In Progress
 		"Completed":
