@@ -10,6 +10,8 @@ signal unpause_requested
 @onready var tab_underline: Control = $Control/VBoxContainer/TabHeaderBar/TabUnderline
 @onready var close_button: TextureButton = $CloseButton
 
+@onready var quest_scene: Control = $Control/VBoxContainer/TabContentContainer/QuestsPanel/QuestsScene
+
 var tabs: Array[Control] = []
 var active_tween: Tween
 
@@ -37,6 +39,10 @@ func _ready() -> void:
 		menu_manager._initialize_menu("PauseMenu")
 
 func open_inventory() -> void:
+	
+	quest_scene.populate_quest_ui()
+	quest_scene.update_current_details()
+	
 	# Instantly show the remembered tab
 	for i in range(tabs.size()):
 		if i == last_tab_index:

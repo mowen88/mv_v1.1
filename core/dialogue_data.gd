@@ -7,7 +7,7 @@ const DATABASE = {
 			"type": "quest_branch",
 			"quest_id": "find_the_key",
 			"branches": {
-				"inactive": [
+				"Inactive": [
 					"If you want to pass, you'll need to find the old gate key.",
 					{
 						"text": "Will you help me find it?",
@@ -22,10 +22,10 @@ const DATABASE = {
 						]
 					}
 				],
-				"in_progress": [
+				"In progress": [
 					"Hurry up and find that key! It should be somewhere in the ruins."
 				],
-				"completed": [
+				"Completed": [
 					"Ah, you got the key! Go right on through."
 				]
 			}

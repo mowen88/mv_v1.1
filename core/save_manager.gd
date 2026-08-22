@@ -215,10 +215,10 @@ func get_saved_room() -> PackedScene:
 	if debug_override_room != null:
 		return debug_override_room
 		
-	var room_name: String = "a_01"
+	var room_name: String = "b_02"
 	
 	# Look directly for the room_id within the slot
-	room_name = SAVE_DATA[current_slot].get("room_id", "a_01")
+	room_name = SAVE_DATA[current_slot].get("room_id", "b_02")
 		
 	var room_path: String = "res://states/world_state/rooms/%s.tscn" % [room_name]
 	
@@ -227,7 +227,7 @@ func get_saved_room() -> PackedScene:
 		if loaded_scene:
 			return loaded_scene
 			
-	return preload("res://states/world_state/rooms/a_01.tscn")
+	return preload("res://states/world_state/rooms/b_02.tscn")
 #func get_saved_room() -> PackedScene:
 	#var room_name: String = "01_a"
 	#

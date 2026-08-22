@@ -6,6 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://crwq0i4wen1xm" path="res://UI/gameplay/elements/quest_in_progress_icon.png" id="3_jlbjd"]
 [ext_resource type="Texture2D" uid="uid://cw3858mvo6wr7" path="res://UI/gameplay/elements/quest_completed_icon.png" id="4_xbbp2"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlbjd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+
 [node name="QuestsScene" type="Control" unique_id=1476503916]
 layout_mode = 3
 anchors_preset = 0
@@ -20,18 +31,32 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -1000.0
-offset_top = 64.0
+offset_top = 80.0
 offset_right = 1000.0
-offset_bottom = 607.0
+offset_bottom = 780.0
 grow_horizontal = 2
 theme_override_constants/separation = 90
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer" unique_id=1017672852]
-custom_minimum_size = Vector2(800, 0)
+[node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=1606789066]
+custom_minimum_size = Vector2(900, 700)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jlbjd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer" unique_id=1629452497]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1017672852]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -455.0
+offset_right = 455.0
+offset_bottom = 700.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer" unique_id=1629452497]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_6hkyj")
@@ -46,7 +71,7 @@ theme_override_constants/separation = 45
 [node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1669765906]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.7411765, 0.43529412, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_qd63c")
 theme_override_font_sizes/font_size = 90
 vertical_alignment = 1
@@ -56,7 +81,7 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_qd63c")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 45
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -64,7 +89,7 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_qd63c")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 45
 text = "
 "
 vertical_alignment = 1

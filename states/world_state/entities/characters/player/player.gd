@@ -140,11 +140,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
 		
 		# Testing cycle through states to test: inactive -> in_progress -> completed
-		if QuestManager.get_quest_state("find_the_key") == "inactive":
-			QuestManager.set_quest_state("find_the_key", "in_progress")
+		if QuestManager.get_quest_state("find_the_key") == "Inactive":
+			QuestManager.set_quest_state("find_the_key", "In progress")
 			print("Quest State Changed: IN_PROGRESS")
-		elif QuestManager.get_quest_state("find_the_key") == "in_progress":
-			QuestManager.set_quest_state("find_the_key", "completed")
+		elif QuestManager.get_quest_state("find_the_key") == "In progress":
+			QuestManager.set_quest_state("find_the_key", "Completed")
 			print("Quest State Changed: COMPLETED")
 		return
 		

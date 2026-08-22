@@ -111,7 +111,7 @@ func run_cutscene(sequence: Array) -> void:
 			# If this choice prompt is part of the inactive quest branch, update quest state based on choice index!
 			if current_quest_context_id != "":
 				if selected_choice_index == 0:
-					QuestManager.set_quest_state(current_quest_context_id, "in_progress")
+					QuestManager.set_quest_state(current_quest_context_id, "In progress")
 				# Index 1 is decline, so we keep it inactive (or handle as needed)
 			
 			var branches = item.get("branches", [])
@@ -128,7 +128,7 @@ func run_cutscene(sequence: Array) -> void:
 			var current_state = QuestManager.get_quest_state(quest_id) 
 			
 			# Track which quest we are currently evaluating choices for
-			current_quest_context_id = quest_id if current_state == "inactive" else ""
+			current_quest_context_id = quest_id if current_state == "Inactive" else ""
 			
 			var quest_branches = item.get("branches", {})
 			if quest_branches.has(current_state):
@@ -154,7 +154,7 @@ func run_cutscene(sequence: Array) -> void:
 						
 						# If they picked choice 0 (Accept), update quest state immediately!
 						if selected_choice_index == 0:
-							QuestManager.set_quest_state(quest_id, "in_progress")
+							QuestManager.set_quest_state(quest_id, "In progress")
 							
 						var branches = line.get("branches", [])
 						if branches.size() > selected_choice_index:

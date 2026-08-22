@@ -64,7 +64,6 @@ func _on_coins_changed(new_total_coins: int) -> void:
 	if coin_tween and coin_tween.is_running():
 		coin_tween.kill()
 	
-	
 	coin_tween = create_tween()
 	
 	# Tween the 'displayed_coins' variable integer value up to the new total

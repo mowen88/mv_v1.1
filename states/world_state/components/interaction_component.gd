@@ -4,7 +4,7 @@ class_name InteractionComponent
 signal interact(player: CharacterBody2D)
 
 @export var prompt_text: String = "Interact here!"
-@onready var interact_label: Label = $InteractLabel
+@onready var interact_label: Label = $VisualRoot/InteractLabel
 @onready var swipe_icon: Sprite2D = $SwipeIcon
 
 var player: CharacterBody2D

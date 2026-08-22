@@ -13,7 +13,7 @@ signal save_station_activated
 
 signal zone_banner_requested(zone_name: String)
 signal tutorial_message_requested(message:String)
-signal show_interaction_prompt()
+signal show_interaction_prompt(prompt_text:String, target_node:Node2D)
 signal hide_interaction_prompt()
 signal toggle_gameplay_ui(is_visible: bool)
 signal toggle_touch_controller(is_visible: bool)

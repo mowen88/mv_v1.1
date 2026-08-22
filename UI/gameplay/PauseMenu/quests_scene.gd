@@ -1,7 +1,8 @@
 extends Control
 
 # Adjust these paths to match your actual node names in the scene tree
-@onready var quest_list_vbox: VBoxContainer = $HBoxContainer/ScrollContainer/VBoxContainer
+@onready var quest_list_vbox: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
+@onready var detail_panel: VBoxContainer = $HBoxContainer/DetailPanel
 @onready var title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var status_label: Label = $HBoxContainer/DetailPanel/StatusLabel
 @onready var desc_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
@@ -18,11 +19,31 @@ const QUEST_DETAILS: Dictionary = {
 	"defeat_boss": {
 		"title": "Defeat The Slime King",
 		"description": "Slay the ruler of the sludge depths to clear the path forward."
+	},
+		"find_the_boss": {
+		"title": "The Lost Key",
+		"description": "Find the rusty key hidden deep in the lower caverns to unlock the heavy gate."
+	},
+	"defeat_dude": {
+		"title": "Defeat The Slime King",
+		"description": "Slay the ruler of the sludge depths to clear the path forward."
+	},
+		"death_quest": {
+		"title": "Defeat The Slime King",
+		"description": "Slay the ruler of the sludge depths to clear the path forward."
 	}
 }
 
 func _ready() -> void:
 	populate_quest_ui()
+
+func update_current_details() -> void:
+	for quest_id in QUEST_DETAILS.keys():
+		var details = QUEST_DETAILS[quest_id]
+		if details["title"] == title_label.text:
+			var live_state = QuestManager.get_quest_state(quest_id)
+			display_quest_details(details["title"], live_state, details["description"])
+			return
 
 func populate_quest_ui() -> void:
 	
@@ -41,16 +62,17 @@ func populate_quest_ui() -> void:
 			#
 		# Create a button dynamically for the row
 		var row_button = Button.new()
-		row_button.text = details["title"]# + " (" + state.capitalize() + ")"
-		#row_button.custom_minimum_size = Vector2(100, 50) # Added a minimum width just in case
+		row_button.text = details["title"]
 		row_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-
+		
 		match state.to_lower():
-			"active":
+			"In Progress":
 				row_button.icon = ICON_IN_PROGRESS
-			"completed":
+			"Completed":
 				row_button.icon = ICON_COMPLETED
-				
+			"Inactive":
+				row_button.icon = ICON_IN_PROGRESS
+
 		# Connect the press event to update the right panel
 		row_button.pressed.connect(func(): 
 			display_quest_details(details["title"], state, details["description"])
@@ -59,6 +81,15 @@ func populate_quest_ui() -> void:
 		quest_list_vbox.add_child(row_button)
 
 func display_quest_details(q_title: String, q_state: String, q_desc: String) -> void:
+		
 	title_label.text = q_title
-	status_label.text = "STATUS: " + q_state.to_upper()
+	status_label.text = q_state
 	desc_label.text = q_desc
+	
+	match q_state.to_lower():
+		"In Progress":
+			status_label.add_theme_color_override("font_color", Color8(229, 88, 88))   # Red/In Progress
+		"Completed":
+			status_label.add_theme_color_override("font_color", Color8(121, 181, 71)) # Green/Completed
+		"Inactive":
+			status_label.add_theme_color_override("font_color", Color8(229, 88, 88))   # Red
