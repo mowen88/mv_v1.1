@@ -21,6 +21,8 @@ signal unpause_requested
 @onready var tab_underline: Control = $Control/VBoxContainer/TabHeaderBar/TabUnderline
 @onready var close_button: TextureButton = $CloseButton
 
+@onready var quest_scene: Control = $Control/VBoxContainer/TabContentContainer/QuestsPanel/QuestsScene
+
 var tabs: Array[Control] = []
 var active_tween: Tween
 
@@ -48,6 +50,9 @@ func _ready() -> void:
 		menu_manager._initialize_menu(\"PauseMenu\")
 
 func open_inventory() -> void:
+	
+	quest_scene.populate_quest_ui()
+	
 	# Instantly show the remembered tab
 	for i in range(tabs.size()):
 		if i == last_tab_index:
@@ -130,7 +135,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12941177, 0.11372549, 0.14509805, 0.9411765)
+color = Color(0, 0, 0, 0.88235295)
 
 [node name="Control" type="Control" parent="." unique_id=1974712213]
 layout_mode = 3
@@ -217,13 +222,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_twydy")
 
-[node name="QuestsScene" parent="Control/VBoxContainer/TabContentContainer/QuestsPanel" unique_id=911204272 instance=ExtResource("4_p7u3h")]
+[node name="QuestsScene" parent="Control/VBoxContainer/TabContentContainer/QuestsPanel" unique_id=1476503916 instance=ExtResource("4_p7u3h")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 

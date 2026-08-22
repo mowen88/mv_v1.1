@@ -5,7 +5,14 @@ extends Node
 # Device path to save data to
 const SETTINGS_PATH = "user://settings.json"
 # Total room count var not const due to .size() being runtime function not compile time
-var TOTAL_ROOMS: float = MapData.ROOM_REGISTRY.size()
+#var TOTAL_ROOMS: float = 5#MapData.ROOM_REGISTRY.size()
+
+var TOTAL_ROOMS: int:
+	get:
+		var room_count = 0
+		for room_list in MapData.ROOM_REGISTRY.values():
+			room_count += room_list.size()
+		return room_count
 
 var SETTINGS_DATA: Dictionary = {
 	"Master Volume": 1.0,
@@ -42,8 +49,7 @@ func _process(delta:float) -> void:
 			SAVE_DATA[current_slot]["game_time"] = 0.0
 		
 		SAVE_DATA[current_slot]["game_time"] += delta
-
-
+		
 func register_room_visited(room_name:String) -> void:
 	if not game_timer_active or not SAVE_DATA.has(current_slot):
 		return

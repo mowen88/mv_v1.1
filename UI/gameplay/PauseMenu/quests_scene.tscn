@@ -1,20 +1,71 @@
 [gd_scene format=3 uid="uid://b628jutnpyhgf"]
 
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="1_6hkyj"]
+[ext_resource type="Script" uid="uid://52fd48nsmpyy" path="res://UI/gameplay/PauseMenu/quests_scene.gd" id="1_lt2jl"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_qd63c"]
+[ext_resource type="Texture2D" uid="uid://crwq0i4wen1xm" path="res://UI/gameplay/elements/quest_in_progress_icon.png" id="3_jlbjd"]
+[ext_resource type="Texture2D" uid="uid://cw3858mvo6wr7" path="res://UI/gameplay/elements/quest_completed_icon.png" id="4_xbbp2"]
 
 [node name="QuestsScene" type="Control" unique_id=1476503916]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_6hkyj")
+script = ExtResource("1_lt2jl")
+ICON_IN_PROGRESS = ExtResource("3_jlbjd")
+ICON_COMPLETED = ExtResource("4_xbbp2")
 
-[node name="Label" type="Label" parent="." unique_id=1669765906]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=683561561]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1000.0
+offset_top = 64.0
+offset_right = 1000.0
+offset_bottom = 607.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/separation = 90
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer" unique_id=1017672852]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer" unique_id=1629452497]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6hkyj")
+theme_override_constants/separation = 45
+
+[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=2025472099]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 45
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1669765906]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.7411765, 0.43529412, 1)
 theme_override_fonts/font = ExtResource("1_qd63c")
 theme_override_font_sizes/font_size = 90
-text = "Here are the quests"
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1994438303]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qd63c")
+theme_override_font_sizes/font_size = 90
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=502547901]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qd63c")
+theme_override_font_sizes/font_size = 90
+text = "
+"
+vertical_alignment = 1
+autowrap_mode = 3
