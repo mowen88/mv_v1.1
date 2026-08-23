@@ -32,6 +32,9 @@ var debug_override_room: PackedScene = null# preload("res://states/world_state/r
 var current_slot: String = "1"
 var game_timer_active: bool = false
 
+# Track the sessions visited rooms (only commited to disk when saving at station)
+var session_visited_rooms: Array = []
+
 # Runtime game memory
 var SAVE_DATA: Dictionary = {
 	"1": {},
@@ -50,23 +53,24 @@ func _process(delta:float) -> void:
 		
 		SAVE_DATA[current_slot]["game_time"] += delta
 		
-func register_room_visited(room_name:String) -> void:
-	if not game_timer_active or not SAVE_DATA.has(current_slot):
-		return
+#func register_room_visited(room_name: String) -> void:
+	#if not game_timer_active:
+		#return
+		#
+	## Check against both permanent save data and temporary session tracking
+	#var permanent_visited: Array = []
+	#if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("visited_rooms"):
+		#permanent_visited = SAVE_DATA[current_slot]["visited_rooms"]
+	#
+	## If it hasn't been saved permanently AND isn't tracked in this session yet, add it
+	#if not permanent_visited.has(room_name) and not session_visited_rooms.has(room_name):
+		#session_visited_rooms.append(room_name)
+		#print_rich("[color=orange]MAP SYSTEM: Discovered new room (Unsaved Session): %s[/color]" % room_name)
+		#
+		## Optional: Update completion percentage live in memory during the run
+		#_update_game_completion_percentage(current_slot)
+		#
 		
-	if not SAVE_DATA[current_slot].has("visited_rooms"):
-		SAVE_DATA[current_slot]["visited_rooms"] = []
-	
-	var visited_list: Array = SAVE_DATA[current_slot]["visited_rooms"]
-	
-	if not visited_list.has(room_name):
-		visited_list.append(room_name)
-		SAVE_DATA[current_slot]["visited_rooms"] = visited_list
-		print_rich("[color=orange]MAP SYSTEM: Discovered new room: %s[/color]" % room_name)
-		
-		# Update the dictionary percentage value live whenever a new room is registered
-		_update_game_completion_percentage(current_slot)
-
 ## Helper that calculates and saves the integer percentage directly into the slot dict
 func _update_game_completion_percentage(slot_id: String) -> void:
 	if not SAVE_DATA.has(slot_id) or not SAVE_DATA[slot_id].has("visited_rooms"):
@@ -146,6 +150,7 @@ func save_persistent_object(object_id: String) -> void:
 		persistent_list.append(object_id)
 		SAVE_DATA[current_slot]["persistent_objects"] = persistent_list
 		print_rich("[color=yellow]SAVE SYSTEM: Registered persistent object %s[/color]" % object_id)
+		save_to_disk()
 	else:
 		print_rich("[color=red]SAVE SYSTEM: Persistent object already registered %s[/color]" % object_id)
 
@@ -153,19 +158,22 @@ func save_at_station(room_name: String, player: CharacterBody2D) -> void:
 	if not SAVE_DATA.has(current_slot):
 		SAVE_DATA[current_slot] = {}
 	
-	# Grab existing values or fallbacks
 	var current_time = SAVE_DATA[current_slot].get("game_time", 0.0)
-	var visited_room_list = SAVE_DATA[current_slot].get("visited_rooms", [room_name])
-	var existing_banked_coins = SAVE_DATA[current_slot].get("coins", player.banked_coins)
+	var permanent_visited = SAVE_DATA[current_slot].get("visited_rooms", [room_name])
 	
-	# Calculate new banked total
+	# 2. Merge any newly discovered session rooms into the permanent list
+	for room in player.session_visited_rooms:
+		if not permanent_visited.has(room):
+			permanent_visited.append(room)
+		player.session_visited_rooms.clear()
+			
+	var existing_banked_coins = SAVE_DATA[current_slot].get("coins", player.banked_coins)
 	var new_banked_total = existing_banked_coins + player.current_coins
 	
-	# Update player runtime state
 	player.banked_coins = new_banked_total
 	player.current_coins = 0
 	
-	# Store everything flat at the slot level
+	# 3. Commit everything to the slot and write to disk
 	SAVE_DATA[current_slot]["room_id"] = room_name
 	SAVE_DATA[current_slot]["spawn_id"] = 0
 	SAVE_DATA[current_slot]["health"] = player.health_component.max_health
@@ -173,7 +181,7 @@ func save_at_station(room_name: String, player: CharacterBody2D) -> void:
 	SAVE_DATA[current_slot]["energy"] = player.energy_component.current_energy
 	SAVE_DATA[current_slot]["coins"] = new_banked_total
 	SAVE_DATA[current_slot]["game_time"] = current_time
-	SAVE_DATA[current_slot]["visited_rooms"] = visited_room_list
+	SAVE_DATA[current_slot]["visited_rooms"] = permanent_visited
 	
 	_update_game_completion_percentage(current_slot)
 	save_to_disk()

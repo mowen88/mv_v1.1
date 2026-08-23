@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_s3d7j"]
 [ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="3_knvk0"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_twydy"]
+[ext_resource type="PackedScene" uid="uid://cpiaae6ul6low" path="res://UI/gameplay/PauseMenu/map_scene.tscn" id="4_gnud7"]
 [ext_resource type="PackedScene" uid="uid://b628jutnpyhgf" path="res://UI/gameplay/PauseMenu/quests_scene.tscn" id="4_p7u3h"]
 [ext_resource type="Texture2D" uid="uid://cvs22kboaslif" path="res://UI/gameplay/elements/close_button_pressed.png" id="6_fsspa"]
 
@@ -86,6 +87,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapScene" parent="Control/VBoxContainer/TabContentContainer/MapPanel" unique_id=1160199396 instance=ExtResource("4_gnud7")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cpiaae6ul6low"]
+
+[ext_resource type="Script" uid="uid://vq6w5wfs55i5" path="res://UI/gameplay/PauseMenu/map_scene.gd" id="1_rrnar"]
+[ext_resource type="Texture2D" path="res://UI/gameplay/PauseMenu/map_room_sprites/a_01.png" id="2_e4ueg"]
+[ext_resource type="Texture2D" path="res://UI/gameplay/PauseMenu/map_room_sprites/a_02.png" id="3_enss6"]
+[ext_resource type="Texture2D" path="res://UI/gameplay/PauseMenu/map_room_sprites/b_01.png" id="4_iph03"]
+[ext_resource type="Texture2D" uid="uid://tdptx7ntni4q" path="res://UI/gameplay/PauseMenu/map_sprites/player_map_icon.png" id="5_enss6"]
+
+[node name="MapScene" type="Control" unique_id=2027254112]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rrnar")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1291293674]
+custom_minimum_size = Vector2(2000, 800)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=803379833]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+size = Vector2i(2000, 800)
+render_target_update_mode = 4
+
+[node name="RoomContainer" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1912801938]
+position = Vector2(1000, 0)
+
+[node name="a_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=55423390]
+position = Vector2(134, 119)
+texture = ExtResource("2_e4ueg")
+
+[node name="a_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1837831172]
+position = Vector2(-2, 170)
+texture = ExtResource("3_enss6")
+
+[node name="b_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1760024013]
+position = Vector2(134, 226)
+texture = ExtResource("4_iph03")
+
+[node name="b_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1933959235]
+position = Vector2(-122, 282)
+texture = ExtResource("4_iph03")
+
+[node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1123997194]
+texture = ExtResource("5_enss6")

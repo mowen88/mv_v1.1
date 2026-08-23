@@ -11,6 +11,7 @@ signal unpause_requested
 @onready var close_button: TextureButton = $CloseButton
 
 @onready var quest_scene: Control = $Control/VBoxContainer/TabContentContainer/QuestsPanel/QuestsScene
+@onready var map_scene: Control = $Control/VBoxContainer/TabContentContainer/MapPanel/MapScene
 
 var tabs: Array[Control] = []
 var active_tween: Tween
@@ -40,8 +41,14 @@ func _ready() -> void:
 
 func open_inventory() -> void:
 	
-	quest_scene.populate_quest_ui()
+	# Update hte quest UI on opening
 	quest_scene.update_current_details()
+	
+	# Update map UI on opening AND pass references
+	var world_state = get_parent()
+	var room_name = world_state.current_room_node.name
+	var player_node = world_state.player
+	map_scene.update_map_display(room_name, player_node)
 	
 	# Instantly show the remembered tab
 	for i in range(tabs.size()):

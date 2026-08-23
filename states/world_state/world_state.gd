@@ -94,12 +94,14 @@ func _load_room(room_scene: PackedScene, spawn_id: int) -> void:
 	current_room_node = room_scene.instantiate()
 	
 	if current_room_node:
-		# 2. Get the filename from the PackedScene's resource_path
+		#Get the filename from the PackedScene's resource_path
 		var room_path = room_scene.resource_path
 		
-		# 3. Force the node name to match the file name so the MapData dictionary works perfectly
+		#Force the node name to match the file name so the MapData dictionary works perfectly
 		current_room_node.name = room_path.get_file().get_basename() 
 		current_room_container.add_child(current_room_node)
+		# Update the player's temporary visited room list
+		_register_room_visit(current_room_node.name)
 		
 		# transitions and music
 		var zone_data: Dictionary = get_zone_data(current_room_node.name)
@@ -119,9 +121,6 @@ func _load_room(room_scene: PackedScene, spawn_id: int) -> void:
 		AudioManager.start_music(bgm_path, 2.0)
 		# ------------------------------------
 		
-		# Update rooms visited progress in save file
-		SaveManager.register_room_visited(current_room_node.name)
-
 		var spawn_node = current_room_node.get_node_or_null("Spawns/" + str(spawn_id))
 		
 		# Set the respawn fallback to the room entry
@@ -131,3 +130,22 @@ func _load_room(room_scene: PackedScene, spawn_id: int) -> void:
 		player.global_position = spawn_node.global_position
 		# Snap the camera to the player by default
 		game_camera.snap_to_target(spawn_node)
+
+func _register_room_visit(room_name: String) -> void:
+	if not player or not "session_visited_rooms" in player:
+		return
+		
+	var room_name_str = String(room_name)
+	
+	# Get permanent saved rooms from disk/RAM
+	var permanent_visited = []
+	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		permanent_visited = SaveManager.SAVE_DATA[SaveManager.current_slot].get("visited_rooms", [])
+		
+	# Only add if it's not already saved and not already tracked in the active run session
+	if not permanent_visited.has(room_name_str) and not player.session_visited_rooms.has(room_name_str):
+		player.session_visited_rooms.append(room_name_str)
+		print_rich("[color=orange]WORLD MANAGER: Discovered new room (Unsaved Run): %s[/color]" % room_name_str)
+		
+		# Recalculate percentage live in memory
+		SaveManager._update_game_completion_percentage(SaveManager.current_slot)

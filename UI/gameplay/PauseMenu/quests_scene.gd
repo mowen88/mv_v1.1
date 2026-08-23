@@ -44,6 +44,9 @@ func _ready() -> void:
 	populate_quest_ui()
 
 func update_current_details() -> void:
+	# Update quest list first
+	populate_quest_ui()
+	# Check latest quest details to show correctly when opening - called in invetory overlay script
 	for quest_id in QUEST_DETAILS.keys():
 		var details = QUEST_DETAILS[quest_id]
 		if details["title"] == title_label.text:
@@ -62,9 +65,9 @@ func populate_quest_ui() -> void:
 		var state = QuestManager.get_quest_state(quest_id)
 		var details = QUEST_DETAILS.get(quest_id, {"title": quest_id, "description": "No description available."})
 		
-		## Only populate if quest is active
-		#if state.to_lower() == "inactive":
-			#continue
+		# Only populate if quest is active
+		if state.to_lower() == "inactive":
+			continue
 			#
 		# Create a button dynamically for the row
 		var row_button = Button.new()
@@ -103,7 +106,7 @@ func display_quest_details(q_title:String, q_state:String, q_desc:String, q_rewa
 	
 	match q_state:
 		"In Progress":
-			status_label.add_theme_color_override("font_color", Color8(229, 88, 88))   # Red/In Progress
+			status_label.add_theme_color_override("font_color", Color8(255, 189, 111))   # Yellow/In Progress
 		"Completed":
 			status_label.add_theme_color_override("font_color", Color8(121, 181, 71)) # Green/Completed
 		"Inactive":

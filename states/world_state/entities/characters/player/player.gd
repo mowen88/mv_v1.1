@@ -20,8 +20,10 @@ extends CharacterBody2D
 var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
 
+# Temporary save data
 var current_coins: int = 0
 var banked_coins: int = 0
+var session_visited_rooms: Array = []
 		
 func _ready() -> void:	
 	
