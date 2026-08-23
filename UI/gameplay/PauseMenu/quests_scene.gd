@@ -66,9 +66,9 @@ func populate_quest_ui() -> void:
 		var details = QUEST_DETAILS.get(quest_id, {"title": quest_id, "description": "No description available."})
 		
 		# Only populate if quest is active
-		if state.to_lower() == "inactive":
-			continue
-			#
+		#if state.to_lower() == "inactive":
+			#continue
+			
 		# Create a button dynamically for the row
 		var row_button = Button.new()
 		row_button.text = details["title"]
@@ -105,7 +105,7 @@ func display_quest_details(q_title:String, q_state:String, q_desc:String, q_rewa
 	reward_label.text = "REWARD :  " + q_reward
 	
 	match q_state:
-		"In Progress":
+		"In progress":
 			status_label.add_theme_color_override("font_color", Color8(255, 189, 111))   # Yellow/In Progress
 		"Completed":
 			status_label.add_theme_color_override("font_color", Color8(121, 181, 71)) # Green/Completed

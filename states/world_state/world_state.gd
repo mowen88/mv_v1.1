@@ -17,7 +17,6 @@ func _ready():
 	SignalBus.toggle_gameplay_ui.connect(func(val): gameplay_ui.visible = val)
 	SignalBus.toggle_touch_controller.connect(func(val): touch_controller.visible = val)
 	
-	
 	SignalBus.room_change_requested.connect(_on_room_change_requested)
 	SignalBus.save_station_activated.connect(_on_save_station_activated)
 	SignalBus.hit_stop_requested.connect(_on_hit_stop)

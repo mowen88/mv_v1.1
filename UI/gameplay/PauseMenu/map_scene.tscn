@@ -1,18 +1,38 @@
 [gd_scene format=3 uid="uid://cpiaae6ul6low"]
 
 [ext_resource type="Script" uid="uid://vq6w5wfs55i5" path="res://UI/gameplay/PauseMenu/map_scene.gd" id="1_rrnar"]
-[ext_resource type="Texture2D" path="res://UI/gameplay/PauseMenu/map_room_sprites/a_01.png" id="2_e4ueg"]
-[ext_resource type="Texture2D" path="res://UI/gameplay/PauseMenu/map_room_sprites/a_02.png" id="3_enss6"]
-[ext_resource type="Texture2D" path="res://UI/gameplay/PauseMenu/map_room_sprites/b_01.png" id="4_iph03"]
+[ext_resource type="Texture2D" uid="uid://df1c6qlpivsmw" path="res://UI/gameplay/PauseMenu/map_sprites/a_01.png" id="2_e4ueg"]
+[ext_resource type="Texture2D" uid="uid://dnxdl0nula358" path="res://UI/gameplay/PauseMenu/map_sprites/a_02.png" id="3_enss6"]
+[ext_resource type="Texture2D" uid="uid://c06rus80fluoa" path="res://UI/gameplay/PauseMenu/map_sprites/b_01.png" id="4_iph03"]
 [ext_resource type="Texture2D" uid="uid://tdptx7ntni4q" path="res://UI/gameplay/PauseMenu/map_sprites/player_map_icon.png" id="5_enss6"]
+[ext_resource type="Texture2D" uid="uid://clj0kekmn243s" path="res://UI/gameplay/PauseMenu/map_sprites/b_02.png" id="5_iph03"]
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="7_3t8t5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3t8t5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wii3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5ee1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bihx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2p404"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dagy4"]
 
 [node name="MapScene" type="Control" unique_id=2027254112]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_rrnar")
+max_drag_range_x = 900.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1291293674]
-custom_minimum_size = Vector2(2000, 800)
+custom_minimum_size = Vector2(0, 700)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -23,27 +43,45 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
-size = Vector2i(2000, 800)
+size = Vector2i(2340, 700)
 render_target_update_mode = 4
 
 [node name="RoomContainer" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1912801938]
-position = Vector2(1000, 0)
+position = Vector2(1264, 504)
 
 [node name="a_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=55423390]
-position = Vector2(134, 119)
+position = Vector2(6, -26)
 texture = ExtResource("2_e4ueg")
 
 [node name="a_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1837831172]
-position = Vector2(-2, 170)
+position = Vector2(-128, 46)
 texture = ExtResource("3_enss6")
 
 [node name="b_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1760024013]
-position = Vector2(134, 226)
+position = Vector2(66, 118)
 texture = ExtResource("4_iph03")
 
 [node name="b_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1933959235]
-position = Vector2(-122, 282)
-texture = ExtResource("4_iph03")
+position = Vector2(-186, 145)
+texture = ExtResource("5_iph03")
 
-[node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1123997194]
+[node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1123997194]
+position = Vector2(-248, -281)
 texture = ExtResource("5_enss6")
+
+[node name="RecentreButton" type="Button" parent="." unique_id=1984413439]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_right = 368.0
+grow_vertical = 0
+theme = ExtResource("7_3t8t5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3t8t5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wii3h")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_d5ee1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bihx0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2p404")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dagy4")
+text = "Recentre"

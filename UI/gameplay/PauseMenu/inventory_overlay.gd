@@ -44,11 +44,11 @@ func open_inventory() -> void:
 	# Update hte quest UI on opening
 	quest_scene.update_current_details()
 	
-	# Update map UI on opening AND pass references
+	## Update map UI on opening AND pass references
 	var world_state = get_parent()
-	var room_name = world_state.current_room_node.name
+	var current_room = world_state.current_room_node
 	var player_node = world_state.player
-	map_scene.update_map_display(room_name, player_node)
+	map_scene.update_map_display(current_room, player_node)
 	
 	# Instantly show the remembered tab
 	for i in range(tabs.size()):
