@@ -131,9 +131,7 @@ func _load_room(room_scene: PackedScene, spawn_id: int) -> void:
 		game_camera.snap_to_target(spawn_node)
 
 func _register_room_visit(room_name: String) -> void:
-	if not player or not "session_visited_rooms" in player:
-		return
-		
+
 	var room_name_str = String(room_name)
 	
 	# Get permanent saved rooms from disk/RAM
@@ -144,6 +142,7 @@ func _register_room_visit(room_name: String) -> void:
 	# Only add if it's not already saved and not already tracked in the active run session
 	if not permanent_visited.has(room_name_str) and not player.session_visited_rooms.has(room_name_str):
 		player.session_visited_rooms.append(room_name_str)
+		print(player.session_visited_rooms)
 		print_rich("[color=orange]WORLD MANAGER: Discovered new room (Unsaved Run): %s[/color]" % room_name_str)
 		
 		# Recalculate percentage live in memory

@@ -37,7 +37,7 @@ func update_map_display(current_room: Node2D = null, player_node: Node2D = null)
 	var visited_rooms = []
 	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
 		visited_rooms = SaveManager.SAVE_DATA[SaveManager.current_slot].get("visited_rooms", [])
-
+	
 	var active_room_name = current_room.name.to_lower() if current_room else ""
 	var target_map_node: Sprite2D = null
 

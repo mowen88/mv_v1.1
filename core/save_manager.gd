@@ -161,11 +161,13 @@ func save_at_station(room_name: String, player: CharacterBody2D) -> void:
 	var current_time = SAVE_DATA[current_slot].get("game_time", 0.0)
 	var permanent_visited = SAVE_DATA[current_slot].get("visited_rooms", [room_name])
 	
-	# 2. Merge any newly discovered session rooms into the permanent list
+	# Merge newly discovered session rooms into the permanent list
 	for room in player.session_visited_rooms:
 		if not permanent_visited.has(room):
 			permanent_visited.append(room)
-		player.session_visited_rooms.clear()
+	
+	# Clear the player's session rooms as they're now commited to save
+	player.session_visited_rooms.clear()
 			
 	var existing_banked_coins = SAVE_DATA[current_slot].get("coins", player.banked_coins)
 	var new_banked_total = existing_banked_coins + player.current_coins

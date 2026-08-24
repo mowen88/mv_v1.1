@@ -133,7 +133,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	fsm.handle_input(event)
-	
+	print(fsm.current_state.name)
 
 	if event.is_action_pressed("shoot"):
 
