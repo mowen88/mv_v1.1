@@ -5,19 +5,23 @@ extends State
 @export var duration: float = 1.0
 
 var timer: float = 0.0
-var go_to_special = true
+var go_to_shoot = false
 
 func enter() -> void:
 	# Animate
 	owner.animated_sprite.play("fall")
 	timer = duration
-	go_to_special = true
 
 	#owner.sword.attack(owner.move_component.facing)
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
-		go_to_special = false
+		# BEAM ATTACK!!!!!!!
+		owner.beam.attack(owner.move_component.facing)
+		if owner.is_on_floor():
+			fsm.change_state("idle")
+		else:
+			fsm.change_state("fall")
 	
 func physics_update(delta: float) -> void:
 	
@@ -27,12 +31,9 @@ func physics_update(delta: float) -> void:
 	
 	timer -= delta
 	if timer <= 0:
+		# Go to heal state?
 		SignalBus.flash_screen.emit()
-
 		owner.energy_component.consume_energy(owner.energy_component.max_energy)
-		if go_to_special:
-			fsm.change_state("jump")
-		else:
-			owner.health_component.heal(owner.health_component.max_health)
-			ParticleManager.play(heal_particle, owner.global_position)
-			fsm.change_state("fall")
+		owner.health_component.heal(owner.health_component.max_health)
+		ParticleManager.play(heal_particle, owner.global_position)
+		fsm.change_state("fall")

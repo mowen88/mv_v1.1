@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var squash_stretch_component: SquashStretchComponent = $SquashStretchComponent
 
 @onready var sword = $SwordScene
+@onready var beam = $BeamScene
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
