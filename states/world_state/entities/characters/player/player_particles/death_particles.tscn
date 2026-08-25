@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bvriqg0ou06kc"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cc3ir"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 60.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+radial_velocity_min = -20.000021
+radial_velocity_max = -2.2351742e-05
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+
+[node name="DeathParticles" type="GPUParticles2D" unique_id=583690248]
+amount = 60
+trail_enabled = true
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_cc3ir")

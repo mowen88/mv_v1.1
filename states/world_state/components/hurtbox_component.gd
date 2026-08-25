@@ -21,12 +21,13 @@ func receive_damage(hitbox: Node2D, amount:int, knockback_force:float) -> bool:
 		
 	AudioManager.play_sfx(sound)
 	ParticleManager.play(particle_name, global_position)
-	SignalBus.screenshake_requested.emit(2.0, 0.0, 0.2)
 	
 	hit_received.emit(hitbox, knockback_force)
 	
-	if owner.is_in_group("energy_gaining") and hitbox.owner.name == "SwordScene":
-		SignalBus.player_energy_gained.emit(owner)
+	if hitbox.owner.name == "SwordScene":
+		SignalBus.screenshake_requested.emit(4.0, 0.0, 0.2)
+		if owner.is_in_group("energy_gaining"):
+			SignalBus.player_energy_gained.emit(owner)
 	
 	start_invincibility()
 	return true

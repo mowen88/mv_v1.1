@@ -1,6 +1,7 @@
 extends State
 
 @export var death_particle: String
+@export var death_sound: AudioStream
 @export var deceleration: float = 1000.0
 @export var duration: float = 3.5
 var timer: float = 1.5
@@ -15,6 +16,8 @@ func enter() -> void:
 
 	# Set the player facing
 	owner.move_component.facing = -1 if owner.velocity.x > 0 else 1
+	
+	AudioManager.play_sfx(death_sound)
 	
 	await get_tree().create_timer(1.0).timeout
 	# Put player on top of death screen effect

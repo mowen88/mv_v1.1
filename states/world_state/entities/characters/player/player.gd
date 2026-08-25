@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var death_particles: GPUParticles2D = $DeathParticle
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
@@ -113,6 +115,9 @@ func collect_coin(amount: int) -> void:
 
 func _on_death() -> void:
 	# Start the death fade screen
+	death_particles.emitting = true
+	death_particles.z_index = 10
+	animated_sprite.z_index = 11
 	fsm.change_state("Death")
 	current_coins = 0
 	

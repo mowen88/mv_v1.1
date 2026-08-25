@@ -33,14 +33,24 @@
 [ext_resource type="PackedScene" uid="uid://dh1u3fofia6k0" path="res://states/world_state/components/energy_component.tscn" id="21_6mh6f"]
 [ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="21_edub2"]
 [ext_resource type="Script" uid="uid://c3sm7kuwjlmeg" path="res://states/world_state/entities/characters/player/player_states/player_climb.gd" id="21_nglex"]
+[ext_resource type="AudioStream" uid="uid://dfpy6supfphar" path="res://states/world_state/entities/characters/player/player_audio/ghost.wav" id="24_h7klx"]
 [ext_resource type="Script" uid="uid://dyl8kn1wew5sn" path="res://states/world_state/entities/characters/player/player_states/player_hit_hazard.gd" id="24_sju5j"]
 [ext_resource type="Script" uid="uid://bcopnf2bruebq" path="res://states/world_state/entities/characters/player/player_states/player_slide.gd" id="26_m3cwm"]
 [ext_resource type="Script" uid="uid://bblrqgr5l4nsn" path="res://states/world_state/entities/characters/player/player_states/player_enter_door.gd" id="28_ak1tp"]
 [ext_resource type="Script" uid="uid://b7iahl8t08p7c" path="res://states/world_state/entities/characters/player/player_states/player_exit_door.gd" id="29_hpgvl"]
 [ext_resource type="Script" uid="uid://be7575jdlvj8" path="res://states/world_state/entities/characters/player/player_states/player_transition.gd" id="31_5mbyj"]
-[ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_hurt.wav" id="31_20gxo"]
+[ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_audio/player_hurt.wav" id="31_20gxo"]
 [ext_resource type="Script" uid="uid://dub405aebb00b" path="res://states/world_state/entities/characters/player/player_states/player_transition_up.gd" id="31_puuqg"]
 [ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="38_1i1x5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h7klx"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 500.0
+radial_accel_max = 800.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
 atlas = ExtResource("2_2yeee")
@@ -581,6 +591,14 @@ one_shot = true
 wait_time = 0.12
 one_shot = true
 
+[node name="DeathParticle" type="GPUParticles2D" parent="." unique_id=141313360]
+emitting = false
+amount = 100
+preprocess = 1.35
+trail_enabled = true
+trail_lifetime = 0.75
+process_material = SubResource("ParticleProcessMaterial_h7klx")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 position = Vector2(0, 12)
@@ -632,6 +650,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="Death" type="Node" parent="FiniteStateMachine" unique_id=327399938]
 script = ExtResource("16_pffij")
 death_particle = "small_blast"
+death_sound = ExtResource("24_h7klx")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=65880390]
