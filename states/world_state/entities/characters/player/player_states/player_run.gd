@@ -5,6 +5,9 @@ func enter() -> void:
 	owner.get_node("AnimatedSprite2D").play("run")
 	
 func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("down"):
+		owner.drop_through_platform()
+		
 	if event.is_action_pressed("jump"):
 		fsm.change_state("Jump")
 	
