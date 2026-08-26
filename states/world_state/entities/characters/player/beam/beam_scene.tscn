@@ -95,6 +95,8 @@ position = Vector2(130, 0)
 sprite_frames = SubResource("SpriteFrames_tj0qy")
 
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("3_ysywh")]
+damage_amount = 3
+knockback_force = 300.0
 
 [node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=1317764610]
 position = Vector2(130, 0)

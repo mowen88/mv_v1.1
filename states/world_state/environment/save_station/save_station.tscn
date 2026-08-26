@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bs8wn0suub54u" path="res://states/world_state/environment/save_station/save_station.gd" id="1_fg0it"]
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="2_fg0it"]
+[ext_resource type="AudioStream" uid="uid://bvkc8uknuuey" path="res://states/world_state/environment/save_station/gong_save_sound.mp3" id="2_sh5sn"]
 
 [node name="SaveStation" type="Sprite2D" unique_id=249855072]
 script = ExtResource("1_fg0it")
+save_sound = ExtResource("2_sh5sn")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1471144874]
 anchors_preset = 8

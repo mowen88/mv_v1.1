@@ -23,7 +23,7 @@ func handle_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("shoot") and\
 		owner.energy_component.current_energy == owner.energy_component.max_energy:
-			fsm.change_state("Heal")
+			fsm.change_state("BeamBuildUp")
 	
 func physics_update(_delta: float) -> void:
 

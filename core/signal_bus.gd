@@ -21,6 +21,7 @@ signal toggle_touch_controller(is_visible: bool)
 signal play_cutscene(cutscene_name: String)
 
 signal screenshake_requested(x_offset:float, y_offset:float, duration:float)
+signal stop_screenshake()
 signal death_screen_fade(color:Color, duration:float)
 signal flash_screen(color:Color, duration:float)
 signal hit_stop_requested(duration: float)

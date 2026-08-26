@@ -1,5 +1,6 @@
 extends Sprite2D
 
+@export var save_sound: AudioStream
 @onready var interaction_component: InteractionComponent = $InteractionComponent
 
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _on_save_station_interacted(player: CharacterBody2D) -> void:
 		SignalBus.save_station_activated.emit()
 		SignalBus.flash_screen.emit()
 		
+		AudioManager.play_sfx(save_sound)
 		ParticleManager.play("hit_effect", interaction_component.global_position)
 		player.flash_component.play_flash()
 		player.health_component.heal(player.health_component.max_health)

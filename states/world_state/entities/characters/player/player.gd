@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var death_particles: GPUParticles2D = $DeathParticle
+@onready var heal_particles: GPUParticles2D = $HealParticle
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
@@ -141,21 +142,21 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 	print(fsm.current_state.name)
 
-	if event.is_action_pressed("shoot"):
-
-		SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
-		SignalBus.camera_zoom_requested.emit(1.2, 0.25)
-		SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
-		
-		# Testing cycle through states to test: inactive -> in_progress -> completed
-		if QuestManager.get_quest_state("find_the_key") == "Inactive":
-			QuestManager.set_quest_state("find_the_key", "In progress")
-			print("Quest State Changed: IN_PROGRESS")
-		elif QuestManager.get_quest_state("find_the_key") == "In progress":
-			QuestManager.set_quest_state("find_the_key", "Completed")
-			print("Quest State Changed: COMPLETED")
-		return
-		
+	#if event.is_action_pressed("shoot"):
+#
+		#SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
+		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)
+		#SignalBus.screenshake_requested.emit(10.0, 10.0, 0.5)
+		#
+		## Testing cycle through states to test: inactive -> in_progress -> completed
+		#if QuestManager.get_quest_state("find_the_key") == "Inactive":
+			#QuestManager.set_quest_state("find_the_key", "In progress")
+			#print("Quest State Changed: IN_PROGRESS")
+		#elif QuestManager.get_quest_state("find_the_key") == "In progress":
+			#QuestManager.set_quest_state("find_the_key", "Completed")
+			#print("Quest State Changed: COMPLETED")
+		#return
+		#
 		#SignalBus.zone_banner_requested.emit("Big Bad Boss", true)
 		#AudioManager.start_music("res://states/world_state/music/temple_theme.ogg", 1.0)
 		#AudioManager.stop_music()

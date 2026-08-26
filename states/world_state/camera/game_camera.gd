@@ -17,6 +17,7 @@ var lock_y: bool = true
 
 func _ready() -> void:
 	SignalBus.screenshake_requested.connect(shake)
+	SignalBus.stop_screenshake.connect(stop_shake)
 	SignalBus.camera_override_requested.connect(set_override)
 	SignalBus.camera_override_cleared.connect(clear_override)
 	SignalBus.camera_zoom_requested.connect(zoom_pulse)
@@ -108,6 +109,12 @@ func shake(max_x: float, max_y: float, duration: float) -> void:
 			.set_ease(Tween.EASE_OUT)
 			
 	shake_tween.tween_property(self, "offset", Vector2.ZERO, shake_speed)
+
+func stop_shake() -> void:
+	if shake_tween:
+		shake_tween.kill()
+	shake_tween = create_tween()
+	shake_tween.tween_property(self, "offset", Vector2.ZERO, 0.05)
 
 func zoom_pulse(zoom_multiplier: float, duration: float) -> void:
 	if zoom_tween:

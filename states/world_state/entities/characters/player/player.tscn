@@ -18,8 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://bmv0f06d3woc1" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_build_up.png" id="7_fsr7x"]
 [ext_resource type="Script" uid="uid://dercsmv8k458f" path="res://states/world_state/entities/characters/player/player_states/player_jump.gd" id="8_6on6l"]
 [ext_resource type="Script" uid="uid://crh54bx3jo1y2" path="res://states/world_state/entities/characters/player/player_states/player_fall.gd" id="8_cdm2v"]
+[ext_resource type="Texture2D" uid="uid://dbrshiqp6ky46" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_knockback.png" id="8_rgm01"]
 [ext_resource type="Script" uid="uid://cdm8y5micbi5j" path="res://states/world_state/entities/characters/player/player_states/player_attack.gd" id="9_6on6l"]
 [ext_resource type="Texture2D" uid="uid://c8n00tmwnnkbq" path="res://states/world_state/entities/characters/player/player_spritesheets/on_ladder.png" id="9_sju5j"]
+[ext_resource type="Texture2D" uid="uid://hfqpq7uqiu1f" path="res://states/world_state/entities/characters/player/player_spritesheets/heal.png" id="11_1pnom"]
 [ext_resource type="Texture2D" uid="uid://bbapmkmdlscxj" path="res://states/world_state/entities/characters/player/player_spritesheets/slide.png" id="11_yewsr"]
 [ext_resource type="Script" uid="uid://brvhdaaglohet" path="res://states/world_state/entities/characters/player/player_states/player_air_attack.gd" id="12_04ry7"]
 [ext_resource type="Script" uid="uid://cnjtoilji3kq2" path="res://states/world_state/entities/characters/player/player_states/player_awake.gd" id="14_5mbyj"]
@@ -43,8 +45,12 @@
 [ext_resource type="Script" uid="uid://be7575jdlvj8" path="res://states/world_state/entities/characters/player/player_states/player_transition.gd" id="31_5mbyj"]
 [ext_resource type="AudioStream" uid="uid://ubaqpuqlofk1" path="res://states/world_state/entities/characters/player/player_audio/player_hurt.wav" id="31_20gxo"]
 [ext_resource type="Script" uid="uid://dub405aebb00b" path="res://states/world_state/entities/characters/player/player_states/player_transition_up.gd" id="31_puuqg"]
-[ext_resource type="Script" uid="uid://dgoqwd7kya8v3" path="res://states/world_state/entities/characters/player/player_states/player_special_build_up.gd" id="37_1pnom"]
+[ext_resource type="AudioStream" uid="uid://bft3d6vwc1evn" path="res://states/world_state/entities/characters/player/player_audio/heal_build_up_sound.mp3" id="32_4tamm"]
+[ext_resource type="AudioStream" uid="uid://mkw7lamyxamf" path="res://states/world_state/entities/characters/player/player_audio/heal_complete_sound.mp3" id="32_aqwc4"]
+[ext_resource type="Script" uid="uid://dgoqwd7kya8v3" path="res://states/world_state/entities/characters/player/player_states/player_beam_build_up.gd" id="37_1pnom"]
 [ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="38_1i1x5"]
+[ext_resource type="AudioStream" uid="uid://lfo7aqcyapji" path="res://states/world_state/entities/characters/player/player_audio/beam_build_up.mp3" id="40_4tamm"]
+[ext_resource type="Script" uid="uid://bsr1dr14xrieh" path="res://states/world_state/entities/characters/player/player_states/player_beam_knockback.gd" id="40_vf4nt"]
 [ext_resource type="PackedScene" uid="uid://mxu15ewd88aa" path="res://states/world_state/entities/characters/player/beam/beam_scene.tscn" id="44_yuga7"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h7klx"]
@@ -57,6 +63,21 @@ radial_accel_min = 300.0
 radial_accel_max = 500.0
 color = Color(0, 0, 0, 1)
 turbulence_enabled = true
+
+[sub_resource type="Curve" id="Curve_1pnom"]
+_data = [Vector2(0, 0.49968964), 99864.38, 0.0, 1, 0, Vector2(0.99999, 0), 0.0, 99864.38, 0, 1]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bu1jg"]
+curve = SubResource("Curve_1pnom")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgm01"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, -1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+gravity = Vector3(0, -100, 0)
+alpha_curve = SubResource("CurveTexture_bu1jg")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g11l2"]
 atlas = ExtResource("2_2yeee")
@@ -266,6 +287,10 @@ region = Rect2(816, 0, 48, 24)
 atlas = ExtResource("7_fsr7x")
 region = Rect2(864, 0, 48, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob6sy"]
+atlas = ExtResource("8_rgm01")
+region = Rect2(0, 0, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1i1x5"]
 atlas = ExtResource("5_5athw")
 region = Rect2(0, 0, 24, 24)
@@ -321,6 +346,38 @@ region = Rect2(48, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5athw"]
 atlas = ExtResource("4_pnkj8")
 region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdsda"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_accsc"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4fk4"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r1ro"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5lct"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuneq"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0pn7"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsk3m"]
+atlas = ExtResource("11_1pnom")
+region = Rect2(168, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdm2v"]
 atlas = ExtResource("3_mhs45")
@@ -574,6 +631,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ob6sy")
+}],
+"loop": false,
+"name": &"beam_knockback",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1i1x5")
 }, {
 "duration": 1.0,
@@ -628,6 +693,35 @@ animations = [{
 "loop": false,
 "name": &"fall",
 "speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdsda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_accsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4fk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r1ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5lct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuneq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0pn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsk3m")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -745,11 +839,23 @@ trail_enabled = true
 trail_lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_h7klx")
 
+[node name="HealParticle" type="GPUParticles2D" parent="." unique_id=483787558]
+z_index = 1
+position = Vector2(0, 8)
+emitting = false
+amount = 32
+one_shot = true
+trail_enabled = true
+trail_lifetime = 1.5
+trail_sections = 4
+trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_rgm01")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 position = Vector2(0, 12)
 sprite_frames = SubResource("SpriteFrames_g3adm")
-animation = &"beam_build_up"
+animation = &"beam_knockback"
 offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
@@ -763,7 +869,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Awake" type="Node" parent="FiniteStateMachine" unique_id=46775410]
 script = ExtResource("14_5mbyj")
-duration = 2.3
+duration = 2.2
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=281146213]
@@ -810,6 +916,9 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="Heal" type="Node" parent="FiniteStateMachine" unique_id=1322156733]
 script = ExtResource("19_y4odu")
 heal_particle = "small_blast"
+heal_complete_sound = ExtResource("32_aqwc4")
+build_up_sound = ExtResource("32_4tamm")
+duration = 1.5
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="OnLadder" type="Node" parent="FiniteStateMachine" unique_id=915276008]
@@ -843,6 +952,12 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="BeamBuildUp" type="Node" parent="FiniteStateMachine" unique_id=199858439]
 script = ExtResource("37_1pnom")
+build_up_sound = ExtResource("40_4tamm")
+duration = 1.2
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="BeamKnockback" type="Node" parent="FiniteStateMachine" unique_id=46939713]
+script = ExtResource("40_vf4nt")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
