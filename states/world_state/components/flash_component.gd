@@ -10,7 +10,7 @@ func _ready() -> void:
 	if hurtbox_component:
 		hurtbox_component.hit_received.connect(play_flash)
 
-func play_flash(hitbox: Area2D = null, knockback: float = 0.0) -> void:
+func play_flash(hitbox: Area2D = null, _knockback: float = 0.0) -> void:
 	# Early return if no sprite, no material
 	if not sprite or not sprite.material:
 		return

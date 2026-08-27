@@ -27,12 +27,12 @@ func _ready() -> void:
 			var sprite = child.get_node("AnimatedSprite2D")
 			sprites.append(sprite)
 			
-			sprite.animation_finished.connect(_on_sprite_animation_finished.bind(sprite))
+			#sprite.animation_finished.connect(_on_sprite_animation_finished.bind(sprite))
 			
 	for area in areas:
 		area.body_entered.connect(_trigger_group)
 
-func _trigger_group(body: Node2D) -> void:
+func _trigger_group(_body: Node2D) -> void:
 	if triggered:
 		return
 		
@@ -80,6 +80,5 @@ func _on_timer_timeout() -> void:
 				
 			triggered = false # Reset so they can be triggered again
 
-func _on_sprite_animation_finished(sprite: AnimatedSprite2D) -> void:
-	pass#if sprite.animation == "breaking":
-		#sprite.visible = false
+#func _on_sprite_animation_finished(_sprite: AnimatedSprite2D) -> void:
+	#pass

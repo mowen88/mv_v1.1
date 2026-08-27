@@ -65,9 +65,9 @@ func start_bounce() -> void:
 	bounce_tween.tween_property(swipe_icon, "position:y", base_swipe_y - 6.0, 0.4)
 	bounce_tween.tween_property(swipe_icon, "position:y", base_swipe_y, 0.4)
 
-func set_ui_visible(is_visible: bool) -> void:
-	interact_label.visible = is_visible
-	swipe_icon.visible = is_visible
+func set_ui_visible(new_visibility: bool) -> void:
+	interact_label.visible = new_visibility
+	swipe_icon.visible = new_visibility
 
 func set_ui_alpha(alpha: float) -> void:
 	interact_label.modulate.a = alpha

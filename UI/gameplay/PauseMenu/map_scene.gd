@@ -137,7 +137,7 @@ func _gui_input(event: InputEvent) -> void:
 		room_container.position += event.relative
 		_clamp_container_offset()
 
-func _zoom_at(zoom_pivot: Vector2, zoom_factor: float) -> void:
+func _zoom_at(_zoom_pivot: Vector2, zoom_factor: float) -> void:
 	var old_zoom = room_container.scale.x
 	var new_zoom = clamp(old_zoom * zoom_factor, min_zoom, max_zoom)
 	

@@ -26,13 +26,18 @@ position = Vector2(1144.9999, 539.99994)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_1hwi7")
 
-[node name="Text" type="Label" parent="SplashScreen" unique_id=831198619]
-offset_top = 382.00003
-offset_right = 520.0
-offset_bottom = 402.00003
-scale = Vector2(4.5, 4.5)
+[node name="Label" type="Label" parent="SplashScreen" unique_id=1740880262]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -140.0
+offset_right = 128.5
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_b35vv")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 45
 text = "Developed by"
-horizontal_alignment = 1
-vertical_alignment = 1

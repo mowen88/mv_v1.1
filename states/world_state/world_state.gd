@@ -4,7 +4,6 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var game_camera: Camera2D = $GameCamera
 @onready var touch_controller: CanvasLayer = $TouchController
-@onready var menu_canvas: CanvasLayer = $MenuCanvas
 @onready var cutscene_canvas: CanvasLayer = $CutsceneOverlay
 @onready var gameplay_ui: CanvasLayer = $GameplayUI
 @onready var inventory_overlay: CanvasLayer = $InventoryOverlay

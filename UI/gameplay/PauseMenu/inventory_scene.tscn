@@ -50,7 +50,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
-text = "You have no quests yet..."
+text = "Acquired Abilities"
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -84,20 +84,18 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=233750259]
-custom_minimum_size = Vector2(1170, 700)
+custom_minimum_size = Vector2(900, 700)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1559312009]
-custom_minimum_size = Vector2(800, 0)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -585.0
-offset_right = 585.0
-offset_bottom = 700.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hl8jd")
 theme_override_styles/focus = SubResource("StyleBoxFlat_4g7hf")
@@ -112,44 +110,50 @@ size_flags_horizontal = 3
 theme = ExtResource("3_jgp2v")
 theme_override_constants/separation = 45
 
-[node name="Label" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=355233498]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=833545690]
 layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "blah"
+size_flags_vertical = 3
+theme_override_constants/separation = 64
 
-[node name="Label2" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1735968531]
+[node name="ItemNameLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=355233498]
 layout_mode = 2
 theme = ExtResource("3_jgp2v")
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "blah"
+text = "First item"
 
-[node name="Label3" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=2078363843]
+[node name="Spacer" type="Control" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1632338351]
 layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "blah"
+size_flags_horizontal = 3
 
-[node name="Label4" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=843112226]
+[node name="ItemCountLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1773355060]
 layout_mode = 2
 theme = ExtResource("3_jgp2v")
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "blah"
+text = "x"
+horizontal_alignment = 2
 
-[node name="Label5" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1397805791]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1117248856]
 layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "blah"
+size_flags_vertical = 3
+theme_override_constants/separation = 64
 
-[node name="Label6" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1405951766]
+[node name="ItemNameLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1217784305]
 layout_mode = 2
 theme = ExtResource("3_jgp2v")
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "blah"
+text = "Another item"
+
+[node name="Spacer" type="Control" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=477240613]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemCountLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1913924548]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "xxx"
+horizontal_alignment = 2

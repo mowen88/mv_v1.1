@@ -14,5 +14,5 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	persistence_component.add_to_peristent_list()
 
-func _on_persistent_state_loaded(previous_position:Vector2) -> void:
+func _on_persistent_state_loaded(_previous_position:Vector2) -> void:
 	queue_free()
