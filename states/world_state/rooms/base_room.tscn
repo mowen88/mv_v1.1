@@ -1385,7 +1385,7 @@ z_index = -1
 [node name="BGTileMap" type="TileMapLayer" parent="." unique_id=599124256]
 
 [node name="SolidTileMap" type="TileMapLayer" parent="." unique_id=12999079]
-z_index = 2
+z_index = 5
 
 [node name="SlopeTileMap" type="TileMapLayer" parent="." unique_id=1149728441 groups=["slopes"]]
 tile_set = SubResource("TileSet_83wd4")

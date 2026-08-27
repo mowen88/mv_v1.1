@@ -18,12 +18,8 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):
 		gravity = owner.move_component.gravity * 4
 		
-	if event.is_action_pressed("attack") and owner.get_node("AttackTimer").is_stopped():
+	if event.is_action_pressed("attack") and owner.air_attack_count < 1:# and owner.get_node("AttackTimer").is_stopped():
 		fsm.change_state("AirAttack")
-
-	if event.is_action_pressed("shoot") and\
-		owner.energy_component.current_energy == owner.energy_component.max_energy:
-			fsm.change_state("BeamBuildUp")
 	
 func physics_update(_delta: float) -> void:
 

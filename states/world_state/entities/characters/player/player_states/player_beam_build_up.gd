@@ -4,6 +4,8 @@ class_name PlayerBeamBuildUp
 @export var deceleration: float = 600.0
 
 @export var build_up_sound: AudioStream
+@export var cancel_sound: AudioStream
+
 var audio_player = AudioStreamPlayer
 
 @export var duration: float = 1.0
@@ -25,8 +27,9 @@ func _instantiate_build_up_sound()-> void:
 	audio_player.play()
 
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_released("shoot"):
+	if event.is_action_released("attack"):
 		audio_player.queue_free()
+		AudioManager.play_sfx(cancel_sound)
 		if owner.is_on_floor():
 			fsm.change_state("idle")
 		else:
@@ -40,4 +43,9 @@ func physics_update(delta: float) -> void:
 	
 	timer -= delta
 	if timer <= 0:
+		SignalBus.flash_screen.emit()
+		SignalBus.screenshake_requested.emit(24,0,0.5)
+		owner.energy_component.consume_energy(owner.energy_component.max_energy)
+		owner.health_component.heal(owner.health_component.max_health)
+		owner.beam.attack(owner.move_component.facing)
 		fsm.change_state("BeamKnockback")

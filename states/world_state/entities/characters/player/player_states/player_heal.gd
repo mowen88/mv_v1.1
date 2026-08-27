@@ -29,7 +29,7 @@ func _instantiate_build_up_sound()-> void:
 	audio_player.play()
 
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_released("attack"):
+	if event.is_action_released("shoot"):
 		audio_player.queue_free()
 		owner.heal_particles.visible = false
 		fsm.change_state("idle")

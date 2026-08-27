@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_twydy"]
 [ext_resource type="PackedScene" uid="uid://cpiaae6ul6low" path="res://UI/gameplay/PauseMenu/map_scene.tscn" id="4_gnud7"]
 [ext_resource type="PackedScene" uid="uid://b628jutnpyhgf" path="res://UI/gameplay/PauseMenu/quests_scene.tscn" id="4_p7u3h"]
+[ext_resource type="PackedScene" uid="uid://b12q0c77e6j2v" path="res://UI/gameplay/PauseMenu/inventory_scene.tscn" id="5_o7s87"]
 [ext_resource type="Texture2D" uid="uid://cvs22kboaslif" path="res://UI/gameplay/elements/close_button_pressed.png" id="6_fsspa"]
 
 [node name="InventoryOverlay" type="CanvasLayer" unique_id=267181138]
@@ -98,11 +99,13 @@ layout_mode = 1
 
 [node name="InventoryPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=1362808704]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 grow_horizontal = 2
-grow_vertical = 2
+
+[node name="InventoryScene" parent="Control/VBoxContainer/TabContentContainer/InventoryPanel" unique_id=1572035927 instance=ExtResource("5_o7s87")]
+layout_mode = 0
 
 [node name="QuestsPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=628508964]
 layout_mode = 1

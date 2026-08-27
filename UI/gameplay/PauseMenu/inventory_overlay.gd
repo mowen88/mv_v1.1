@@ -12,6 +12,7 @@ signal unpause_requested
 
 @onready var quest_scene: Control = $Control/VBoxContainer/TabContentContainer/QuestsPanel/QuestsScene
 @onready var map_scene: Control = $Control/VBoxContainer/TabContentContainer/MapPanel/MapScene
+@onready var inventory_scene: Control = $Control/VBoxContainer/TabContentContainer/InventoryPanel/InventoryScene
 
 var tabs: Array[Control] = []
 var active_tween: Tween

@@ -23,7 +23,7 @@ func _ready() -> void:
 	set_ui_visible(false)
 	set_ui_alpha(0.0)
 	
-	SignalBus.swipe_up_detected.connect(_on_swipe_up)
+	SignalBus.swipe_up_detected.connect(_trigger_interaction)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -39,14 +39,21 @@ func _on_body_exited(body: Node2D) -> void:
 		await tween.finished
 		set_ui_visible(false)
 
-func _on_swipe_up() -> void:
+func _trigger_interaction()-> void:
 	if InputManager.input_lock:
 		return
-	# Only trigger if the player is in range and the prompt is visible
-	if player and interact_label.visible:
-		kill_bounce()	
-		interact.emit(player)
-		fade_ui(0.0, 0.3)
+		
+	# Make sure player is on ground and not moving too fast before leaving
+	if abs(player.velocity.x) < 10 and player.is_on_floor():
+		# Only trigger if the player is in range and the prompt is visible
+		if interact_label.visible:
+			kill_bounce()	
+			interact.emit(player)
+			fade_ui(0.0, 0.3)
+
+func _unhandled_input(event:InputEvent)-> void:
+	if event.is_action_pressed("up"):
+		_trigger_interaction()
 
 # Helper functions....
 func start_bounce() -> void:

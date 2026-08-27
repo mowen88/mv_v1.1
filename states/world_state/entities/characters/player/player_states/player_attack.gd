@@ -3,7 +3,7 @@ extends State
 @export var deceleration: float
 @export var sword_scene: PackedScene
 
-var go_to_special = true
+var go_to_special:bool = true
 
 func enter() -> void:
 	# Animate
@@ -28,7 +28,7 @@ func physics_update(_delta: float) -> void:
 	
 	if owner.sword.cooldown_timer.is_stopped():
 		if go_to_special and owner.energy_component.current_energy == owner.energy_component.max_energy:
-			fsm.change_state("Heal")
+			fsm.change_state("BeamBuildUp")
 			return
 			
 		fsm.change_state("Idle")

@@ -87,6 +87,7 @@ animations = [{
 size = Vector2(260, 12)
 
 [node name="BeamScene" type="Node2D" unique_id=251752736]
+z_index = 6
 script = ExtResource("1_a08ae")
 sound = ExtResource("2_ysywh")
 

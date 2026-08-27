@@ -53,6 +53,7 @@ script = null
 script = null
 
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("3_fptq8")]
+z_index = 5
 collision_layer = 0
 knockback_force = 100.0
 

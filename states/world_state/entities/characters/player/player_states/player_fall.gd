@@ -12,16 +12,13 @@ func handle_input(event: InputEvent) -> void:
 		else:
 			owner.jump_buffer_timer.start()
 		
-	if event.is_action_pressed("attack") and owner.get_node("AttackTimer").is_stopped():
+	if event.is_action_pressed("attack") and owner.air_attack_count < 1:# and owner.get_node("AttackTimer").is_stopped():
 		fsm.change_state("AirAttack")
-
-	if event.is_action_pressed("shoot") and\
-		owner.energy_component.current_energy == owner.energy_component.max_energy:
-			fsm.change_state("BeamBuildUp")
 
 func physics_update(delta: float) -> void:
 
 	if owner.is_on_floor():
+		owner.air_attack_count = 0
 		owner.squash_stretch_component.squash_stretch(Vector2(1.25, 0.75), Vector2(0.9, 1.1), 0.12)
 		if owner.jump_buffer_timer.time_left > 0:
 			owner.jump_buffer_timer.stop()
@@ -38,6 +35,7 @@ func physics_update(delta: float) -> void:
 	owner.move_component.max_fall_speed)
 	
 	if owner.is_on_ladder():
+		owner.air_attack_count = 0
 		fsm.change_state("OnLadder")
 
 	# Handle horizontal movement
@@ -47,5 +45,6 @@ func physics_update(delta: float) -> void:
 	
 	# After move and slide so we get the correct wall normal for is_on_slope
 	if owner.move_component.is_on_slope():
+		owner.air_attack_count = 0
 		fsm.change_state("Slide")
 	

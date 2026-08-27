@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://b12q0c77e6j2v"]
+
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_fnoba"]
+[ext_resource type="Script" uid="uid://bdusirqn4e83o" path="res://UI/gameplay/PauseMenu/scroll_container.gd" id="2_hqtli"]
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_jgp2v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6775"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 28.0
+expand_margin_top = 24.0
+expand_margin_right = 24.0
+expand_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl8jd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g7hf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnoba"]
+
+[node name="InventoryScene" type="Control" unique_id=351141996]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=392264961]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1120.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 780.0
+grow_horizontal = 2
+theme_override_constants/separation = 90
+
+[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=636583570]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 90
+text = "You have no quests yet..."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1180827951]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 45
+text = "blah"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1899156355]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 45
+text = "blah
+"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=17294746]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 45
+text = "
+"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=233750259]
+custom_minimum_size = Vector2(1170, 700)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1559312009]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -585.0
+offset_right = 585.0
+offset_bottom = 700.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hl8jd")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4g7hf")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+scroll_hint_mode = 1
+script = ExtResource("2_hqtli")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer" unique_id=2043374985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_jgp2v")
+theme_override_constants/separation = 45
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=355233498]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "blah"
+
+[node name="Label2" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1735968531]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "blah"
+
+[node name="Label3" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=2078363843]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "blah"
+
+[node name="Label4" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=843112226]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "blah"
+
+[node name="Label5" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1397805791]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "blah"
+
+[node name="Label6" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1405951766]
+layout_mode = 2
+theme = ExtResource("3_jgp2v")
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
+text = "blah"

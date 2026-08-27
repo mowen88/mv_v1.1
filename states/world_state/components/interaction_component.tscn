@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d21qenqv7yyu3" path="res://UI/gameplay/elements/swipe_up_icon.png" id="4_2t5qm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03x4n"]
-size = Vector2(16, 32)
+size = Vector2(24, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01riy"]
 
@@ -37,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_03x4n")
 theme_override_fonts/font = ExtResource("3_01riy")
+theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxEmpty_01riy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s8sdo")
 text = "Default"

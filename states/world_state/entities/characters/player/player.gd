@@ -23,6 +23,7 @@ extends CharacterBody2D
 
 var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
+var air_attack_count: int = 0
 
 # Temporary save data
 var current_coins: int = 0
@@ -63,6 +64,7 @@ func drop_through_platform() -> void:
 	await get_tree().create_timer(0.1).timeout
 	set_collision_mask_value(7, true)
 
+# Mobile touchscreen only!
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:
 		return
