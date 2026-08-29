@@ -52,24 +52,19 @@ func _process(delta:float) -> void:
 			SAVE_DATA[current_slot]["game_time"] = 0.0
 		
 		SAVE_DATA[current_slot]["game_time"] += delta
+
+## Add unique ability to save slot
+func add_ability(ability_name: String) -> void:
+
+	if not SAVE_DATA[current_slot].has("abilities"):
+		SAVE_DATA[current_slot]["abilities"] = {}
 		
-#func register_room_visited(room_name: String) -> void:
-	#if not game_timer_active:
-		#return
-		#
-	## Check against both permanent save data and temporary session tracking
-	#var permanent_visited: Array = []
-	#if SAVE_DATA.has(current_slot) and SAVE_DATA[current_slot].has("visited_rooms"):
-		#permanent_visited = SAVE_DATA[current_slot]["visited_rooms"]
-	#
-	## If it hasn't been saved permanently AND isn't tracked in this session yet, add it
-	#if not permanent_visited.has(room_name) and not session_visited_rooms.has(room_name):
-		#session_visited_rooms.append(room_name)
-		#print_rich("[color=orange]MAP SYSTEM: Discovered new room (Unsaved Session): %s[/color]" % room_name)
-		#
-		## Optional: Update completion percentage live in memory during the run
-		#_update_game_completion_percentage(current_slot)
-		#
+	var abilities: Dictionary = SAVE_DATA[current_slot]["abilities"]
+	
+	if not abilities.has(ability_name):
+		abilities[ability_name] = true
+		print_rich("[color=cyan]SAVE SYSTEM: Unlocked ability '%s' for Slot %s[/color]" % [ability_name, current_slot])
+		save_to_disk()
 		
 ## Helper that calculates and saves the integer percentage directly into the slot dict
 func _update_game_completion_percentage(slot_id: String) -> void:

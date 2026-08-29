@@ -139,12 +139,12 @@ func _on_save_slot_selected(slot_id: String) -> void:
 	if not save_exists:
 		SaveManager.SAVE_DATA[slot_id] = {
 			"enemies_dead": [],
-			"player_data": {
-				"room_id": "01_a", # Fresh starting room
-				"health": 5,
-				"max_health": 5,
-				"energy": 5
-			}
+			"room_id": "a_01",
+			"health": 5,
+			"max_health": 5,
+			"energy": 5,
+			"coins": 0,
+			"abilities": {}
 		}
 		
 		SaveManager.save_to_disk()

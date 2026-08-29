@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://b12q0c77e6j2v"]
 
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_fnoba"]
+[ext_resource type="Script" uid="uid://dn7lmg72mna" path="res://UI/gameplay/PauseMenu/inventory_scene.gd" id="1_jgp2v"]
 [ext_resource type="Script" uid="uid://bdusirqn4e83o" path="res://UI/gameplay/PauseMenu/scroll_container.gd" id="2_hqtli"]
+[ext_resource type="Texture2D" uid="uid://ccyqif24dv4dq" path="res://UI/gameplay/elements/glide_icon.png" id="2_l2ehc"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_jgp2v"]
+[ext_resource type="Texture2D" uid="uid://cw154u145of7e" path="res://UI/gameplay/elements/jump_attack_icon.png" id="3_pgd37"]
+[ext_resource type="Texture2D" uid="uid://d26oblf7d0r18" path="res://UI/gameplay/elements/water_walk_icon.png" id="4_008e8"]
+[ext_resource type="Texture2D" uid="uid://bmv0f06d3woc1" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_build_up.png" id="4_hqtli"]
+[ext_resource type="Texture2D" uid="uid://cbp708rs01r6o" path="res://UI/gameplay/elements/ground_slam_icon.png" id="5_r6dmg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6775"]
 bg_color = Color(1, 1, 1, 0)
@@ -22,9 +28,151 @@ expand_margin_bottom = 24.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnoba"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgp2v"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(0, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6775"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(48, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl8jd"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(96, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g7hf"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(144, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2ehc"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(192, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgd37"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(240, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_008e8"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(288, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6dmg"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(336, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1yb7"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(384, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iahoa"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(432, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weopi"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(480, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y37hj"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(528, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm7dr"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(576, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2ijm"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(624, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlq8t"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(672, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w80ux"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(720, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4su65"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(768, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0arbq"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(816, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfe85"]
+atlas = ExtResource("4_hqtli")
+region = Rect2(864, 0, 48, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntand"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgp2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6775")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl8jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g7hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ehc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgd37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_008e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6dmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1yb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iahoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weopi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y37hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm7dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2ijm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlq8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w80ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4su65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0arbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfe85")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="InventoryScene" type="Control" unique_id=351141996]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_jgp2v")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=392264961]
 layout_mode = 1
@@ -38,58 +186,136 @@ offset_bottom = 780.0
 grow_horizontal = 2
 theme_override_constants/separation = 90
 
-[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
+[node name="StatusPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 60
 
-[node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=636583570]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/StatusPanel" unique_id=835644440]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=633365291]
+layout_mode = 2
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
+columns = 4
+
+[node name="GlideSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=770196861]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GlideSlot" unique_id=1871063326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_l2ehc")
+
+[node name="JumpAttackSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=446381008]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer/JumpAttackSlot" unique_id=624996980]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_pgd37")
+
+[node name="WaterWalkSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=116649645]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer/WaterWalkSlot" unique_id=658917988]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_008e8")
+
+[node name="GroundSlamSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=258760038]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GroundSlamSlot" unique_id=348973678]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_r6dmg")
+
+[node name="Panel5" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=164245682]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="Panel6" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=580474629]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="Panel7" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=1790651280]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="Panel8" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=1673263697]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
+
+[node name="Spacer" type="Control" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=804512390]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=143368051]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
-text = "Acquired Abilities"
+text = "Health :"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="StatusLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1180827951]
+[node name="EnergyLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=1943293084]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_font_sizes/font_size = 45
-text = "blah"
+theme_override_font_sizes/font_size = 90
+text = "Energy :"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1899156355]
+[node name="CurrencyLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=2008994955]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_font_sizes/font_size = 45
-text = "blah
-"
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="RewardLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=17294746]
-custom_minimum_size = Vector2(700, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_font_sizes/font_size = 45
-text = "
-"
+theme_override_font_sizes/font_size = 90
+text = "Currency :"
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=233750259]
-custom_minimum_size = Vector2(900, 700)
+custom_minimum_size = Vector2(600, 700)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1559312009]
-custom_minimum_size = Vector2(600, 0)
+clip_contents = false
+custom_minimum_size = Vector2(600, 700)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +337,9 @@ theme = ExtResource("3_jgp2v")
 theme_override_constants/separation = 45
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=833545690]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/separation = 64
 
@@ -120,7 +348,7 @@ layout_mode = 2
 theme = ExtResource("3_jgp2v")
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "First item"
+text = "First"
 
 [node name="Spacer" type="Control" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1632338351]
 layout_mode = 2
@@ -135,7 +363,9 @@ text = "x"
 horizontal_alignment = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1117248856]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/separation = 64
 
@@ -144,7 +374,7 @@ layout_mode = 2
 theme = ExtResource("3_jgp2v")
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "Another item"
+text = "Another"
 
 [node name="Spacer" type="Control" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=477240613]
 layout_mode = 2
@@ -157,3 +387,48 @@ theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
 text = "xxx"
 horizontal_alignment = 2
+
+[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1287601188]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=175766730]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 90
+text = "Description"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationContainer" type="Control" parent="HBoxContainer/DetailPanel" unique_id=1496063645]
+custom_minimum_size = Vector2(400, 240)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer" unique_id=745248989]
+scale = Vector2(9, 9)
+sprite_frames = SubResource("SpriteFrames_ntand")
+autoplay = "default"
+centered = false
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1078275876]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 45
+text = "Short description of item
+"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HowToUseLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=2064517847]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fnoba")
+theme_override_font_sizes/font_size = 45
+text = "How to use the item"
+vertical_alignment = 1
+autowrap_mode = 3

@@ -42,8 +42,9 @@ func _ready() -> void:
 
 func open_inventory() -> void:
 	
-	# Update hte quest UI on opening
+	# Update the quest UI on opening
 	quest_scene.update_current_details()
+	inventory_scene.populate_abilities()
 	
 	## Update map UI on opening AND pass references
 	var world_state = get_parent()

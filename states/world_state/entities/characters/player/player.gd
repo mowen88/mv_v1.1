@@ -146,7 +146,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	fsm.handle_input(event)
 	print(fsm.current_state.name)
 
-	#if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot"):
+		SaveManager.add_ability("Glide")
+		SaveManager.add_ability("Jump Attack")
+		SaveManager.add_ability("Ground Slam")
+		print(SaveManager.SAVE_DATA[SaveManager.current_slot])
 #
 		#SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
 		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)

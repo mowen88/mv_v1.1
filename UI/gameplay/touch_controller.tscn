@@ -67,16 +67,16 @@ grow_vertical = 0
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(500, 328)
 scale = Vector2(10, 10)
-texture_normal = ExtResource("3_bw6v4")
-texture_pressed = ExtResource("5_bw6v4")
+texture_normal = ExtResource("4_0yjk1")
+texture_pressed = ExtResource("9_db0do")
 action = "jump"
 
 [node name="AttackButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1327745849]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(210, 328)
 scale = Vector2(10, 10)
-texture_normal = ExtResource("4_0yjk1")
-texture_pressed = ExtResource("9_db0do")
+texture_normal = ExtResource("3_bw6v4")
+texture_pressed = ExtResource("5_bw6v4")
 action = "attack"
 
 [node name="ShootButton" type="TouchScreenButton" parent="ActionGroup" unique_id=2117206609]
