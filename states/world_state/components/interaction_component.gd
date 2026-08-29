@@ -44,9 +44,9 @@ func _trigger_interaction()-> void:
 		return
 		
 	# Make sure player is on ground and not moving too fast before leaving
-	if abs(player.velocity.x) < 10 and player.is_on_floor():
-		# Only trigger if the player is in range and the prompt is visible
-		if interact_label.visible:
+	# Only trigger if the player is in range and the prompt is visible
+	if interact_label.visible:
+		if abs(player.velocity.x) < 10 and player.is_on_floor():
 			kill_bounce()	
 			interact.emit(player)
 			fade_ui(0.0, 0.3)
