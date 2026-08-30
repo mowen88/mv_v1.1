@@ -6,9 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://ccyqif24dv4dq" path="res://UI/gameplay/elements/glide_icon.png" id="2_l2ehc"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_jgp2v"]
 [ext_resource type="Texture2D" uid="uid://cw154u145of7e" path="res://UI/gameplay/elements/jump_attack_icon.png" id="3_pgd37"]
+[ext_resource type="Texture2D" uid="uid://cy165em51tp3y" path="res://UI/gameplay/elements/glide_icon_pressed.png" id="3_r1yb7"]
 [ext_resource type="Texture2D" uid="uid://d26oblf7d0r18" path="res://UI/gameplay/elements/water_walk_icon.png" id="4_008e8"]
 [ext_resource type="Texture2D" uid="uid://bmv0f06d3woc1" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_build_up.png" id="4_hqtli"]
+[ext_resource type="Texture2D" uid="uid://dnbrhruhsirgk" path="res://UI/gameplay/elements/jump_attack_icon_pressed.png" id="5_iahoa"]
 [ext_resource type="Texture2D" uid="uid://cbp708rs01r6o" path="res://UI/gameplay/elements/ground_slam_icon.png" id="5_r6dmg"]
+[ext_resource type="Texture2D" uid="uid://c3f2xitl6vlxf" path="res://UI/gameplay/elements/water_walk_icon_pressed.png" id="7_weopi"]
+[ext_resource type="Texture2D" uid="uid://miqhex714hkx" path="res://UI/gameplay/elements/ground_slam_icon_pressed.png" id="9_y37hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6775"]
 bg_color = Color(1, 1, 1, 0)
@@ -25,6 +29,18 @@ expand_margin_bottom = 24.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl8jd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g7hf"]
+
+[sub_resource type="Gradient" id="Gradient_l2ehc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.11935484, 0.68064517)
+colors = PackedColorArray(0.5803922, 0.30588236, 0.5372549, 1, 0.5803922, 0.30588236, 0.5372549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pgd37"]
+gradient = SubResource("Gradient_l2ehc")
+width = 600
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgp2v"]
 atlas = ExtResource("4_hqtli")
@@ -182,7 +198,7 @@ offset_top = 80.0
 offset_right = 1120.0
 offset_bottom = 780.0
 grow_horizontal = 2
-theme_override_constants/separation = 80
+theme_override_constants/separation = 40
 
 [node name="StatusPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
 custom_minimum_size = Vector2(360, 400)
@@ -214,6 +230,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_l2ehc")
+texture_pressed = ExtResource("3_r1yb7")
 
 [node name="JumpAttackSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=446381008]
 custom_minimum_size = Vector2(120, 120)
@@ -228,6 +245,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_pgd37")
+texture_pressed = ExtResource("5_iahoa")
 
 [node name="WaterWalkSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=116649645]
 custom_minimum_size = Vector2(120, 120)
@@ -242,6 +260,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_008e8")
+texture_pressed = ExtResource("7_weopi")
 
 [node name="GroundSlamSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=258760038]
 custom_minimum_size = Vector2(120, 120)
@@ -256,6 +275,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("5_r6dmg")
+texture_pressed = ExtResource("9_y37hj")
 
 [node name="Panel5" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=164245682]
 custom_minimum_size = Vector2(120, 120)
@@ -311,6 +331,7 @@ autowrap_mode = 3
 [node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=233750259]
 custom_minimum_size = Vector2(660, 700)
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1559312009]
@@ -335,49 +356,56 @@ size_flags_horizontal = 3
 theme = ExtResource("3_jgp2v")
 theme_override_constants/separation = 45
 
-[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1287601188]
-custom_minimum_size = Vector2(400, 400)
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=1761235353]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+
+[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1287601188]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_constants/separation = 60
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=175766730]
-custom_minimum_size = Vector2(700, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="AnimationContainer" type="Control" parent="HBoxContainer/DetailPanel" unique_id=1496063645]
-custom_minimum_size = Vector2(400, 240)
+custom_minimum_size = Vector2(400, 280)
 layout_mode = 2
 
 [node name="SpriteAnchor" type="Control" parent="HBoxContainer/DetailPanel/AnimationContainer" unique_id=1493501778]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GlowSprite" type="Sprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor" unique_id=72351055]
+texture = SubResource("GradientTexture2D_pgd37")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor" unique_id=745248989]
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_ntand")
 autoplay = "default"
-centered = false
 
 [node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1078275876]
-custom_minimum_size = Vector2(700, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 45
 text = "
 "
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="HowToUseLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=2064517847]
-custom_minimum_size = Vector2(700, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

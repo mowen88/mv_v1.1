@@ -6,7 +6,7 @@ const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 @onready var items_container: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var detail_description_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
-@onready var detail_how_to_use_label: Label = $HBoxContainer/DetailPanel/HowToUseLabel
+
 # Map your ability keys directly to the TextureButton nodes in the scene tree
 @onready var ability_buttons: Dictionary = {
 	"Glide": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GlideSlot/TextureButton"),
@@ -14,66 +14,22 @@ const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 	"Water Walk": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/WaterWalkSlot/TextureButton"),
 	"Ground Slam": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GroundSlamSlot/TextureButton"),
 }
+
 const ABILITY_DETAILS: Dictionary = {
-	"Glide": {
-		"title": "Old Brass Key",
-		"description": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
-		"how_to_use": "Used automatically when interacting with locked doors."	
-	},
-	"Jump Attack": {
-		"title": "Old Brass Key",
-		"description": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
-		"how_to_use": "Used automatically when interacting with locked doors."	
-	},
-	"Water Walk": {
-		"title": "Old Brass Key",
-		"description": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
-		"how_to_use": "Used automatically when interacting with locked doors."	
-	},
-	"Ground Slam": {
-		"title": "Old Brass Key",
-		"description": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
-		"how_to_use": "Used automatically when interacting with locked doors."	
-	}
+	"Glide": "Allows you to glide smoothly through the air over long gaps.",
+	"Jump Attack": "Perform a powerful downward strike while airborne.",
+	"Water Walk": "Enables movement safely across the surface of deep water.",
+	"Ground Slam": "Crash heavily into the ground to break cracked floors and stun nearby foes."
 }
 
-# Dictionary holding info for each item
 const ITEM_DETAILS: Dictionary = {
-	"Key": {
-		"title": "Old Brass Key",
-		"description": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
-		"how_to_use": "Used automatically when interacting with locked doors."
-	},
-	"Ruby": {
-		"title": "Glowing Ruby",
-		"description": "A radiant red gemstone that pulses with a faint internal warmth.",
-		"how_to_use": "Valuable artifact. Can be traded or used in shrines."
-	},
-	"Stone": {
-		"title": "Heavy Stone Chunk",
-		"description": "A dense piece of carved masonry.",
-		"how_to_use": "Useful as a heavy weight or counter-mechanism."
-	},
-	"Tablet": {
-		"title": "Carved Stone Tablet",
-		"description": "Inscribed with ancient text detailing forgotten lore.",
-		"how_to_use": "Read in your inventory to decipher clues."
-	},
-	"Hankerchief": {
-		"title": "Silken Handkerchief",
-		"description": "A delicate piece of cloth embroidered with a faded crest.",
-		"how_to_use": "A sentimental keepsake."
-	},
-	"Rope": {
-		"title": "Sturdy Hemp Rope",
-		"description": "A strong coil of braided fiber, roughly ten meters long.",
-		"how_to_use": "Used to rappel down sheer cliff faces."
-	},
-	"Candle": {
-		"title": "Tallow Candle",
-		"description": "A thick wax candle that provides a small radius of warm light.",
-		"how_to_use": "Lights up dark underground chambers automatically."
-	}
+	"Key": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
+	"Ruby": "A radiant red gemstone that pulses with a faint internal warmth.",
+	"Stone": "A dense piece of carved masonry.",
+	"Tablet": "Inscribed with ancient text detailing forgotten lore.",
+	"Hankerchief": "A delicate piece of cloth embroidered with a faded crest.",
+	"Rope": "A strong coil of braided fiber, roughly ten meters long.",
+	"Candle": "A thick wax candle that provides a small radius of warm light."
 }
 
 func _ready() -> void:
@@ -91,7 +47,8 @@ func update_current_details()-> void:
 func populate_abilities() -> void:
 	# Hide texture buttons by default when open inventory
 	for node in ability_buttons.values():
-		node.visible = false
+		if node:
+			node.visible = false
 
 	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
 	if not slot_data.has("abilities"):
@@ -142,39 +99,23 @@ func populate_items() -> void:
 func _on_item_button_pressed(item_name: String) -> void:
 	print("Clicked item button: ", item_name)
 	
-	if ITEM_DETAILS.has(item_name):
-		var data = ITEM_DETAILS[item_name]
-		if detail_title_label:
-			detail_title_label.text = data.get("title", item_name)
-		if detail_description_label:
-			detail_description_label.text = data.get("description", "")
-		if detail_how_to_use_label:
-			detail_how_to_use_label.text = data.get("how_to_use", "")
-	else:
-		# Fallback if an item isn't registered in the dictionary yet
-		if detail_title_label:
-			detail_title_label.text = item_name
-		if detail_description_label:
+	if detail_title_label:
+		detail_title_label.text = item_name
+	
+	if detail_description_label:
+		if ITEM_DETAILS.has(item_name):
+			detail_description_label.text = ITEM_DETAILS[item_name]
+		else:
 			detail_description_label.text = "A mysterious item collected during your journey."
-		if detail_how_to_use_label:
-			detail_how_to_use_label.text = "Unknown utility."
 			
 func _on_ability_button_pressed(ability_name: String) -> void:
 	print("Clicked ability button: ", ability_name)
 	
-	if ABILITY_DETAILS.has(ability_name):
-		var data = ABILITY_DETAILS[ability_name]
-		if detail_title_label:
-			detail_title_label.text = data.get("title", ability_name)
-		if detail_description_label:
-			detail_description_label.text = data.get("description", "")
-		if detail_how_to_use_label:
-			detail_how_to_use_label.text = data.get("how_to_use", "")
-	else:
-		# Fallback if an item isn't registered in the dictionary yet
-		if detail_title_label:
-			detail_title_label.text = ability_name
-		if detail_description_label:
-			detail_description_label.text = "A mysterious item collected during your journey."
-		if detail_how_to_use_label:
-			detail_how_to_use_label.text = "Unknown utility."
+	if detail_title_label:
+		detail_title_label.text = ability_name
+		
+	if detail_description_label:
+		if ABILITY_DETAILS.has(ability_name):
+			detail_description_label.text = ABILITY_DETAILS[ability_name]
+		else:
+			detail_description_label.text = "A powerful unlocked ability."
