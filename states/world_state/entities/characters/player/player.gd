@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+@export var game_max_health: int = 6
+@export var game_max_energy: int = 27
+
 @onready var death_particles: GPUParticles2D = $DeathParticle
 @onready var heal_particles: GPUParticles2D = $HealParticle
 
@@ -147,6 +150,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	print(fsm.current_state.name)
 
 	if event.is_action_pressed("shoot"):
+		health_component.damage(1)
+		
 		SaveManager.add_ability("Glide")
 		SaveManager.add_ability("Jump Attack")
 		SaveManager.add_ability("Ground Slam")

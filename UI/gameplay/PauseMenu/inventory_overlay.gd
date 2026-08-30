@@ -51,6 +51,7 @@ func open_inventory() -> void:
 	var current_room = world_state.current_room_node
 	var player_node = world_state.player
 	map_scene.update_map_display(current_room, player_node)
+	inventory_scene.get_status_stats(player_node)
 	
 	# Instantly show the remembered tab
 	for i in range(tabs.size()):

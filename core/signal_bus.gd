@@ -29,7 +29,6 @@ signal hit_stop_requested(duration: float)
 signal player_health_changed(new_health: int)
 signal player_max_health_changed(new_max: int)
 signal player_coins_changed(amount: int)
-signal player_died
 
 signal player_energy_changed(new_energy: int)
 signal player_max_energy_changed(new_max: int)

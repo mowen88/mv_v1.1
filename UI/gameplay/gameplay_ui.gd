@@ -121,6 +121,12 @@ func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 	banner_tween.tween_property(zone_label, "modulate:a", 0.0, 0.5)
 	banner_tween.tween_callback(func(): zone_label.visible = false)
 
+func flash_all_hud_nodes(container: HBoxContainer) -> void:
+	for child in container.get_children():
+		if child is TextureRect:
+			var spawn_pos = child.global_position + (child.custom_minimum_size / 2)
+			_spawn_flash(spawn_pos)
+
 # Energy logic
 func _on_max_energy_changed(new_max: int) -> void:
 	_rebuild_energy_hud(new_max)
@@ -175,6 +181,7 @@ func _rebuild_health_hud(new_max: int) -> void:
 		new_node.scale = Vector2(9, 9)
 		
 		health_hud.add_child(new_node)
+			
 
 func _on_player_health_changed(new_health: int) -> void:
 	var nodes = health_hud.get_children()

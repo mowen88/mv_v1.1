@@ -20,7 +20,11 @@ theme = ExtResource("1_7xe3v")
 
 [node name="ItemNameButton" type="Button" parent="." unique_id=1466810022]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_7xe3v")
+theme_override_colors/font_focus_color = Color(1, 0.7411765, 0.43529412, 1)
+theme_override_colors/font_hover_color = Color(1, 0.7411765, 0.43529412, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.7411765, 0.43529412, 1)
 theme_override_fonts/font = ExtResource("2_ercju")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7xe3v")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ercju")

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cv5x1276vtmrh" path="res://UI/gameplay/gameplay_ui.gd" id="1_og5kx"]
 [ext_resource type="FontFile" uid="uid://bpfl0weahsfix" path="res://UI/font/mecha_cf/Mecha.ttf" id="2_jgtdh"]
-[ext_resource type="AudioStream" uid="uid://chd1ivtsn6ui4" path="res://UI/gameplay/audio/coin_collect_sound.wav" id="2_tpj4g"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="3_olg42"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olg42"]
@@ -12,20 +11,19 @@ corner_radius_bottom_right = 40
 
 [node name="GameplayUI" type="CanvasLayer" unique_id=421129531]
 script = ExtResource("1_og5kx")
-coin_collect_sound = ExtResource("2_tpj4g")
 
-[node name="HealthHUD" type="HBoxContainer" parent="." unique_id=214216705]
+[node name="HealthHUD" type="HBoxContainer" parent="." unique_id=1285123648]
 offset_left = 48.0
-offset_top = 128.0
-offset_right = 848.0
-offset_bottom = 200.0
-theme_override_constants/separation = 12
+offset_top = 124.0
+offset_right = 88.0
+offset_bottom = 164.0
+theme_override_constants/separation = 9
 
-[node name="EnergyHUD" type="HBoxContainer" parent="." unique_id=1127547532]
+[node name="EnergyHUD" type="HBoxContainer" parent="." unique_id=1094645732]
 offset_left = 48.0
 offset_top = 48.0
-offset_right = 148.0
-offset_bottom = 78.0
+offset_right = 88.0
+offset_bottom = 88.0
 theme_override_constants/separation = -4
 
 [node name="CoinContainer" type="PanelContainer" parent="." unique_id=1466546675]
@@ -52,9 +50,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1.0
-offset_top = -340.0
+offset_top = -316.0
 offset_right = 799.0
-offset_bottom = -196.0
+offset_bottom = -172.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_jgtdh")

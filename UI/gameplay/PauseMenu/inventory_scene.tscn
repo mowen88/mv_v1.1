@@ -198,16 +198,17 @@ offset_top = 80.0
 offset_right = 1120.0
 offset_bottom = 780.0
 grow_horizontal = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 64
 
 [node name="StatusPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
-custom_minimum_size = Vector2(360, 400)
+custom_minimum_size = Vector2(360, 360)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/StatusPanel" unique_id=835644440]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=633365291]
 layout_mode = 2
@@ -298,7 +299,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="Spacer" type="Control" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=804512390]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=143368051]

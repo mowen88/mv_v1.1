@@ -25,7 +25,6 @@ func _ready():
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
 
-
 func _process(delta: float) -> void:
 	if not player:
 		return
@@ -40,6 +39,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("toggle_pause"):
+		# Disable pause if player is dead, let state play out
+		if player.health_component.current_health <= 0:
+			return
 		_toggle_game_pause()
 
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear

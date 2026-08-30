@@ -36,7 +36,7 @@ grow_vertical = 0
 [node name="LeftButton" type="TouchScreenButton" parent="DPadGroup" unique_id=935672647]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(100, 128)
-scale = Vector2(10, 10)
+scale = Vector2(9, 9)
 texture_normal = ExtResource("1_hfat2")
 texture_pressed = ExtResource("3_2s4e1")
 passby_press = true
@@ -45,7 +45,7 @@ action = "move_left"
 [node name="RightButton" type="TouchScreenButton" parent="DPadGroup" unique_id=1413414212]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(400, 128)
-scale = Vector2(10, 10)
+scale = Vector2(9, 9)
 texture_normal = ExtResource("2_36e3b")
 texture_pressed = ExtResource("5_frcm8")
 passby_press = true
@@ -66,7 +66,7 @@ grow_vertical = 0
 [node name="JumpButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1967832043]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(500, 328)
-scale = Vector2(10, 10)
+scale = Vector2(9, 9)
 texture_normal = ExtResource("4_0yjk1")
 texture_pressed = ExtResource("9_db0do")
 action = "jump"
@@ -74,7 +74,7 @@ action = "jump"
 [node name="AttackButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1327745849]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(210, 328)
-scale = Vector2(10, 10)
+scale = Vector2(9, 9)
 texture_normal = ExtResource("3_bw6v4")
 texture_pressed = ExtResource("5_bw6v4")
 action = "attack"
@@ -82,7 +82,7 @@ action = "attack"
 [node name="ShootButton" type="TouchScreenButton" parent="ActionGroup" unique_id=2117206609]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(500, 72)
-scale = Vector2(10, 10)
+scale = Vector2(9, 9)
 texture_normal = ExtResource("5_fsqso")
 texture_pressed = ExtResource("11_40kr5")
 action = "shoot"
@@ -92,14 +92,14 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_bottom = 256.0
+offset_left = -240.0
+offset_bottom = 240.0
 grow_horizontal = 0
 
 [node name="PauseButton" type="TouchScreenButton" parent="MenuGroup" unique_id=1108558003]
 modulate = Color(1, 1, 1, 0.5019608)
 position = Vector2(50, 50)
-scale = Vector2(10, 10)
+scale = Vector2(9, 9)
 texture_normal = ExtResource("6_hfat2")
 texture_pressed = ExtResource("13_yvgh5")
 action = "toggle_pause"

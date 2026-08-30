@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dbrshiqp6ky46" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_knockback.png" id="8_rgm01"]
 [ext_resource type="Script" uid="uid://cdm8y5micbi5j" path="res://states/world_state/entities/characters/player/player_states/player_attack.gd" id="9_6on6l"]
 [ext_resource type="Texture2D" uid="uid://c8n00tmwnnkbq" path="res://states/world_state/entities/characters/player/player_spritesheets/on_ladder.png" id="9_sju5j"]
+[ext_resource type="Texture2D" uid="uid://tvmm6v1srgbi" path="res://states/world_state/entities/characters/player/player_spritesheets/death.png" id="10_vmx86"]
 [ext_resource type="Texture2D" uid="uid://hfqpq7uqiu1f" path="res://states/world_state/entities/characters/player/player_spritesheets/heal.png" id="11_1pnom"]
 [ext_resource type="Texture2D" uid="uid://bbapmkmdlscxj" path="res://states/world_state/entities/characters/player/player_spritesheets/slide.png" id="11_yewsr"]
 [ext_resource type="Script" uid="uid://brvhdaaglohet" path="res://states/world_state/entities/characters/player/player_states/player_air_attack.gd" id="12_04ry7"]
@@ -311,6 +312,22 @@ region = Rect2(72, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7klx"]
 atlas = ExtResource("5_5athw")
 region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp3ie"]
+atlas = ExtResource("10_vmx86")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npei6"]
+atlas = ExtResource("10_vmx86")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmavt"]
+atlas = ExtResource("10_vmx86")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ppot"]
+atlas = ExtResource("10_vmx86")
+region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pnom"]
 atlas = ExtResource("6_240cd")
@@ -660,6 +677,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cp3ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npei6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmavt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ppot")
+}],
+"loop": true,
+"name": &"death",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1pnom")
 }, {
 "duration": 1.0,
@@ -856,7 +890,7 @@ process_material = SubResource("ParticleProcessMaterial_rgm01")
 material = ExtResource("2_or386")
 position = Vector2(0, 12)
 sprite_frames = SubResource("SpriteFrames_g3adm")
-animation = &"beam_knockback"
+animation = &"death"
 offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]

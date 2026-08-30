@@ -9,7 +9,7 @@ var timer: float = 1.5
 func enter() -> void:
 	
 	timer = 0.0
-	owner.animated_sprite.play("jump")
+	owner.animated_sprite.play("death")
 	# Play death particle
 	ParticleManager.play(death_particle, owner.global_position)
 	SignalBus.flash_screen.emit()
@@ -23,7 +23,7 @@ func enter() -> void:
 	# Put player on top of death screen effect
 	# Signal the death screen animation/fade
 	SignalBus.death_screen_fade.emit(Color.WHITE, 2.0)
-
+	SignalBus.screenshake_requested.emit(4,4,4)
 
 func physics_update(delta: float) -> void:
 	timer += delta

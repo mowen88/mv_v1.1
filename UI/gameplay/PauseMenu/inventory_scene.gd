@@ -6,6 +6,10 @@ const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 @onready var items_container: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var detail_description_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
+@onready var energy_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/EnergyLabel
+@onready var health_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/HealthLabel
+@onready var currency_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/CurrencyLabel
+
 
 # Map your ability keys directly to the TextureButton nodes in the scene tree
 @onready var ability_buttons: Dictionary = {
@@ -44,6 +48,27 @@ func update_current_details()-> void:
 	populate_abilities()
 	populate_items()
 
+func get_status_stats(player: Node2D)-> void:
+	
+	if not SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		return
+		
+	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
+	
+	if health_label and player and player.health_component:
+		var max_health = player.health_component.max_health
+		health_label.text = "Health - %d/%d" % [max_health, player.game_max_health]
+		
+	if energy_label and player and player.energy_component:
+		var max_energy = player.energy_component.max_energy
+		energy_label.text = "Energy - %d/%d" % [max_energy, player.game_max_energy]
+	
+	if currency_label:
+		var banked_coins = slot_data.get("coins", 0)
+		var unbanked_coins = player.current_coins if player else 0
+		var total_coins = banked_coins + unbanked_coins
+		currency_label.text = "Currency - %d" % total_coins
+
 func populate_abilities() -> void:
 	# Hide texture buttons by default when open inventory
 	for node in ability_buttons.values():
@@ -81,6 +106,7 @@ func populate_items() -> void:
 			continue
 			
 		var row_instance = ITEM_ROW_SCENE.instantiate() as HBoxContainer
+		row_instance.mouse_filter = Control.MOUSE_FILTER_PASS
 		
 		# Look up the name node as a BaseButton (since you changed it from a Label to a Button)
 		var name_button = row_instance.get_node_or_null("ItemNameButton") as Button
