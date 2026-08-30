@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://3sp6iwor1lr"]
+
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="1_7xe3v"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_ercju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7xe3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ercju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8rvl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2ti8"]
+
+[node name="ItemRowScene" type="HBoxContainer" unique_id=477547130]
+custom_minimum_size = Vector2(620, 90)
+offset_right = 640.0
+offset_bottom = 90.0
+size_flags_horizontal = 0
+theme = ExtResource("1_7xe3v")
+
+[node name="ItemNameButton" type="Button" parent="." unique_id=1466810022]
+layout_mode = 2
+theme = ExtResource("1_7xe3v")
+theme_override_fonts/font = ExtResource("2_ercju")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7xe3v")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ercju")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l8rvl")
+
+[node name="Spacer" type="Control" parent="." unique_id=1462965455]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemCountLabel" type="Label" parent="." unique_id=696160713]
+layout_mode = 2
+theme = ExtResource("1_7xe3v")
+theme_override_fonts/font = ExtResource("2_ercju")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k2ti8")
+horizontal_alignment = 2

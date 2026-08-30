@@ -150,6 +150,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		SaveManager.add_ability("Glide")
 		SaveManager.add_ability("Jump Attack")
 		SaveManager.add_ability("Ground Slam")
+		SaveManager.add_item("Key")
+		SaveManager.add_item("Ruby")
+		SaveManager.add_item("Stone")
+		SaveManager.add_item("Tablet")
+		SaveManager.add_item("Hankerchief")
+		SaveManager.add_item("Rope")
+		SaveManager.add_item("Candle")
 		print(SaveManager.SAVE_DATA[SaveManager.current_slot])
 #
 		#SignalBus.trap_doors_unlocked.emit("trap_room_test_01")

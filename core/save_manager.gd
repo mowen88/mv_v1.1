@@ -65,6 +65,20 @@ func add_ability(ability_name: String) -> void:
 		abilities[ability_name] = true
 		print_rich("[color=cyan]SAVE SYSTEM: Unlocked ability '%s' for Slot %s[/color]" % [ability_name, current_slot])
 		save_to_disk()
+
+## Add item to save slot
+func add_item(item_name: String) -> void:
+
+	if not SAVE_DATA[current_slot].has("items"):
+		SAVE_DATA[current_slot]["items"] = {}
+		
+	var items: Dictionary = SAVE_DATA[current_slot]["items"]
+	
+	# Add to current dictionary, default to 0 if not exists so adds 1
+	items[item_name] = items.get(item_name, 0) + 1
+		
+	print_rich("[color=cyan]SAVE SYSTEM: Collected item '%s' for Slot %s[/color]" % [item_name, current_slot])
+	save_to_disk()
 		
 ## Helper that calculates and saves the integer percentage directly into the slot dict
 func _update_game_completion_percentage(slot_id: String) -> void:

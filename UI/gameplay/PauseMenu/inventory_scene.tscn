@@ -26,8 +26,6 @@ expand_margin_bottom = 24.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g7hf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnoba"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgp2v"]
 atlas = ExtResource("4_hqtli")
 region = Rect2(0, 0, 48, 24)
@@ -184,12 +182,12 @@ offset_top = 80.0
 offset_right = 1120.0
 offset_bottom = 780.0
 grow_horizontal = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 80
 
 [node name="StatusPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(360, 400)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 theme_override_constants/separation = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/StatusPanel" unique_id=835644440]
@@ -204,6 +202,8 @@ columns = 4
 [node name="GlideSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=770196861]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="TextureButton" type="TextureButton" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GlideSlot" unique_id=1871063326]
@@ -309,12 +309,11 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=233750259]
-custom_minimum_size = Vector2(600, 700)
+custom_minimum_size = Vector2(660, 700)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1559312009]
-clip_contents = false
 custom_minimum_size = Vector2(600, 700)
 layout_mode = 1
 anchors_preset = 15
@@ -336,58 +335,6 @@ size_flags_horizontal = 3
 theme = ExtResource("3_jgp2v")
 theme_override_constants/separation = 45
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=833545690]
-custom_minimum_size = Vector2(560, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-theme_override_constants/separation = 64
-
-[node name="ItemNameLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=355233498]
-layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "First"
-
-[node name="Spacer" type="Control" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1632338351]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ItemCountLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1773355060]
-layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "x"
-horizontal_alignment = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer" unique_id=1117248856]
-custom_minimum_size = Vector2(560, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-theme_override_constants/separation = 64
-
-[node name="ItemNameLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1217784305]
-layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "Another"
-
-[node name="Spacer" type="Control" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=477240613]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ItemCountLabel" type="Label" parent="HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1913924548]
-layout_mode = 2
-theme = ExtResource("3_jgp2v")
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fnoba")
-text = "xxx"
-horizontal_alignment = 2
-
 [node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1287601188]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
@@ -400,7 +347,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
-text = "Description"
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -408,7 +354,11 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(400, 240)
 layout_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer" unique_id=745248989]
+[node name="SpriteAnchor" type="Control" parent="HBoxContainer/DetailPanel/AnimationContainer" unique_id=1493501778]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor" unique_id=745248989]
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_ntand")
 autoplay = "default"
@@ -419,7 +369,7 @@ custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 45
-text = "Short description of item
+text = "
 "
 vertical_alignment = 1
 autowrap_mode = 3
@@ -429,6 +379,5 @@ custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 45
-text = "How to use the item"
 vertical_alignment = 1
 autowrap_mode = 3

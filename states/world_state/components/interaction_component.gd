@@ -42,9 +42,9 @@ func _on_body_exited(body: Node2D) -> void:
 func _trigger_interaction()-> void:
 	if InputManager.input_lock:
 		return
-		
-	# Make sure player is on ground and not moving too fast before leaving
+
 	# Only trigger if the player is in range and the prompt is visible
+	# and make sure player is on ground and not moving too fast before leaving
 	if interact_label.visible:
 		if abs(player.velocity.x) < 10 and player.is_on_floor():
 			kill_bounce()	

@@ -102,6 +102,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
+offset_left = 30.0
+offset_right = 30.0
 grow_horizontal = 2
 
 [node name="InventoryScene" parent="Control/VBoxContainer/TabContentContainer/InventoryPanel" unique_id=1572035927 instance=ExtResource("5_o7s87")]
