@@ -1027,6 +1027,7 @@ slide_speed = 150.0
 max_health = 4
 
 [node name="EnergyComponent" parent="." unique_id=712779835 instance=ExtResource("21_6mh6f")]
+max_energy = 18
 
 [node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("hurtbox_component") instance=ExtResource("20_g11l2")]
 hurtbox_component = NodePath("../HurtboxComponent")

@@ -21,9 +21,6 @@ shader_parameter/vignette_smoothness = 0.5
 process_mode = 3
 script = ExtResource("1_emvdf")
 
-[node name="InventoryOverlay" parent="." unique_id=267181138 instance=ExtResource("2_0jlim")]
-visible = false
-
 [node name="OverlayEffects" type="CanvasLayer" parent="." unique_id=71559434]
 layer = 10
 script = ExtResource("2_wdfha")
@@ -45,6 +42,21 @@ layer = 9
 [node name="GameplayUI" parent="." unique_id=187525425 instance=ExtResource("3_i7qgc")]
 process_mode = 1
 
+[node name="DeathHazeCanvas" type="CanvasLayer" parent="." unique_id=940447391]
+script = ExtResource("9_0jlim")
+
+[node name="ColorRect" type="ColorRect" parent="DeathHazeCanvas" unique_id=1020691711]
+material = SubResource("ShaderMaterial_qsabb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InventoryOverlay" parent="." unique_id=267181138 instance=ExtResource("2_0jlim")]
+visible = false
+
 [node name="CurrentRoom" type="Node2D" parent="." unique_id=1191198212]
 process_mode = 1
 
@@ -59,15 +71,3 @@ pan_smoothing_speed = 3.0
 
 [node name="Player" parent="." unique_id=1424915808 instance=ExtResource("3_y6a8n")]
 position = Vector2(-1, 0)
-
-[node name="DeathHazeCanvas" type="CanvasLayer" parent="." unique_id=940447391]
-script = ExtResource("9_0jlim")
-
-[node name="ColorRect" type="ColorRect" parent="DeathHazeCanvas" unique_id=1020691711]
-material = SubResource("ShaderMaterial_qsabb")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
