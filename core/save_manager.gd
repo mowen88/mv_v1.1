@@ -63,7 +63,7 @@ func add_ability(ability_name: String) -> void:
 	
 	if not abilities.has(ability_name):
 		abilities[ability_name] = true
-		print_rich("[color=cyan]SAVE SYSTEM: Unlocked ability '%s' for Slot %s[/color]" % [ability_name, current_slot])
+		#print_rich("[color=cyan]SAVE SYSTEM: Unlocked ability '%s' for Slot %s[/color]" % [ability_name, current_slot])
 		save_to_disk()
 
 ## Add item to save slot
@@ -77,7 +77,7 @@ func add_item(item_name: String) -> void:
 	# Add to current dictionary, default to 0 if not exists so adds 1
 	items[item_name] = items.get(item_name, 0) + 1
 		
-	print_rich("[color=cyan]SAVE SYSTEM: Collected item '%s' for Slot %s[/color]" % [item_name, current_slot])
+	#print_rich("[color=cyan]SAVE SYSTEM: Collected item '%s' for Slot %s[/color]" % [item_name, current_slot])
 	save_to_disk()
 		
 ## Helper that calculates and saves the integer percentage directly into the slot dict
@@ -193,6 +193,7 @@ func save_at_station(room_name: String, player: CharacterBody2D) -> void:
 	SAVE_DATA[current_slot]["health"] = player.health_component.max_health
 	SAVE_DATA[current_slot]["max_health"] = player.health_component.max_health
 	SAVE_DATA[current_slot]["energy"] = player.energy_component.current_energy
+	SAVE_DATA[current_slot]["max_energy"] = player.energy_component.max_energy
 	SAVE_DATA[current_slot]["coins"] = new_banked_total
 	SAVE_DATA[current_slot]["game_time"] = current_time
 	SAVE_DATA[current_slot]["visited_rooms"] = permanent_visited

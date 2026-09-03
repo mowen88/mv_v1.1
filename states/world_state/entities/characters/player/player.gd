@@ -37,9 +37,11 @@ func _ready() -> void:
 	
 	_get_initial_coins()
 	_get_initial_energy()
+	_get_initial_health()
 	
 	hurtbox_component.hit_received.connect(_on_hit)
 	health_component.died.connect(_on_death)
+	
 	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	
@@ -57,6 +59,7 @@ func _ready() -> void:
 	
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
+
 
 func drop_through_platform() -> void:
 
@@ -87,14 +90,15 @@ func _get_initial_coins() -> void:
 	current_coins = 0 # Fresh run starts with 0 unbanked coins
 	# Signal to update UI
 	SignalBus.player_coins_changed.emit(banked_coins)
-	
+
+func _get_initial_health() -> void:
+	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
+	health_component.current_health = slot_data.get("health", 1)
+
 func _get_initial_energy() -> void:
-	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
-		var saved_energy = SaveManager.SAVE_DATA[SaveManager.current_slot].get("energy", 0)
-		energy_component.current_energy = saved_energy
-	else:
-		energy_component.current_energy = 0
-			
+	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
+	energy_component.current_energy = slot_data.get("energy", energy_component.max_energy)
+		
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():
 		if area.is_in_group("ladders"):
@@ -147,10 +151,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	fsm.handle_input(event)
-	print(fsm.current_state.name)
 
 	if event.is_action_pressed("shoot"):
-		health_component.damage(1)
+		#health_component.damage(1)
+		print(energy_component.current_energy, ", ", energy_component.max_energy)
 		
 		SaveManager.add_ability("Glide")
 		SaveManager.add_ability("Jump Attack")
@@ -162,7 +166,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		SaveManager.add_item("Hankerchief")
 		SaveManager.add_item("Rope")
 		SaveManager.add_item("Candle")
-		print(SaveManager.SAVE_DATA[SaveManager.current_slot])
 #
 		#SignalBus.trap_doors_unlocked.emit("trap_room_test_01")
 		#SignalBus.camera_zoom_requested.emit(1.2, 0.25)

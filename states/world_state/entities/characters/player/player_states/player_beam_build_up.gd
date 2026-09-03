@@ -46,6 +46,5 @@ func physics_update(delta: float) -> void:
 		SignalBus.flash_screen.emit()
 		SignalBus.screenshake_requested.emit(24,0,0.5)
 		owner.energy_component.consume_energy(owner.energy_component.max_energy)
-		owner.health_component.heal(owner.health_component.max_health)
 		owner.beam.attack(owner.move_component.facing)
 		fsm.change_state("BeamKnockback")
