@@ -7,6 +7,7 @@ extends Node2D
 @onready var cutscene_canvas: CanvasLayer = $CutsceneOverlay
 @onready var gameplay_ui: CanvasLayer = $GameplayUI
 @onready var inventory_overlay: CanvasLayer = $InventoryOverlay
+@onready var death_haze_canvas: CanvasLayer = $DeathHazeCanvas
 
 var current_room_node: Node2D = null
 var current_zone_name: String = ""

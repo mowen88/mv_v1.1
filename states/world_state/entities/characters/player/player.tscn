@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cnru7g4rqfgo3"]
 
+[ext_resource type="Texture2D" uid="uid://cd77idacpml1p" path="res://states/world_state/entities/characters/player/player_spritesheets/death_marker.png" id="2_2bost"]
 [ext_resource type="Texture2D" uid="uid://cgkwdvoqpbs2v" path="res://states/world_state/entities/characters/player/player_spritesheets/air_attack.png" id="2_2yeee"]
 [ext_resource type="Texture2D" uid="uid://coa758xkmcnn4" path="res://states/world_state/entities/characters/player/player_spritesheets/death_particle_image.png" id="2_3tnf3"]
 [ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://states/world_state/shaders/sprite_flash_shader.tres" id="2_or386"]
@@ -54,6 +55,19 @@
 [ext_resource type="Script" uid="uid://bsr1dr14xrieh" path="res://states/world_state/entities/characters/player/player_states/player_beam_knockback.gd" id="40_vf4nt"]
 [ext_resource type="AudioStream" uid="uid://bhraaqi12g8b" path="res://states/world_state/entities/characters/player/player_audio/beam_cancel_sound.wav" id="43_25q3v"]
 [ext_resource type="PackedScene" uid="uid://mxu15ewd88aa" path="res://states/world_state/entities/characters/player/beam/beam_scene.tscn" id="44_yuga7"]
+
+[sub_resource type="Gradient" id="Gradient_jnwpf"]
+colors = PackedColorArray(0, 0, 0, 0.5019608, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dlyna"]
+gradient = SubResource("Gradient_jnwpf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_unvrk"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -4, 0)
+gravity = Vector3(0, -20, 0)
+color_ramp = SubResource("GradientTexture1D_dlyna")
+turbulence_enabled = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h7klx"]
 particle_flag_disable_z = true
@@ -863,6 +877,13 @@ one_shot = true
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=1549524853]
 wait_time = 0.12
 one_shot = true
+
+[node name="DeathMarkerParticle" type="GPUParticles2D" parent="." unique_id=103701197]
+emitting = false
+amount = 5
+texture = ExtResource("2_2bost")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_unvrk")
 
 [node name="DeathParticle" type="GPUParticles2D" parent="." unique_id=141313360]
 emitting = false

@@ -8,6 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://c8kn5s416smcp" path="res://states/world_state/cutscenes/cutscene_overlay.tscn" id="3_i25gt"]
 [ext_resource type="PackedScene" uid="uid://cnru7g4rqfgo3" path="res://states/world_state/entities/characters/player/player.tscn" id="3_y6a8n"]
 [ext_resource type="Script" uid="uid://b7u862h5fmk67" path="res://states/world_state/camera/game_camera.gd" id="5_i7qgc"]
+[ext_resource type="Script" uid="uid://c2a1o2bydmifw" path="res://states/world_state/death_haze_canvas.gd" id="9_0jlim"]
+[ext_resource type="Shader" uid="uid://dpfthqu41ajhh" path="res://states/world_state/shaders/vignette_shader.gdshader" id="10_vaxcq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsabb"]
+shader = ExtResource("10_vaxcq")
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/vignette_smoothness = 0.5
 
 [node name="WorldState" type="Node2D" unique_id=1906920684 groups=["player"]]
 process_mode = 3
@@ -51,3 +59,15 @@ pan_smoothing_speed = 3.0
 
 [node name="Player" parent="." unique_id=1424915808 instance=ExtResource("3_y6a8n")]
 position = Vector2(-1, 0)
+
+[node name="DeathHazeCanvas" type="CanvasLayer" parent="." unique_id=940447391]
+script = ExtResource("9_0jlim")
+
+[node name="ColorRect" type="ColorRect" parent="DeathHazeCanvas" unique_id=1020691711]
+material = SubResource("ShaderMaterial_qsabb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

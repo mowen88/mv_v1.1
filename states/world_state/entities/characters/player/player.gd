@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var death_particles: GPUParticles2D = $DeathParticle
 @onready var heal_particles: GPUParticles2D = $HealParticle
+@onready var death_marker_particles: GPUParticles2D = $DeathMarkerParticle
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
@@ -42,7 +43,7 @@ func _ready() -> void:
 	hurtbox_component.hit_received.connect(_on_hit)
 	health_component.died.connect(_on_death)
 	
-	health_component.health_changed.connect(func(val):SignalBus.player_health_changed.emit(val))
+	health_component.health_changed.connect(_on_player_health_changed)
 	health_component.max_health_changed.connect(func(val):SignalBus.player_max_health_changed.emit(val))
 	
 	energy_component.energy_changed.connect(func(val): SignalBus.player_energy_changed.emit(val))
@@ -59,7 +60,12 @@ func _ready() -> void:
 	
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
+	
+func _on_player_health_changed(val: int) -> void:
+	SignalBus.player_health_changed.emit(val)
 
+	# Turn death marker particles on only when health drops to 1
+	death_marker_particles.emitting = (val <= 1)
 
 func drop_through_platform() -> void:
 
@@ -120,6 +126,7 @@ func _on_hit(hitbox: Area2D, _knockback_force:float):
 		fsm.change_state("HitHazard")
 	else:
 		fsm.change_state("Hit")
+		
 
 func collect_coin(amount: int) -> void:
 	current_coins += amount
