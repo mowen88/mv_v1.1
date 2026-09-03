@@ -61,20 +61,30 @@ func _ready() -> void:
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
 	
+
+func _get_initial_coins() -> void:
+	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		banked_coins = SaveManager.SAVE_DATA[SaveManager.current_slot].get("coins", 0)
+	else:
+		banked_coins = 0
+	current_coins = 0 # Fresh run starts with 0 unbanked coins
+	# Signal to update UI
+	SignalBus.player_coins_changed.emit(banked_coins)
+
+func _get_initial_health() -> void:
+	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
+	var loaded_health = slot_data.get("health", 1)
+	health_component.current_health = loaded_health
+	_on_player_health_changed(loaded_health)
+
+func _get_initial_energy() -> void:
+	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
+	energy_component.current_energy = slot_data.get("energy", energy_component.max_energy)
+
 func _on_player_health_changed(val: int) -> void:
 	SignalBus.player_health_changed.emit(val)
-
 	# Turn death marker particles on only when health drops to 1
 	death_marker_particles.emitting = (val <= 1)
-
-func drop_through_platform() -> void:
-
-	if is_on_wall():
-		velocity.x = 25 * -move_component.facing
-	# Disable the platform collisions, wait short time and reenable
-	set_collision_mask_value(7, false)
-	await get_tree().create_timer(0.1).timeout
-	set_collision_mask_value(7, true)
 
 # Mobile touchscreen only!
 func _on_swipe_down() -> void:
@@ -88,22 +98,15 @@ func _on_swipe_down() -> void:
 	else:
 		pass # Ground slam!
 
-func _get_initial_coins() -> void:
-	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
-		banked_coins = SaveManager.SAVE_DATA[SaveManager.current_slot].get("coins", 0)
-	else:
-		banked_coins = 0
-	current_coins = 0 # Fresh run starts with 0 unbanked coins
-	# Signal to update UI
-	SignalBus.player_coins_changed.emit(banked_coins)
+func drop_through_platform() -> void:
 
-func _get_initial_health() -> void:
-	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
-	health_component.current_health = slot_data.get("health", 1)
+	if is_on_wall():
+		velocity.x = 25 * -move_component.facing
+	# Disable the platform collisions, wait short time and reenable
+	set_collision_mask_value(7, false)
+	await get_tree().create_timer(0.1).timeout
+	set_collision_mask_value(7, true)
 
-func _get_initial_energy() -> void:
-	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
-	energy_component.current_energy = slot_data.get("energy", energy_component.max_energy)
 		
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():
