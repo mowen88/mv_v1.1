@@ -11,32 +11,36 @@
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="6_yf6r0"]
 [ext_resource type="AudioStream" uid="uid://cmjrx76meckax" path="res://states/world_state/environment/destructibles/chest/chest_hit_sound.ogg" id="7_xdbp3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdbp3"]
-size = Vector2(8, 10)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xdbp3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oldnm"]
 atlas = ExtResource("2_tctj2")
-region = Rect2(0, 0, 12, 12)
+region = Rect2(0, 0, 12, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yf6r0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s41d2"]
 atlas = ExtResource("2_tctj2")
-region = Rect2(12, 0, 12, 12)
+region = Rect2(12, 0, 12, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqhym"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_588v4"]
 atlas = ExtResource("2_tctj2")
-region = Rect2(24, 0, 12, 12)
+region = Rect2(24, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bffjq"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(36, 0, 12, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yf6r0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xdbp3")
+"texture": SubResource("AtlasTexture_oldnm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yf6r0")
+"texture": SubResource("AtlasTexture_s41d2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tqhym")
+"texture": SubResource("AtlasTexture_588v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bffjq")
 }],
 "loop": false,
 "name": &"default",
@@ -50,12 +54,8 @@ coin_burst_scene = ExtResource("2_tqhym")
 particle_name = "coin_burst"
 emit_sound = ExtResource("3_oldnm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187662859]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_xdbp3")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411869412]
-position = Vector2(0, 6)
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_yf6r0")
 offset = Vector2(0, -6)
 
@@ -77,5 +77,8 @@ persistent_id = "chest_test_01"
 sound = ExtResource("7_xdbp3")
 health_component = NodePath("../HealthComponent")
 invincibility_duration = 0.2
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
+position = Vector2(0, -1)
 
 [editable path="HurtboxComponent"]

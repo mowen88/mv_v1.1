@@ -1,6 +1,8 @@
 extends Sprite2D
 
 @export var save_sound: AudioStream
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_component: InteractionComponent = $InteractionComponent
 
 func _ready() -> void:
@@ -8,6 +10,7 @@ func _ready() -> void:
 
 func _on_save_station_interacted(player: CharacterBody2D) -> void:
 
+	animated_sprite.play()
 	SignalBus.save_station_activated.emit()
 	SignalBus.flash_screen.emit()
 	

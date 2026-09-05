@@ -7,7 +7,7 @@ extends StaticBody2D
 @export var emit_sound: AudioStream
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+#@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var flash_component: FlashComponent =  $FlashComponent
@@ -33,7 +33,7 @@ func _on_death() -> void:
 	persistence_component.add_to_peristent_list()
 
 	ParticleManager.play(particle_name, global_position)
-	collision_shape.set_deferred("disabled", true)
+	#collision_shape.set_deferred("disabled", true)
 	
 	#ParticleManager.play(particle_name, global_position)
 	
@@ -60,8 +60,8 @@ func _on_persistent_state_loaded(previous_position:Vector2) -> void:
 
 	global_position = previous_position
 	
-	collision_shape.set_deferred("disabled", true)
-	set_collision_mask_value(1, false)
+	#collision_shape.set_deferred("disabled", true)
+	#set_collision_mask_value(1, false)
 	hurtbox_component.monitorable = false
 
 	# Assuming frame 1 (or your final frame) is the open chest sprite

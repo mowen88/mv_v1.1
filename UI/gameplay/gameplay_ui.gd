@@ -4,7 +4,7 @@ extends CanvasLayer
 
 @onready var energy_hud: HBoxContainer = $EnergyHUD
 @onready var health_hud: HBoxContainer = $HealthHUD
-@onready var coin_hud: Label = $CoinContainer/CoinLabel
+@onready var coin_hud: Label = $CoinContainer/HBoxContainer/CoinLabel
 @onready var zone_label: Label = $ZoneLabel
 @onready var tutorial_message: Label = $TutorialMessage
 

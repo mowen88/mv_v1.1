@@ -349,7 +349,7 @@ position = Vector2(144, 26)
 [node name="Chest2" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="1" unique_id=1499950282 instance=ExtResource("13_s5aot")]
 position = Vector2(-32, 26)
 
-[node name="PersistenceComponent" parent="Collectibles/Chest2" index="5" unique_id=375036549]
+[node name="PersistenceComponent" parent="Collectibles/Chest2" index="4" unique_id=375036549]
 persistent_id = "chest_test_02"
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="0" unique_id=706351147 instance=ExtResource("4_kxucd")]
@@ -511,7 +511,7 @@ shape = SubResource("RectangleShape2D_bruir")
 position = Vector2(-8, 20)
 
 [node name="SaveStation" parent="." index="20" unique_id=249855072 instance=ExtResource("14_731cl")]
-position = Vector2(56, 20)
+position = Vector2(56, 32)
 
 [editable path="TutorialMessage/Message"]
 [editable path="Collectibles/Chest2"]
