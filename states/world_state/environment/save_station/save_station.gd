@@ -5,11 +5,17 @@ extends Sprite2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_component: InteractionComponent = $InteractionComponent
 
+var can_save: bool = true
+
 func _ready() -> void:
 	interaction_component.interact.connect(_on_save_station_interacted)
+	animated_sprite.animation_finished.connect(func():can_save=true)
 
 func _on_save_station_interacted(player: CharacterBody2D) -> void:
-
+	if not can_save:
+		return
+	
+	can_save = false
 	animated_sprite.play()
 	SignalBus.save_station_activated.emit()
 	SignalBus.flash_screen.emit()
