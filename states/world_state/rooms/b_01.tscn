@@ -11,11 +11,11 @@
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="8_gvesa"]
 [ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="12_m40ur"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg7br"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dh28k"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_55kmn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvesa"]
 resource_local_to_scene = true
 shader = ExtResource("8_gvesa")
 shader_parameter/flash_active = false
@@ -94,7 +94,7 @@ position = Vector2(-272, 60)
 target_room_path = "uid://cox0t74p6kkon"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
-shape = SubResource("RectangleShape2D_gg7br")
+shape = SubResource("RectangleShape2D_dh28k")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=1561035608 instance=ExtResource("4_hx30x")]
 position = Vector2(72, 168)
@@ -109,7 +109,7 @@ target_room_path = "uid://dnqh43xyrsipk"
 position = Vector2(312, 88)
 
 [node name="SaveStation" parent="." index="19" unique_id=249855072 instance=ExtResource("12_m40ur")]
-position = Vector2(-216, 76)
+position = Vector2(-216, 88)
 
 [node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="0" unique_id=1164829458 instance=ExtResource("7_dh28k")]
 position = Vector2(-192, 80)
@@ -118,7 +118,7 @@ position = Vector2(-192, 80)
 position = Vector2(-80, 80)
 
 [node name="AnimatedSprite2D" parent="Enemies/Walker2" index="0" unique_id=62056824]
-material = SubResource("ShaderMaterial_55kmn")
+material = SubResource("ShaderMaterial_gvesa")
 flip_h = true
 
 [editable path="Decoration/GodRay"]

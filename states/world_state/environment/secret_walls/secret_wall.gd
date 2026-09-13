@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _on_hit_received(hitbox:Area2D, _knockback_force:float) -> void:
 	
-	var direction = sign(global_position.x - hitbox.global_position.x)
+	var direction = sign(global_position.x + hitbox.global_position.x)
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	var home_x = position.x
 	
