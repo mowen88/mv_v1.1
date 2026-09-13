@@ -19,6 +19,30 @@
 [ext_resource type="Texture2D" uid="uid://c7ira7w4d5i1x" path="res://UI/menu/elements/checkbox_off.png" id="10_p5jt0"]
 [ext_resource type="Script" uid="uid://btuk00pgtok8l" path="res://UI/menu/confirm_quit_menu.gd" id="13_p5jt0"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dw6nm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_665ki"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2gngb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahpo4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihcuv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svwst"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qkdny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yjuc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4v6g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfgov"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11jsw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gu7fk"]
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nh7px"]
 color = Color(1, 1, 1, 1)
 grow_begin = 0.0
@@ -93,6 +117,10 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dw6nm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_665ki")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2gngb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ahpo4")
 icon = ExtResource("8_c7ge0")
 icon_alignment = 1
 
@@ -111,6 +139,10 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ihcuv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_svwst")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qkdny")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6yjuc")
 icon = ExtResource("8_c7ge0")
 icon_alignment = 1
 
@@ -129,6 +161,10 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k4v6g")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gfgov")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_11jsw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gu7fk")
 icon = ExtResource("8_c7ge0")
 icon_alignment = 1
 
