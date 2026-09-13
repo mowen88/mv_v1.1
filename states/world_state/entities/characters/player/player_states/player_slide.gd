@@ -1,9 +1,10 @@
 extends State
 
-
 func enter() -> void:
 	
 	owner.get_node("AnimatedSprite2D").play("slide")
+	
+	owner.slide_sound_stream.play()
 	
 	# Handle jump buffer and immediately transition to jump WITH a horizontal impulse
 	if owner.jump_buffer_timer.time_left > 0:
@@ -12,6 +13,7 @@ func enter() -> void:
 func _slope_jump() -> void:
 	owner.jump_buffer_timer.stop()
 	owner.velocity.x += owner.move_component.facing * 120
+	owner.slide_sound_stream.stop()
 	fsm.change_state("Jump")
 
 func handle_input(event: InputEvent) -> void:
@@ -23,11 +25,13 @@ func physics_update(_delta: float) -> void:
 	
 	# Get off wall determines not sliding anymore robustly as slope is classed as wall
 	if not owner.is_on_wall():
+		owner.slide_sound_stream.stop()
 		fsm.change_state("Fall")
 		return
 	
 	# In case still on wall, hitting floor sets to idle
 	if owner.is_on_floor():
+		owner.slide_sound_stream.stop()
 		fsm.change_state("Idle")
 		return
 

@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cit3vp8ct5goy"]
+
+[ext_resource type="Script" uid="uid://sba028iwwtpy" path="res://states/world_state/environment/destructibles/chest/chest.gd" id="1_4wxkn"]
+[ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="2_haym2"]
+[ext_resource type="Texture2D" uid="uid://ucm64xxx8w3o" path="res://states/world_state/environment/destructibles/chest/chest_spritesheet.png" id="2_tctj2"]
+[ext_resource type="PackedScene" uid="uid://c67d806srgy4d" path="res://states/world_state/environment/collectibles/coin/coin.tscn" id="2_tqhym"]
+[ext_resource type="AudioStream" uid="uid://br1054n3kwen2" path="res://states/world_state/environment/destructibles/chest/emit_sound.ogg" id="3_oldnm"]
+[ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="3_tctj2"]
+[ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="4_haym2"]
+[ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="4_xdbp3"]
+[ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="6_yf6r0"]
+[ext_resource type="AudioStream" uid="uid://cmjrx76meckax" path="res://states/world_state/environment/destructibles/chest/chest_hit_sound.ogg" id="7_xdbp3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oldnm"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(0, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s41d2"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(12, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_588v4"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(24, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bffjq"]
+atlas = ExtResource("2_tctj2")
+region = Rect2(36, 0, 12, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf6r0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oldnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s41d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_588v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bffjq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Chest" type="StaticBody2D" unique_id=1938050104 groups=["persistent"]]
+collision_mask = 0
+script = ExtResource("1_4wxkn")
+coin_burst_scene = ExtResource("2_tqhym")
+particle_name = "coin_burst"
+emit_sound = ExtResource("3_oldnm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411869412]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_yf6r0")
+offset = Vector2(0, -6)
+
+[node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("2_haym2")]
+max_health = 3
+
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("3_tctj2")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="SquashStretchComponent" parent="." unique_id=843710349 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("4_haym2")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="PersistenceComponent" parent="." unique_id=375036549 instance=ExtResource("6_yf6r0")]
+persistent_id = "chest_test_01"
+
+[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("4_xdbp3")]
+sound = ExtResource("7_xdbp3")
+health_component = NodePath("../HealthComponent")
+invincibility_duration = 0.2
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
+position = Vector2(0, -1)
+
+[editable path="HurtboxComponent"]

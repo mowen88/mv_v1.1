@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var heal_particles: GPUParticles2D = $HealParticle
 @onready var death_marker_particles: GPUParticles2D = $DeathMarkerParticle
 
+@onready var slide_sound_stream: AudioStreamPlayer2D = $SlideSoundStream
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent

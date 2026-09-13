@@ -26,7 +26,7 @@ func _on_hit_received(hitbox:Area2D, _knockback_force:float) -> void:
 	# Settle back home
 	tween.tween_property(self, "position:x", home_x, 0.08)
 
-func _on_persistent_state_loaded(previous_position:Vector2 = global_position) -> void:
+func _on_persistent_state_loaded(_previous_position:Vector2 = global_position) -> void:
 	queue_free()
 
 func _on_death() -> void:

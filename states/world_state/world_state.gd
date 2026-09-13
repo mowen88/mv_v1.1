@@ -7,7 +7,6 @@ extends Node2D
 @onready var cutscene_canvas: CanvasLayer = $CutsceneOverlay
 @onready var gameplay_ui: CanvasLayer = $GameplayUI
 @onready var inventory_overlay: CanvasLayer = $InventoryOverlay
-@onready var death_haze_canvas: CanvasLayer = $DeathHazeCanvas
 
 var current_room_node: Node2D = null
 var current_zone_name: String = ""
@@ -26,6 +25,7 @@ func _ready():
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
 
+
 func _process(delta: float) -> void:
 	if not player:
 		return
@@ -40,9 +40,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("toggle_pause"):
-		# Disable pause if player is dead, let state play out
-		if player.health_component.current_health <= 0:
-			return
 		_toggle_game_pause()
 
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
@@ -144,6 +141,7 @@ func _register_room_visit(room_name: String) -> void:
 	# Only add if it's not already saved and not already tracked in the active run session
 	if not permanent_visited.has(room_name_str) and not player.session_visited_rooms.has(room_name_str):
 		player.session_visited_rooms.append(room_name_str)
+		print(player.session_visited_rooms)
 		print_rich("[color=orange]WORLD MANAGER: Discovered new room (Unsaved Run): %s[/color]" % room_name_str)
 		
 		# Recalculate percentage live in memory

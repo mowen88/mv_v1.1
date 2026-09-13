@@ -5,12 +5,15 @@ signal health_changed
 signal max_health_changed
 signal died
 
-@export var max_health: int:
+@export var max_health: int = 5:
 	set(value):
 		max_health = value
 		max_health_changed.emit(max_health)
 
 @onready var current_health: int = max_health
+
+func _ready() -> void:
+	pass
 
 
 func damage(amount:int) -> void:
