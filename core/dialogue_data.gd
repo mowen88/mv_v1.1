@@ -45,16 +45,24 @@ const DATABASE = {
 		"This line plays after the choice branch finishes!"
 	],
 	
-	"test_intro": [
-		"Hello traveler! Welcome to the ruins.",
-		"This line plays after the choice branch finishes!"
+	#"test_intro": [
+		#"Hello traveler! Welcome to the ruins.",
+		#"This line plays after the choice branch finishes!"
+	#],
+		#"npc_1_initial": [
+		#"Hello traveler! Welcome to the ruins.",
+		#"Watch out round here!"
+	#],
+		#"npc_1_spoken": [
+		#"Hello again traveler!",
+		#"Good to see you again!"
+	#],
+	
+	"npc_1_initial": [
+		"Hello traveller, carry on holding attack to trigger a great beam attack"
 	],
-		"npc_1_initial": [
-		"Hello traveler! Welcome to the ruins.",
-		"Watch out round here!"
-	],
-		"npc_1_spoken": [
-		"Hello again traveler!",
-		"Good to see you again!"
+	
+	"npc_1_spoken": [
+		"Hello again, have you tried your beam attack yet? Powerful it is!"
 	],
 }

@@ -122,12 +122,12 @@ target_room_path = "uid://dnqh43xyrsipk"
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=968177515 instance=ExtResource("3_x87aq")]
 position = Vector2(-144, -28)
 exit_id = 2
-target_room_path = "uid://dnqh43xyrsipk"
+target_room_path = "uid://cstl4u7oxrmmt"
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="2" unique_id=351830744 instance=ExtResource("3_x87aq")]
 position = Vector2(144, -28)
 exit_id = 3
-target_room_path = "uid://dnqh43xyrsipk"
+target_room_path = "uid://cstl4u7oxrmmt"
 
 [node name="RoomExit4" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="3" unique_id=834883838 instance=ExtResource("3_x87aq")]
 position = Vector2(144, 76)

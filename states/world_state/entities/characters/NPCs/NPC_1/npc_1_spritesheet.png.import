@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csi5otlta3421"
-path="res://.godot/imported/b_button_pressed.png-a9b7a15d06d451033c13eb850e2c6a40.ctex"
+uid="uid://becoccsalr4th"
+path="res://.godot/imported/npc_1_spritesheet.png-4c6b99da8a81bc194f532f54d40c651e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/gameplay/elements/b_button_pressed.png"
-dest_files=["res://.godot/imported/b_button_pressed.png-a9b7a15d06d451033c13eb850e2c6a40.ctex"]
+source_file="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1_spritesheet.png"
+dest_files=["res://.godot/imported/npc_1_spritesheet.png-4c6b99da8a81bc194f532f54d40c651e.ctex"]
 
 [params]
 

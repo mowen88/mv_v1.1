@@ -2,9 +2,53 @@
 
 [ext_resource type="Script" uid="uid://c34s282f6ur1b" path="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1.gd" id="1_llhpi"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="1_yyhdu"]
+[ext_resource type="Texture2D" uid="uid://becoccsalr4th" path="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1_spritesheet.png" id="2_fn7kr"]
 [ext_resource type="Script" uid="uid://w6r4fliln4v5" path="res://states/world_state/entities/characters/finite_state_machine/base_state.gd" id="2_ljkyi"]
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="4_ahn33"]
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="5_ahn33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn5k6"]
+atlas = ExtResource("2_fn7kr")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n85a3"]
+atlas = ExtResource("2_fn7kr")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3fy7"]
+atlas = ExtResource("2_fn7kr")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evch2"]
+atlas = ExtResource("2_fn7kr")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6el4"]
+atlas = ExtResource("2_fn7kr")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74uup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn5k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n85a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3fy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evch2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6el4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_banb6"]
 size = Vector2(12, 24)
@@ -13,18 +57,9 @@ size = Vector2(12, 24)
 collision_layer = 0
 script = ExtResource("1_llhpi")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=636311723]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -12.0
-offset_right = 6.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=200543241]
+sprite_frames = SubResource("SpriteFrames_74uup")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=877957615]
 shape = SubResource("RectangleShape2D_banb6")

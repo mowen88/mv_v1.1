@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csi5otlta3421"
-path="res://.godot/imported/b_button_pressed.png-a9b7a15d06d451033c13eb850e2c6a40.ctex"
+uid="uid://dbxk0np3vhrfi"
+path="res://.godot/imported/door_sprite.png-acb7473fbb158f5cfbc2e7f913946164.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/gameplay/elements/b_button_pressed.png"
-dest_files=["res://.godot/imported/b_button_pressed.png-a9b7a15d06d451033c13eb850e2c6a40.ctex"]
+source_file="res://states/world_state/exits/door_sprite.png"
+dest_files=["res://.godot/imported/door_sprite.png-acb7473fbb158f5cfbc2e7f913946164.ctex"]
 
 [params]
 

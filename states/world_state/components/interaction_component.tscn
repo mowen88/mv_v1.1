@@ -5,9 +5,6 @@
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="3_01riy"]
 [ext_resource type="Texture2D" uid="uid://d21qenqv7yyu3" path="res://UI/gameplay/elements/swipe_up_icon.png" id="4_2t5qm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_03x4n"]
-size = Vector2(24, 32)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01riy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s8sdo"]
@@ -17,9 +14,6 @@ z_index = 10
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_qxvul")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674074497]
-shape = SubResource("RectangleShape2D_03x4n")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1508537316]
 scale = Vector2(0.1, 0.1)

@@ -34,6 +34,7 @@ VibrateManager="*uid://ilku6ko72ogp"
 ParticleManager="*uid://b2wtfg1req1r1"
 DialogueData="*uid://djiayyfbrj3uh"
 QuestManager="*uid://bxi5rnejt2268"
+DebugTitle="*uid://die2kp37yt8xo"
 
 [display]
 
