@@ -174,7 +174,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		SaveManager.add_item("Ruby")
 		SaveManager.add_item("Stone")
 		SaveManager.add_item("Tablet")
-		SaveManager.add_item("Hankerchief")
+		SaveManager.add_item("Hankey")
 		SaveManager.add_item("Rope")
 		SaveManager.add_item("Candle")
 #

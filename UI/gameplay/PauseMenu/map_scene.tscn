@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://vq6w5wfs55i5" path="res://UI/gameplay/PauseMenu/map_scene.gd" id="1_rrnar"]
 [ext_resource type="Texture2D" uid="uid://df1c6qlpivsmw" path="res://UI/gameplay/PauseMenu/map_sprites/a_01.png" id="2_e4ueg"]
 [ext_resource type="Texture2D" uid="uid://dnxdl0nula358" path="res://UI/gameplay/PauseMenu/map_sprites/a_02.png" id="3_enss6"]
-[ext_resource type="Texture2D" uid="uid://c06rus80fluoa" path="res://UI/gameplay/PauseMenu/map_sprites/b_01.png" id="4_iph03"]
+[ext_resource type="Texture2D" uid="uid://dis7t3fwqnmnr" path="res://UI/gameplay/PauseMenu/map_sprites/a_03.png" id="4_d5ee1"]
+[ext_resource type="Texture2D" uid="uid://cih77egkf8t78" path="res://UI/gameplay/PauseMenu/map_sprites/a_04.png" id="5_dagy4"]
 [ext_resource type="Texture2D" uid="uid://tdptx7ntni4q" path="res://UI/gameplay/PauseMenu/map_sprites/player_map_icon.png" id="5_enss6"]
-[ext_resource type="Texture2D" uid="uid://clj0kekmn243s" path="res://UI/gameplay/PauseMenu/map_sprites/b_02.png" id="5_iph03"]
+[ext_resource type="Texture2D" uid="uid://crrsmqw6t1pee" path="res://UI/gameplay/PauseMenu/map_sprites/a_05.png" id="6_bihx0"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="7_3t8t5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3t8t5"]
@@ -50,20 +51,24 @@ render_target_update_mode = 4
 position = Vector2(1264, 504)
 
 [node name="a_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=55423390]
-position = Vector2(6, -26)
+position = Vector2(-15, -298)
 texture = ExtResource("2_e4ueg")
 
 [node name="a_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1837831172]
-position = Vector2(-128, 46)
+position = Vector2(-149, -226)
 texture = ExtResource("3_enss6")
 
-[node name="b_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1760024013]
-position = Vector2(66, 118)
-texture = ExtResource("4_iph03")
+[node name="a_03" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1365901990]
+position = Vector2(-14, -145)
+texture = ExtResource("4_d5ee1")
 
-[node name="b_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1933959235]
-position = Vector2(-186, 145)
-texture = ExtResource("5_iph03")
+[node name="a_04" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1729580278]
+position = Vector2(-149, -91)
+texture = ExtResource("5_dagy4")
+
+[node name="a_05" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1778412975]
+position = Vector2(120, -271)
+texture = ExtResource("6_bihx0")
 
 [node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1123997194]
 position = Vector2(-248, -281)

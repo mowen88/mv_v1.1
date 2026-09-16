@@ -31,7 +31,7 @@ const ITEM_DETAILS: Dictionary = {
 	"Ruby": "A radiant red gemstone that pulses with a faint internal warmth.",
 	"Stone": "A dense piece of carved masonry.",
 	"Tablet": "Inscribed with ancient text detailing forgotten lore.",
-	"Hankerchief": "A delicate piece of cloth embroidered with a faded crest.",
+	"Hankey": "A delicate piece of cloth embroidered with a faded crest.",
 	"Rope": "A strong coil of braided fiber, roughly ten meters long.",
 	"Candle": "A thick wax candle that provides a small radius of warm light."
 }
@@ -49,25 +49,26 @@ func update_current_details()-> void:
 	populate_items()
 
 func get_status_stats(player: Node2D)-> void:
-	
-	if not SaveManager.SAVE_DATA.has(SaveManager.current_slot):
-		return
-		
-	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
-	
-	if health_label and player and player.health_component:
-		var max_health = player.health_component.max_health
-		health_label.text = "Health - %d/%d" % [max_health, player.game_max_health]
-		
-	if energy_label and player and player.energy_component:
-		var max_energy = player.energy_component.max_energy
-		energy_label.text = "Energy - %d/%d" % [max_energy, player.game_max_energy]
-	
-	if currency_label:
-		var banked_coins = slot_data.get("coins", 0)
-		var unbanked_coins = player.current_coins if player else 0
-		var total_coins = banked_coins + unbanked_coins
-		currency_label.text = "Currency - %d" % total_coins
+	pass
+	#
+	#if not SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		#return
+		#
+	#var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
+	#
+	#if health_label and player and player.health_component:
+		#var max_health = player.health_component.max_health
+		#health_label.text = "Health - %d/%d" % [max_health, player.game_max_health]
+		#
+	#if energy_label and player and player.energy_component:
+		#var max_energy = player.energy_component.max_energy
+		#energy_label.text = "Energy - %d/%d" % [max_energy, player.game_max_energy]
+	#
+	#if currency_label:
+		#var banked_coins = slot_data.get("coins", 0)
+		#var unbanked_coins = player.current_coins if player else 0
+		#var total_coins = banked_coins + unbanked_coins
+		#currency_label.text = "Currency - %d" % total_coins
 
 func populate_abilities() -> void:
 	# Hide texture buttons by default when open inventory
@@ -118,7 +119,7 @@ func populate_items() -> void:
 			name_button.pressed.connect(_on_item_button_pressed.bind(item_name))
 			
 		if count_label:
-			count_label.text = "x %d" % quantity
+			count_label.text = "x %d " % quantity
 			
 		items_container.add_child(row_instance)
 

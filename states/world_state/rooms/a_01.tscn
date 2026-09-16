@@ -20,7 +20,7 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq4su"]
-size = Vector2(16, 48)
+size = Vector2(16, 80)
 
 [node name="a01" unique_id=315341494 instance=ExtResource("1_iayhm")]
 
@@ -132,7 +132,7 @@ target_room_path = "uid://cstl4u7oxrmmt"
 [node name="RoomExit4" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="3" unique_id=834883838 instance=ExtResource("3_x87aq")]
 position = Vector2(144, 76)
 exit_id = 4
-target_room_path = "uid://dnqh43xyrsipk"
+target_room_path = "uid://5eewlteafhfv"
 
 [editable path="SecretWalls/SecretWall"]
 [editable path="TutorialMessage/Message"]

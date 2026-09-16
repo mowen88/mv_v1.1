@@ -21,10 +21,10 @@ border_width_top = 9
 border_width_right = 9
 border_width_bottom = 9
 border_color = Color(1, 1, 1, 1)
-expand_margin_left = 28.0
-expand_margin_top = 24.0
-expand_margin_right = 24.0
-expand_margin_bottom = 24.0
+expand_margin_left = 32.0
+expand_margin_top = 28.0
+expand_margin_right = 28.0
+expand_margin_bottom = 28.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl8jd"]
 
@@ -184,8 +184,14 @@ animations = [{
 }]
 
 [node name="InventoryScene" type="Control" unique_id=351141996]
+custom_minimum_size = Vector2(1920, 0)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
+grow_horizontal = 2
 script = ExtResource("1_jgp2v")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=392264961]
@@ -193,28 +199,29 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -1120.0
+offset_left = -960.0
 offset_top = 80.0
-offset_right = 1120.0
-offset_bottom = 780.0
+offset_right = 960.0
+offset_bottom = 806.0
 grow_horizontal = 2
 theme_override_constants/separation = 64
 
 [node name="StatusPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1787041078]
-custom_minimum_size = Vector2(360, 360)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/StatusPanel" unique_id=835644440]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=633365291]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/h_separation = 64
 theme_override_constants/v_separation = 64
-columns = 4
+columns = 3
 
 [node name="GlideSlot" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=770196861]
 custom_minimum_size = Vector2(120, 120)
@@ -288,55 +295,30 @@ custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
-[node name="Panel7" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=1790651280]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
-
-[node name="Panel8" type="Panel" parent="HBoxContainer/StatusPanel/VBoxContainer/GridContainer" unique_id=1673263697]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
-
-[node name="Spacer" type="Control" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=804512390]
+[node name="VerticalSpacer" type="Control" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=804512390]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=143368051]
-custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
 text = "Health :"
 vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="EnergyLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=1943293084]
-custom_minimum_size = Vector2(700, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_fnoba")
-theme_override_font_sizes/font_size = 90
-text = "Energy :"
-vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="CurrencyLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=2008994955]
-custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
 text = "Currency :"
 vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=233750259]
-custom_minimum_size = Vector2(660, 700)
+custom_minimum_size = Vector2(600, 700)
 layout_mode = 2
-size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1559312009]
-custom_minimum_size = Vector2(600, 700)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -357,16 +339,16 @@ size_flags_horizontal = 3
 theme = ExtResource("3_jgp2v")
 theme_override_constants/separation = 45
 
-[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=1761235353]
-custom_minimum_size = Vector2(32, 0)
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=793872563]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
 [node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1287601188]
-custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 60
+alignment = 2
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=175766730]
 custom_minimum_size = Vector2(500, 0)

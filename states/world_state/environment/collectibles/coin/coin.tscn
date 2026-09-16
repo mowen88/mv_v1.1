@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c67d806srgy4d"]
 
-[ext_resource type="Texture2D" uid="uid://drm3egaasbw0p" path="res://states/world_state/environment/collectibles/coin/coin_spritesheet.png" id="1_8iytl"]
+[ext_resource type="Texture2D" uid="uid://hfs3okiw7k56" path="res://states/world_state/environment/collectibles/coin/coin_spritesheet.png" id="1_8iytl"]
 [ext_resource type="Script" uid="uid://rs7xt35efrbc" path="res://states/world_state/environment/collectibles/coin/coin.gd" id="1_cp84l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cp84l"]

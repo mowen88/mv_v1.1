@@ -25,7 +25,12 @@ expand_margin_bottom = 24.0
 
 [node name="QuestsScene" type="Control" unique_id=1476503916]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
+grow_horizontal = 2
 theme = ExtResource("1_6hkyj")
 script = ExtResource("1_lt2jl")
 ICON_IN_PROGRESS = ExtResource("3_jlbjd")
@@ -36,28 +41,25 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -1120.0
+offset_left = -960.0
 offset_top = 80.0
-offset_right = 1120.0
+offset_right = 960.0
 offset_bottom = 780.0
 grow_horizontal = 2
 theme_override_constants/separation = 90
 
 [node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=1606789066]
-custom_minimum_size = Vector2(1170, 700)
+custom_minimum_size = Vector2(1000, 700)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jlbjd")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1017672852]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -585.0
-offset_right = 585.0
-offset_bottom = 700.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xbbp2")
 theme_override_styles/focus = SubResource("StyleBoxFlat_axwab")
