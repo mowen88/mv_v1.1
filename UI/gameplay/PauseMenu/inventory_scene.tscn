@@ -296,14 +296,14 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w6775")
 
 [node name="VerticalSpacer" type="Control" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=804512390]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
-[node name="HealthLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=143368051]
+[node name="PercentCompleteLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=143368051]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnoba")
 theme_override_font_sizes/font_size = 90
-text = "Health :"
+text = "Completion :"
 vertical_alignment = 1
 
 [node name="CurrencyLabel" type="Label" parent="HBoxContainer/StatusPanel/VBoxContainer" unique_id=2008994955]
@@ -340,7 +340,7 @@ theme = ExtResource("3_jgp2v")
 theme_override_constants/separation = 45
 
 [node name="Spacer" type="Control" parent="HBoxContainer" unique_id=793872563]
-custom_minimum_size = Vector2(64, 0)
+custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
 [node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=1287601188]

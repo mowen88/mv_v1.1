@@ -6,8 +6,8 @@ const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 @onready var items_container: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var detail_description_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
-@onready var energy_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/EnergyLabel
-@onready var health_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/HealthLabel
+#@onready var energy_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/EnergyLabel
+@onready var percent_complete_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/PercentCompleteLabel
 @onready var currency_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/CurrencyLabel
 
 
