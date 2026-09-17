@@ -14,8 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://btuoi8ua8kc3r" path="res://states/world_state/camera/camera_trigger.tscn" id="6_3a86v"]
 [ext_resource type="Texture2D" uid="uid://qvl8rw6a2dd5" path="res://states/world_state/backgrounds/mountain_sprites/2.png" id="6_tjkfs"]
 [ext_resource type="Texture2D" uid="uid://hsbe3feahg66" path="res://states/world_state/backgrounds/mountain_sprites/0.png" id="7_1232e"]
+[ext_resource type="Shader" uid="uid://852afqaskhkl" path="res://states/world_state/shaders/godray_sprite_shader.gdshader" id="9_4mp4e"]
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="9_fhmho"]
 [ext_resource type="PackedScene" uid="uid://0oqxdpjjeqp0" path="res://states/world_state/environment/respawn_area/respawn_area.tscn" id="12_1232e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5y3u"]
+shader = ExtResource("9_4mp4e")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1232e"]
 size = Vector2(32, 112)
@@ -138,6 +142,36 @@ tile_set = ExtResource("2_rwghd")
 
 [node name="SlopeTileMap" parent="." index="6" unique_id=1149728441]
 tile_map_data = PackedByteArray("AAANAOr/AAAOAAoAAAAMAOv/AAAOAAoAAAALAOz/AAAOAAoAAAAKAO3/AAAOAAoAAADz/wMAAAAQAAsAAAD0/wQAAAAPAAoAAAD1/wUAAAAQAAsAAAD2/wYAAAAPAAoAAAD3/wcAAAAQAAsAAAD4/wgAAAAQAAsAAAD5/wkAAAAQAAsAAAD6/woAAAAQAAsAAAA=")
+
+[node name="ColorRect" type="ColorRect" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="0" unique_id=626742205]
+material = SubResource("ShaderMaterial_u5y3u")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -168.00002
+offset_right = 24.0
+offset_bottom = -16.000015
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.3561945
+
+[node name="ColorRect2" type="ColorRect" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="1" unique_id=1344239196]
+material = SubResource("ShaderMaterial_u5y3u")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 65.8
+offset_top = -136.0
+offset_right = 81.8
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.3561945
 
 [node name="Message" parent="TutorialMessage" parent_id_path=PackedInt32Array(999535073) index="0" unique_id=839802269 instance=ExtResource("9_fhmho")]
 position = Vector2(64, -152)

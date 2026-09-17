@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var flash_component: FlashComponent = $FlashComponent
 @onready var squash_stretch_component: SquashStretchComponent = $SquashStretchComponent
-
+@onready var floor_check: RayCast2D = $FloorCheckRayCast
 
 func _ready() -> void:
 	health_component.died.connect(_on_death)

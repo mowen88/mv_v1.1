@@ -18,18 +18,15 @@ shader = ExtResource("6_gvesa")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m40ur"]
 size = Vector2(186, 120)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vu3n"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvesa"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dh28k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg7br"]
 resource_local_to_scene = true
 size = Vector2(32, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvesa"]
-size = Vector2(16, 32)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvesa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55kmn"]
 resource_local_to_scene = true
 shader = ExtResource("8_gvesa")
 shader_parameter/flash_active = false
@@ -103,31 +100,35 @@ offset_right = -88.5
 offset_bottom = 71.5
 rotation = 3.1415927
 
-[node name="GodRay2" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="8" unique_id=225408791 instance=ExtResource("4_gvesa")]
-position = Vector2(-144, 0)
-rotation = -0.7853982
-
-[node name="ColorRect" parent="Decoration/GodRay2" index="0" unique_id=1494312954]
-offset_left = -119.293945
-offset_top = 5.156845
-offset_right = -87.293945
-offset_bottom = 109.156845
-rotation = 3.1415927
-
-[node name="ColorRect2" type="ColorRect" parent="Decoration/GodRay2" index="1" unique_id=1442483120]
+[node name="ColorRect2" type="ColorRect" parent="Decoration/GodRay" index="1" unique_id=1442483120]
 material = SubResource("ShaderMaterial_hwism")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.90561
-offset_top = -83.231476
-offset_right = 1.0943909
-offset_bottom = 20.768524
+offset_left = -224.5
+offset_top = -37.49997
+offset_right = -192.5
+offset_bottom = 66.50003
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 3.1415927
+rotation = 2.3561945
+
+[node name="ColorRect3" type="ColorRect" parent="Decoration/GodRay" index="2" unique_id=1626788590]
+material = SubResource("ShaderMaterial_hwism")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.5
+offset_top = 87.50004
+offset_right = -192.5
+offset_bottom = 191.50003
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.3561945
 
 [node name="CameraTrigger" parent="CameraTriggers" parent_id_path=PackedInt32Array(1757734446) index="0" unique_id=811432737 instance=ExtResource("3_p5cj8")]
 position = Vector2(-136, -79)
@@ -156,7 +157,7 @@ target_room_path = "uid://cox0t74p6kkon"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
 position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_7vu3n")
+shape = SubResource("RectangleShape2D_gvesa")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=1561035608 instance=ExtResource("4_hx30x")]
 position = Vector2(-276, -56)
@@ -164,7 +165,7 @@ exit_id = 2
 target_room_path = "uid://cstl4u7oxrmmt"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit2" index="0" unique_id=519681351]
-shape = SubResource("RectangleShape2D_dh28k")
+shape = SubResource("RectangleShape2D_gg7br")
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="2" unique_id=1018268978 instance=ExtResource("4_hx30x")]
 position = Vector2(40, 160)
@@ -174,28 +175,25 @@ target_room_path = "uid://dnqh43xyrsipk"
 [node name="RoomExit4" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="3" unique_id=720845904 instance=ExtResource("4_hx30x")]
 position = Vector2(312, 88)
 
-[node name="SaveStation" parent="." index="19" unique_id=249855072 instance=ExtResource("12_m40ur")]
-position = Vector2(-136, -48)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SaveStation/InteractionComponent" parent_id_path=PackedInt32Array(249855072, 108345276) index="2" unique_id=1867053748]
-shape = SubResource("RectangleShape2D_gvesa")
-
 [node name="Walker" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="0" unique_id=1164829458 instance=ExtResource("7_dh28k")]
-position = Vector2(-192, 80)
+position = Vector2(-104, 24)
 
 [node name="Walker2" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="1" unique_id=622967336 instance=ExtResource("7_dh28k")]
-position = Vector2(-80, 80)
+position = Vector2(-171, 24)
 
-[node name="AnimatedSprite2D" parent="Enemies/Walker2" index="0" unique_id=62056824]
-material = SubResource("ShaderMaterial_gvesa")
+[node name="AnimatedSprite2D" parent="Enemies/Walker2" index="1" unique_id=62056824]
+material = SubResource("ShaderMaterial_55kmn")
 flip_h = true
 
+[node name="Walker3" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="2" unique_id=1369531567 instance=ExtResource("7_dh28k")]
+position = Vector2(-192, 80)
+
+[node name="SaveStation" parent="." index="20" unique_id=879487149 instance=ExtResource("12_m40ur")]
+position = Vector2(-136, -48)
+
 [editable path="Decoration/GodRay"]
-[editable path="Decoration/GodRay2"]
 [editable path="RoomExits/RoomExit"]
 [editable path="RoomExits/RoomExit2"]
-[editable path="SaveStation"]
-[editable path="SaveStation/InteractionComponent"]
 [editable path="Enemies/Walker2"]
 [editable path="Enemies/Walker2/HurtboxComponent"]
 [editable path="Enemies/Walker2/HitboxComponent"]

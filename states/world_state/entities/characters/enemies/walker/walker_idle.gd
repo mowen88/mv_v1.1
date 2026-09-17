@@ -12,8 +12,11 @@ func physics_update(_delta: float) -> void:
 	# Add gravity
 	owner.velocity.y += owner.move_component.gravity * _delta
 	
-	if owner.is_on_wall():
+	# Turn around if hitting a wall OR if the floor check raycast detects an edge
+	if owner.is_on_wall() or (owner.floor_check and not owner.floor_check.is_colliding()):
 		owner.move_component.facing *= -1
+		
+		owner.floor_check.position.x = abs(owner.floor_check.position.x) * sign(owner.move_component.facing)
 	
 	owner.move_component.direction = owner.move_component.facing
 	

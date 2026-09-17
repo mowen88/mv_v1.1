@@ -3,18 +3,17 @@ extends State
 func enter() -> void:
 	owner.get_node("AnimatedSprite2D").play("idle")
 	
-	# Get variable timer and switch state when complete
-	var timer = owner.get_tree().create_timer(randf_range(1.0, 2.0))
-	timer.timeout.connect(func(): fsm.change_state("Idle"))
-	
+
 # Inside walker_patrol.gd (An enemy AI state)
 func physics_update(_delta: float) -> void:
 	# Add gravity
 	owner.velocity.y += owner.move_component.gravity * _delta
 	
-	# Turn around if hitting a wall or a ledge
-	if owner.is_on_wall():
+	# Turn around if hitting a wall OR if the floor check raycast detects an edge
+	if owner.is_on_wall() or (owner.floor_check and not owner.floor_check.is_colliding()):
 		owner.move_component.facing *= -1
+		
+		owner.floor_check.position.x = abs(owner.floor_check.position.x) * sign(owner.move_component.facing)
 	
 	owner.move_component.direction = owner.move_component.facing
 	
