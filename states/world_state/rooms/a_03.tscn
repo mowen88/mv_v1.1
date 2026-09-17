@@ -236,11 +236,11 @@ shape = SubResource("RectangleShape2D_vbqja")
 position = Vector2(0, 20)
 
 [node name="CameraTrigger2" parent="CameraTriggers" parent_id_path=PackedInt32Array(1757734446) index="1" unique_id=1995825030 instance=ExtResource("6_3a86v")]
-position = Vector2(0, 128)
+position = Vector2(0, 120)
 lock_x = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTriggers/CameraTrigger2" index="0" unique_id=985259487]
-position = Vector2(0, 20)
+position = Vector2(0, 28)
 shape = SubResource("RectangleShape2D_tjkfs")
 
 [node name="Marker2D" type="Marker2D" parent="CameraTriggers/CameraTrigger2" index="1" unique_id=2034799344]
@@ -263,7 +263,7 @@ position = Vector2(-120, 144)
 gizmo_extents = 0.0
 
 [node name="2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="2" unique_id=1482746692]
-position = Vector2(120, 144)
+position = Vector2(120, 128)
 gizmo_extents = 0.0
 
 [node name="3" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="3" unique_id=437969771]
@@ -277,6 +277,7 @@ target_room_path = "uid://c3exccnm646b8"
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=2058316193 instance=ExtResource("3_6damy")]
 position = Vector2(144, 120)
 exit_id = 2
+target_room_path = "uid://c2v2w4v0uqdr5"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit2" index="0" unique_id=519681351]
 shape = SubResource("RectangleShape2D_d53xk")

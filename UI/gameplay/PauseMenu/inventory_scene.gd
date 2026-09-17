@@ -31,7 +31,7 @@ const ITEM_DETAILS: Dictionary = {
 	"Ruby": "A radiant red gemstone that pulses with a faint internal warmth.",
 	"Stone": "A dense piece of carved masonry.",
 	"Tablet": "Inscribed with ancient text detailing forgotten lore.",
-	"Hankey": "A delicate piece of cloth embroidered with a faded crest.",
+	"Hanky": "A delicate piece of cloth embroidered with a faded crest.",
 	"Rope": "A strong coil of braided fiber, roughly ten meters long.",
 	"Candle": "A thick wax candle that provides a small radius of warm light."
 }

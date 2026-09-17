@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://df1c6qlpivsmw" path="res://UI/gameplay/PauseMenu/map_sprites/a_01.png" id="2_e4ueg"]
 [ext_resource type="Texture2D" uid="uid://dnxdl0nula358" path="res://UI/gameplay/PauseMenu/map_sprites/a_02.png" id="3_enss6"]
 [ext_resource type="Texture2D" uid="uid://dis7t3fwqnmnr" path="res://UI/gameplay/PauseMenu/map_sprites/a_03.png" id="4_d5ee1"]
+[ext_resource type="Texture2D" uid="uid://c06rus80fluoa" path="res://UI/gameplay/PauseMenu/map_sprites/b_01.png" id="4_iph03"]
 [ext_resource type="Texture2D" uid="uid://cih77egkf8t78" path="res://UI/gameplay/PauseMenu/map_sprites/a_04.png" id="5_dagy4"]
 [ext_resource type="Texture2D" uid="uid://tdptx7ntni4q" path="res://UI/gameplay/PauseMenu/map_sprites/player_map_icon.png" id="5_enss6"]
 [ext_resource type="Texture2D" uid="uid://crrsmqw6t1pee" path="res://UI/gameplay/PauseMenu/map_sprites/a_05.png" id="6_bihx0"]
@@ -69,6 +70,10 @@ texture = ExtResource("5_dagy4")
 [node name="a_05" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1778412975]
 position = Vector2(120, -271)
 texture = ExtResource("6_bihx0")
+
+[node name="b_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=542235152]
+position = Vector2(180, -64)
+texture = ExtResource("4_iph03")
 
 [node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1123997194]
 position = Vector2(-248, -281)
