@@ -11,9 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="6_yf6r0"]
 [ext_resource type="AudioStream" uid="uid://cmjrx76meckax" path="res://states/world_state/environment/destructibles/chest/chest_hit_sound.ogg" id="7_xdbp3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdbp3"]
-size = Vector2(8, 10)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_oldnm"]
 atlas = ExtResource("2_tctj2")
 region = Rect2(0, 0, 12, 24)
@@ -50,16 +47,11 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="Chest" type="StaticBody2D" unique_id=1938050104 groups=["persistent"]]
-collision_mask = 0
+[node name="Chest" type="Node2D" unique_id=1210115570 groups=["persistent"]]
 script = ExtResource("1_4wxkn")
 coin_burst_scene = ExtResource("2_tqhym")
 particle_name = "coin_burst"
 emit_sound = ExtResource("3_oldnm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187662859]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_xdbp3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411869412]
 position = Vector2(0, 6)

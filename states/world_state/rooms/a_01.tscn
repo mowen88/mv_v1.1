@@ -91,7 +91,7 @@ position = Vector2(4, 4)
 [node name="TileMapLayer" parent="SecretWalls/SecretWall/CanvasGroup" index="0" unique_id=1529808715]
 tile_map_data = PackedByteArray("AAAAAP7/AAAMAAgAAAAAAP//AAANAAgAAAAAAAAAAAAMAAgAAAAAAAEAAAAMAAkAAAABAAEAAAAMAAkAAAACAAEAAAAMAAkAAAADAAEAAAAMAAkAAAADAP//AAAMAAkAAAADAP7/AAAMAAkAAAADAP3/AAAMAAkAAAACAP7/AAAMAAkAAAABAP7/AAAMAAkAAAABAAAAAAAMAAkAAAACAAAAAAAMAAkAAAADAAAAAAAMAAkAAAACAP//AAAMAAkAAAABAP//AAALAAgAAAD///7/AAAJAAoAAAD/////AAAJAAsAAAD//wAAAAAJAAoAAAD//wEAAAALAAcAAAD///3/AAAJAAkAAAAAAP3/AAAMAAkAAAABAP3/AAAMAAkAAAACAP3/AAAMAAkAAAA=")
 
-[node name="PersistenceComponent" parent="SecretWalls/SecretWall" index="3" unique_id=907069416]
+[node name="PersistenceComponent" parent="SecretWalls/SecretWall" index="2" unique_id=907069416]
 persistent_id = "secret_wall_01"
 
 [node name="Message" parent="TutorialMessage" parent_id_path=PackedInt32Array(999535073) index="0" unique_id=839802269 instance=ExtResource("9_sq4su")]

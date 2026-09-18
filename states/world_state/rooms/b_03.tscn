@@ -15,7 +15,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hhens"]
 shader = ExtResource("6_se67a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xe6v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_se67a"]
 resource_local_to_scene = true
 shader = ExtResource("5_3grma")
 shader_parameter/flash_active = false
@@ -145,11 +145,8 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 2.3561945
 
-[node name="SecretWalls" parent="." index="6" unique_id=811405275]
-visible = false
-
-[node name="SecretWall" parent="SecretWalls" index="0" unique_id=1032635385 instance=ExtResource("4_pytp8")]
-material = SubResource("ShaderMaterial_0xe6v")
+[node name="SecretWall" parent="SecretWalls" parent_id_path=PackedInt32Array(811405275) index="0" unique_id=1032635385 instance=ExtResource("4_pytp8")]
+material = SubResource("ShaderMaterial_se67a")
 position = Vector2(-484, 52)
 
 [node name="CanvasGroup" parent="SecretWalls/SecretWall" index="0" unique_id=732142432]
@@ -158,7 +155,7 @@ position = Vector2(-4, -4)
 [node name="TileMapLayer" parent="SecretWalls/SecretWall/CanvasGroup" index="0" unique_id=1529808715]
 tile_map_data = PackedByteArray("AAAAAAEAAAAaAAUAAAAAAAAAAAAaAAUAAAAAAP//AAAaAAUAAAAAAP7/AAAaAAIAAAAAAAIAAAAVAAEAAAD///7/AAATAAIAAAD/////AAATAAIAAAD//wAAAAAXAAIAAAD//wEAAAAYAAIAAAD//wIAAAAYAAIAAAD+/wIAAAAYAAIAAAD9/wIAAAAUAAIAAAD8/wIAAAAZAAIAAAD7/wIAAAAXAAIAAAD6/wIAAAAXAAIAAAD5/wIAAAATAAIAAAD5/wEAAAAZAAIAAAD5/wAAAAAWAAIAAAD5////AAAZAAIAAAD5//7/AAAYAAIAAAD6//7/AAAWAAIAAAD7//7/AAATAAIAAAD8//7/AAAXAAIAAAD9//7/AAAUAAIAAAD+//7/AAAUAAIAAAD+////AAAZAAIAAAD+/wAAAAAVAAIAAAD+/wEAAAAWAAIAAAD9/wEAAAAZAAIAAAD8/wEAAAAUAAIAAAD7/wEAAAAUAAIAAAD6/wEAAAAYAAIAAAD6/wAAAAAWAAIAAAD6////AAAYAAIAAAD7////AAAYAAIAAAD8////AAAYAAIAAAD9////AAAUAAIAAAD9/wAAAAATAAIAAAD8/wAAAAAVAAIAAAD7/wAAAAAVAAIAAAA=")
 
-[node name="PersistenceComponent" parent="SecretWalls/SecretWall" index="3" unique_id=907069416]
+[node name="PersistenceComponent" parent="SecretWalls/SecretWall" index="2" unique_id=907069416]
 persistent_id = "secret_wall_02"
 
 [node name="Spikes" parent="Hazards" parent_id_path=PackedInt32Array(296270661) index="0" unique_id=147814035 instance=ExtResource("6_3grma")]

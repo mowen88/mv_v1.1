@@ -1,5 +1,5 @@
 class_name SecretWall
-extends StaticBody2D
+extends Node2D
 
 @onready var canvas_group: CanvasGroup = $CanvasGroup
 @onready var tile_map_layer: TileMapLayer = $CanvasGroup/TileMapLayer
@@ -40,9 +40,8 @@ func _on_death() -> void:
 	_fade_and_destroy()
 
 func _fade_and_destroy() -> void:
-	$CollisionShape2D.set_deferred("disabled", true)
 	var tween = create_tween()
 	# Tween canvas the tilemap belongs to get inherit the alpha fade
 	# as tilemap itself doesnt support modulate alpha channels
-	tween.tween_property(canvas_group, "modulate:a", 0.0, 0.7)
+	tween.tween_property(canvas_group, "modulate:a", 0.0, 0.4)
 	tween.tween_callback(queue_free)
