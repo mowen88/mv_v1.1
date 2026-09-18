@@ -6,7 +6,8 @@ extends StaticBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var persistence_component: PersistenceComponent = $PersistenceComponent
-@export var particle_name: String = "small_blast"
+@export var particle_name: String
+@export var final_hit_sound: AudioStream
 
 func _ready() -> void:	
 	persistence_component.persistent_state_loaded.connect(_on_persistent_state_loaded)
@@ -27,20 +28,20 @@ func _on_hit_received(hitbox:Area2D, _knockback_force:float) -> void:
 	tween.tween_property(self, "position:x", home_x, 0.08)
 
 func _on_persistent_state_loaded(_previous_position:Vector2 = global_position) -> void:
+	if health_component and health_component.current_health <= 0:
+		return
 	queue_free()
 
 func _on_death() -> void:
 	persistence_component.add_to_peristent_list()
-
 	ParticleManager.play(particle_name, global_position)
+	AudioManager.play_sfx(final_hit_sound, 1, 0.5)
 	_fade_and_destroy()
-
 
 func _fade_and_destroy() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
-	
 	var tween = create_tween()
 	# Tween canvas the tilemap belongs to get inherit the alpha fade
 	# as tilemap itself doesnt support modulate alpha channels
-	tween.tween_property(canvas_group, "modulate:a", 0.0, 0.4)
+	tween.tween_property(canvas_group, "modulate:a", 0.0, 0.7)
 	tween.tween_callback(queue_free)

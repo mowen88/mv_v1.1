@@ -84,6 +84,7 @@ script = ExtResource("2_ukh86")
 [node name="FloorCheckRayCast" type="RayCast2D" parent="." unique_id=205718277]
 position = Vector2(4, 0)
 target_position = Vector2(0, 16)
+collision_mask = 193
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_gf6qi")

@@ -170,7 +170,7 @@ shape = SubResource("RectangleShape2D_gg7br")
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="2" unique_id=1018268978 instance=ExtResource("4_hx30x")]
 position = Vector2(40, 160)
 exit_id = 3
-target_room_path = "uid://dnqh43xyrsipk"
+target_room_path = "uid://d0xlr5oc1fkqt"
 
 [node name="RoomExit4" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="3" unique_id=720845904 instance=ExtResource("4_hx30x")]
 position = Vector2(312, 88)

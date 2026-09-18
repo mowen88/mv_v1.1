@@ -32,7 +32,6 @@ bus = &"SFX"
 
 [node name="WaterfallParallax" type="Parallax2D" parent="." unique_id=1920050117]
 modulate = Color(1, 1, 1, 0.7058824)
-scroll_offset = Vector2(104, 0)
 repeat_size = Vector2(0, 96)
 autoscroll = Vector2(0, 180)
 repeat_times = 2
@@ -41,7 +40,6 @@ ignore_camera_scroll = true
 
 [node name="Waterfall" type="Sprite2D" parent="WaterfallParallax" unique_id=31455989]
 modulate = Color(1, 1, 1, 0.78431374)
-position = Vector2(-104, 0)
 texture = ExtResource("3_u3aay")
 
 [node name="WaterfallParticles" type="GPUParticles2D" parent="." unique_id=552992224]

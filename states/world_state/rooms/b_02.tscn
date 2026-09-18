@@ -333,7 +333,11 @@ position = Vector2(196, 20)
 texture = ExtResource("3_s5aot")
 
 [node name="Waterfall" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="4" unique_id=498082565 instance=ExtResource("4_6xldl")]
-position = Vector2(107, 32)
+z_index = 0
+position = Vector2(-128, 32)
+
+[node name="WaterfallParticles" parent="Decoration/Waterfall" index="2" unique_id=552992224]
+position = Vector2(0, -33)
 
 [node name="Message" parent="TutorialMessage" parent_id_path=PackedInt32Array(999535073) index="0" unique_id=839802269 instance=ExtResource("4_ufact")]
 position = Vector2(196, 4)
@@ -500,6 +504,7 @@ exit_id = 3
 position = Vector2(-525, -12)
 shape = SubResource("RectangleShape2D_30ay1")
 
+[editable path="Decoration/Waterfall"]
 [editable path="TutorialMessage/Message"]
 [editable path="Destructibles/Bush2"]
 [editable path="Destructibles/Bush2/HurtboxComponent"]

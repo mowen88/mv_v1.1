@@ -12,7 +12,7 @@ radius = 4.0
 [node name="Coin" type="RigidBody2D" unique_id=1705729155]
 collision_layer = 0
 script = ExtResource("1_cp84l")
-collect_particle = "small_blast"
+collect_particle = "small_pickup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1548798029]
 shape = SubResource("CircleShape2D_cp84l")

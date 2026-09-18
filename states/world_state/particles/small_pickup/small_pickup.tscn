@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://3amkwjo8rrxn"]
+
+[ext_resource type="Texture2D" uid="uid://bv8nuyfc3yqsp" path="res://states/world_state/particles/small_pickup/small_pickup_particle_spritesheet.png" id="1_8608q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5245c"]
+atlas = ExtResource("1_8608q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y1rc"]
+atlas = ExtResource("1_8608q")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi6wo"]
+atlas = ExtResource("1_8608q")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pytia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5245c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y1rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi6wo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="SmallPickup" type="AnimatedSprite2D" unique_id=338058190]
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_pytia")

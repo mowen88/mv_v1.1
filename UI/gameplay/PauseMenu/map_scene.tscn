@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://c06rus80fluoa" path="res://UI/gameplay/PauseMenu/map_sprites/b_01.png" id="4_iph03"]
 [ext_resource type="Texture2D" uid="uid://cih77egkf8t78" path="res://UI/gameplay/PauseMenu/map_sprites/a_04.png" id="5_dagy4"]
 [ext_resource type="Texture2D" uid="uid://tdptx7ntni4q" path="res://UI/gameplay/PauseMenu/map_sprites/player_map_icon.png" id="5_enss6"]
+[ext_resource type="Texture2D" uid="uid://clj0kekmn243s" path="res://UI/gameplay/PauseMenu/map_sprites/b_02.png" id="5_iph03"]
 [ext_resource type="Texture2D" uid="uid://crrsmqw6t1pee" path="res://UI/gameplay/PauseMenu/map_sprites/a_05.png" id="6_bihx0"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="7_3t8t5"]
+[ext_resource type="Texture2D" uid="uid://5h50inxvrcam" path="res://UI/gameplay/PauseMenu/map_sprites/b_03.png" id="9_2p404"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3t8t5"]
 
@@ -38,6 +40,7 @@ custom_minimum_size = Vector2(0, 700)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 800.0
 grow_horizontal = 2
 stretch = true
 
@@ -45,7 +48,7 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
-size = Vector2i(2340, 700)
+size = Vector2i(2340, 800)
 render_target_update_mode = 4
 
 [node name="RoomContainer" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1912801938]
@@ -56,15 +59,15 @@ position = Vector2(-15, -298)
 texture = ExtResource("2_e4ueg")
 
 [node name="a_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1837831172]
-position = Vector2(-149, -226)
+position = Vector2(-149, -217)
 texture = ExtResource("3_enss6")
 
 [node name="a_03" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1365901990]
-position = Vector2(-14, -145)
+position = Vector2(-14, -109)
 texture = ExtResource("4_d5ee1")
 
 [node name="a_04" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1729580278]
-position = Vector2(-149, -91)
+position = Vector2(-149, -37)
 texture = ExtResource("5_dagy4")
 
 [node name="a_05" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1778412975]
@@ -72,8 +75,16 @@ position = Vector2(120, -271)
 texture = ExtResource("6_bihx0")
 
 [node name="b_01" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=542235152]
-position = Vector2(180, -64)
+position = Vector2(189, -1)
 texture = ExtResource("4_iph03")
+
+[node name="b_02" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1538334695]
+position = Vector2(-81, 35)
+texture = ExtResource("5_iph03")
+
+[node name="b_03" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=925049455]
+position = Vector2(54, 143)
+texture = ExtResource("9_2p404")
 
 [node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/RoomContainer" unique_id=1123997194]
 position = Vector2(-248, -281)

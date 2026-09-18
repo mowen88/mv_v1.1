@@ -4,6 +4,8 @@ var particle_scenes = {
 	"bush_leaves": preload("res://states/world_state/particles/bush_leaves/bush_leaves_particle.tscn"),
 	"hit_effect": preload("res://states/world_state/particles/hit_effect/hit_effect.tscn"),
 	"small_blast": preload("res://states/world_state/particles/small_blast/small_blast.tscn"),
+	"small_pickup": preload("res://states/world_state/particles/small_pickup/small_pickup.tscn"),
+	"rock_smash": preload("res://states/world_state/particles/rock_smash/rock_smash.tscn"),
 }
 var pools: Dictionary = {}
 const POOL_SIZE_PER_EFFECT: int = 15
