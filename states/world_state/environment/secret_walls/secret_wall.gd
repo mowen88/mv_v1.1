@@ -35,7 +35,8 @@ func _on_persistent_state_loaded(_previous_position:Vector2 = global_position) -
 func _on_death() -> void:
 	persistence_component.add_to_peristent_list()
 	ParticleManager.play(particle_name, global_position)
-	AudioManager.play_sfx(final_hit_sound, 1, 0.5)
+	AudioManager.play_sfx(final_hit_sound, 1, 0.75)
+	SignalBus.screenshake_requested.emit(5.0, 5.0, 0.5)
 	_fade_and_destroy()
 
 func _fade_and_destroy() -> void:

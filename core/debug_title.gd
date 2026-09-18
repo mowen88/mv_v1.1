@@ -1,6 +1,6 @@
 extends Node
 
-var base_title: String = "My Awesome Game"
+var base_title: String = "Monoblade"
 
 func _process(_delta: float) -> void:
 	var fps = Engine.get_frames_per_second()
