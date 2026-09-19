@@ -93,7 +93,7 @@ func _update_game_completion_percentage(slot_id: String) -> void:
 	SAVE_DATA[slot_id]["percent_complete"] = int(clamp(percentage, 0.0, 100.0))
 
 ## Formats both total play time and map completion percentage into a clean, combined string layout
-func get_game_time_rooms_visited_as_string(slot_id: String = current_slot) -> String:
+func get_game_time_as_string(slot_id: String = current_slot) -> String:
 	if not SAVE_DATA.has(slot_id):
 		return "00h 00m 00s | 0%"
 		
@@ -104,11 +104,12 @@ func get_game_time_rooms_visited_as_string(slot_id: String = current_slot) -> St
 	
 	var time_string = "%02dh %02dm %02ds" % [hours, minutes, seconds]
 	
-	# Pull directly from the dictionary value now instead of running math again!
+	return time_string
+	
+func get_completion_percent_as_string(slot_id: String = current_slot) -> String:
 	var map_percent: int = SAVE_DATA[slot_id].get("percent_complete", 0)
-		
-	return "%s | %d%%" % [time_string, map_percent]
-		
+	return str(map_percent) + " %"
+	
 # --- SETTINGS MANAGEMENT ---
 
 func update_setting(key: String, value) -> void:

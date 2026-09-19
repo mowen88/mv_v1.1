@@ -39,8 +39,9 @@ func update_slot_labels() -> void:
 		var delete_button = rows[slot_id]["del"]
 		
 		if SaveManager.load_from_disk(slot_id):
-			var string_time = SaveManager.get_game_time_rooms_visited_as_string(slot_id)
-			slot_button.text = "%s: %s" % [slot_id, string_time]
+			var string_time = SaveManager.get_game_time_as_string(slot_id)
+			var completion_percent = SaveManager.get_completion_percent_as_string(slot_id)
+			slot_button.text = "%s: %s | %s" % [slot_id, string_time, completion_percent]
 			# Show delete only if data exists
 			delete_button.visible = true
 		else:

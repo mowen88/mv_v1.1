@@ -167,6 +167,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		#health_component.damage(1)
 		print(energy_component.current_energy, ", ", energy_component.max_energy)
 		
+		SaveManager.add_ability("Beam Blade")
 		SaveManager.add_ability("Glide")
 		SaveManager.add_ability("Jump Attack")
 		SaveManager.add_ability("Ground Slam")

@@ -6,13 +6,17 @@ const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 @onready var items_container: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var detail_description_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
-#@onready var energy_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/EnergyLabel
+
+@onready var game_time_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/GameTimeLabel
 @onready var percent_complete_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/PercentCompleteLabel
 @onready var currency_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/CurrencyLabel
 
+# Track the currently selected button across the whole menu
+var selected_button: BaseButton = null
 
 # Map your ability keys directly to the TextureButton nodes in the scene tree
 @onready var ability_buttons: Dictionary = {
+	"Beam Blade": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/BeamBladeSlot/TextureButton"),
 	"Glide": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GlideSlot/TextureButton"),
 	"Jump Attack": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/JumpAttackSlot/TextureButton"),
 	"Water Walk": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/WaterWalkSlot/TextureButton"),
@@ -35,40 +39,33 @@ const ITEM_DETAILS: Dictionary = {
 	"Rope": "A strong coil of braided fiber, roughly ten meters long.",
 	"Candle": "A thick wax candle that provides a small radius of warm light."
 }
-
+	
 func _ready() -> void:
-	# Connect the press signal for each button on startup so clicking them updates your details pane
+	# Connect the press signal for each ability button, passing both name and button reference
 	for ability_name in ability_buttons.keys():
 		var btn = ability_buttons[ability_name]
 		if btn is BaseButton:
-			btn.pressed.connect(_on_ability_button_pressed.bind(ability_name))
+			btn.pressed.connect(_on_ability_button_pressed.bind(ability_name, btn))
 
 # Single func to run in the main inventory overlay when opening
 func update_current_details()-> void:
 	populate_abilities()
 	populate_items()
 
-func get_status_stats(player: Node2D)-> void:
-	pass
-	#
-	#if not SaveManager.SAVE_DATA.has(SaveManager.current_slot):
-		#return
-		#
-	#var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
-	#
-	#if health_label and player and player.health_component:
-		#var max_health = player.health_component.max_health
-		#health_label.text = "Health - %d/%d" % [max_health, player.game_max_health]
-		#
-	#if energy_label and player and player.energy_component:
-		#var max_energy = player.energy_component.max_energy
-		#energy_label.text = "Energy - %d/%d" % [max_energy, player.game_max_energy]
-	#
-	#if currency_label:
-		#var banked_coins = slot_data.get("coins", 0)
-		#var unbanked_coins = player.current_coins if player else 0
-		#var total_coins = banked_coins + unbanked_coins
-		#currency_label.text = "Currency - %d" % total_coins
+func get_status_stats(player: Node2D) -> void:
+	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
+	var slot_id = SaveManager.current_slot
+	
+	var string_time = SaveManager.get_game_time_as_string(slot_id)
+	game_time_label.text = "Time : " + string_time
+	
+	var percent_complete = SaveManager.get_completion_percent_as_string(slot_id)
+	percent_complete_label.text = "Completion : " + percent_complete
+	
+	var banked_coins = slot_data.get("coins", 0)
+	var unbanked_coins = player.current_coins if player else 0
+	var total_coins = banked_coins + unbanked_coins
+	currency_label.text = "Currency : %d " % total_coins
 
 func populate_abilities() -> void:
 	# Hide texture buttons by default when open inventory
@@ -109,21 +106,21 @@ func populate_items() -> void:
 		var row_instance = ITEM_ROW_SCENE.instantiate() as HBoxContainer
 		row_instance.mouse_filter = Control.MOUSE_FILTER_PASS
 		
-		# Look up the name node as a BaseButton (since you changed it from a Label to a Button)
 		var name_button = row_instance.get_node_or_null("ItemNameButton") as Button
 		var count_label = row_instance.get_node_or_null("ItemCountLabel") as Label
 		
 		if name_button:
 			name_button.text = item_name
-			# Connect the button press signal to your handler, passing the item name
-			name_button.pressed.connect(_on_item_button_pressed.bind(item_name))
+			# Connect the button press signal, passing item name and button reference
+			name_button.pressed.connect(_on_item_button_pressed.bind(item_name, name_button))
 			
 		if count_label:
 			count_label.text = "x %d " % quantity
 			
 		items_container.add_child(row_instance)
 
-func _on_item_button_pressed(item_name: String) -> void:
+func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
+	_set_button_selected(btn)
 	print("Clicked item button: ", item_name)
 	
 	if detail_title_label:
@@ -135,7 +132,8 @@ func _on_item_button_pressed(item_name: String) -> void:
 		else:
 			detail_description_label.text = "A mysterious item collected during your journey."
 			
-func _on_ability_button_pressed(ability_name: String) -> void:
+func _on_ability_button_pressed(ability_name: String, btn: BaseButton) -> void:
+	_set_button_selected(btn)
 	print("Clicked ability button: ", ability_name)
 	
 	if detail_title_label:
@@ -146,3 +144,13 @@ func _on_ability_button_pressed(ability_name: String) -> void:
 			detail_description_label.text = ABILITY_DETAILS[ability_name]
 		else:
 			detail_description_label.text = "A powerful unlocked ability."
+
+# Universal handler to turn the clicked button yellow and reset all other menu buttons
+func _set_button_selected(clicked_button: BaseButton) -> void:
+	var all_buttons = find_children("*", "BaseButton", true, false)
+	for button in all_buttons:
+		if button == clicked_button:
+			button.modulate = Color8(255, 189, 111)
+		else:
+			button.modulate = Color.WHITE
+	selected_button = clicked_button
