@@ -11,6 +11,9 @@ extends Control
 @export var ICON_IN_PROGRESS: Texture
 @export var ICON_COMPLETED: Texture
 
+# Track the currently selected button across the quest menu
+var selected_button: BaseButton = null
+
 # Dictionary containing titles and descriptions for your quests
 const QUEST_DETAILS: Dictionary = {
 	"find_the_key": {
@@ -23,7 +26,7 @@ const QUEST_DETAILS: Dictionary = {
 		"description": "Slay the ruler of the sludge depths to clear the path forward.",
 		"reward": "Gain access to the tomb!"
 	},
-		"find_the_boss": {
+	"find_the_boss": {
 		"title": "The Lost Key",
 		"description": "Find the rusty key hidden deep in the lower caverns to unlock the heavy gate.",
 		"reward": "Gain access to the tomb!"
@@ -33,7 +36,7 @@ const QUEST_DETAILS: Dictionary = {
 		"description": "Slay the ruler of the sludge depths to clear the path forward.",
 		"reward": "Gain access to the tomb!"
 	},
-		"death_quest": {
+	"death_quest": {
 		"title": "Defeat The Slime King",
 		"description": "Slay the ruler of the sludge depths to clear the path forward.",
 		"reward": "Gain access to the tomb!"
@@ -46,7 +49,7 @@ func _ready() -> void:
 func update_current_details() -> void:
 	# Update quest list first
 	populate_quest_ui()
-	# Check latest quest details to show correctly when opening - called in invetory overlay script
+	# Check latest quest details to show correctly when opening - called in inventory overlay script
 	for quest_id in QUEST_DETAILS.keys():
 		var details = QUEST_DETAILS[quest_id]
 		if details["title"] == title_label.text:
@@ -55,7 +58,6 @@ func update_current_details() -> void:
 			return
 
 func populate_quest_ui() -> void:
-	
 	# Clear out any existing rows
 	for child in quest_list_vbox.get_children():
 		child.queue_free()
@@ -65,10 +67,6 @@ func populate_quest_ui() -> void:
 		var state = QuestManager.get_quest_state(quest_id)
 		var details = QUEST_DETAILS.get(quest_id, {"title": quest_id, "description": "No description available."})
 		
-		# Only populate if quest is active
-		#if state.to_lower() == "inactive":
-			#continue
-			
 		# Create a button dynamically for the row
 		var row_button = Button.new()
 		row_button.text = details["title"]
@@ -90,15 +88,25 @@ func populate_quest_ui() -> void:
 		row_button.add_theme_stylebox_override("pressed", empty_style)
 		row_button.add_theme_stylebox_override("focus", empty_style)
 		
-		# Connect the press event to update the right panel
+		# Connect the press event to handle selection styling and details view
 		row_button.pressed.connect(func(): 
+			_set_button_selected(row_button)
 			display_quest_details(details["title"], state, details["description"], details["reward"])
 		)
 		
 		quest_list_vbox.add_child(row_button)
 
-func display_quest_details(q_title:String, q_state:String, q_desc:String, q_reward:String) -> void:
-		
+# Universal handler using self_modulate so the left-side icon keeps its original colors
+func _set_button_selected(clicked_button: BaseButton) -> void:
+	var all_buttons = find_children("*", "BaseButton", true, false)
+	for button in all_buttons:
+		if button == clicked_button:
+			button.self_modulate = Color8(255, 189, 111)
+		else:
+			button.self_modulate = Color.WHITE
+	selected_button = clicked_button
+
+func display_quest_details(q_title: String, q_state: String, q_desc: String, q_reward: String) -> void:
 	title_label.text = q_title
 	status_label.text = q_state
 	desc_label.text = q_desc

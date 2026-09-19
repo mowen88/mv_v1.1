@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d307wumir138w" path="res://states/world_state/environment/collectibles/key/key.gd" id="1_l23yl"]
 [ext_resource type="Texture2D" uid="uid://bfk6ahv81j8t1" path="res://states/world_state/environment/collectibles/key/key.png" id="2_fd1xw"]
+[ext_resource type="AudioStream" uid="uid://buvys46xpjrgr" path="res://states/world_state/environment/collectibles/collectible_audio/collect_item.ogg" id="2_q5w2f"]
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="3_fd1xw"]
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="4_3t6dl"]
 
@@ -116,6 +117,7 @@ size = Vector2(16, 16)
 z_index = 2
 script = ExtResource("1_l23yl")
 collect_particle = "small_pickup"
+collect_sound = ExtResource("2_q5w2f")
 
 [node name="GlowSprite" type="Sprite2D" parent="." unique_id=449018099]
 texture = SubResource("GradientTexture2D_l23yl")

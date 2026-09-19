@@ -4,15 +4,27 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5245c"]
 atlas = ExtResource("1_8608q")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0y1rc"]
 atlas = ExtResource("1_8608q")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gi6wo"]
 atlas = ExtResource("1_8608q")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh1gk"]
+atlas = ExtResource("1_8608q")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0svbw"]
+atlas = ExtResource("1_8608q")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcc5n"]
+atlas = ExtResource("1_8608q")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pytia"]
 animations = [{
@@ -25,6 +37,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gi6wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh1gk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0svbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcc5n")
 }],
 "loop": false,
 "name": &"default",
@@ -34,3 +55,4 @@ animations = [{
 [node name="SmallPickup" type="AnimatedSprite2D" unique_id=338058190]
 z_index = 4
 sprite_frames = SubResource("SpriteFrames_pytia")
+autoplay = "default"

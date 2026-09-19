@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var collect_particle: String
+@export var collect_sound: AudioStream
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_component = $InteractionComponent
@@ -31,6 +32,7 @@ func _on_interacted(_player:CharacterBody2D) -> void:
 	persistence_component.add_to_peristent_list()
 	SaveManager.add_item("Key")
 	ParticleManager.play(collect_particle, global_position)
+	AudioManager.play_sfx(collect_sound)
 	queue_free()
 	SignalBus.tutorial_message_requested.emit("Key collected")
 

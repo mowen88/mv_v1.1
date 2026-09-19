@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3f7vvxvx0mio" path="res://UI/gameplay/PauseMenu/inventory_overlay.gd" id="1_p7u3h"]
 [ext_resource type="Texture2D" uid="uid://dnta3fpggaj57" path="res://UI/gameplay/elements/close_button.png" id="2_knvk0"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_s3d7j"]
+[ext_resource type="AudioStream" uid="uid://c8leb8m6kj3i0" path="res://UI/menu/audio/slide_tab.ogg" id="2_yra32"]
 [ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="3_knvk0"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_twydy"]
 [ext_resource type="PackedScene" uid="uid://cpiaae6ul6low" path="res://UI/gameplay/PauseMenu/map_scene.tscn" id="4_gnud7"]
@@ -12,6 +13,7 @@
 
 [node name="InventoryOverlay" type="CanvasLayer" unique_id=267181138]
 script = ExtResource("1_p7u3h")
+tab_switch_sound = ExtResource("2_yra32")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1878299833]
 anchors_preset = 15

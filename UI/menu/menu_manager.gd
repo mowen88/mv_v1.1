@@ -187,6 +187,8 @@ func _quit_to_tile() -> void:
 	SaveManager.close_session()
 	StateManager.change_state(StateManager.GameState.TITLE, 0.5, 2.0, "fade", "fade")
 	AudioManager.stop_music(2.0)
+	AudioManager.play_sfx(go_to_game_sound)
+	
 
 func _on_slot_deleted(slot_id: String) -> void:
 	# Permanently wipe data from RAM and drop the JSON file from disk

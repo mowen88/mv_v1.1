@@ -42,6 +42,8 @@ const ITEM_DETAILS: Dictionary = {
 }
 	
 func _ready() -> void:
+	# Hide detail sprite animation initially until selected
+	detail_sprite.visible = false
 	# Connect the press signal for each ability button, passing both name and button reference
 	for ability_name in ability_buttons.keys():
 		var btn = ability_buttons[ability_name]
@@ -122,6 +124,8 @@ func populate_items() -> void:
 
 func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
 	_set_button_selected(btn)
+
+	
 	print("Clicked item button: ", item_name)
 	
 	if detail_title_label:

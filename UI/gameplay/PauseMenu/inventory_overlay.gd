@@ -81,7 +81,7 @@ func _snap_underline_deferred(tab_index: int) -> void:
 func switch_tab(new_index: int) -> void:
 	if new_index == last_tab_index:
 		return
-		
+
 	var old_tab = tabs[last_tab_index]
 	var new_tab = tabs[new_index]
 	
