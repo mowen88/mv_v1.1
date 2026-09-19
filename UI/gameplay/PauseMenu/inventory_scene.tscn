@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cbp708rs01r6o" path="res://UI/gameplay/elements/ground_slam_icon.png" id="5_r6dmg"]
 [ext_resource type="Texture2D" uid="uid://c3f2xitl6vlxf" path="res://UI/gameplay/elements/water_walk_icon_pressed.png" id="7_weopi"]
 [ext_resource type="Texture2D" uid="uid://miqhex714hkx" path="res://UI/gameplay/elements/ground_slam_icon_pressed.png" id="9_y37hj"]
+[ext_resource type="Texture2D" uid="uid://bfk6ahv81j8t1" path="res://states/world_state/environment/collectibles/key/key.png" id="16_y37hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6775"]
 bg_color = Color(1, 1, 1, 0)
@@ -120,6 +121,54 @@ region = Rect2(816, 0, 48, 24)
 atlas = ExtResource("4_hqtli")
 region = Rect2(864, 0, 48, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntand"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efb5d"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3rkc"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aso6s"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(30, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2mf8"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(40, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i6s4"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(50, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ya0i"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(60, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abvqy"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(70, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctyi7"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(80, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs77v"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(90, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bubh8"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(100, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ionkl"]
+atlas = ExtResource("16_y37hj")
+region = Rect2(110, 0, 10, 10)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntand"]
 animations = [{
 "frames": [{
@@ -181,8 +230,49 @@ animations = [{
 "texture": SubResource("AtlasTexture_lfe85")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Beam Blade",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntand")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efb5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3rkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aso6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2mf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i6s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ya0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abvqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctyi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs77v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bubh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ionkl")
+}],
+"loop": true,
+"name": &"Key",
+"speed": 9.0
 }]
 
 [node name="InventoryScene" type="Control" unique_id=351141996]
@@ -408,9 +498,10 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_pgd37")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor" unique_id=745248989]
+visible = false
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_ntand")
-autoplay = "default"
+animation = &"Key"
 
 [node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1078275876]
 custom_minimum_size = Vector2(500, 0)

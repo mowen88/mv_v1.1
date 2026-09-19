@@ -6,6 +6,7 @@ const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 @onready var items_container: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
 @onready var detail_description_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
+@onready var detail_sprite: AnimatedSprite2D = $HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor/AnimatedSprite2D
 
 @onready var game_time_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/GameTimeLabel
 @onready var percent_complete_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/PercentCompleteLabel
@@ -131,7 +132,16 @@ func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
 			detail_description_label.text = ITEM_DETAILS[item_name]
 		else:
 			detail_description_label.text = "A mysterious item collected during your journey."
-			
+	
+	if detail_sprite:
+		if detail_sprite.sprite_frames.has_animation(item_name):
+			detail_sprite.visible = true
+			detail_sprite.play(item_name)
+		else:
+			detail_sprite.visible = false
+			detail_sprite.stop()
+
+		
 func _on_ability_button_pressed(ability_name: String, btn: BaseButton) -> void:
 	_set_button_selected(btn)
 	print("Clicked ability button: ", ability_name)
@@ -144,6 +154,14 @@ func _on_ability_button_pressed(ability_name: String, btn: BaseButton) -> void:
 			detail_description_label.text = ABILITY_DETAILS[ability_name]
 		else:
 			detail_description_label.text = "A powerful unlocked ability."
+	
+	if detail_sprite:
+		if detail_sprite.sprite_frames.has_animation(ability_name):
+			detail_sprite.visible = true
+			detail_sprite.play(ability_name)
+		else:
+			detail_sprite.visible = false
+			detail_sprite.stop()
 
 # Universal handler to turn the clicked button yellow and reset all other menu buttons
 func _set_button_selected(clicked_button: BaseButton) -> void:
