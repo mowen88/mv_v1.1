@@ -2,15 +2,15 @@
 extends Node
 
 const ABILITY_DETAILS: Dictionary = {
-	"Beam Blade": "A focused beam of energy that slices through obstacles.",
-	"Glide": "Allows you to glide smoothly through the air over long gaps.",
-	"Jump Attack": "Perform a powerful downward strike while airborne.",
-	"Water Walk": "Enables movement safely across the surface of deep water.",
-	"Ground Slam": "Crash heavily into the ground to break cracked floors and stun nearby foes."
+	"Beam Blade": "A focused beam of energy that slices through obstacles. Hold A button to use.",
+	"Glide": "Allows you to glide smoothly through the air over long gaps. Hold B button while falling to use.",
+	"Jump Attack": "Perform a powerful downward strike while airborne. Swipe up while on the ground to use.",
+	"Water Walk": "Enables movement safely across the surface of water",
+	"Ground Slam": "Dive into the ground to break weak floors and damage nearby enemies. Swipe down while in the air to use."
 }
 
 const ITEM_DETAILS: Dictionary = {
-	"Key cube": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
+	"Key cube": "A cube-shaped key used to open gates that require varying quantities to unlock.",
 	"Ruby": "A radiant red gemstone that pulses with a faint internal warmth.",
 	"Stone": "A dense piece of carved masonry.",
 	"Tablet": "Inscribed with ancient text detailing forgotten lore.",

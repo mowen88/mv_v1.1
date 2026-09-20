@@ -27,7 +27,12 @@ func physics_update(_delta: float) -> void:
 	owner.move_and_slide()
 	
 	if owner.sword.cooldown_timer.is_stopped():
-		if go_to_special and owner.energy_component.current_energy == owner.energy_component.max_energy:
+		var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
+		var abilities = slot_data.get("abilities", {})
+
+		if go_to_special and\
+		owner.energy_component.current_energy == owner.energy_component.max_energy and\
+		abilities.has("Beam Blade"):
 			fsm.change_state("BeamBuildUp")
 			return
 			

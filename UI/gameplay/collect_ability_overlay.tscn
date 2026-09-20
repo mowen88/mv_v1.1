@@ -304,7 +304,7 @@ grow_vertical = 2
 z_index = 1
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_smuag")
-animation = &"Beam Blade"
+animation = &"Glide"
 
 [node name="GlowSprite" type="Sprite2D" parent="VBoxContainer/AnimationContainer/SpriteAnchor/AnimatedSprite2D" unique_id=1957843176]
 z_index = -1

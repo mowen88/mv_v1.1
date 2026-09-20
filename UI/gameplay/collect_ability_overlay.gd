@@ -37,6 +37,7 @@ func _input(event: InputEvent) -> void:
 		unpause_requested.emit()
 
 func _on_toggle_collect_ability_ui(val: bool, ability_name: String) -> void:
+	
 	if val:
 		visible = true
 		color_rect.modulate.a = 0.0
@@ -91,9 +92,6 @@ func _on_toggle_collect_ability_ui(val: bool, ability_name: String) -> void:
 		waiting_for_input = true
 	else:
 		waiting_for_input = false
-		if detail_sprite:
-			detail_sprite.stop()
-		detail_sprite.visible = false
 		
 		# Reset underline to center points instantly on exit
 		underline.points = PackedVector2Array([

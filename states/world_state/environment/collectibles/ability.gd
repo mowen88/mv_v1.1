@@ -36,6 +36,7 @@ func _on_interacted(_player:CharacterBody2D) -> void:
 	SaveManager.add_ability(ability_name)
 	AudioManager.play_sfx(collect_sound)
 	SignalBus.toggle_collect_ability_ui.emit(true, ability_name)
+	print(SaveManager.SAVE_DATA)
 	queue_free()
 
 func _on_persistent_state_loaded(_pos: Vector2) -> void:
