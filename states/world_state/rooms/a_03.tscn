@@ -326,7 +326,10 @@ target_room_path = "uid://dnqh43xyrsipk"
 shape = SubResource("RectangleShape2D_vmvar")
 
 [node name="KeyDoor" parent="Doors" parent_id_path=PackedInt32Array(1649377259) index="0" unique_id=1179221491 instance=ExtResource("18_4mp4e")]
-position = Vector2(104, 112)
+position = Vector2(112, 112)
+
+[node name="LockSprite" parent="Doors/KeyDoor/DoorSprite" parent_id_path=PackedInt32Array(1179221491, 1851695329) index="0" unique_id=1021556636]
+position = Vector2(-48, 45)
 
 [editable path="TutorialMessage/Message"]
 [editable path="Destructibles/Bush"]

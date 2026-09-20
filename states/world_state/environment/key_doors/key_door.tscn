@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bs0dcuxodrt3u" path="res://states/world_state/environment/key_doors/key_door.gd" id="1_5k06a"]
 [ext_resource type="Texture2D" uid="uid://d17bfx2v5b41c" path="res://states/world_state/environment/key_doors/key_door_spritesheet.png" id="1_rew37"]
+[ext_resource type="AudioStream" uid="uid://dl18hvdt7vv2m" path="res://states/world_state/environment/key_doors/lock_open_sound.wav" id="2_3acnc"]
 [ext_resource type="Texture2D" uid="uid://ba5hv4nx5euxu" path="res://states/world_state/environment/key_doors/key_door_lock_spritesheet.png" id="2_5k06a"]
+[ext_resource type="AudioStream" uid="uid://kt1s4oc61ixj" path="res://states/world_state/environment/key_doors/error_sound.wav" id="2_sylv5"]
+[ext_resource type="AudioStream" uid="uid://dfxjjjpqhrm80" path="res://states/world_state/environment/key_doors/door_open_sound.ogg" id="3_sylv5"]
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="4_rvsqo"]
+[ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="7_mqnyj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvsqo"]
 size = Vector2(16, 48)
@@ -395,12 +399,15 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k06a"]
-size = Vector2(40, 34)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fan0w"]
+size = Vector2(40, 36)
 
 [node name="KeyDoor" type="StaticBody2D" unique_id=1179221491]
 collision_mask = 0
 script = ExtResource("1_5k06a")
+rejected_sound = ExtResource("2_sylv5")
+lock_open_sound = ExtResource("2_3acnc")
+door_open_sound = ExtResource("3_sylv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1822798382]
 shape = SubResource("RectangleShape2D_rvsqo")
@@ -409,20 +416,15 @@ shape = SubResource("RectangleShape2D_rvsqo")
 sprite_frames = SubResource("SpriteFrames_k1ak8")
 
 [node name="LockSprite" type="AnimatedSprite2D" parent="DoorSprite" unique_id=1021556636]
-position = Vector2(-11, 6)
+position = Vector2(-4, 6)
 sprite_frames = SubResource("SpriteFrames_y7cd8")
 
-[node name="LockSprite2" type="AnimatedSprite2D" parent="DoorSprite" unique_id=173781001]
-position = Vector2(2, 6)
-sprite_frames = SubResource("SpriteFrames_y7cd8")
+[node name="InteractionComponent" parent="DoorSprite/LockSprite" unique_id=108345276 instance=ExtResource("7_mqnyj")]
+prompt_text = "Interact"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=6184169]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1575734837]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_5k06a")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorSprite/LockSprite/InteractionComponent" unique_id=1832557678]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_fan0w")
 
 [node name="PersistenceComponent" parent="." unique_id=907069416 instance=ExtResource("4_rvsqo")]
 persistent_id = "key_door_1"
