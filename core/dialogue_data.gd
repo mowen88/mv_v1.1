@@ -1,5 +1,25 @@
 
 extends Node
+
+const ABILITY_DETAILS: Dictionary = {
+	"Beam Blade": "A focused beam of energy that slices through obstacles.",
+	"Glide": "Allows you to glide smoothly through the air over long gaps.",
+	"Jump Attack": "Perform a powerful downward strike while airborne.",
+	"Water Walk": "Enables movement safely across the surface of deep water.",
+	"Ground Slam": "Crash heavily into the ground to break cracked floors and stun nearby foes."
+}
+
+const ITEM_DETAILS: Dictionary = {
+	"Key cube": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
+	"Ruby": "A radiant red gemstone that pulses with a faint internal warmth.",
+	"Stone": "A dense piece of carved masonry.",
+	"Tablet": "Inscribed with ancient text detailing forgotten lore.",
+	"Hanky": "A delicate piece of cloth embroidered with a faded crest.",
+	"Rope": "A strong coil of braided fiber, roughly ten meters long.",
+	"Candle": "A thick wax candle that provides a small radius of warm light."
+}
+
+
 const DATABASE = {
 	"test_quest": [
 		"Halt, traveler! The bridge is closed.",

@@ -16,6 +16,7 @@ signal tutorial_message_requested(message:String)
 signal show_interaction_prompt(prompt_text:String, target_node:Node2D)
 signal hide_interaction_prompt()
 signal toggle_gameplay_ui(is_visible: bool)
+signal toggle_collect_ability_ui(is_visible: bool, ability_name: String)
 signal toggle_touch_controller(is_visible: bool)
 
 signal play_cutscene(cutscene_name: String)

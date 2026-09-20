@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bdusirqn4e83o" path="res://UI/gameplay/PauseMenu/scroll_container.gd" id="2_hqtli"]
 [ext_resource type="Texture2D" uid="uid://ccyqif24dv4dq" path="res://UI/gameplay/elements/glide_icon.png" id="2_l2ehc"]
 [ext_resource type="Texture2D" uid="uid://dnj65l65gukki" path="res://UI/gameplay/elements/beam_blade_icon.png" id="2_weopi"]
-[ext_resource type="AudioStream" uid="uid://citx3e07qf0e3" path="res://UI/menu/audio/short_button_sound.wav" id="2_wm7dr"]
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_jgp2v"]
 [ext_resource type="Texture2D" uid="uid://cw154u145of7e" path="res://UI/gameplay/elements/jump_attack_icon.png" id="3_pgd37"]
 [ext_resource type="Texture2D" uid="uid://cy165em51tp3y" path="res://UI/gameplay/elements/glide_icon_pressed.png" id="3_r1yb7"]
@@ -16,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cbp708rs01r6o" path="res://UI/gameplay/elements/ground_slam_icon.png" id="5_r6dmg"]
 [ext_resource type="Texture2D" uid="uid://c3f2xitl6vlxf" path="res://UI/gameplay/elements/water_walk_icon_pressed.png" id="7_weopi"]
 [ext_resource type="Texture2D" uid="uid://miqhex714hkx" path="res://UI/gameplay/elements/ground_slam_icon_pressed.png" id="9_y37hj"]
-[ext_resource type="Texture2D" uid="uid://bfk6ahv81j8t1" path="res://states/world_state/environment/collectibles/key/key.png" id="16_y37hj"]
+[ext_resource type="Texture2D" uid="uid://bfk6ahv81j8t1" path="res://states/world_state/environment/collectibles/collectible_spritesheets/key.png" id="16_y37hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6775"]
 bg_color = Color(1, 1, 1, 0)
@@ -33,18 +32,6 @@ expand_margin_bottom = 28.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl8jd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g7hf"]
-
-[sub_resource type="Gradient" id="Gradient_r1yb7"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.11935484, 0.68064517)
-colors = PackedColorArray(0.5803922, 0.30588236, 0.5372549, 1, 0.5803922, 0.30588236, 0.5372549, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pgd37"]
-gradient = SubResource("Gradient_r1yb7")
-width = 600
-height = 400
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgp2v"]
 atlas = ExtResource("4_hqtli")
@@ -272,9 +259,62 @@ animations = [{
 "texture": SubResource("AtlasTexture_ionkl")
 }],
 "loop": true,
-"name": &"Key",
+"name": &"Glide",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntand")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efb5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3rkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aso6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2mf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i6s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ya0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abvqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctyi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs77v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bubh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ionkl")
+}],
+"loop": true,
+"name": &"Keycube",
 "speed": 9.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_y37hj"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.11935484, 0.68064517)
+colors = PackedColorArray(0.5803922, 0.30588236, 0.5372549, 1, 0.5803922, 0.30588236, 0.5372549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pgd37"]
+gradient = SubResource("Gradient_y37hj")
+width = 600
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="InventoryScene" type="Control" unique_id=351141996]
 custom_minimum_size = Vector2(1920, 0)
@@ -286,7 +326,6 @@ offset_left = -960.0
 offset_right = 960.0
 grow_horizontal = 2
 script = ExtResource("1_jgp2v")
-button_sound = ExtResource("2_wm7dr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=392264961]
 layout_mode = 1
@@ -496,13 +535,16 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GlowSprite" type="Sprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor" unique_id=72351055]
-texture = SubResource("GradientTexture2D_pgd37")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor" unique_id=745248989]
+z_index = 1
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_ntand")
-animation = &"Key"
+animation = &"Glide"
+
+[node name="GlowSprite" type="Sprite2D" parent="HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor/AnimatedSprite2D" unique_id=72351055]
+z_index = -1
+scale = Vector2(0.11111111, 0.11111111)
+texture = SubResource("GradientTexture2D_pgd37")
 
 [node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1078275876]
 custom_minimum_size = Vector2(500, 0)

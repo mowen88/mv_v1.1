@@ -171,7 +171,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		SaveManager.add_ability("Glide")
 		SaveManager.add_ability("Jump Attack")
 		SaveManager.add_ability("Ground Slam")
-		SaveManager.add_item("Key")
+		SaveManager.add_item("Key cube")
 		#SaveManager.add_item("Ruby")
 		#SaveManager.add_item("Stone")
 		#SaveManager.add_item("Tablet")

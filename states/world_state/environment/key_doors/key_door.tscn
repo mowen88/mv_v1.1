@@ -400,7 +400,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fan0w"]
-size = Vector2(40, 36)
+size = Vector2(40, 40)
 
 [node name="KeyDoor" type="StaticBody2D" unique_id=1179221491]
 collision_mask = 0
@@ -420,10 +420,11 @@ position = Vector2(-4, 6)
 sprite_frames = SubResource("SpriteFrames_y7cd8")
 
 [node name="InteractionComponent" parent="DoorSprite/LockSprite" unique_id=108345276 instance=ExtResource("7_mqnyj")]
+position = Vector2(0, -8)
 prompt_text = "Interact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorSprite/LockSprite/InteractionComponent" unique_id=1832557678]
-position = Vector2(-4, 0)
+position = Vector2(-4, 6)
 shape = SubResource("RectangleShape2D_fan0w")
 
 [node name="PersistenceComponent" parent="." unique_id=907069416 instance=ExtResource("4_rvsqo")]

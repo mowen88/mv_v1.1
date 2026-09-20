@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cnru7g4rqfgo3" path="res://states/world_state/entities/characters/player/player.tscn" id="3_y6a8n"]
 [ext_resource type="Script" uid="uid://b7u862h5fmk67" path="res://states/world_state/camera/game_camera.gd" id="5_i7qgc"]
 [ext_resource type="Script" uid="uid://c2a1o2bydmifw" path="res://states/world_state/death_haze_canvas.gd" id="9_0jlim"]
+[ext_resource type="PackedScene" uid="uid://q5t07hhfj1o7" path="res://UI/gameplay/collect_ability_overlay.tscn" id="9_qsabb"]
 [ext_resource type="Shader" uid="uid://dpfthqu41ajhh" path="res://states/world_state/shaders/vignette_shader.gdshader" id="10_vaxcq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsabb"]
@@ -56,6 +57,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="InventoryOverlay" parent="." unique_id=267181138 instance=ExtResource("2_0jlim")]
 visible = false
+
+[node name="CollectAbilityOverlay" parent="." unique_id=1134863666 instance=ExtResource("9_qsabb")]
 
 [node name="CurrentRoom" type="Node2D" parent="." unique_id=1191198212]
 process_mode = 1

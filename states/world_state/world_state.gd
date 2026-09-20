@@ -7,12 +7,15 @@ extends Node2D
 @onready var cutscene_canvas: CanvasLayer = $CutsceneOverlay
 @onready var gameplay_ui: CanvasLayer = $GameplayUI
 @onready var inventory_overlay: CanvasLayer = $InventoryOverlay
+@onready var collect_ability_ui: CanvasLayer = $CollectAbilityOverlay
 
 var current_room_node: Node2D = null
 var current_zone_name: String = ""
 var in_cutscene: bool = false
 
 func _ready():
+	
+	SignalBus.toggle_collect_ability_ui.connect(func(val, _name): _toggle_collect_ability_pause())
 	SignalBus.toggle_gameplay_ui.connect(func(val): gameplay_ui.visible = val)
 	SignalBus.toggle_touch_controller.connect(func(val): touch_controller.visible = val)
 	
@@ -21,7 +24,8 @@ func _ready():
 	SignalBus.hit_stop_requested.connect(_on_hit_stop)
 	# Connect pause/inventory overlay switch signal
 	inventory_overlay.unpause_requested.connect(_toggle_game_pause)
-
+	collect_ability_ui.unpause_requested.connect(_toggle_collect_ability_pause)
+	
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
 
@@ -45,15 +49,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"): # Press Escape/Back to clear
 		SignalBus.camera_override_cleared.emit()
 
-func _toggle_game_pause() -> void:
+func _toggle_collect_ability_pause() -> void:
 	get_tree().paused = not get_tree().paused
 	touch_controller.visible = not get_tree().paused
 	gameplay_ui.visible = not get_tree().paused
-	inventory_overlay.visible = get_tree().paused
-	
-	if get_tree().paused:
-		inventory_overlay.open_inventory()
-		#menu_manager._initialize_menu("PauseMenu")
+	collect_ability_ui.visible = get_tree().paused
+		
+func _toggle_game_pause() -> void:
+	# nly allow pause if collect overlay is not visible
+	if not collect_ability_ui.visible:
+		get_tree().paused = not get_tree().paused
+		touch_controller.visible = not get_tree().paused
+		gameplay_ui.visible = not get_tree().paused
+		inventory_overlay.visible = get_tree().paused
+		
+		if get_tree().paused:
+			inventory_overlay.open_inventory()
+			#menu_manager._initialize_menu("PauseMenu")
 
 func _on_hit_stop(duration: float) -> void:
 	Engine.time_scale = 0.0 # Freeze everything

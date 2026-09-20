@@ -8,16 +8,10 @@
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="4_5xdnt"]
 [ext_resource type="PackedScene" uid="uid://ipqjqw5hxc52" path="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1.tscn" id="4_8mwab"]
 [ext_resource type="PackedScene" uid="uid://cfvigo6oh546p" path="res://states/world_state/exits/door.tscn" id="6_5xdnt"]
-[ext_resource type="PackedScene" uid="uid://hkrq82m1isjg" path="res://states/world_state/environment/collectibles/key/key.tscn" id="9_yc66y"]
+[ext_resource type="PackedScene" uid="uid://hkrq82m1isjg" path="res://states/world_state/environment/collectibles/item.tscn" id="9_yc66y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yc66y"]
 size = Vector2(16, 32)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc66y"]
-resource_local_to_scene = true
-shader = ExtResource("4_5xdnt")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vetbk"]
 resource_local_to_scene = true
@@ -32,6 +26,12 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7k8u"]
+resource_local_to_scene = true
+shader = ExtResource("4_5xdnt")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1gj4"]
 resource_local_to_scene = true
 shader = ExtResource("4_5xdnt")
 shader_parameter/flash_active = false
@@ -90,26 +90,29 @@ persistent_id = "tutorial_how_to_interact"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialMessage/Message" index="1" unique_id=1153964346]
 shape = SubResource("RectangleShape2D_yc66y")
 
-[node name="Key" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="0" unique_id=1604581779 instance=ExtResource("9_yc66y")]
-position = Vector2(-48, 16)
+[node name="Item" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="0" unique_id=1604581779 instance=ExtResource("9_yc66y")]
+position = Vector2(-56, 16)
+
+[node name="PersistenceComponent" parent="Collectibles/Item" index="3" unique_id=907069416]
+persistent_id = "key_cube_1"
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="0" unique_id=706351147 instance=ExtResource("3_8mwab")]
-material = SubResource("ShaderMaterial_yc66y")
+material = SubResource("ShaderMaterial_vetbk")
 position = Vector2(-72, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush" index="0" unique_id=177856894]
 flip_h = true
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="1" unique_id=1043316291 instance=ExtResource("3_8mwab")]
-material = SubResource("ShaderMaterial_vetbk")
+material = SubResource("ShaderMaterial_y50b6")
 position = Vector2(-80, 26)
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="2" unique_id=1830458816 instance=ExtResource("3_8mwab")]
-material = SubResource("ShaderMaterial_y50b6")
+material = SubResource("ShaderMaterial_r7k8u")
 position = Vector2(-57, 26)
 
 [node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="3" unique_id=415646189 instance=ExtResource("3_8mwab")]
-material = SubResource("ShaderMaterial_r7k8u")
+material = SubResource("ShaderMaterial_s1gj4")
 position = Vector2(-46, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush4" index="0" unique_id=177856894]
@@ -141,6 +144,7 @@ position = Vector2(32, 20)
 shape = SubResource("RectangleShape2D_s1gj4")
 
 [editable path="TutorialMessage/Message"]
+[editable path="Collectibles/Item"]
 [editable path="Destructibles/Bush"]
 [editable path="Destructibles/Bush/HurtboxComponent"]
 [editable path="Destructibles/Bush4"]

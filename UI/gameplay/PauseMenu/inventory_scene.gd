@@ -23,23 +23,6 @@ var selected_button: BaseButton = null
 	"Water Walk": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/WaterWalkSlot/TextureButton"),
 	"Ground Slam": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GroundSlamSlot/TextureButton"),
 }
-
-const ABILITY_DETAILS: Dictionary = {
-	"Glide": "Allows you to glide smoothly through the air over long gaps.",
-	"Jump Attack": "Perform a powerful downward strike while airborne.",
-	"Water Walk": "Enables movement safely across the surface of deep water.",
-	"Ground Slam": "Crash heavily into the ground to break cracked floors and stun nearby foes."
-}
-
-const ITEM_DETAILS: Dictionary = {
-	"Key": "An ancient key covered in intricate engravings. It looks like it fits a heavy iron lock.",
-	"Ruby": "A radiant red gemstone that pulses with a faint internal warmth.",
-	"Stone": "A dense piece of carved masonry.",
-	"Tablet": "Inscribed with ancient text detailing forgotten lore.",
-	"Hanky": "A delicate piece of cloth embroidered with a faded crest.",
-	"Rope": "A strong coil of braided fiber, roughly ten meters long.",
-	"Candle": "A thick wax candle that provides a small radius of warm light."
-}
 	
 func _ready() -> void:
 	# Hide detail sprite animation initially until selected
@@ -132,8 +115,8 @@ func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
 		detail_title_label.text = item_name
 	
 	if detail_description_label:
-		if ITEM_DETAILS.has(item_name):
-			detail_description_label.text = ITEM_DETAILS[item_name]
+		if DialogueData.ITEM_DETAILS.has(item_name):
+			detail_description_label.text = DialogueData.ITEM_DETAILS[item_name]
 		else:
 			detail_description_label.text = "A mysterious item collected during your journey."
 	
@@ -154,8 +137,8 @@ func _on_ability_button_pressed(ability_name: String, btn: BaseButton) -> void:
 		detail_title_label.text = ability_name
 		
 	if detail_description_label:
-		if ABILITY_DETAILS.has(ability_name):
-			detail_description_label.text = ABILITY_DETAILS[ability_name]
+		if DialogueData.ABILITY_DETAILS.has(ability_name):
+			detail_description_label.text = DialogueData.ABILITY_DETAILS[ability_name]
 		else:
 			detail_description_label.text = "A powerful unlocked ability."
 	

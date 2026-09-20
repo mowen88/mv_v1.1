@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://grf7v6d3tx84" path="res://states/world_state/environment/secret_walls/secret_wall.tscn" id="9_j2bjc"]
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="9_sq4su"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="10_0hyne"]
+[ext_resource type="PackedScene" uid="uid://bxl5e354ojig4" path="res://states/world_state/environment/collectibles/ability.tscn" id="12_0hyne"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0hyne"]
 resource_local_to_scene = true
@@ -104,6 +105,20 @@ persistent_id = "tutorial_heal"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialMessage/Message" index="1" unique_id=641911053]
 shape = SubResource("RectangleShape2D_sq4su")
 
+[node name="Ability" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="0" unique_id=1604581779 instance=ExtResource("12_0hyne")]
+position = Vector2(0, 32)
+ability_name = "Glide"
+
+[node name="PersistenceComponent" parent="Collectibles/Ability" index="3" unique_id=907069416]
+persistent_id = "glide"
+
+[node name="Ability2" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="1" unique_id=2066746745 instance=ExtResource("12_0hyne")]
+position = Vector2(-32, 0)
+ability_name = "Beam Blade"
+
+[node name="PersistenceComponent" parent="Collectibles/Ability2" index="3" unique_id=907069416]
+persistent_id = "beam_blade"
+
 [node name="0" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(848313442) index="0" unique_id=699584265]
 position = Vector2(0, 64)
 
@@ -140,3 +155,5 @@ target_room_path = "uid://5eewlteafhfv"
 
 [editable path="SecretWalls/SecretWall"]
 [editable path="TutorialMessage/Message"]
+[editable path="Collectibles/Ability"]
+[editable path="Collectibles/Ability2"]

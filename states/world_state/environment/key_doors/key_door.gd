@@ -52,9 +52,9 @@ func check_player_keys() -> void:
 	# Determine message based on plural or not
 	var message: String
 	if keys_required > 1:
-		"%d keys required to open the door" % keys_required
+		"%d key cubes required to open the door" % keys_required
 	else:
-		message = "1 key required to open the door" 
+		message = "1 key cube required to open the door" 
 
 	# 1. Safely grab save data and items dictionary
 	var current_slot = SaveManager.current_slot
@@ -68,7 +68,7 @@ func check_player_keys() -> void:
 		return
 		
 	var player_items: Dictionary = slot_data["items"]
-	var player_key_count = int(player_items.get("Key", 0))
+	var player_key_count = int(player_items.get("Key cube", 0))
 	
 	# 2. Check if player has enough keys
 	if player_key_count >= keys_required:
