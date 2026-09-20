@@ -17,24 +17,13 @@
 [ext_resource type="Shader" uid="uid://852afqaskhkl" path="res://states/world_state/shaders/godray_sprite_shader.gdshader" id="9_4mp4e"]
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="9_fhmho"]
 [ext_resource type="PackedScene" uid="uid://0oqxdpjjeqp0" path="res://states/world_state/environment/respawn_area/respawn_area.tscn" id="12_1232e"]
+[ext_resource type="PackedScene" uid="uid://c6qf1dxf2bncw" path="res://states/world_state/environment/key_doors/key_door.tscn" id="18_4mp4e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u5y3u"]
 shader = ExtResource("9_4mp4e")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1232e"]
 size = Vector2(32, 112)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1232e"]
-resource_local_to_scene = true
-shader = ExtResource("4_1wx30")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhmho"]
-resource_local_to_scene = true
-shader = ExtResource("4_1wx30")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4mp4e"]
 resource_local_to_scene = true
@@ -43,6 +32,18 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbqja"]
+resource_local_to_scene = true
+shader = ExtResource("4_1wx30")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_is13u"]
+resource_local_to_scene = true
+shader = ExtResource("4_1wx30")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5krc"]
 resource_local_to_scene = true
 shader = ExtResource("4_1wx30")
 shader_parameter/flash_active = false
@@ -184,22 +185,22 @@ persistent_id = "tutorial_jump_off_ladders"
 shape = SubResource("RectangleShape2D_1232e")
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="0" unique_id=706351147 instance=ExtResource("3_b4rbh")]
-material = SubResource("ShaderMaterial_1232e")
+material = SubResource("ShaderMaterial_4mp4e")
 position = Vector2(-20, -150)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush" index="0" unique_id=177856894]
 flip_h = true
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="1" unique_id=1832187617 instance=ExtResource("3_b4rbh")]
-material = SubResource("ShaderMaterial_fhmho")
+material = SubResource("ShaderMaterial_vbqja")
 position = Vector2(-12, -150)
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="2" unique_id=1387890453 instance=ExtResource("3_b4rbh")]
-material = SubResource("ShaderMaterial_4mp4e")
+material = SubResource("ShaderMaterial_is13u")
 position = Vector2(11, -150)
 
 [node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="3" unique_id=1483881141 instance=ExtResource("3_b4rbh")]
-material = SubResource("ShaderMaterial_vbqja")
+material = SubResource("ShaderMaterial_q5krc")
 position = Vector2(4, -150)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush4" index="0" unique_id=177856894]
@@ -324,6 +325,9 @@ target_room_path = "uid://dnqh43xyrsipk"
 [node name="CollisionShape2D" parent="RoomExits/RoomExit3" index="0" unique_id=519681351]
 shape = SubResource("RectangleShape2D_vmvar")
 
+[node name="KeyDoor" parent="Doors" parent_id_path=PackedInt32Array(1649377259) index="0" unique_id=1179221491 instance=ExtResource("18_4mp4e")]
+position = Vector2(104, 112)
+
 [editable path="TutorialMessage/Message"]
 [editable path="Destructibles/Bush"]
 [editable path="Destructibles/Bush/HurtboxComponent"]
@@ -331,3 +335,4 @@ shape = SubResource("RectangleShape2D_vmvar")
 [editable path="Destructibles/Bush4/HurtboxComponent"]
 [editable path="RoomExits/RoomExit2"]
 [editable path="RoomExits/RoomExit3"]
+[editable path="Doors/KeyDoor"]

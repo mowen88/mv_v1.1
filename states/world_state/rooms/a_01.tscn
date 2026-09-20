@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="9_sq4su"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://states/world_state/shaders/sprite_flash_shader.gdshader" id="10_0hyne"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2bjc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hyne"]
 resource_local_to_scene = true
 shader = ExtResource("10_0hyne")
 shader_parameter/flash_active = false
@@ -82,7 +82,7 @@ position = Vector2(0, -120)
 visibility_rect = Rect2(-130, 0, 260, 240)
 
 [node name="SecretWall" parent="SecretWalls" parent_id_path=PackedInt32Array(811405275) index="0" unique_id=1032635385 instance=ExtResource("9_j2bjc")]
-material = SubResource("ShaderMaterial_j2bjc")
+material = SubResource("ShaderMaterial_0hyne")
 position = Vector2(108, 76)
 
 [node name="CanvasGroup" parent="SecretWalls/SecretWall" index="0" unique_id=732142432]

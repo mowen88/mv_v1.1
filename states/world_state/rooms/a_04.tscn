@@ -91,7 +91,7 @@ persistent_id = "tutorial_how_to_interact"
 shape = SubResource("RectangleShape2D_yc66y")
 
 [node name="Key" parent="Collectibles" parent_id_path=PackedInt32Array(1420056401) index="0" unique_id=1604581779 instance=ExtResource("9_yc66y")]
-position = Vector2(-56, 16)
+position = Vector2(-48, 16)
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="0" unique_id=706351147 instance=ExtResource("3_8mwab")]
 material = SubResource("ShaderMaterial_yc66y")

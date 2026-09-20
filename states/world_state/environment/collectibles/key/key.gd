@@ -16,16 +16,14 @@ var initial_y: float
 func _ready() -> void:
 	interaction_component.interact.connect(_on_interacted)
 	persistence_component.persistent_state_loaded.connect(_on_persistent_state_loaded)
-	initial_y = global_position.y
 
 func _process(delta: float) -> void:
-	
 	_apply_motion(delta)
 
 func _apply_motion(_delta: float) -> void:
 	# Sine wave for smooth vertical bob
 	var time = Time.get_ticks_msec() / 1000.0
-	position.y = initial_y + sin(time * float_speed) * float_amplitude
+	animated_sprite.position.y = initial_y + sin(time * float_speed) * float_amplitude
 	animated_sprite.rotation = cos(time * float_speed * 0.8) * 0.15
 
 func _on_interacted(_player:CharacterBody2D) -> void:
