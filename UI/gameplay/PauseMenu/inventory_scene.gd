@@ -2,6 +2,8 @@ extends Control
 
 const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
 
+@export var select_sound: AudioStream
+
 @onready var ability_container: GridContainer = $HBoxContainer/StatusPanel/VBoxContainer/GridContainer
 @onready var items_container: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
@@ -106,8 +108,10 @@ func populate_items() -> void:
 		items_container.add_child(row_instance)
 
 func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
+	
+	AudioManager.play_sfx(select_sound)
+	
 	_set_button_selected(btn)
-
 	
 	print("Clicked item button: ", item_name)
 	
@@ -130,7 +134,11 @@ func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
 
 		
 func _on_ability_button_pressed(ability_name: String, btn: BaseButton) -> void:
+	
+	AudioManager.play_sfx(select_sound)
+	
 	_set_button_selected(btn)
+	
 	print("Clicked ability button: ", ability_name)
 	
 	if detail_title_label:

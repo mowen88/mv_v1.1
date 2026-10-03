@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vq6w5wfs55i5" path="res://UI/gameplay/PauseMenu/map_scene.gd" id="1_rrnar"]
 [ext_resource type="Texture2D" uid="uid://df1c6qlpivsmw" path="res://UI/gameplay/PauseMenu/map_sprites/a_01.png" id="2_e4ueg"]
+[ext_resource type="AudioStream" uid="uid://bsmifkbqdiqa2" path="res://UI/menu/audio/menu_back.mp3" id="2_wii3h"]
 [ext_resource type="Texture2D" uid="uid://dnxdl0nula358" path="res://UI/gameplay/PauseMenu/map_sprites/a_02.png" id="3_enss6"]
 [ext_resource type="Texture2D" uid="uid://dis7t3fwqnmnr" path="res://UI/gameplay/PauseMenu/map_sprites/a_03.png" id="4_d5ee1"]
 [ext_resource type="Texture2D" uid="uid://c06rus80fluoa" path="res://UI/gameplay/PauseMenu/map_sprites/b_01.png" id="4_iph03"]
@@ -33,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_rrnar")
+recentre_button_sound = ExtResource("2_wii3h")
 max_drag_range_x = 900.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1291293674]

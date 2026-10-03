@@ -1,5 +1,7 @@
 extends Control
 
+@export var select_sound: AudioStream
+
 # Adjust these paths to match your actual node names in the scene tree
 @onready var quest_list_vbox: VBoxContainer = $HBoxContainer/ScrollPanel/ScrollContainer/VBoxContainer
 @onready var detail_panel: VBoxContainer = $HBoxContainer/DetailPanel
@@ -96,7 +98,7 @@ func populate_quest_ui() -> void:
 		
 		quest_list_vbox.add_child(row_button)
 
-# Universal handler using self_modulate so the left-side icon keeps its original colors
+# Handler using self_modulate so the left-side icon keeps its original colors
 func _set_button_selected(clicked_button: BaseButton) -> void:
 	var all_buttons = find_children("*", "BaseButton", true, false)
 	for button in all_buttons:
@@ -105,6 +107,7 @@ func _set_button_selected(clicked_button: BaseButton) -> void:
 		else:
 			button.self_modulate = Color.WHITE
 	selected_button = clicked_button
+	AudioManager.play_sfx(select_sound)
 
 func display_quest_details(q_title: String, q_state: String, q_desc: String, q_reward: String) -> void:
 	title_label.text = q_title

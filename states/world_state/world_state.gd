@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var pause_sound: AudioStream
+
 @onready var current_room_container: Node2D = $CurrentRoom
 @onready var player: CharacterBody2D = $Player
 @onready var game_camera: Camera2D = $GameCamera
@@ -56,7 +58,10 @@ func _toggle_collect_ability_pause() -> void:
 	collect_ability_ui.visible = get_tree().paused
 		
 func _toggle_game_pause() -> void:
-	# nly allow pause if collect overlay is not visible
+	
+	AudioManager.play_sfx(pause_sound)
+	
+	# Only allow pause if collect overlay is not visible
 	if not collect_ability_ui.visible:
 		get_tree().paused = not get_tree().paused
 		touch_controller.visible = not get_tree().paused

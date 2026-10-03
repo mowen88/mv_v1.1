@@ -2,6 +2,9 @@ extends Control
 
 @onready var room_container: Node2D = $SubViewportContainer/SubViewport/RoomContainer
 
+# Recentre button sound
+@export var recentre_button_sound: AudioStream
+
 # Zoom configuration
 @export var min_zoom: float = 0.5
 @export var max_zoom: float = 2.0
@@ -26,7 +29,8 @@ func _ready() -> void:
 	recentre_button.pressed.connect(_on_recentre_pressed)
 
 func _on_recentre_pressed() -> void:
-	# Reset zoom and position
+	# Reset zoom and position and play button sound
+	AudioManager.play_sfx(recentre_button_sound)
 	room_container.scale = Vector2(1.0, 1.0)
 	update_map_display(cached_current_room, cached_player_node)
 	

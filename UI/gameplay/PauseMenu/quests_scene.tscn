@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="1_6hkyj"]
 [ext_resource type="Script" uid="uid://52fd48nsmpyy" path="res://UI/gameplay/PauseMenu/quests_scene.gd" id="1_lt2jl"]
 [ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_qd63c"]
+[ext_resource type="AudioStream" uid="uid://dnxopskch5bnb" path="res://UI/menu/audio/ui_Accept_sound.mp3" id="3_axwab"]
 [ext_resource type="Texture2D" uid="uid://crwq0i4wen1xm" path="res://UI/gameplay/elements/quest_in_progress_icon.png" id="3_jlbjd"]
 [ext_resource type="Texture2D" uid="uid://cw3858mvo6wr7" path="res://UI/gameplay/elements/quest_completed_icon.png" id="4_xbbp2"]
 [ext_resource type="Script" uid="uid://bdusirqn4e83o" path="res://UI/gameplay/PauseMenu/scroll_container.gd" id="5_xbbp2"]
@@ -33,6 +34,7 @@ offset_right = 960.0
 grow_horizontal = 2
 theme = ExtResource("1_6hkyj")
 script = ExtResource("1_lt2jl")
+select_sound = ExtResource("3_axwab")
 ICON_IN_PROGRESS = ExtResource("3_jlbjd")
 ICON_COMPLETED = ExtResource("4_xbbp2")
 
