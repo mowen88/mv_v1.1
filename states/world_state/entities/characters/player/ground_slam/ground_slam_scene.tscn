@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bugmgmdfh1nxg"]
 
 [ext_resource type="Script" uid="uid://djkw5c8ts3wob" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_scene.gd" id="1_oejl5"]
+[ext_resource type="AudioStream" uid="uid://dnr4lv57nm2pl" path="res://states/world_state/entities/characters/player/player_audio/ground_slam_sound.wav" id="2_oejl5"]
 [ext_resource type="Texture2D" uid="uid://da0d4j80o4g83" path="res://states/world_state/entities/characters/player/sword/spritesheet.png" id="3_7x82k"]
 [ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="5_bbrti"]
 
@@ -31,6 +32,7 @@ size = Vector2(100, 20)
 
 [node name="GroundSlamScene" type="Node2D" unique_id=2040860777]
 script = ExtResource("1_oejl5")
+sound = ExtResource("2_oejl5")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=925325447]
 wait_time = 0.3

@@ -8,7 +8,8 @@ var timer: float = 0.0
 func enter() -> void:
 	owner.get_node("AnimatedSprite2D").play("heal")
 	timer = duration
-		
+	owner.ground_slam.attack()
+	
 func physics_update(delta: float) -> void:
 
 	timer -= delta

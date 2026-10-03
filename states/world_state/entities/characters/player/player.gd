@@ -27,7 +27,7 @@ const STAR_JUMP_VELOCITY: float = -360.0
 
 @onready var sword = $SwordScene
 @onready var beam = $BeamScene
-@onready var ground_slam_scene = $GroundSlamScene
+@onready var ground_slam = $GroundSlamScene
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer

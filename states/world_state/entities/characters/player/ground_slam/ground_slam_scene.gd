@@ -11,15 +11,13 @@ signal attack_finished
 func _ready() -> void:
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	# Start the sword disabled
-	disable_sword()
+	disable_slam()
 
 func _on_animation_finished() -> void:
 	visible = false
 
-func attack(facing_direction: int) -> void:
-	# Set the position and flip direction
-	position = Vector2(6 * facing_direction, 0)
-	scale.x = facing_direction
+func attack() -> void:
+
 	# Play sfx
 	AudioManager.play_sfx(sound)
 	
@@ -27,20 +25,20 @@ func attack(facing_direction: int) -> void:
 		#hitbox_component.clear_hitlist()
 		cooldown_timer.start()
 		active_timer.start()
-		enable_sword()
+		enable_slam()
 		animated_sprite.play()
 		await active_timer.timeout
-		disable_sword()
+		enable_slam()
 		await cooldown_timer.timeout
 		attack_finished.emit()
 	
-func disable_sword() -> void:
+func disable_slam() -> void:
 	# Use 'set_deferred' to avoid physics errors
 	hitbox_component.monitoring = false
 	#hitbox_component.monitorable = false
 	visible = false
 
-func enable_sword() -> void:
+func enable_slam() -> void:
 	hitbox_component.monitoring = true
 	#hitbox_component.monitorable = true
 	visible = true
