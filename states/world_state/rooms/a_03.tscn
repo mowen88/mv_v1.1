@@ -145,6 +145,7 @@ tile_set = ExtResource("2_rwghd")
 tile_map_data = PackedByteArray("AAANAOr/AAAOAAoAAAAMAOv/AAAOAAoAAAALAOz/AAAOAAoAAAAKAO3/AAAOAAoAAADz/wMAAAAQAAsAAAD0/wQAAAAPAAoAAAD1/wUAAAAQAAsAAAD2/wYAAAAPAAoAAAD3/wcAAAAQAAsAAAD4/wgAAAAQAAsAAAD5/wkAAAAQAAsAAAD6/woAAAAQAAsAAAA=")
 
 [node name="ColorRect" type="ColorRect" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="0" unique_id=626742205]
+z_index = 4
 material = SubResource("ShaderMaterial_u5y3u")
 anchors_preset = 8
 anchor_left = 0.5
@@ -160,6 +161,7 @@ grow_vertical = 2
 rotation = 2.3561945
 
 [node name="ColorRect2" type="ColorRect" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="1" unique_id=1344239196]
+z_index = 4
 material = SubResource("ShaderMaterial_u5y3u")
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bugmgmdfh1nxg"]
+
+[ext_resource type="Script" uid="uid://djkw5c8ts3wob" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_scene.gd" id="1_oejl5"]
+[ext_resource type="Texture2D" uid="uid://da0d4j80o4g83" path="res://states/world_state/entities/characters/player/sword/spritesheet.png" id="3_7x82k"]
+[ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="5_bbrti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd0ro"]
+atlas = ExtResource("3_7x82k")
+region = Rect2(0, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bmut"]
+atlas = ExtResource("3_7x82k")
+region = Rect2(38, 0, 38, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5y1vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd0ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bmut")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfpj0"]
+size = Vector2(100, 20)
+
+[node name="GroundSlamScene" type="Node2D" unique_id=2040860777]
+script = ExtResource("1_oejl5")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=925325447]
+wait_time = 0.3
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="." unique_id=1888201384]
+wait_time = 0.15
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1240470397]
+sprite_frames = SubResource("SpriteFrames_5y1vg")
+autoplay = "default"
+frame = 1
+frame_progress = 1.0
+
+[node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("5_bbrti")]
+z_index = 5
+collision_layer = 0
+knockback_force = 120.0
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2010034341]
+shape = SubResource("RectangleShape2D_vfpj0")

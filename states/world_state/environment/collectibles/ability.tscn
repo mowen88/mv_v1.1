@@ -9,7 +9,7 @@
 [sub_resource type="Gradient" id="Gradient_l2ehc"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.11935484, 0.81935483)
-colors = PackedColorArray(0.98039216, 0.7921569, 0.9843137, 1, 0.5803922, 0.30588236, 0.5372549, 0)
+colors = PackedColorArray(0.98039216, 0.7921569, 0.9843137, 1, 0.98039216, 0.7921569, 0.9843137, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l23yl"]
 gradient = SubResource("Gradient_l2ehc")

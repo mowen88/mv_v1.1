@@ -10,7 +10,10 @@ func handle_input(event: InputEvent) -> void:
 		owner.drop_through_platform()
 		
 	if event.is_action_pressed("jump"):
-		fsm.change_state("Jump")
+		if Input.is_action_pressed("up"):
+			fsm.change_state("StarJump")
+		else:
+			fsm.change_state("Jump")
 	
 	if event.is_action_pressed("attack") and owner.get_node("AttackTimer").is_stopped():
 		fsm.change_state("Attack")

@@ -131,6 +131,7 @@ grow_vertical = 2
 rotation = 3.1415927
 
 [node name="ColorRect2" type="ColorRect" parent="Decoration/GodRays" index="1" unique_id=1840328501]
+z_index = 4
 material = SubResource("ShaderMaterial_hhens")
 anchors_preset = 8
 anchor_left = 0.5

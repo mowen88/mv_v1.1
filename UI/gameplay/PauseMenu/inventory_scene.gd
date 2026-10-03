@@ -21,7 +21,7 @@ var selected_button: BaseButton = null
 @onready var ability_buttons: Dictionary = {
 	"Beam Blade": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/BeamBladeSlot/TextureButton"),
 	"Glide": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GlideSlot/TextureButton"),
-	"Jump Attack": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/JumpAttackSlot/TextureButton"),
+	"Star Jump": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/JumpAttackSlot/TextureButton"),
 	"Water Walk": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/WaterWalkSlot/TextureButton"),
 	"Ground Slam": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GroundSlamSlot/TextureButton"),
 }

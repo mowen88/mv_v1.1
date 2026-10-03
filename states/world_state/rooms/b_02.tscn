@@ -21,18 +21,6 @@ shader = ExtResource("7_731cl")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mqc"]
 size = Vector2(40, 56)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xldl"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s5aot"]
-resource_local_to_scene = true
-shader = ExtResource("5_lrovk")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_731cl"]
 resource_local_to_scene = true
 shader = ExtResource("5_lrovk")
@@ -58,6 +46,18 @@ shader_parameter/flash_active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5knyr"]
+resource_local_to_scene = true
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knwst"]
+resource_local_to_scene = true
+shader = ExtResource("5_lrovk")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nuk5d"]
 resource_local_to_scene = true
 shader = ExtResource("5_lrovk")
 shader_parameter/flash_active = false
@@ -131,7 +131,7 @@ region = Rect2(32, 0, 16, 10)
 atlas = ExtResource("9_731cl")
 region = Rect2(16, 0, 16, 10)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wmla3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb67v"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -201,7 +201,7 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_knwst"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30ay1"]
 resource_local_to_scene = true
 size = Vector2(16, 8)
 
@@ -282,15 +282,15 @@ size = Vector2(16, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oiwx5"]
 size = Vector2(16, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuk5d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rqw6"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb67v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bruir"]
 resource_local_to_scene = true
 size = Vector2(48, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_30ay1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juj2j"]
 resource_local_to_scene = true
 size = Vector2(32, 56)
 
@@ -355,6 +355,7 @@ texture = ExtResource("6_s5aot")
 [node name="GodRays" type="Node2D" parent="Decoration" parent_id_path=PackedInt32Array(1978398061) index="6" unique_id=2138818352]
 
 [node name="ColorRect" type="ColorRect" parent="Decoration/GodRays" index="0" unique_id=1603721382]
+z_index = 4
 material = SubResource("ShaderMaterial_wmla3")
 anchors_preset = 8
 anchor_left = 0.5
@@ -380,34 +381,34 @@ persistent_id = "tutorial_gain_energy"
 shape = SubResource("RectangleShape2D_t7mqc")
 
 [node name="Bush" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="0" unique_id=706351147 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_6xldl")
+material = SubResource("ShaderMaterial_731cl")
 position = Vector2(136, 26)
 
 [node name="Bush2" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="1" unique_id=728165885 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_s5aot")
+material = SubResource("ShaderMaterial_33653")
 position = Vector2(155, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush2" index="0" unique_id=177856894]
 flip_h = true
 
 [node name="Bush3" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="2" unique_id=1118628196 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_731cl")
+material = SubResource("ShaderMaterial_a2gpo")
 position = Vector2(168, 26)
 
 [node name="Bush4" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="3" unique_id=1989416586 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_33653")
+material = SubResource("ShaderMaterial_00ua2")
 position = Vector2(175, 26)
 
 [node name="Bush5" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="4" unique_id=802669373 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_a2gpo")
+material = SubResource("ShaderMaterial_5knyr")
 position = Vector2(84, 26)
 
 [node name="Bush6" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="5" unique_id=1463685042 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_00ua2")
+material = SubResource("ShaderMaterial_knwst")
 position = Vector2(57, 26)
 
 [node name="Bush7" parent="Destructibles" parent_id_path=PackedInt32Array(1383385415) index="6" unique_id=628251889 instance=ExtResource("4_kxucd")]
-material = SubResource("ShaderMaterial_5knyr")
+material = SubResource("ShaderMaterial_nuk5d")
 position = Vector2(66, 26)
 
 [node name="AnimatedSprite2D" parent="Destructibles/Bush7" index="0" unique_id=177856894]
@@ -417,10 +418,10 @@ flip_h = true
 position = Vector2(-128, 4)
 
 [node name="AnimatedSprite2D" parent="Platforms/DisappearingPlatformGroup/Platform1" parent_id_path=PackedInt32Array(520227805, 986976773) index="0" unique_id=343587440]
-sprite_frames = SubResource("SpriteFrames_wmla3")
+sprite_frames = SubResource("SpriteFrames_pb67v")
 
 [node name="CollisionShape2D" parent="Platforms/DisappearingPlatformGroup/Platform1" parent_id_path=PackedInt32Array(520227805, 986976773) index="1" unique_id=1006470669]
-shape = SubResource("RectangleShape2D_knwst")
+shape = SubResource("RectangleShape2D_30ay1")
 
 [node name="Platform2" type="StaticBody2D" parent="Platforms/DisappearingPlatformGroup" index="2" unique_id=492204025]
 position = Vector2(-16, 0)
@@ -516,7 +517,7 @@ target_room_path = "uid://c2v2w4v0uqdr5"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit" index="0" unique_id=519681351]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_nuk5d")
+shape = SubResource("RectangleShape2D_3rqw6")
 
 [node name="RoomExit2" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="1" unique_id=236050036 instance=ExtResource("3_er4tc")]
 position = Vector2(299, 4)
@@ -527,7 +528,7 @@ target_room_path = "uid://d0xlr5oc1fkqt"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit2" index="0" unique_id=519681351]
 position = Vector2(-427, 84)
-shape = SubResource("RectangleShape2D_pb67v")
+shape = SubResource("RectangleShape2D_bruir")
 
 [node name="RoomExit3" parent="RoomExits" parent_id_path=PackedInt32Array(718247589) index="2" unique_id=1263021935 instance=ExtResource("3_er4tc")]
 position = Vector2(-276, -12)
@@ -535,7 +536,7 @@ exit_id = 3
 target_room_path = "uid://d0xlr5oc1fkqt"
 
 [node name="CollisionShape2D" parent="RoomExits/RoomExit3" index="0" unique_id=519681351]
-shape = SubResource("RectangleShape2D_30ay1")
+shape = SubResource("RectangleShape2D_juj2j")
 
 [editable path="Decoration/Waterfall"]
 [editable path="TutorialMessage/Message"]

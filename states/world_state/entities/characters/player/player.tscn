@@ -60,6 +60,8 @@
 [ext_resource type="AudioStream" uid="uid://ce1mmu0y5jvih" path="res://states/world_state/entities/characters/player/player_audio/dive_sound.wav" id="49_3il82"]
 [ext_resource type="Script" uid="uid://cwbv2hqma52ey" path="res://states/world_state/entities/characters/player/player_states/player_slam.gd" id="49_unvrk"]
 [ext_resource type="Script" uid="uid://0qpt1q23n4fc" path="res://states/world_state/entities/characters/player/player_states/player_glide.gd" id="51_gpev2"]
+[ext_resource type="Script" uid="uid://dit2wfjfenif" path="res://states/world_state/entities/characters/player/player_states/player_star_jump.gd" id="52_j5cv5"]
+[ext_resource type="PackedScene" uid="uid://bugmgmdfh1nxg" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_scene.tscn" id="60_2l68p"]
 
 [sub_resource type="Gradient" id="Gradient_jnwpf"]
 colors = PackedColorArray(0, 0, 0, 0.5019608, 1, 1, 1, 0)
@@ -1030,7 +1032,6 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("48_dlyna")
 dive_sound = ExtResource("49_3il82")
 dive_speed = 150.0
-duration = 0.1
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Slam" type="Node" parent="FiniteStateMachine" unique_id=854019004]
@@ -1041,6 +1042,11 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="Glide" type="Node" parent="FiniteStateMachine" unique_id=444044171]
 script = ExtResource("51_gpev2")
 glide_fall_speed = 10.0
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="StarJump" type="Node" parent="FiniteStateMachine" unique_id=1121560930]
+script = ExtResource("52_j5cv5")
+deceleration = 1600.0
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
@@ -1076,7 +1082,9 @@ health_component = NodePath("../HealthComponent")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_8fbs1")
 
-[node name="SwordScene" parent="." unique_id=2040860777 instance=ExtResource("14_pffij")]
+[node name="GroundSlamScene" parent="." unique_id=2040860777 instance=ExtResource("60_2l68p")]
+
+[node name="SwordScene" parent="." unique_id=509620685 instance=ExtResource("14_pffij")]
 
 [node name="BeamScene" parent="." unique_id=251752736 instance=ExtResource("44_yuga7")]
 

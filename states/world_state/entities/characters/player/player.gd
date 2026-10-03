@@ -4,6 +4,7 @@ extends CharacterBody2D
 const HEAL_COST: int = 18
 const HEAL_AMOUNT: int = 3
 const BEAM_COST: int = 18
+const STAR_JUMP_VELOCITY: float = -360.0
 
 @export var game_max_health: int
 @export var game_max_energy: int
@@ -26,6 +27,7 @@ const BEAM_COST: int = 18
 
 @onready var sword = $SwordScene
 @onready var beam = $BeamScene
+@onready var ground_slam_scene = $GroundSlamScene
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
@@ -65,7 +67,7 @@ func _ready() -> void:
 	
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
-	
+	SignalBus.swipe_up_detected.connect(_on_swipe_up)
 
 func _get_initial_coins() -> void:
 	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
@@ -103,13 +105,23 @@ func _on_swipe_down() -> void:
 	if InputManager.input_lock:
 		return
 	
-	var drop_through_states = ["Idle", "Run"]
-	if fsm.current_state.name in drop_through_states and is_on_floor():
+	var drop_through_valid_states = ["Idle", "Run"]
+	if fsm.current_state.name in drop_through_valid_states and is_on_floor():
 		# Stop player sticking to wall in run state fix by bouncing away slightly
 		drop_through_platform()
 		
-	elif owner.check_ability("Ground Slam"):
+	elif check_ability("Ground Slam"):
 		fsm.change_state("Dive")
+
+func _on_swipe_up() -> void:
+	if InputManager.input_lock:
+		return
+	
+	var star_jump_valid_states = ["Idle", "Run"]
+	if fsm.current_state.name in star_jump_valid_states\
+	and is_on_floor()\
+	and check_ability("Star Jump"):
+		fsm.change_state("StarJump")
 
 func drop_through_platform() -> void:
 
@@ -181,7 +193,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		SaveManager.add_ability("Beam Blade")
 		SaveManager.add_ability("Glide")
-		SaveManager.add_ability("Jump Attack")
+		SaveManager.add_ability("Star Jump")
 		SaveManager.add_ability("Ground Slam")
 		SaveManager.add_item("Key cube")
 		
