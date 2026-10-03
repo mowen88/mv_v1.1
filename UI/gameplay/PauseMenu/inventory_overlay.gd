@@ -23,7 +23,7 @@ static var last_tab_index: int = 3
 func _ready() -> void:
 	# Connect unpause signal to close button
 	close_button.pressed.connect(func(): unpause_requested.emit())
-	
+
 	# Gather all tab control children from the content container
 	for child in content_container.get_children():
 		if child is Control:

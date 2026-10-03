@@ -46,8 +46,8 @@ func physics_update(delta: float) -> void:
 		# Go to heal state?
 		SignalBus.flash_screen.emit()
 		SignalBus.screenshake_requested.emit(4,4,0.5)
-		owner.energy_component.consume_energy(owner.energy_component.max_energy)
-		owner.health_component.heal(owner.health_component.max_health)
+		owner.energy_component.consume_energy(owner.HEAL_COST)
+		owner.health_component.heal(owner.HEAL_AMOUNT)
 		ParticleManager.play("hit_effect", owner.global_position)
 		AudioManager.play_sfx(heal_complete_sound)
 		fsm.change_state("Idle")

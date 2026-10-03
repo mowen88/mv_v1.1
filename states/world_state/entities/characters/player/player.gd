@@ -1,8 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
-@export var game_max_health: int = 6
-@export var game_max_energy: int = 27
+const HEAL_COST: int = 18
+const HEAL_AMOUNT: int = 3
+const BEAM_COST: int = 18
+
+@export var game_max_health: int
+@export var game_max_energy: int
 
 @onready var death_particles: GPUParticles2D = $DeathParticle
 @onready var heal_particles: GPUParticles2D = $HealParticle
@@ -87,17 +91,25 @@ func _on_player_health_changed(val: int) -> void:
 	# Turn death marker particles on only when health drops to 1
 	death_marker_particles.emitting = (val <= 1)
 
+func check_ability(ability_name:String) -> bool:
+	var slot_data = SaveManager.SAVE_DATA.get(SaveManager.current_slot, {})
+	var abilities = slot_data.get("abilities", {})
+	if abilities.has(ability_name):
+		return true
+	return false
+		
 # Mobile touchscreen only!
 func _on_swipe_down() -> void:
 	if InputManager.input_lock:
 		return
 	
-	var valid_states = ["Idle", "Run"]
-	if fsm.current_state.name in valid_states and is_on_floor():
+	var drop_through_states = ["Idle", "Run"]
+	if fsm.current_state.name in drop_through_states and is_on_floor():
 		# Stop player sticking to wall in run state fix by bouncing away slightly
 		drop_through_platform()
-	else:
-		pass # Ground slam!
+		
+	elif owner.check_ability("Ground Slam"):
+		fsm.change_state("Dive")
 
 func drop_through_platform() -> void:
 

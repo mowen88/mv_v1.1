@@ -5,10 +5,15 @@ func enter() -> void:
 	owner.get_node("AnimatedSprite2D").play("fall")
 
 func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("down") and owner.check_ability("Ground Slam"):
+			fsm.change_state("Dive")
+		
 	if event.is_action_pressed("jump"):
 		if not owner.coyote_timer.is_stopped():
 			owner.coyote_timer.stop()
 			fsm.change_state("jump")
+		elif owner.check_ability("Glide"):
+			fsm.change_state("Glide")
 		else:
 			owner.jump_buffer_timer.start()
 		

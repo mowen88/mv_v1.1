@@ -59,10 +59,9 @@ func _toggle_collect_ability_pause() -> void:
 		
 func _toggle_game_pause() -> void:
 	
-	AudioManager.play_sfx(pause_sound)
-	
 	# Only allow pause if collect overlay is not visible
 	if not collect_ability_ui.visible:
+		AudioManager.play_sfx(pause_sound)
 		get_tree().paused = not get_tree().paused
 		touch_controller.visible = not get_tree().paused
 		gameplay_ui.visible = not get_tree().paused

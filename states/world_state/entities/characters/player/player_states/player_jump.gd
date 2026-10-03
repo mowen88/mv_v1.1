@@ -15,6 +15,9 @@ func enter() -> void:
 		gravity = owner.move_component.gravity
 
 func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("down") and owner.check_ability("Ground Slam"):
+		fsm.change_state("Dive")
+		
 	if event.is_action_released("jump"):
 		gravity = owner.move_component.gravity * 4
 		

@@ -56,6 +56,10 @@
 [ext_resource type="Script" uid="uid://bsr1dr14xrieh" path="res://states/world_state/entities/characters/player/player_states/player_beam_knockback.gd" id="40_vf4nt"]
 [ext_resource type="AudioStream" uid="uid://bhraaqi12g8b" path="res://states/world_state/entities/characters/player/player_audio/beam_cancel_sound.wav" id="43_25q3v"]
 [ext_resource type="PackedScene" uid="uid://mxu15ewd88aa" path="res://states/world_state/entities/characters/player/beam/beam_scene.tscn" id="44_yuga7"]
+[ext_resource type="Script" uid="uid://celxsutv7ytha" path="res://states/world_state/entities/characters/player/player_states/player_dive.gd" id="48_dlyna"]
+[ext_resource type="AudioStream" uid="uid://ce1mmu0y5jvih" path="res://states/world_state/entities/characters/player/player_audio/dive_sound.wav" id="49_3il82"]
+[ext_resource type="Script" uid="uid://cwbv2hqma52ey" path="res://states/world_state/entities/characters/player/player_states/player_slam.gd" id="49_unvrk"]
+[ext_resource type="Script" uid="uid://0qpt1q23n4fc" path="res://states/world_state/entities/characters/player/player_states/player_glide.gd" id="51_gpev2"]
 
 [sub_resource type="Gradient" id="Gradient_jnwpf"]
 colors = PackedColorArray(0, 0, 0, 0.5019608, 1, 1, 1, 0)
@@ -1020,6 +1024,23 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="BeamKnockback" type="Node" parent="FiniteStateMachine" unique_id=46939713]
 script = ExtResource("40_vf4nt")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Dive" type="Node" parent="FiniteStateMachine" unique_id=1866999979]
+script = ExtResource("48_dlyna")
+dive_sound = ExtResource("49_3il82")
+dive_speed = 150.0
+duration = 0.1
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Slam" type="Node" parent="FiniteStateMachine" unique_id=854019004]
+script = ExtResource("49_unvrk")
+duration = 0.3
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Glide" type="Node" parent="FiniteStateMachine" unique_id=444044171]
+script = ExtResource("51_gpev2")
+glide_fall_speed = 10.0
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
