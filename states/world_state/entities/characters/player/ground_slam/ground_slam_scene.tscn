@@ -27,8 +27,8 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfpj0"]
-size = Vector2(100, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oejl5"]
+size = Vector2(80, 8)
 
 [node name="GroundSlamScene" type="Node2D" unique_id=2040860777]
 script = ExtResource("1_oejl5")
@@ -49,9 +49,10 @@ frame = 1
 frame_progress = 1.0
 
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("5_bbrti")]
-z_index = 5
 collision_layer = 0
-knockback_force = 120.0
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2010034341]
-shape = SubResource("RectangleShape2D_vfpj0")
+[node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=1317764610]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_oejl5")
+
+[editable path="HitboxComponent"]

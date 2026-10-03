@@ -10,7 +10,7 @@ signal attack_finished
 
 func _ready() -> void:
 	animated_sprite.animation_finished.connect(_on_animation_finished)
-	# Start the sword disabled
+	# Start the slam disabled
 	disable_slam()
 
 func _on_animation_finished() -> void:
@@ -28,7 +28,7 @@ func attack() -> void:
 		enable_slam()
 		animated_sprite.play()
 		await active_timer.timeout
-		enable_slam()
+		disable_slam()
 		await cooldown_timer.timeout
 		attack_finished.emit()
 	
