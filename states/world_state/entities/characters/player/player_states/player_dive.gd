@@ -29,3 +29,8 @@ func physics_update(delta: float) -> void:
 		owner.velocity.y = dive_speed
 
 	owner.move_and_slide()
+	
+		# After move and slide so we get the correct wall normal for is_on_slope
+	if owner.move_component.is_on_slope():
+		owner.air_attack_count = 0
+		fsm.change_state("Slide")

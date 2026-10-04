@@ -6,18 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="3_fd1xw"]
 [ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="4_3t6dl"]
 
-[sub_resource type="Gradient" id="Gradient_l2ehc"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.11935484, 0.81935483)
-colors = PackedColorArray(0.98039216, 0.7921569, 0.9843137, 1, 0.5803922, 0.30588236, 0.5372549, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l23yl"]
-gradient = SubResource("Gradient_l2ehc")
-width = 60
-height = 60
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3t6dl"]
 atlas = ExtResource("2_fd1xw")
 region = Rect2(0, 0, 10, 10)
@@ -110,6 +98,18 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_l2ehc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.11935484, 0.81935483)
+colors = PackedColorArray(0.98039216, 0.7921569, 0.9843137, 1, 0.5803922, 0.30588236, 0.5372549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l23yl"]
+gradient = SubResource("Gradient_l2ehc")
+width = 60
+height = 60
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t6dl"]
 size = Vector2(16, 16)
 
@@ -120,12 +120,13 @@ item_name = "Key cube"
 collect_particle = "small_pickup"
 collect_sound = ExtResource("2_lqx6x")
 
-[node name="GlowSprite" type="Sprite2D" parent="." unique_id=449018099]
-texture = SubResource("GradientTexture2D_l23yl")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=944722125]
 sprite_frames = SubResource("SpriteFrames_un36a")
 autoplay = "default"
+
+[node name="GlowSprite" type="Sprite2D" parent="AnimatedSprite2D" unique_id=449018099]
+z_index = -1
+texture = SubResource("GradientTexture2D_l23yl")
 
 [node name="InteractionComponent" parent="." unique_id=108345276 instance=ExtResource("3_fd1xw")]
 prompt_text = "Collect"

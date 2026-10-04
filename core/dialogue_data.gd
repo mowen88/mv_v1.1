@@ -2,7 +2,7 @@
 extends Node
 
 const ABILITY_DETAILS: Dictionary = {
-	"Beam Blade": "A focused beam of energy that slices through obstacles. Hold A button to use.",
+	"Beam Blade": "A focused beam of energy that slices through obstacles. Requires energy to use. Hold A button to use.",
 	"Glide": "Allows you to glide smoothly through the air over long gaps. Hold B button while falling to use.",
 	"Star Jump": "Perform a powerful downward strike while airborne. Swipe up while on the ground to use.",
 	"Water Walk": "Enables movement safely across the surface of water",

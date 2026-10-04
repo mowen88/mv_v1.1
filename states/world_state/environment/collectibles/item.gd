@@ -10,7 +10,7 @@ extends Node2D
 @onready var interaction_component = $InteractionComponent
 @onready var persistence_component = $PersistenceComponent
 
-@export var float_amplitude: float = 4.0 
+@export var float_amplitude: float = 3.0 
 @export var float_speed: float = 3.0       
 @export var rotation_speed: float = 0.5   
 
@@ -36,7 +36,7 @@ func _on_interacted(_player:CharacterBody2D) -> void:
 	SaveManager.add_item(item_name)
 	ParticleManager.play(collect_particle, global_position)
 	AudioManager.play_sfx(collect_sound)
-	SignalBus.tutorial_message_requested.emit("%s collected", item_name)
+	SignalBus.tutorial_message_requested.emit("%s collected" % item_name)
 	queue_free()
 
 func _on_persistent_state_loaded(_pos: Vector2) -> void:
