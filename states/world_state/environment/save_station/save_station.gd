@@ -25,6 +25,6 @@ func _on_save_station_interacted(player: CharacterBody2D) -> void:
 	player.flash_component.play_flash()
 	player.health_component.heal(player.health_component.max_health)
 	#player.health_component.max_health = 10
-	SignalBus.tutorial_message_requested.emit("Game Saved")
+	SignalBus.tutorial_message_requested.emit("Game Saved             Map updated")
 	
 	

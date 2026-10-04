@@ -10,12 +10,13 @@ var timer: float = 0.0
 func enter() -> void:
 	AudioManager.play_sfx(dive_sound)
 	# Animate
-	owner.animated_sprite.play("heal")
+	owner.animated_sprite.play("dive")
 	timer = duration
 	owner.velocity = Vector2.ZERO
 	
 	# Allow force through platforms
 	owner.set_collision_mask_value(7, false)
+	owner.dive_particles.emitting = true
 
 #func handle_input(event: InputEvent) -> void:
 	#if event.is_action_pressed("jump"):
@@ -25,6 +26,7 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
 		owner.set_collision_mask_value(7, true)
+		owner.dive_particles.emitting = false
 		fsm.change_state("Slam")
 		return
 	
@@ -38,5 +40,6 @@ func physics_update(delta: float) -> void:
 	if owner.move_component.is_on_slope():
 		owner.air_attack_count = 0
 		owner.set_collision_mask_value(7, true)
+		owner.dive_particles.emitting = false
 		fsm.change_state("Slide")
 		

@@ -3,6 +3,8 @@ extends Node2D
 signal attack_finished
 
 @export var sound: AudioStream
+@export var blast_particle: String
+
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hitbox_component = $HitboxComponent
 @onready var cooldown_timer = $CooldownTimer
@@ -12,6 +14,7 @@ func _ready() -> void:
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	# Start the slam disabled
 	disable_slam()
+	visible = false
 
 func _on_animation_finished() -> void:
 	visible = false
@@ -19,7 +22,8 @@ func _on_animation_finished() -> void:
 func attack() -> void:
 
 	# Play sfx
-	AudioManager.play_sfx(sound)
+	AudioManager.play_sfx(sound, 1, 0.3)
+	ParticleManager.play(blast_particle, global_position)
 	
 	if cooldown_timer.is_stopped():
 		#hitbox_component.clear_hitlist()

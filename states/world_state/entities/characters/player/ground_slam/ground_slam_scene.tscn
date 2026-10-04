@@ -2,32 +2,43 @@
 
 [ext_resource type="Script" uid="uid://djkw5c8ts3wob" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_scene.gd" id="1_oejl5"]
 [ext_resource type="AudioStream" uid="uid://dnr4lv57nm2pl" path="res://states/world_state/entities/characters/player/player_audio/ground_slam_sound.wav" id="2_oejl5"]
-[ext_resource type="Texture2D" uid="uid://d30nr76nnjd6w" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_spritesheet.png" id="3_oejl5"]
+[ext_resource type="Texture2D" uid="uid://d30nr76nnjd6w" path="res://states/world_state/entities/characters/player/player_spritesheets/ground_slam_spritesheet.png" id="3_oejl5"]
 [ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="5_bbrti"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vfpj0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oejl5"]
 atlas = ExtResource("3_oejl5")
 region = Rect2(0, 0, 80, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pbtxr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfpj0"]
 atlas = ExtResource("3_oejl5")
 region = Rect2(80, 0, 80, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sbgga"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbtxr"]
 atlas = ExtResource("3_oejl5")
 region = Rect2(160, 0, 80, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hhav"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbgga"]
 atlas = ExtResource("3_oejl5")
 region = Rect2(240, 0, 80, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ldjtw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hhav"]
 atlas = ExtResource("3_oejl5")
 region = Rect2(320, 0, 80, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldjtw"]
+atlas = ExtResource("3_oejl5")
+region = Rect2(400, 0, 80, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d1am"]
+atlas = ExtResource("3_oejl5")
+region = Rect2(480, 0, 80, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5y1vg"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oejl5")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vfpj0")
 }, {
@@ -42,6 +53,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ldjtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d1am")
 }],
 "loop": false,
 "name": &"default",
@@ -54,6 +68,7 @@ size = Vector2(80, 8)
 [node name="GroundSlamScene" type="Node2D" unique_id=2040860777]
 script = ExtResource("1_oejl5")
 sound = ExtResource("2_oejl5")
+blast_particle = "hit_effect"
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=925325447]
 wait_time = 0.3
@@ -72,7 +87,6 @@ frame_progress = 1.0
 collision_layer = 0
 
 [node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=1317764610]
-position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_oejl5")
 
 [editable path="HitboxComponent"]

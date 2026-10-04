@@ -13,10 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://b7vnt8h4y7bqa" path="res://states/world_state/entities/characters/player/player_spritesheets/run.png" id="4_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://br02d51sw5iue" path="res://states/world_state/entities/characters/player/player_spritesheets/climb.png" id="5_5athw"]
 [ext_resource type="Texture2D" uid="uid://d2p6qoniikbka" path="res://states/world_state/entities/characters/player/player_spritesheets/awake.png" id="5_7ln4g"]
+[ext_resource type="PackedScene" uid="uid://bo7kcmx1jpm50" path="res://states/world_state/entities/characters/player/player_particles/dive_particles.tscn" id="5_l6gg1"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="5_ri0vu"]
 [ext_resource type="Texture2D" uid="uid://bnpwbw52p6aam" path="res://states/world_state/entities/characters/player/player_spritesheets/exit_door.png" id="6_240cd"]
 [ext_resource type="Script" uid="uid://cbj2xr51bn4y0" path="res://states/world_state/entities/characters/player/player_states/player_run.gd" id="6_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://bxp1vt7crs8sx" path="res://states/world_state/entities/characters/player/player_spritesheets/jump.png" id="6_ulhyb"]
+[ext_resource type="PackedScene" uid="uid://7bcelccx88is" path="res://states/world_state/entities/characters/player/player_particles/star_jump_particles.tscn" id="6_w0767"]
 [ext_resource type="Texture2D" uid="uid://bmv0f06d3woc1" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_build_up.png" id="7_fsr7x"]
 [ext_resource type="Script" uid="uid://dercsmv8k458f" path="res://states/world_state/entities/characters/player/player_states/player_jump.gd" id="8_6on6l"]
 [ext_resource type="Script" uid="uid://crh54bx3jo1y2" path="res://states/world_state/entities/characters/player/player_states/player_fall.gd" id="8_cdm2v"]
@@ -27,8 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://hfqpq7uqiu1f" path="res://states/world_state/entities/characters/player/player_spritesheets/heal.png" id="11_1pnom"]
 [ext_resource type="Texture2D" uid="uid://bbapmkmdlscxj" path="res://states/world_state/entities/characters/player/player_spritesheets/slide.png" id="11_yewsr"]
 [ext_resource type="Script" uid="uid://brvhdaaglohet" path="res://states/world_state/entities/characters/player/player_states/player_air_attack.gd" id="12_04ry7"]
+[ext_resource type="Texture2D" uid="uid://durjodrutx7e5" path="res://states/world_state/entities/characters/player/player_spritesheets/dive.png" id="13_cwj01"]
 [ext_resource type="Script" uid="uid://cnjtoilji3kq2" path="res://states/world_state/entities/characters/player/player_states/player_awake.gd" id="14_5mbyj"]
 [ext_resource type="PackedScene" uid="uid://blmbdhod2re4d" path="res://states/world_state/entities/characters/player/sword/sword_scene.tscn" id="14_pffij"]
+[ext_resource type="Texture2D" uid="uid://recnufubxdiu" path="res://states/world_state/entities/characters/player/player_spritesheets/ground_slam.png" id="15_etkas"]
 [ext_resource type="Script" uid="uid://bcthucusyriut" path="res://states/world_state/entities/characters/player/player_states/player_death.gd" id="16_pffij"]
 [ext_resource type="PackedScene" uid="uid://c12tbs10lxuco" path="res://states/world_state/components/move_component.tscn" id="17_8fbs1"]
 [ext_resource type="Script" uid="uid://redo4usol3b" path="res://states/world_state/entities/characters/player/player_states/player_hit.gd" id="17_g11l2"]
@@ -61,6 +65,7 @@
 [ext_resource type="Script" uid="uid://cwbv2hqma52ey" path="res://states/world_state/entities/characters/player/player_states/player_slam.gd" id="49_unvrk"]
 [ext_resource type="Script" uid="uid://0qpt1q23n4fc" path="res://states/world_state/entities/characters/player/player_states/player_glide.gd" id="51_gpev2"]
 [ext_resource type="Script" uid="uid://dit2wfjfenif" path="res://states/world_state/entities/characters/player/player_states/player_star_jump.gd" id="52_j5cv5"]
+[ext_resource type="AudioStream" uid="uid://dhnws6osmogjd" path="res://states/world_state/entities/characters/player/player_audio/star_jump_sound.wav" id="57_8n0ut"]
 [ext_resource type="PackedScene" uid="uid://bugmgmdfh1nxg" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_scene.tscn" id="60_2l68p"]
 
 [sub_resource type="Gradient" id="Gradient_jnwpf"]
@@ -350,6 +355,18 @@ region = Rect2(48, 0, 24, 24)
 atlas = ExtResource("10_vmx86")
 region = Rect2(72, 0, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv26n"]
+atlas = ExtResource("13_cwj01")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd3os"]
+atlas = ExtResource("13_cwj01")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm8ni"]
+atlas = ExtResource("13_cwj01")
+region = Rect2(48, 0, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pnom"]
 atlas = ExtResource("6_240cd")
 region = Rect2(0, 0, 24, 24)
@@ -385,6 +402,42 @@ region = Rect2(48, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5athw"]
 atlas = ExtResource("4_pnkj8")
 region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwr3j"]
+atlas = ExtResource("15_etkas")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrfpo"]
+atlas = ExtResource("15_etkas")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlwpi"]
+atlas = ExtResource("15_etkas")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiatm"]
+atlas = ExtResource("15_etkas")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euxoi"]
+atlas = ExtResource("15_etkas")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5ben"]
+atlas = ExtResource("15_etkas")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0h8m"]
+atlas = ExtResource("15_etkas")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6e7f"]
+atlas = ExtResource("15_etkas")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gn27"]
+atlas = ExtResource("15_etkas")
+region = Rect2(192, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdsda"]
 atlas = ExtResource("11_1pnom")
@@ -715,6 +768,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yv26n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd3os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm8ni")
+}],
+"loop": false,
+"name": &"dive",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1pnom")
 }, {
 "duration": 1.0,
@@ -748,6 +815,38 @@ animations = [{
 }],
 "loop": false,
 "name": &"fall",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwr3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrfpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlwpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiatm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euxoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5ben")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0h8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6e7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gn27")
+}],
+"loop": false,
+"name": &"ground_slam",
 "speed": 18.0
 }, {
 "frames": [{
@@ -918,11 +1017,16 @@ trail_sections = 4
 trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_rgm01")
 
+[node name="DiveParticles" parent="." unique_id=324369373 instance=ExtResource("5_l6gg1")]
+emitting = false
+
+[node name="StarJumpParticles" parent="." unique_id=106907738 instance=ExtResource("6_w0767")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
 position = Vector2(0, 12)
 sprite_frames = SubResource("SpriteFrames_g3adm")
-animation = &"death"
+animation = &"dive"
 offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
@@ -1042,11 +1146,14 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Glide" type="Node" parent="FiniteStateMachine" unique_id=444044171]
 script = ExtResource("51_gpev2")
+glide_gravity = 20.0
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="StarJump" type="Node" parent="FiniteStateMachine" unique_id=1121560930]
 script = ExtResource("52_j5cv5")
 deceleration = 1600.0
+launch_particle = "small_blast"
+launch_sound = ExtResource("57_8n0ut")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=152654165 instance=ExtResource("17_8fbs1")]
@@ -1083,6 +1190,7 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_8fbs1")
 
 [node name="GroundSlamScene" parent="." unique_id=2040860777 instance=ExtResource("60_2l68p")]
+position = Vector2(0, 8)
 
 [node name="SwordScene" parent="." unique_id=509620685 instance=ExtResource("14_pffij")]
 

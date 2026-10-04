@@ -1,6 +1,15 @@
 
 extends Node
 
+const TUTORIAL_MESSAGES: Dictionary ={
+	"Desktop":
+		{"Heal":"Hold C to heal",
+		"Drop through":"Press down to drop through platforms"},
+	"Mobile":
+		{"Heal":"Hold C to heal",
+		"Drop through":"Swipe down to drop through platforms"},
+}
+
 const ABILITY_DETAILS: Dictionary = {
 	"Beam Blade": "A focused beam of energy that slices through obstacles. Requires energy to use. Hold A button to use.",
 	"Glide": "Allows you to glide smoothly through the air over long gaps. Hold B button while falling to use.",

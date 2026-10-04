@@ -9,7 +9,10 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		if not owner.coyote_timer.is_stopped():
 			owner.coyote_timer.stop()
-			fsm.change_state("jump")
+			if Input.is_action_pressed("up"):
+				fsm.change_state("StarJump")
+			else:
+				fsm.change_state("jump")
 		elif owner.check_ability("Glide"):
 			fsm.change_state("Glide")
 		else:

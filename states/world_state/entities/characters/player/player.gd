@@ -12,6 +12,8 @@ const STAR_JUMP_VELOCITY: float = -360.0
 @onready var death_particles: GPUParticles2D = $DeathParticle
 @onready var heal_particles: GPUParticles2D = $HealParticle
 @onready var death_marker_particles: GPUParticles2D = $DeathMarkerParticle
+@onready var dive_particles: GPUParticles2D = $DiveParticles
+@onready var star_jump_particles: GPUParticles2D = $StarJumpParticles
 
 @onready var slide_sound_stream: AudioStreamPlayer2D = $SlideSoundStream
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
