@@ -13,14 +13,18 @@ func enter() -> void:
 	owner.animated_sprite.play("heal")
 	timer = duration
 	owner.velocity = Vector2.ZERO
-
-func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
-		owner.velocity = Vector2.ZERO
-		fsm.change_state("fall")
 	
+	# Allow force through platforms
+	owner.set_collision_mask_value(7, false)
+
+#func handle_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("jump"):
+		#owner.velocity = Vector2.ZERO
+		#fsm.change_state("fall")
+	#
 func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
+		owner.set_collision_mask_value(7, true)
 		fsm.change_state("Slam")
 		return
 	
@@ -33,4 +37,6 @@ func physics_update(delta: float) -> void:
 		# After move and slide so we get the correct wall normal for is_on_slope
 	if owner.move_component.is_on_slope():
 		owner.air_attack_count = 0
+		owner.set_collision_mask_value(7, true)
 		fsm.change_state("Slide")
+		

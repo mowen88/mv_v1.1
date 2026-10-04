@@ -1032,11 +1032,12 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("48_dlyna")
 dive_sound = ExtResource("49_3il82")
 dive_speed = 200.0
+duration = 0.2
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Slam" type="Node" parent="FiniteStateMachine" unique_id=854019004]
 script = ExtResource("49_unvrk")
-duration = 0.3
+duration = 0.5
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Glide" type="Node" parent="FiniteStateMachine" unique_id=444044171]

@@ -11,7 +11,7 @@ func handle_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):
 			fsm.change_state("fall")
 
-func physicdddddddddddddddddddddddddddddddddddddddddddddddddddssssssssssssssss_update(delta: float) -> void:
+func physics_update(delta: float) -> void:
 
 	if owner.is_on_floor():
 		owner.air_attack_count = 0

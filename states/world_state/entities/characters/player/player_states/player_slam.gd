@@ -8,6 +8,7 @@ var timer: float = 0.0
 func enter() -> void:
 	owner.get_node("AnimatedSprite2D").play("heal")
 	timer = duration
+	SignalBus.screenshake_requested.emit(0.0, 12.0, 0.3)
 	owner.ground_slam.attack()
 	
 func physics_update(delta: float) -> void:

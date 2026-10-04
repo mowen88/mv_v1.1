@@ -36,7 +36,6 @@ func disable_slam() -> void:
 	# Use 'set_deferred' to avoid physics errors
 	hitbox_component.monitoring = false
 	#hitbox_component.monitorable = false
-	visible = false
 
 func enable_slam() -> void:
 	hitbox_component.monitoring = true
