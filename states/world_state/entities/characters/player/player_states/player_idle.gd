@@ -31,6 +31,7 @@ func physics_update(_delta: float) -> void:
 	
 	# Fall if not on floor
 	if not owner.is_on_floor():
+		owner.jump_counter = 0
 		if owner.coyote_timer.is_stopped():
 			owner.coyote_timer.start()
 		fsm.change_state("Fall")

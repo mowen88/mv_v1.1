@@ -33,6 +33,7 @@ func _ready():
 
 
 func _process(delta: float) -> void:
+	
 	if not player:
 		return
 		

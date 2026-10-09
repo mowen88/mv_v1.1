@@ -31,6 +31,7 @@ const STAR_JUMP_VELOCITY: float = -360.0
 @onready var beam = $BeamScene
 @onready var ground_slam = $GroundSlamScene
 
+@onready var jump_buffer_shape_cast: ShapeCast2D = $JumpBufferShapeCast
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
 
@@ -191,7 +192,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("shoot"):
 		#health_component.damage(1)
-		print(energy_component.current_energy, ", ", energy_component.max_energy)
 		
 		SaveManager.add_ability("Beam Blade")
 		SaveManager.add_ability("Glide")

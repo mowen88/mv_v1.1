@@ -4,9 +4,10 @@ class_name PlayerJump
 var gravity: float
 
 func enter() -> void:
+	
 	owner.get_node("AnimatedSprite2D").play("jump")
 	
-	owner.jump_counter += 1 # Increments for the double jump
+	owner.jump_counter += 1
 	owner.velocity.y = owner.move_component.jump_velocity
 	
 	if not Input.is_action_pressed("jump"):
@@ -15,7 +16,13 @@ func enter() -> void:
 		gravity = owner.move_component.gravity
 
 func handle_input(event: InputEvent) -> void:
-
+	
+	if event.is_action_pressed("jump"):
+		if owner.check_ability("Star Jump") and owner.jump_counter == 1:
+			fsm.change_state("StarJump")
+		elif owner.check_ability("Glide"):
+			fsm.change_state("Glide")
+		
 	if event.is_action_released("jump"):
 		gravity = owner.move_component.gravity * 4
 		
@@ -28,15 +35,15 @@ func handle_input(event: InputEvent) -> void:
 		elif owner.air_attack_count < 1:# and owner.get_node("AttackTimer").is_stopped():
 			fsm.change_state("AirAttack")
 	
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 
 	# Add gravity
-	owner.velocity.y = min(owner.velocity.y + gravity * _delta,\
+	owner.velocity.y = min(owner.velocity.y + gravity * delta,\
 	owner.move_component.max_fall_speed)
 	
 	# Handle horizontal movement
-	owner.x_input(_delta)
-	owner.move_component.process_movement(_delta)
+	owner.x_input(delta)
+	owner.move_component.process_movement(delta)
 	owner.move_and_slide()
 	
 	if owner.velocity.y >= 0:

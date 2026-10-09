@@ -68,6 +68,9 @@
 [ext_resource type="AudioStream" uid="uid://dhnws6osmogjd" path="res://states/world_state/entities/characters/player/player_audio/star_jump_sound.wav" id="57_8n0ut"]
 [ext_resource type="PackedScene" uid="uid://bugmgmdfh1nxg" path="res://states/world_state/entities/characters/player/ground_slam/ground_slam_scene.tscn" id="60_2l68p"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n0ut"]
+size = Vector2(6, 4)
+
 [sub_resource type="Gradient" id="Gradient_jnwpf"]
 colors = PackedColorArray(0, 0, 0, 0.5019608, 1, 1, 1, 0)
 
@@ -972,6 +975,11 @@ collision_layer = 2
 collision_mask = 193
 script = ExtResource("2_xul6b")
 
+[node name="JumpBufferShapeCast" type="ShapeCast2D" parent="." unique_id=1020195402]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_8n0ut")
+target_position = Vector2(0, 0)
+
 [node name="SlideSoundStream" type="AudioStreamPlayer2D" parent="." unique_id=2085628337]
 stream = ExtResource("2_jnwpf")
 
@@ -1135,7 +1143,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 [node name="Dive" type="Node" parent="FiniteStateMachine" unique_id=1866999979]
 script = ExtResource("48_dlyna")
 dive_sound = ExtResource("49_3il82")
-dive_speed = 200.0
+dive_speed = 260.0
 duration = 0.2
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
@@ -1190,10 +1198,13 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_8fbs1")
 
 [node name="GroundSlamScene" parent="." unique_id=2040860777 instance=ExtResource("60_2l68p")]
+visible = false
 position = Vector2(0, 8)
 
 [node name="SwordScene" parent="." unique_id=509620685 instance=ExtResource("14_pffij")]
+visible = false
 
 [node name="BeamScene" parent="." unique_id=251752736 instance=ExtResource("44_yuga7")]
+visible = false
 
 [editable path="HurtboxComponent"]

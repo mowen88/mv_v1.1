@@ -18,7 +18,8 @@ func enter() -> void:
 func handle_input(event:InputEvent) -> void:
 	if event.is_action_released("attack"):
 		go_to_special = false
-		
+	
+	# Because can still be falling
 	if event.is_action_pressed("jump"):
 		owner.jump_buffer_timer.start()
 	

@@ -15,6 +15,7 @@ func physics_update(delta: float) -> void:
 
 	if owner.is_on_floor():
 		owner.air_attack_count = 0
+		owner.jump_counter = 0
 		fsm.change_state("Idle")
 		return
 		
@@ -30,5 +31,6 @@ func physics_update(delta: float) -> void:
 	# After move and slide so we get the correct wall normal for is_on_slope
 	if owner.move_component.is_on_slope():
 		owner.air_attack_count = 0
+		owner.jump_counter = 0
 		fsm.change_state("Slide")
 	
