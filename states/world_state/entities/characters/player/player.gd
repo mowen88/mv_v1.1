@@ -133,24 +133,24 @@ func _on_swipe_down() -> void:
 		return
 	
 	var drop_through_valid_states = ["Idle", "Run"]
-	var ground_slam_valid_states = ["Jump", "StarJump", "Jump", "Fall", "Glide"]
+	var ground_slam_valid_states = ["Jump", "StarJump", "Fall", "Glide"]
 	
 	if fsm.current_state.name in drop_through_valid_states and is_on_floor():
 		# Stop player sticking to wall in run state fix by bouncing away slightly
 		drop_through_platform()
 		
-	elif fsm.current_state.name in ground_slam_valid_states and check_ability("Ground Slam"):
+	elif fsm.current_state.name in ground_slam_valid_states\
+	and check_ability("Ground Slam"):
 		fsm.change_state("Dive")
-
+		
 func drop_through_platform() -> void:
 
 	if is_on_wall():
-		velocity.x = 25 * -move_component.facing
+		velocity.x = 30 * -move_component.facing
 	# Disable the platform collisions, wait short time and reenable
 	set_collision_mask_value(7, false)
 	await get_tree().create_timer(0.1).timeout
 	set_collision_mask_value(7, true)
-
 		
 func is_on_ladder() -> bool:
 	for area in hurtbox_component.get_overlapping_areas():

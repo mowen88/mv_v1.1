@@ -27,15 +27,13 @@ func handle_input(event: InputEvent) -> void:
 		else:
 			# Floor is detected by the shape cast; buffer the input for landing
 			owner.jump_buffer_timer.start()
-
-		
+	
 	if event.is_action_pressed("attack"):
 		# Ground slam if holding down
-		#if Input.is_action_pressed("down") \
-		#and owner.check_ability("Ground Slam"):
-		if owner.check_ability("Ground Slam"):
-			fsm.change_state("Dive")
-			
+		if Input.is_action_pressed("down")\
+		and owner.check_ability("Ground Slam"):
+				fsm.change_state("Dive")
+				
 		elif owner.air_attack_count < 1:# and owner.get_node("AttackTimer").is_stopped():
 			fsm.change_state("AirAttack")
 
