@@ -1,6 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
+const GHOST_SCENE = preload("res://states/world_state/entities/characters/player/player_particles/ghost_sprite.tscn")
+var ghost_cooldown_timer: float = 0.0
+var ghost_cooldown: float = 0.05
+
 const HEAL_COST: int = 18
 const HEAL_AMOUNT: int = 3
 const BEAM_COST: int = 18
@@ -13,7 +17,7 @@ const STAR_JUMP_VELOCITY: float = -360.0
 @onready var heal_particles: GPUParticles2D = $HealParticle
 @onready var death_marker_particles: GPUParticles2D = $DeathMarkerParticle
 @onready var dive_particles: GPUParticles2D = $DiveParticles
-@onready var star_jump_particles: GPUParticles2D = $StarJumpParticles
+@onready var ghost_sprite: Sprite2D = $GhostSprite
 
 @onready var slide_sound_stream: AudioStreamPlayer2D = $SlideSoundStream
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -70,7 +74,27 @@ func _ready() -> void:
 	
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
-	SignalBus.swipe_up_detected.connect(_on_swipe_up)
+
+func spawn_ghost() -> void:
+	var ghost = GHOST_SCENE.instantiate() as Sprite2D
+	
+	# match player position and facing
+	ghost.global_position = global_position
+	ghost.scale = animated_sprite.scale
+	ghost.flip_h = animated_sprite.flip_h
+	
+	# Grab the current frame texture from the AnimatedSprite2D
+	var anim = animated_sprite.animation
+	var frame = animated_sprite.frame
+	ghost.texture = animated_sprite.sprite_frames.get_frame_texture(anim, frame)
+	
+	get_tree().current_scene.add_child(ghost)
+
+func run_ghost(delta: float) -> void:
+	ghost_cooldown_timer += delta
+	if ghost_cooldown_timer >= ghost_cooldown:
+		ghost_cooldown_timer = 0.0 # Reset timer
+		spawn_ghost()
 
 func _get_initial_coins() -> void:
 	if SaveManager.SAVE_DATA.has(SaveManager.current_slot):
@@ -109,22 +133,14 @@ func _on_swipe_down() -> void:
 		return
 	
 	var drop_through_valid_states = ["Idle", "Run"]
+	var ground_slam_valid_states = ["Jump", "StarJump", "Jump", "Fall", "Glide"]
+	
 	if fsm.current_state.name in drop_through_valid_states and is_on_floor():
 		# Stop player sticking to wall in run state fix by bouncing away slightly
 		drop_through_platform()
 		
-	elif check_ability("Ground Slam"):
+	elif fsm.current_state.name in ground_slam_valid_states and check_ability("Ground Slam"):
 		fsm.change_state("Dive")
-
-func _on_swipe_up() -> void:
-	if InputManager.input_lock:
-		return
-	
-	var star_jump_valid_states = ["Idle", "Run"]
-	if fsm.current_state.name in star_jump_valid_states\
-	and is_on_floor()\
-	and check_ability("Star Jump"):
-		fsm.change_state("StarJump")
 
 func drop_through_platform() -> void:
 

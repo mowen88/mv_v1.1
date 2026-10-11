@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://wdtdy2akfom4"]
+
+[ext_resource type="Script" uid="uid://gqlwcwspndah" path="res://states/world_state/entities/characters/player/player_particles/ghost_sprite.gd" id="1_7d7hu"]
+
+[node name="GhostSprite" type="Sprite2D" unique_id=748050137]
+script = ExtResource("1_7d7hu")

@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://bo7kcmx1jpm50"]
 
-[ext_resource type="Texture2D" uid="uid://dl0javswhcspo" path="res://states/world_state/entities/characters/player/player_particles/dive_particle_sprite.png" id="1_4gt5x"]
-
 [sub_resource type="Shader" id="Shader_mf3ri"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.6.3.stable's CanvasItemMaterial.
 
@@ -32,6 +30,9 @@ shader_parameter/particles_anim_h_frames = 1
 shader_parameter/particles_anim_v_frames = 1
 shader_parameter/particles_anim_loop = false
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8colx"]
+load_path = "res://.godot/imported/dive_particle_sprite.png-8040ee71daabe9ad0d6b7ea82e1d47c0.ctex"
+
 [sub_resource type="Curve" id="Curve_mlksu"]
 _data = [Vector2(0, 0.49968964), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -48,6 +49,6 @@ anim_speed_max = 5.0
 
 [node name="DiveParticles" type="GPUParticles2D" unique_id=324369373]
 material = SubResource("ShaderMaterial_c3fcg")
-texture = ExtResource("1_4gt5x")
+texture = SubResource("CompressedTexture2D_8colx")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_rmxmb")

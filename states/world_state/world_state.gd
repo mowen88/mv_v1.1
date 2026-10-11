@@ -31,9 +31,8 @@ func _ready():
 	# Instantiates the first room
 	_load_room(SaveManager.get_saved_room(), 0)
 
-
 func _process(delta: float) -> void:
-	
+
 	if not player:
 		return
 		

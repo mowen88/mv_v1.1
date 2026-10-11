@@ -16,7 +16,6 @@ func enter() -> void:
 	
 	# Allow force through platforms
 	owner.set_collision_mask_value(7, false)
-	owner.dive_particles.emitting = true
 
 #func handle_input(event: InputEvent) -> void:
 	#if event.is_action_pressed("jump"):
@@ -24,9 +23,13 @@ func enter() -> void:
 		#fsm.change_state("fall")
 	#
 func physics_update(delta: float) -> void:
+	
+	owner.run_ghost(delta)
+	
 	if owner.is_on_floor():
+		owner.air_attack_count = 0
+		owner.jump_counter = 0
 		owner.set_collision_mask_value(7, true)
-		owner.dive_particles.emitting = false
 		fsm.change_state("Slam")
 		return
 	
@@ -36,10 +39,10 @@ func physics_update(delta: float) -> void:
 
 	owner.move_and_slide()
 	
-		# After move and slide so we get the correct wall normal for is_on_slope
+	# After move and slide so we get the correct wall normal for is_on_slope
 	if owner.move_component.is_on_slope():
 		owner.air_attack_count = 0
+		owner.jump_counter = 0
 		owner.set_collision_mask_value(7, true)
-		owner.dive_particles.emitting = false
 		fsm.change_state("Slide")
 		

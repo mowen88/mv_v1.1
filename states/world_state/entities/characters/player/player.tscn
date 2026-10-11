@@ -13,12 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://b7vnt8h4y7bqa" path="res://states/world_state/entities/characters/player/player_spritesheets/run.png" id="4_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://br02d51sw5iue" path="res://states/world_state/entities/characters/player/player_spritesheets/climb.png" id="5_5athw"]
 [ext_resource type="Texture2D" uid="uid://d2p6qoniikbka" path="res://states/world_state/entities/characters/player/player_spritesheets/awake.png" id="5_7ln4g"]
-[ext_resource type="PackedScene" uid="uid://bo7kcmx1jpm50" path="res://states/world_state/entities/characters/player/player_particles/dive_particles.tscn" id="5_l6gg1"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="5_ri0vu"]
 [ext_resource type="Texture2D" uid="uid://bnpwbw52p6aam" path="res://states/world_state/entities/characters/player/player_spritesheets/exit_door.png" id="6_240cd"]
 [ext_resource type="Script" uid="uid://cbj2xr51bn4y0" path="res://states/world_state/entities/characters/player/player_states/player_run.gd" id="6_u6uqx"]
 [ext_resource type="Texture2D" uid="uid://bxp1vt7crs8sx" path="res://states/world_state/entities/characters/player/player_spritesheets/jump.png" id="6_ulhyb"]
-[ext_resource type="PackedScene" uid="uid://7bcelccx88is" path="res://states/world_state/entities/characters/player/player_particles/star_jump_particles.tscn" id="6_w0767"]
+[ext_resource type="PackedScene" uid="uid://wdtdy2akfom4" path="res://states/world_state/entities/characters/player/player_particles/ghost_sprite.tscn" id="7_dqavc"]
 [ext_resource type="Texture2D" uid="uid://bmv0f06d3woc1" path="res://states/world_state/entities/characters/player/player_spritesheets/beam_build_up.png" id="7_fsr7x"]
 [ext_resource type="Script" uid="uid://dercsmv8k458f" path="res://states/world_state/entities/characters/player/player_states/player_jump.gd" id="8_6on6l"]
 [ext_resource type="Script" uid="uid://crh54bx3jo1y2" path="res://states/world_state/entities/characters/player/player_states/player_fall.gd" id="8_cdm2v"]
@@ -1025,10 +1024,7 @@ trail_sections = 4
 trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_rgm01")
 
-[node name="DiveParticles" parent="." unique_id=324369373 instance=ExtResource("5_l6gg1")]
-emitting = false
-
-[node name="StarJumpParticles" parent="." unique_id=106907738 instance=ExtResource("6_w0767")]
+[node name="GhostSprite" parent="." unique_id=748050137 instance=ExtResource("7_dqavc")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
 material = ExtResource("2_or386")
@@ -1161,6 +1157,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 script = ExtResource("52_j5cv5")
 deceleration = 1600.0
 launch_particle = "small_blast"
+ghost_cooldown = 0.05
 launch_sound = ExtResource("57_8n0ut")
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 

@@ -1,14 +1,14 @@
 extends Control
 
-# Percentage of screen height
-@export var swipe_threshold_percent: float = 0.25
+# Target physical swipe distance in centimeters (e.g., 2.5 cm of finger movement)
+@export var swipe_distance_cm: float = 0.5
 @export var max_swipe_time: float = 0.2
 
 var start_pos: Vector2
 var is_tracking: bool = false
 
 func _input(event: InputEvent) -> void:
-	# lEarly return if touch controller is not in use and hidden
+	# Early return if touch controller is not in use and hidden
 	if not owner.visible:
 		is_tracking = false
 		return
@@ -26,12 +26,16 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventScreenDrag and is_tracking:
 		var swipe_vector = event.position - start_pos
 		
-		# Calculate dynamic threshold based on current screen height
-		var screen_height = get_viewport_rect().size.y
-		var dynamic_threshold = screen_height * swipe_threshold_percent
+		# Calculate dynamic threshold based on physical screen DPI
+		var dpi = DisplayServer.screen_get_dpi()
+		if dpi <= 0:
+			dpi = 160.0 # Fallback baseline if DPI cannot be fetched
+			
+		# Convert centimeters to inches (2.54 cm per inch), then to pixels
+		var required_pixel_distance = (swipe_distance_cm / 2.54) * dpi
 		
 		# Check distance and ensure it is primarily a vertical swipe
-		if swipe_vector.length() >= dynamic_threshold and abs(swipe_vector.y) > abs(swipe_vector.x) * 2:
+		if swipe_vector.length() >= required_pixel_distance and abs(swipe_vector.y) > abs(swipe_vector.x) * 2:
 			
 			# Stop tracking to prevent repeated triggers during the same drag
 			is_tracking = false 
@@ -41,6 +45,6 @@ func _input(event: InputEvent) -> void:
 			else:
 				SignalBus.swipe_up_detected.emit()
 
-	# 3. Stop tracking if touch is released
+	# Stop tracking if touch is released
 	elif event is InputEventScreenTouch and not event.pressed:
 		is_tracking = false
